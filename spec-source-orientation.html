@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang=en>
+ <head>
+  <title>Orientation Event Specification</title>
+  <meta content="text/html;charset=utf-8" http-equiv=Content-Type>
+
+  <style type="text/css">
+   dt, dfn { font-weight: bold; font-style: normal; }
+   img.extra { float: right; }
+   body ins, body del { display: block; }
+   body * ins, body * del { display: inline; }
+   pre, code { color: black; background: transparent; font-size: inherit; font-family: monospace; }
+   pre strong { color: black; font: inherit; font-weight: bold; background: yellow; }
+   pre em { font-weight: bolder; font-style: normal; }
+   pre.idl :link, pre.idl :visited { color: inherit; background: transparent; }
+   pre.idl { border: solid thin; background: #EEEEEE; color: black; padding: 0.5em; }
+   table { border-collapse: collapse; border-style: hidden hidden none hidden; }
+   table thead { border-bottom: solid; }
+   table tbody th:first-child { border-left: solid; }
+   table td, table th { border-left: solid; border-right: solid; border-bottom: solid thin; vertical-align: top; padding: 0.2em; }
+   ul.toc dfn, h1 dfn, h2 dfn, h3 dfn, h4 dfn, h5 dfn, h6 dfn { font: inherit; }
+   ul.toc li ul { margin-bottom: 0.75em; }
+   ul.toc li ul li ul { margin-bottom: 0.25em; }
+   var sub { vertical-align: bottom; font-size: smaller; position: relative; top: 0.1em; }
+   @media screen { code { color: rgb(255, 69, 0); background: transparent; } }
+   code :link, code :visited { color: inherit; background: transparent; }
+   .example { display: block; color: #222222; background: #FCFCFC; border-left: double; margin-left: 1em; padding-left: 1em; }
+   .issue, .big-issue { color: #E50000; background: white; border: solid red; padding: 0.5em; margin: 1em 0; }
+   .issue > :first-child, .big-issue > :first-child { margin-top: 0; }
+   p .big-issue { line-height: 3em; }
+   .note { color: green; background: transparent; }
+   .note { font-family: sans-serif; }
+   p.note:before { content: 'Note: '; }
+   .warning { color: red; background: transparent; }
+   .warning:before { font-style: normal; }
+   p.warning:before { content: '\26A0 Warning! '; }
+   .note, .warning { font-weight: bolder; font-style: italic; padding: 0.5em 2em; }
+   .copyright { margin: 0.25em 0; }
+   img { max-width: 100%; }
+   h4 + .element { margin-top: -2.5em; padding-top: 2em; }
+   h4 + p + .element { margin-top: -5em; padding-top: 4em; }
+   .element { background: #EEEEFF; color: black; margin: 0 0 1em -1em; padding: 0 1em 0.25em 0.75em; border-left: solid #9999FF 0.25em; }
+   table.matrix, table.matrix td { border: none; text-align: right; }
+   table.matrix { margin-left: 2em; }
+  </style>
+  <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet
+  type="text/css">
+
+ <body>
+  <div class=head> <!--begin-logo-->
+   <p><a href="http://www.w3.org/"><img alt=W3C height=48
+    src="http://www.w3.org/Icons/w3c_home" width=72></a> <!--end-logo-->
+
+   <h1 id="title_heading">Orientation Event Specification</h1>
+
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 05 March 2010</h2>
+
+   <dl>
+    <!-- <dt>This Version:</dt>
+      <dd><a href="http://www.w3.org/TR/2009/WD-geolocation-API-20090707/">http://www.w3.org/TR/2009/WD-geolocation-API-20090707/</a></dd> -->
+
+    <dt>Latest Published Version:
+
+    <!-- <dd><a
+     href="http://www.w3.org/TR/geolocation-API/">http://www.w3.org/TR/geolocation-API/</a> -->
+
+    <dt>Latest Editor's Draft:
+
+    <dd><a
+     href="http://dev.w3.org/geo/api/spec-source-orientation.html">http://dev.w3.org/geo/api/spec-source-orientation.html</a></dd>
+    <!-- <dt>Previous version:</dt>
+      <dd><a href="http://www.w3.org/TR/2008/WD-geolocation-API-20081222/">http://www.w3.org/TR/2008/WD-geolocation-API-20081222/</a></dd> -->
+
+    <dt>Editors:</dt>
+
+    <dd>Andrei Popescu, Google, Inc</dd>
+    <dd>Steve Block, Google, Inc</dd>
+   </dl>
+
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 2009 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+
+   <hr>
+  </div>
+
+  <h2 class="no-num no-toc" id=abstract>Abstract</h2>
+
+  <p>This specification defines two new DOM event types that provide information about the physical orientation of a hosting device.
+
+  <h2 class="no-num no-toc" id=status>Status of This Document</h2>
+  <!-- intro boilerplate (required) -->
+<p><em>This section describes the status of this document at the time
+of its publication. Other documents may supersede this document. A
+list of current W3C publications and the latest revision of this
+technical report can be found in
+the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
+http://www.w3.org/TR/.</em></p>
+
+  <!-- where to send feedback (required) -->
+
+  <p>This document was published by the <a
+  href="http://www.w3.org/2008/geolocation/">Geolocation Working Group</a> .
+  If you wish to make comments regarding this document, please send
+  them to <a 
+  href="mailto:public-geolocation@w3.org">public-geolocation@w3.org</a> (<a 
+  href="mailto:public-geolocation-request@w3.org?subject=subscribe">subscribe</a>,
+  <a 
+  href="http://lists.w3.org/Archives/Public/public-geolocation/">archives</a>).</p> 
+  <p>All feedback is welcome.</p>
+  <!-- stability (required) -->
+
+<p>Publication as a Working Draft does not imply endorsement by the
+W3C Membership. This is a draft document and may be updated, replaced
+or obsoleted by other documents at any time. It is inappropriate to
+cite this document as other than work in progress.</p>
+
+  <!-- required patent boilerplate -->
+
+
+  <p> This document was produced by a group operating under the <a
+   href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February
+   2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42891/status" rel="disclosure">public list of any patent disclosures</a>
+   made in connection with the deliverables of the group; that page also
+   includes instructions for disclosing a patent. An individual who has
+   actual knowledge of a patent which the individual believes contains <a
+   href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+   Claim(s)</a> must disclose the information in accordance with <a
+   href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+   6 of the W3C Patent Policy</a>.
+
+  <h2 class="no-num no-toc" id=contents>Table of Contents</h2>
+  <!--begin-toc-->
+  <!--end-toc-->
+
+  <h2 id=conformance><span class=secno>1 </span>Conformance requirements</h2>
+
+  <p>All diagrams, examples, and notes in this specification are
+   non-normative, as are all sections explicitly marked non-normative.
+   Everything else in this specification is normative.
+
+  <p>The key words "MUST", "MUST NOT", "REQUIRED", <!--"SHALL", "SHALL
+  NOT",-->
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the
+   normative parts of this document are to be interpreted as described in
+   RFC2119. For readability, these words do not appear in all uppercase
+   letters in this specification. <a href="#ref-rfc2119">[RFC2119]</a></p>
+  <!-- XXX but they should be
+  marked up -->
+
+  <p>Requirements phrased in the imperative as part of algorithms (such as
+   "strip any leading space characters" or "return false and abort these
+   steps") are to be interpreted with the meaning of the key word ("must",
+   "should", "may", etc) used in introducing the algorithm.
+
+  <p>Conformance requirements phrased as algorithms or specific steps may be
+   implemented in any manner, so long as the end result is equivalent. (In
+   particular, the algorithms defined in this specification are intended to
+   be easy to follow, and not intended to be performant.)
+
+  <p id=hardwareLimitations>User agents may impose implementation-specific
+   limits on otherwise unconstrained inputs, e.g. to prevent denial of
+   service attacks, to guard against running out of memory, or to work around
+   platform-specific limitations.
+
+  <p>Implementations that use ECMAScript to implement the APIs defined in
+   this specification must implement them in a manner consistent with the
+   ECMAScript Bindings defined in the Web IDL specification, as this
+   specification uses that specification's terminology. <a
+   href="#ref-webidl">[WEBIDL]</a>
+                                   
+  <h2 id=introduction><span class=secno>2 </span>Introduction</h2>
+
+  <p><em>This section is non-normative.</em>
+
+  <p>
+
+  <h2 id=scope><span class=secno>3 </span>Scope</h2>
+
+  <p><em>This section is non-normative.</em>
+
+  <h2 id="api_description"><span class=secno>4 </span>Description</h2>
+
+  <p>This spec provides two new DOM events. The first is a simple,
+  high-level source of information about the physical orientation of a
+  device. The second event provides direct access to low-level
+  accelerometer data and is intended for more sophisticated
+  applications.
+
+  <h3 id="orientation_description"><span class=secno>4.1 </span>Device orientation</h3>
+
+  <p>The orientation of the device is given by the transformation of a
+  coordinate frame fixed in the device, relative to a coordinate frame
+  fixed to the Earth. For a mobile device, the device coordinate frame
+  has the following 3 axes:</p>
+
+  <ul>
+    <li>A is in the plane of the screen and is positive towards the right hand side of the screen.</li>
+    <li>B is in the plane of the screen and is positive towards the top of the screen.</li>
+    <li>C is perpendicular to the screen, positive out of the screen.</li>
+  </ul>
+
+  <p>The above axes are defined relative to the standard positin of the screen, in which slide-out keyboards are not deployed.</p>
+  <p>TODO: add definitions for other devices, e.g. laptops.</p>
+
+  <p>The Earth coordinate system has the following 3 axes:
+
+  <ul>
+    <li>X is tangential to the ground and positive towards the magnetic East.</li>
+    <li>Y is tangential to the ground and positive towards the magnetic North Pole.</li>
+    <li>Z is perpendicular to the ground and positive vertically upwards.</li>
+  </ul>
+
+  <p>The transformation from the Earth frame to the device frame is
+  expressed in terms of 3 rotations, specified in the device
+  frame. Positive rotation around an axis is defined as clockwise when
+  viewed along the positive direction of the axis.</p>
+
+  <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
+
+  <ol>
+    <li>rotate the device frame around its C axis by <code>theta</code> degrees, with <code>theta</code> in [0, 360).</li>
+    <li>rotate the device frame around its A axis by <code>phi</code> degrees, with <code>phi</code> in [-180, 180).</li>
+    <li>rotate the device frame around its B axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90). </li>
+  </ol>
+
+  <h3 id="orientation_event"><span class=secno>4.2 </span>Orientation event</h3>
+
+  <p>The <code><a href="#orientation">OrientationEvent</a></code> fires on the <code>window</code> object.
+  The event should be fired whenever a significant change in orientation occurs. The definition of a significant
+  change in this context is left to the implementation.</p>
+
+  <pre class=idl>
+    interface <dfn id="orientation">OrientationEvent</dfn> : Event {
+    readonly attribute double theta;
+    readonly attribute double phi;
+    readonly attribute double gamma;
+    void initOrientationEvent(in DOMString typeArg,
+                              in boolean canBubbleArg,
+                              in boolean cancelableArg,
+                              in double theta,
+                              in double phi,
+                              in double gamma);
+    }
+  </pre>
+
+  <p><br>
+
+  <p> Implementations that are unable to provide all three angles must
+  set the values of the unknown angles to null. If an implementation
+  can never provide orientation information, the event should be fired
+  exactly once, with all three angle values set to null.</p>
+
+  <h3 id="accelerometer_desc"><span class=secno>4.3 </span>Accelerometer</h3>
+
+  <p>The accelerometer data is expressed in m/s^2 and uses the body
+  axes defined in <a href="#orientation_description">section
+  4.1</a>. These values exclude the acceleration due to the Gravity force.
+
+  <h3 id="accelerometer_event"><span class=secno>4.4 </span>Accelerometer event</h3>
+
+  <p>The <code><a href="#accelerometer">AccelerometerEvent</a></code>
+  fires on the <code>window</code> object.  The event must fire at
+  regular intervals and the interval must be reported, in
+  milliseconds, using the <code>interval</code> attribute of
+  the <code>AccelerometerEvent</code> object. Note that the interval
+  is a constant for a given implementation.
+
+  <pre class=idl>
+    interface <dfn id="orientation">AccelerometerEvent</dfn> : Event {
+    readonly attribute double x;
+    readonly attribute double y;
+    readonly attribute double z;
+    readonly attribute double interval;
+    void initOrientationEvent(in DOMString typeArg,
+                              in boolean canBubbleArg,
+                              in boolean cancelableArg,
+                              in double x,
+                              in double y,
+                              in double z,
+                              in double interval);
+    }
+  </pre>
+
+  <p><br>
+
+  <p>Implementations that are unable to provide all three acceleration components must
+  set the values of the unknown components to null. If an implementation
+  can never provide acceleration information, the event should be fired
+  exactly once, with all three component values set to null.</p>
+
+  <h2 id=exammples><span class=secno>5 </span>Examples</h2>
+
+  <div class=example> 
+    <p>Registering to
+    receive <a href="orientation"><code>OrientationEvent</code></a>
+    events:</p>
+      <pre>
+        window.addEventListener("orientation", function(event) {
+            // process event.theta, event.phi and event.gamma
+        }, true);
+      </pre> 
+  </div>
+
+  <div class=example> 
+    <p>A device lying flat on a horizontal surface with the top of the
+    screen pointing West has the following orientation:</p>
+      <pre>
+        {theta: 90,
+         phi: 0,
+         gamma: 0};
+      </pre>
+    <p> To get the compass heading, one would simply
+    subtract <code>theta</code> from 360 degrees. As the device is
+    turned on the horizontal surface, the compass heading is (360
+    - <code>theta</code>).</p>
+  </div>
+
+  <div class=example>
+    <p>A user is holding the device in their hand, with the screen in
+    a vertical plane and the top of the screen pointing upwards. The
+    value of <code>phi</code> is 90, irrespective of
+    what <code>theta</code> and <code>gamma</code> are.</p>
+  </div>
+
+  <div class=example>
+    <p>A user facing a compass heading of alpha degrees is holding the
+    device in their hand, with the screen in a vertical plane and the
+    top of the screen pointing to their right. The orientation of the
+    device is:</p>
+      <pre>
+        {theta: 270 - alpha,
+         phi: 0,
+         gamma: 90};
+      </pre>
+    <p></p>
+  </div>
+
+  <h2 id=usecases><span class=secno>6 </span>Use-Cases and Requirements</h2>
+
+  <h3 id="usecases_section"><span class=secno>6.1 </span>Use-Cases</h3>
+
+
+  <h3 id="requirements_section"><span class=secno>6.2 </span>Requirements</h3>
+
+  <h2 class=no-num id=acknowledgments>Acknowledgments</h2>
+
+  <h2 class=no-num id=references>References</h2>
+
+  <dl>
+   <dt><a id=ref-azaloc>[MOZORIENTATION]</a>
+     <dd><em>(Non-normative)</em> <cite><a
+    href="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent">nsIDOMOrientationEvent in Mozilla</a></cite>, See
+    https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent
+     </dd>
+   </dt>
+  </dl>
+</body> 
+</html> 
