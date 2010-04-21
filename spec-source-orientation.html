@@ -3,7 +3,7 @@
 
 <html lang=en>
  <head>
-  <title>Orientation Event Specification</title>
+  <title>DeviceOrientation Event Specification</title>
   <meta content="text/html;charset=utf-8" http-equiv=Content-Type>
 
   <style type="text/css">
@@ -44,6 +44,8 @@
    .element { background: #EEEEFF; color: black; margin: 0 0 1em -1em; padding: 0 1em 0.25em 0.75em; border-left: solid #9999FF 0.25em; }
    table.matrix, table.matrix td { border: none; text-align: right; }
    table.matrix { margin-left: 2em; }
+   ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
+   ol#rotations li div img { width: 350px; }
   </style>
   <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet
   type="text/css">
@@ -53,8 +55,7 @@
    <p><a href="http://www.w3.org/"><img alt=W3C height=48
     src="http://www.w3.org/Icons/w3c_home" width=72></a> <!--end-logo-->
 
-   <h1 id="title_heading">Orientation Event Specification</h1>
-
+   <h1 id="title_heading">DeviceOrientation Event Specification</h1>
    <h2 class="no-num no-toc" id="draft_date">Editor's Draft 05 March 2010</h2>
 
    <dl>
@@ -189,21 +190,11 @@ cite this document as other than work in progress.</p>
 
   <h3 id="orientation_description"><span class=secno>4.1 </span>Device orientation</h3>
 
-  <p>The orientation of the device is given by the transformation of a
-  coordinate frame fixed in the device, relative to a coordinate frame
-  fixed to the Earth. For a mobile device, the device coordinate frame
-  has the following 3 axes:</p>
+  <p>The orientation of the device is given in terms of the
+  transfromation from a coordinate frame fixed on the Earth to a
+  coordinate frame fixed in the device.</p>
 
-  <ul>
-    <li>A is in the plane of the screen and is positive towards the right hand side of the screen.</li>
-    <li>B is in the plane of the screen and is positive towards the top of the screen.</li>
-    <li>C is perpendicular to the screen, positive out of the screen.</li>
-  </ul>
-
-  <p>The above axes are defined relative to the standard positin of the screen, in which slide-out keyboards are not deployed.</p>
-  <p>TODO: add definitions for other devices, e.g. laptops.</p>
-
-  <p>The Earth coordinate system has the following 3 axes:
+  <p>The Earth coordinate frame has the following 3 axes.<p>
 
   <ul>
     <li>X is tangential to the ground and positive towards the magnetic East.</li>
@@ -211,40 +202,80 @@ cite this document as other than work in progress.</p>
     <li>Z is perpendicular to the ground and positive vertically upwards.</li>
   </ul>
 
+  <p>For a mobile device, the device coordinate frame has the following 3 axes.
+  The axes are defined relative to the standard position of the screen, in which slide-out keyboards are not deployed.</p>
+
+  <p>TODO: add definitions for other devices, e.g. laptops.</p>
+
+  <ul>
+    <li>A is in the plane of the screen and is positive towards the right hand side of the screen.</li>
+    <li>B is in the plane of the screen and is positive towards the top of the screen.</li>
+    <li>C is perpendicular to the screen, positive out of the screen.</li>
+  </ul>
+
+
   <p>The transformation from the Earth frame to the device frame is
   expressed in terms of 3 rotations, specified in the device
   frame. Positive rotation around an axis is defined as clockwise when
-  viewed along the positive direction of the axis.</p>
+  viewed along the positive direction of the axis. Note that this choice of
+  rotation direction follows mathematical convention, but means that rotation
+  about the Z axis is in the opposite sense to a compass heading.</p>
 
   <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
 
-  <ol>
-    <li>rotate the device frame around its C axis by <code>theta</code> degrees, with <code>theta</code> in [0, 360).</li>
-    <li>rotate the device frame around its A axis by <code>phi</code> degrees, with <code>phi</code> in [-180, 180).</li>
-    <li>rotate the device frame around its B axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90). </li>
+  <ol id="rotations">
+    <li>
+      <p>Rotate the device frame around its C axis by <code>theta</code> degrees, with <code>theta</code> in [0, 360).</p>
+      <div>
+        <img src="start.png">
+        <div>Device in the initial position, with Earth (XYZ) and body (ABC) frames aligned.</div>
+      </div>
+      <div>
+        <img src="c-rotation.png">
+        <div>Device rotated through angle theta about C axis, with previous locations of A and B axes shown as A<sub>0</sub> and B<sub>0</sub>.</div>
+      </div>
+    </li>
+    <li>
+      <p>Rotate the device frame around its A axis by <code>phi</code> degrees, with <code>phi</code> in [-180, 180).</p>
+      <div>
+        <img src="a-rotation.png">
+        <div>Device rotated through angle phi about new A axis, with previous locations of B and C axes shown as B<sub>0</sub> and C<sub>0</sub>.</div>
+      </div>
+    </li>
+    <li>
+      <p>Rotate the device frame around its B axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
+      <div>
+        <img src="b-rotation.png">
+        <div>Device rotated through angle gamma about new B axis, with previous locations of A and C axes shown as A<sub>0</sub> and C<sub>0</sub>.</div>
+      </div>
+    </li>
   </ol>
 
-  <h3 id="orientation_event"><span class=secno>4.2 </span>Orientation event</h3>
 
-  <p>The <code><a href="#orientation">OrientationEvent</a></code> fires on the <code>window</code> object.
+  <h3 id="orientation_event"><span class=secno>4.2 </span>DeviceOrientation event</h3>
+
+  <p>The <code><a href="#orientation">DeviceOrientationEvent</a></code> fires on the <code>window</code> object.
   The event should be fired whenever a significant change in orientation occurs. The definition of a significant
   change in this context is left to the implementation.</p>
 
   <pre class=idl>
-    interface <dfn id="orientation">OrientationEvent</dfn> : Event {
+    interface <dfn id="orientation">DeviceOrientationEvent</dfn> : Event {
     readonly attribute double theta;
     readonly attribute double phi;
     readonly attribute double gamma;
-    void initOrientationEvent(in DOMString typeArg,
-                              in boolean canBubbleArg,
-                              in boolean cancelableArg,
-                              in double theta,
-                              in double phi,
-                              in double gamma);
+    void initDeviceOrientationEvent(in DOMString typeArg,
+                                    in boolean canBubbleArg,
+                                    in boolean cancelableArg,
+                                    in double theta,
+                                    in double phi,
+                                    in double gamma);
     }
   </pre>
 
   <p><br>
+
+  <p> Registration for orientation events is achieved by calling
+  <code>window.addEventListener</code> with event type "deviceorientation".</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If an implementation
@@ -259,7 +290,7 @@ cite this document as other than work in progress.</p>
 
   <h3 id="accelerometer_event"><span class=secno>4.4 </span>Accelerometer event</h3>
 
-  <p>The <code><a href="#accelerometer">AccelerometerEvent</a></code>
+  <p>The <code><a href="#accelerometerEvent">AccelerometerEvent</a></code>
   fires on the <code>window</code> object.  The event must fire at
   regular intervals and the interval must be reported, in
   milliseconds, using the <code>interval</code> attribute of
@@ -267,22 +298,25 @@ cite this document as other than work in progress.</p>
   is a constant for a given implementation.
 
   <pre class=idl>
-    interface <dfn id="orientation">AccelerometerEvent</dfn> : Event {
+    interface <dfn id="accelerometerEvent">AccelerometerEvent</dfn> : Event {
     readonly attribute double x;
     readonly attribute double y;
     readonly attribute double z;
     readonly attribute double interval;
-    void initOrientationEvent(in DOMString typeArg,
-                              in boolean canBubbleArg,
-                              in boolean cancelableArg,
-                              in double x,
-                              in double y,
-                              in double z,
-                              in double interval);
+    void initAccelerometerEvent(in DOMString typeArg,
+                                in boolean canBubbleArg,
+                                in boolean cancelableArg,
+                                in double x,
+                                in double y,
+                                in double z,
+                                in double interval);
     }
   </pre>
 
   <p><br>
+
+  <p> Registration for accelerometer events is achieved by calling
+  <code>window.addEventListener</code> with event type "accelerometer".</p>
 
   <p>Implementations that are unable to provide all three acceleration components must
   set the values of the unknown components to null. If an implementation
@@ -293,10 +327,10 @@ cite this document as other than work in progress.</p>
 
   <div class=example> 
     <p>Registering to
-    receive <a href="orientation"><code>OrientationEvent</code></a>
+    receive <a href="#orientation"><code>DeviceOrientationEvent</code></a>
     events:</p>
       <pre>
-        window.addEventListener("orientation", function(event) {
+        window.addEventListener("deviceorientation", function(event) {
             // process event.theta, event.phi and event.gamma
         }, true);
       </pre> 
