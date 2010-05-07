@@ -195,7 +195,7 @@ cite this document as other than work in progress.</p>
   transfromation from a coordinate frame fixed on the Earth to a
   coordinate frame fixed in the device.</p>
 
-  <p>The Earth coordinate frame is a 'Noth, East, Up' frame at the user's
+  <p>The Earth coordinate frame is a 'East, North, Up' frame at the user's
   location. It has the following 3 axes, where the ground plane is tangent to
   the WGS 84 spheroid at the user's location.<p>
 
@@ -219,29 +219,27 @@ cite this document as other than work in progress.</p>
   <p>The transformation from the Earth frame to the device frame is
   expressed in terms of 3 rotations, specified in the device
   frame. Rotations use the right-hand convention: positive rotation around an axis is clockwise when
-  viewed along the positive direction of the axis. Note that this choice of
-  rotation direction follows mathematical convention, but means that rotation
-  about the Z axis is in the opposite sense to a compass heading.</p>
+  viewed along the positive direction of the axis.</p>
 
   <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
 
   <ol id="rotations">
     <li>
-      <p>Rotate the device frame around its C axis by <code>theta</code> degrees, with <code>theta</code> in [0, 360).</p>
+      <p>Rotate the device frame around its C axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
       <div>
         <img src="start.png">
         <div>Device in the initial position, with Earth (XYZ) and body (ABC) frames aligned.</div>
       </div>
       <div>
         <img src="c-rotation.png">
-        <div>Device rotated through angle theta about C axis, with previous locations of A and B axes shown as A<sub>0</sub> and B<sub>0</sub>.</div>
+        <div>Device rotated through angle alpha about C axis, with previous locations of A and B axes shown as A<sub>0</sub> and B<sub>0</sub>.</div>
       </div>
     </li>
     <li>
-      <p>Rotate the device frame around its A axis by <code>phi</code> degrees, with <code>phi</code> in [-180, 180).</p>
+      <p>Rotate the device frame around its A axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
       <div>
         <img src="a-rotation.png">
-        <div>Device rotated through angle phi about new A axis, with previous locations of B and C axes shown as B<sub>0</sub> and C<sub>0</sub>.</div>
+        <div>Device rotated through angle beta about new A axis, with previous locations of B and C axes shown as B<sub>0</sub> and C<sub>0</sub>.</div>
       </div>
     </li>
     <li>
@@ -253,6 +251,12 @@ cite this document as other than work in progress.</p>
     </li>
   </ol>
 
+  <p>Thus the angles <code>alpha</code>, <code>beta</code> and
+  <code>gamma</code> form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''.
+  <a href="#ref-eulerangles" shape=rect>[EULERANGLES]</a></p>
+
+  <p>Note that this choice of angles follows mathematical convention, but means
+  that <code>alpha</code> is in the opposite sense to a compass heading.</p>
 
   <h3 id="device_orientation_event"><span class=secno>4.2 </span>DeviceOrientation event</h3>
 
@@ -262,14 +266,14 @@ cite this document as other than work in progress.</p>
 
   <pre class=idl>
     interface <dfn id="device_orientation_event">DeviceOrientationEvent</dfn> : Event {
-    readonly attribute double theta;
-    readonly attribute double phi;
+    readonly attribute double alpha;
+    readonly attribute double beta;
     readonly attribute double gamma;
     void initDeviceOrientationEvent(in DOMString typeArg,
                                     in boolean canBubbleArg,
                                     in boolean cancelableArg,
-                                    in double theta,
-                                    in double phi,
+                                    in double alpha,
+                                    in double beta,
                                     in double gamma);
     }
   </pre>
@@ -333,7 +337,7 @@ cite this document as other than work in progress.</p>
     events:</p>
       <pre>
         window.addEventListener("deviceorientation", function(event) {
-            // process event.theta, event.phi and event.gamma
+            // process event.alpha, event.beta and event.gamma
         }, true);
       </pre> 
   </div>
@@ -342,21 +346,21 @@ cite this document as other than work in progress.</p>
     <p>A device lying flat on a horizontal surface with the top of the
     screen pointing West has the following orientation:</p>
       <pre>
-        {theta: 90,
-         phi: 0,
+        {alpha: 90,
+         beta: 0,
          gamma: 0};
       </pre>
     <p> To get the compass heading, one would simply
-    subtract <code>theta</code> from 360 degrees. As the device is
+    subtract <code>alpha</code> from 360 degrees. As the device is
     turned on the horizontal surface, the compass heading is (360
-    - <code>theta</code>).</p>
+    - <code>alpha</code>).</p>
   </div>
 
   <div class=example>
     <p>A user is holding the device in their hand, with the screen in
     a vertical plane and the top of the screen pointing upwards. The
-    value of <code>phi</code> is 90, irrespective of
-    what <code>theta</code> and <code>gamma</code> are.</p>
+    value of <code>beta</code> is 90, irrespective of
+    what <code>alpha</code> and <code>gamma</code> are.</p>
   </div>
 
   <div class=example>
@@ -365,8 +369,8 @@ cite this document as other than work in progress.</p>
     top of the screen pointing to their right. The orientation of the
     device is:</p>
       <pre>
-        {theta: 270 - alpha,
-         phi: 0,
+        {alpha: 270 - alpha,
+         beta: 0,
          gamma: 90};
       </pre>
     <p></p>
@@ -385,11 +389,14 @@ cite this document as other than work in progress.</p>
 
   <dl>
    <dt><a id=ref-azaloc>[MOZORIENTATION]</a>
-     <dd><em>(Non-normative)</em> <cite><a
+   <dd><em>(Non-normative)</em> <cite><a
     href="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent">nsIDOMOrientationEvent in Mozilla</a></cite>, See
     https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent
-     </dd>
-   </dt>
+   </dd>
+   <dt><a id=ref-eulerangles>[EULERANGLES]</a>
+   <dd><em>(Non-normative)</em> <cite><a
+       href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles
+   </dd>
   </dl>
 </body> 
 </html> 
