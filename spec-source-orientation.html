@@ -185,7 +185,9 @@ cite this document as other than work in progress.</p>
 
   <p>This spec provides two new DOM events. The first is a simple,
   high-level source of information about the physical orientation of a
-  device. The second event provides direct access to low-level
+  device. While the spec is agnostic to the source of location information,
+  this is typically implemented by combining information from an accelerometer
+  and a magnetometer. The second event provides direct access to low-level
   accelerometer data and is intended for more sophisticated
   applications.
 
@@ -206,7 +208,13 @@ cite this document as other than work in progress.</p>
   </ul>
 
   <p>For a mobile device, the device coordinate frame has the following 3 axes.
-  The axes are defined relative to the standard position of the screen, in which slide-out keyboards are not deployed.</p>
+  The axes are defined relative to the standard orientation of the screen,
+  typically portrait, when slide-out keyboards are not deployed. If the
+  orientation of the screen changes when the device is rotated or a slide-out
+  keyboard is deployed, this does not affect the orientation of the coordinate
+  frame relative to the device. Users wishing to detect these changes in screen
+  orientation may be able to do so with the existing
+  <code>orientationchange</code> event.</p>
 
   <p>TODO: add definitions for other devices, e.g. laptops.</p>
 
@@ -258,7 +266,7 @@ cite this document as other than work in progress.</p>
   <p>Note that this choice of angles follows mathematical convention, but means
   that <code>alpha</code> is in the opposite sense to a compass heading.</p>
 
-  <h3 id="device_orientation_event"><span class=secno>4.2 </span>DeviceOrientation event</h3>
+  <h3 id="device_orientation_event"><span class=secno>4.2 </span>Device Orientation Event</h3>
 
   <p>The <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code> fires on the <code>window</code> object.
   The event should be fired whenever a significant change in orientation occurs. The definition of a significant
@@ -291,10 +299,12 @@ cite this document as other than work in progress.</p>
   <h3 id="accelerometer_desc"><span class=secno>4.3 </span>Accelerometer</h3>
 
   <p>The accelerometer data is expressed in m/s^2 and uses the body
-  axes defined in <a href="#orientation_description">section
-  4.1</a>. These values exclude the acceleration due to the Gravity force.
+  axes defined in <a href="#orientation_description">section 4.1</a>. These
+  values include the effects of the Gravity force. That is, the values reported
+  are equal to the acceleration of the device, plus an acceleration equal and
+  opposite to the acceleration due to gravity.
 
-  <h3 id="accelerometer_event"><span class=secno>4.4 </span>Accelerometer event</h3>
+  <h3 id="accelerometer_event"><span class=secno>4.4 </span>Accelerometer Event</h3>
 
   <p>The <code><a href="#accelerometer_event">AccelerometerEvent</a></code>
   fires on the <code>window</code> object.  The event must fire at
@@ -329,20 +339,22 @@ cite this document as other than work in progress.</p>
   can never provide acceleration information, the event should be fired
   exactly once, with all three component values set to null.</p>
 
-  <h2 id=exammples><span class=secno>5 </span>Examples</h2>
+  <h2 id=examples><span class=secno>5 </span>Examples</h2>
 
-  <div class=example> 
-    <p>Registering to
-    receive <a href="#device_orientation_event"><code>DeviceOrientationEvent</code></a>
+  <h3 id="examples_deviceorientation"><span class=secno>5.1 </span>Device Orientation Event</h3>
+
+  <div class=example>
+    <p>Registering to receive
+    <a href="#device_orientation_event"><code>DeviceOrientationEvent</code></a>
     events:</p>
       <pre>
         window.addEventListener("deviceorientation", function(event) {
             // process event.alpha, event.beta and event.gamma
         }, true);
-      </pre> 
+      </pre>
   </div>
 
-  <div class=example> 
+  <div class=example>
     <p>A device lying flat on a horizontal surface with the top of the
     screen pointing West has the following orientation:</p>
       <pre>
@@ -373,7 +385,29 @@ cite this document as other than work in progress.</p>
          beta: 0,
          gamma: 90};
       </pre>
-    <p></p>
+  </div>
+
+  <h3 id="examples_accelerometer"><span class=secno>5.2 </span>Accelerometer Event</h3>
+
+  <div class=example>
+    <p>Registering to receive
+    <a href="#accelerometer_event"><code>AccelerometerEvent</code></a>
+    events:</p>
+      <pre>
+        window.addEventListener("accelerometer", function(event) {
+            // process event.x, event.y, event.z and event.interval
+        }, true);
+      </pre>
+  </div>
+
+  <div class=example>
+    <p>A device lying flat on a horizontal surface with the screen upmost has
+    the following acceleration:</p>
+      <pre>
+        {x: 0,
+         y: 0,
+         z: 9.81};
+      </pre>
   </div>
 
   <h2 id=usecases><span class=secno>6 </span>Use-Cases and Requirements</h2>
