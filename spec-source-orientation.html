@@ -277,9 +277,9 @@ cite this document as other than work in progress.</p>
     readonly attribute double alpha;
     readonly attribute double beta;
     readonly attribute double gamma;
-    void initDeviceOrientationEvent(in DOMString typeArg,
-                                    in boolean canBubbleArg,
-                                    in boolean cancelableArg,
+    void initDeviceOrientationEvent(in DOMString type,
+                                    in boolean bubbles,
+                                    in boolean cancelable,
                                     in double alpha,
                                     in double beta,
                                     in double gamma);
@@ -319,9 +319,9 @@ cite this document as other than work in progress.</p>
     readonly attribute double y;
     readonly attribute double z;
     readonly attribute double interval;
-    void initAccelerometerEvent(in DOMString typeArg,
-                                in boolean canBubbleArg,
-                                in boolean cancelableArg,
+    void initAccelerometerEvent(in DOMString type,
+                                in boolean bubbles,
+                                in boolean cancelable,
                                 in double x,
                                 in double y,
                                 in double z,
