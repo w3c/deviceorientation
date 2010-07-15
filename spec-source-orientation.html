@@ -289,7 +289,9 @@ cite this document as other than work in progress.</p>
   <p><br>
 
   <p> Registration for orientation events is achieved by calling
-  <code>window.addEventListener</code> with event type "deviceorientation".</p>
+  <code>window.addEventListener</code> with event type "deviceorientation".
+  Implementations must only fire events asynchronously, after this call has
+  returned.</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If an implementation
@@ -332,7 +334,9 @@ cite this document as other than work in progress.</p>
   <p><br>
 
   <p> Registration for accelerometer events is achieved by calling
-  <code>window.addEventListener</code> with event type "accelerometer".</p>
+  <code>window.addEventListener</code> with event type "accelerometer".
+  Implementations must only fire events asynchronously, after this call has
+  returned.</p>
 
   <p>Implementations that are unable to provide all three acceleration components must
   set the values of the unknown components to null. If an implementation
