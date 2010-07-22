@@ -57,7 +57,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 05 March 2010</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 22 July 2010</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -274,9 +274,9 @@ cite this document as other than work in progress.</p>
 
   <pre class=idl>
     interface <dfn id="device_orientation_event">DeviceOrientationEvent</dfn> : Event {
-    readonly attribute double alpha;
-    readonly attribute double beta;
-    readonly attribute double gamma;
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
                                     in boolean cancelable,
@@ -317,10 +317,10 @@ cite this document as other than work in progress.</p>
 
   <pre class=idl>
     interface <dfn id="accelerometer_event">AccelerometerEvent</dfn> : Event {
-    readonly attribute double x;
-    readonly attribute double y;
-    readonly attribute double z;
-    readonly attribute double interval;
+    readonly attribute double? x;
+    readonly attribute double? y;
+    readonly attribute double? z;
+    readonly attribute double? interval;
     void initAccelerometerEvent(in DOMString type,
                                 in boolean bubbles,
                                 in boolean cancelable,
