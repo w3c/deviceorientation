@@ -219,9 +219,9 @@ cite this document as other than work in progress.</p>
   <p>TODO: add definitions for other devices, e.g. laptops.</p>
 
   <ul>
-    <li>A is in the plane of the screen and is positive towards the right hand side of the screen.</li>
-    <li>B is in the plane of the screen and is positive towards the top of the screen.</li>
-    <li>C is perpendicular to the screen, positive out of the screen.</li>
+    <li>x is in the plane of the screen and is positive towards the right hand side of the screen.</li>
+    <li>y is in the plane of the screen and is positive towards the top of the screen.</li>
+    <li>z is perpendicular to the screen, positive out of the screen.</li>
   </ul>
 
   <p>The transformation from the Earth frame to the device frame is
@@ -233,28 +233,28 @@ cite this document as other than work in progress.</p>
 
   <ol id="rotations">
     <li>
-      <p>Rotate the device frame around its C axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
+      <p>Rotate the device frame around its z axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
       <div>
         <img src="start.png">
-        <div>Device in the initial position, with Earth (XYZ) and body (ABC) frames aligned.</div>
+        <div>Device in the initial position, with Earth (XYZ) and body (xyz) frames aligned.</div>
       </div>
       <div>
         <img src="c-rotation.png">
-        <div>Device rotated through angle alpha about C axis, with previous locations of A and B axes shown as A<sub>0</sub> and B<sub>0</sub>.</div>
+        <div>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</div>
       </div>
     </li>
     <li>
-      <p>Rotate the device frame around its A axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
+      <p>Rotate the device frame around its x axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
       <div>
         <img src="a-rotation.png">
-        <div>Device rotated through angle beta about new A axis, with previous locations of B and C axes shown as B<sub>0</sub> and C<sub>0</sub>.</div>
+        <div>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</div>
       </div>
     </li>
     <li>
-      <p>Rotate the device frame around its B axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
+      <p>Rotate the device frame around its y axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
       <div>
         <img src="b-rotation.png">
-        <div>Device rotated through angle gamma about new B axis, with previous locations of A and C axes shown as A<sub>0</sub> and C<sub>0</sub>.</div>
+        <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
       </div>
     </li>
   </ol>
