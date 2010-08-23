@@ -417,22 +417,23 @@ cite this document as other than work in progress.</p>
       </pre>
   </div>
 
-  <h3 id="examples_accelerometer"><span class=secno>5.2 </span>Accelerometer Event</h3>
+  <h3 id="examples_devicemotion"><span class=secno>5.2 </span>Device Motion Event</h3>
 
   <div class=example>
     <p>Registering to receive
-    <a href="#accelerometer_event"><code>AccelerometerEvent</code></a>
+    <a href="#motion_event"><code>DeviceMotionEvent</code></a>
     events:</p>
       <pre>
-        window.addEventListener("accelerometer", function(event) {
-            // process event.x, event.y, event.z and event.interval
+        window.addEventListener("devicemotion", function(event) {
+            // Process event.acceleration, event.accelerationIncludingGravity,
+            // event.rotationRate and event.interval
         }, true);
       </pre>
   </div>
 
   <div class=example>
     <p>A device lying flat on a horizontal surface with the screen upmost has
-    the following acceleration:</p>
+    the following value of <code>accelerationIncludingGravity</code>:</p>
       <pre>
         {x: 0,
          y: 0,
