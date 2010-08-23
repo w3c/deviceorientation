@@ -185,10 +185,10 @@ cite this document as other than work in progress.</p>
 
   <p>This spec provides two new DOM events. The first is a simple,
   high-level source of information about the physical orientation of a
-  device. While the spec is agnostic to the source of location information,
+  device. While the spec is agnostic to the source of information,
   this is typically implemented by combining information from an accelerometer
-  and a magnetometer. The second event provides direct access to low-level
-  accelerometer data and is intended for more sophisticated
+  and a magnetometer. The second event provides direct access to motion
+  data from an accelerometer and gyroscope and is intended for more sophisticated
   applications.
 
   <h3 id="orientation_description"><span class=secno>4.1 </span>Device orientation</h3>
@@ -298,50 +298,76 @@ cite this document as other than work in progress.</p>
   can never provide orientation information, the event should be fired
   exactly once, with all three angle values set to null.</p>
 
-  <h3 id="accelerometer_desc"><span class=secno>4.3 </span>Accelerometer</h3>
+  <h3 id="motion_desc"><span class=secno>4.3 </span>Device Motion</h3>
 
-  <p>The accelerometer data is expressed in m/s^2 and uses the body
-  axes defined in <a href="#orientation_description">section 4.1</a>. These
-  values include the effects of the Gravity force. That is, the values reported
-  are equal to the acceleration of the device, plus an acceleration equal and
-  opposite to the acceleration due to gravity.
+  <p>Two pieces of data about the device motion are provided; acceleration and
+  rotation rate.
 
-  <h3 id="accelerometer_event"><span class=secno>4.4 </span>Accelerometer Event</h3>
+  <p>The acceleration data is expressed in m/s^2 and uses the body
+  axes defined in <a href="#orientation_description">section 4.1</a>. The
+  acceleration provided by the <code>acceleration</code> property is that
+  of the body and hence excludes the effect of gravity.
 
-  <p>The <code><a href="#accelerometer_event">AccelerometerEvent</a></code>
+  <p>Implementations that are unable to provide acceleration data without the
+  effect of gravity (due, for example, to the lack of a gyroscope) may instead
+  supply the acceleration including the effect of gravity. This is less useful
+  in many applications but is provided as a means of providing best-effort
+  support. In this case, the values reported are equal to the acceleration of
+  the device, plus an acceleration equal and opposite to the acceleration due
+  to gravity.
+
+  <p>The rotation rate data is expressed in degrees/s and uses the rotation
+  angles about the body axes defined in
+  <a href="#orientation_description">section 4.1</a>.
+
+  <h3 id="motion_event"><span class=secno>4.4 </span>Device Motion Event</h3>
+
+  <p>The <code><a href="#motion_event">DeviceMotionEvent</a></code>
   fires on the <code>window</code> object.  The event must fire at
   regular intervals and the interval must be reported, in
   milliseconds, using the <code>interval</code> attribute of
-  the <code>AccelerometerEvent</code> object. Note that the interval
+  the <code>DeviceMotionEvent</code> object. Note that the interval
   is a constant for a given implementation.
 
   <pre class=idl>
-    interface <dfn id="accelerometer_event">AccelerometerEvent</dfn> : Event {
+    interface <dfn id="acceleration">Acceleration</dfn> {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
+    }
+
+    interface <dfn id="rotation_rate">RotationRate</dfn> {
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
+    }
+
+    interface <dfn id="motion_event">DeviceMotionEvent</dfn> : Event {
+    readonly attribute Acceleration? acceleration;
+    readonly attribute Acceleration? accelerationIncludingGravity;
+    readonly attribute RotationRate? rotationRate;
     readonly attribute double? interval;
     void initAccelerometerEvent(in DOMString type,
                                 in boolean bubbles,
                                 in boolean cancelable,
-                                in double x,
-                                in double y,
-                                in double z,
+                                in Acceleration acceleration,
+                                in Acceleration accelerationIncludingGravity,
+                                in RotationRate rotationRate,
                                 in double interval);
     }
   </pre>
 
   <p><br>
 
-  <p> Registration for accelerometer events is achieved by calling
-  <code>window.addEventListener</code> with event type "accelerometer".
+  <p>Registration for motion events is achieved by calling
+  <code>window.addEventListener</code> with event type "devicemotion".
   Implementations must only fire events asynchronously, after this call has
   returned.</p>
 
-  <p>Implementations that are unable to provide all three acceleration components must
-  set the values of the unknown components to null. If an implementation
-  can never provide acceleration information, the event should be fired
-  exactly once, with all three component values set to null.</p>
+  <p>Implementations that are unable to provide all properties must
+  set the values of the unknown properties to null. If an implementation
+  can never provide motion information, the event should be fired
+  exactly once, with all properties set to null.</p>
 
   <h2 id=examples><span class=secno>5 </span>Examples</h2>
 
