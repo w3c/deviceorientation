@@ -377,21 +377,21 @@ cite this document as other than work in progress.</p>
     <p>Registering to receive
     <a href="#device_orientation_event"><code>DeviceOrientationEvent</code></a>
     events:</p>
-      <pre>
-        window.addEventListener("deviceorientation", function(event) {
-            // process event.alpha, event.beta and event.gamma
-        }, true);
-      </pre>
+    <pre>
+      window.addEventListener("deviceorientation", function(event) {
+          // process event.alpha, event.beta and event.gamma
+      }, true);
+    </pre>
   </div>
 
   <div class=example>
     <p>A device lying flat on a horizontal surface with the top of the
     screen pointing West has the following orientation:</p>
-      <pre>
-        {alpha: 90,
-         beta: 0,
-         gamma: 0};
-      </pre>
+    <pre>
+      {alpha: 90,
+       beta: 0,
+       gamma: 0};
+    </pre>
     <p> To get the compass heading, one would simply
     subtract <code>alpha</code> from 360 degrees. As the device is
     turned on the horizontal surface, the compass heading is (360
@@ -410,11 +410,11 @@ cite this document as other than work in progress.</p>
     device in their hand, with the screen in a vertical plane and the
     top of the screen pointing to their right. The orientation of the
     device is:</p>
-      <pre>
-        {alpha: 270 - alpha,
-         beta: 0,
-         gamma: 90};
-      </pre>
+    <pre>
+      {alpha: 270 - alpha,
+       beta: 0,
+       gamma: 90};
+    </pre>
   </div>
 
   <h3 id="examples_devicemotion"><span class=secno>5.2 </span>Device Motion Event</h3>
@@ -423,22 +423,48 @@ cite this document as other than work in progress.</p>
     <p>Registering to receive
     <a href="#motion_event"><code>DeviceMotionEvent</code></a>
     events:</p>
-      <pre>
-        window.addEventListener("devicemotion", function(event) {
-            // Process event.acceleration, event.accelerationIncludingGravity,
-            // event.rotationRate and event.interval
-        }, true);
-      </pre>
+    <pre>
+      window.addEventListener("devicemotion", function(event) {
+          // Process event.acceleration, event.accelerationIncludingGravity,
+          // event.rotationRate and event.interval
+      }, true);
+    </pre>
   </div>
 
   <div class=example>
     <p>A device lying flat on a horizontal surface with the screen upmost has
-    the following value of <code>accelerationIncludingGravity</code>:</p>
-      <pre>
-        {x: 0,
-         y: 0,
-         z: 9.81};
-      </pre>
+    an <code>acceleration</code> of zero and the following value for
+    <code>accelerationIncludingGravity</code>:</p>
+    <pre>
+      {x: 0,
+       y: 0,
+       z: 9.81};
+    </pre>
+  </div>
+
+  <div class=example>
+    <p>A device in free-fall, with the screen horizontal and upmost, has an
+    <code>accelerationIncludingGravity</code> of zero and the following value
+    for <code>acceleration</code>:</p>
+    <pre>
+      {x: 0,
+       y: 0,
+       z: -9.81};
+    </pre>
+  </div>
+
+  <div class=example>
+    <p>A device is mounted in a vehicle, with the screen in a vertical plane,
+    the top uppermost and facing the rear of the vehicle. The vehicle is
+    travelling at speed v around a right-hand bend of radius r. The
+    the device records a positive x component for both <code>acceleration</code>
+    and <code>accelerationIncludingGravity</code>. The device also records a
+    negative value for <code>rotationRate.gamma</code>:</p>
+    <pre>
+      {acceleration: {x: v^2/r, y: 0, z: 0};
+       accelerationIncludingGravity: {x: v^2/r, y: 0, z: 9.81},
+       rotationRate: {alpha: 0, beta: 0, gamma: -v/r*180/pi} };
+    </pre>
   </div>
 
   <h2 id=usecases><span class=secno>6 </span>Use-Cases and Requirements</h2>
