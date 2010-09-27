@@ -330,12 +330,14 @@ cite this document as other than work in progress.</p>
   is a constant for a given implementation.
 
   <pre class=idl>
+    [Callback, NoInterfaceObject]
     interface <dfn id="acceleration">Acceleration</dfn> {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
     }
 
+    [Callback, NoInterfaceObject]
     interface <dfn id="rotation_rate">RotationRate</dfn> {
     readonly attribute double? alpha;
     readonly attribute double? beta;
