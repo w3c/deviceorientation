@@ -277,12 +277,14 @@ cite this document as other than work in progress.</p>
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
+    readonly attribute boolean? absolute;
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
                                     in boolean cancelable,
                                     in double alpha,
                                     in double beta,
-                                    in double gamma);
+                                    in double gamma,
+                                    in boolean absolute);
     }
   </pre>
 
@@ -293,10 +295,17 @@ cite this document as other than work in progress.</p>
   Implementations must only fire events asynchronously, after this call has
   returned.</p>
 
+  <p> Implementations that are unable to provide absolute values for the three
+  angles may instead provide values relative to some arbitrary orientation, as
+  this may still be of utility. In this case, the <code>absolute</code> property
+  should be set to <code>false</code>. Otherwise, the <code>absolute</code>
+  property should be set to <code>true</code>.</p>
+
   <p> Implementations that are unable to provide all three angles must
-  set the values of the unknown angles to null. If an implementation
+  set the values of the unknown angles to null. If any angles ae provided, the
+  <code>absolute</code> property must be set appropriately. If an implementation
   can never provide orientation information, the event should be fired
-  exactly once, with all three angle values set to null.</p>
+  exactly once, with all properties set to null.</p>
 
   <h3 id="motion_desc"><span class=secno>4.3 </span>Device Motion</h3>
 
