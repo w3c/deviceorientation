@@ -278,6 +278,7 @@ cite this document as other than work in progress.</p>
     readonly attribute double? beta;
     readonly attribute double? gamma;
     readonly attribute boolean? absolute;
+    readonly attribute boolean? compassCalibrated;
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
                                     in boolean cancelable,
@@ -300,6 +301,12 @@ cite this document as other than work in progress.</p>
   this may still be of utility. In this case, the <code>absolute</code> property
   should be set to <code>false</code>. Otherwise, the <code>absolute</code>
   property should be set to <code>true</code>.</p>
+
+  <p> Implementations should set the <code>compassCalibrated</code> property to
+  <code>true</code> if the compass is correctly calibrated. Otherwise, the
+  <code>compassCalibrated</code> property should be set to <code>false</code>.
+  This may imply that user action, such as performing a manual calibration
+  procedure, is required.</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If any angles ae provided, the
