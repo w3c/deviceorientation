@@ -278,7 +278,6 @@ cite this document as other than work in progress.</p>
     readonly attribute double? beta;
     readonly attribute double? gamma;
     readonly attribute boolean absolute;
-    readonly attribute boolean? compassCalibrated;
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
                                     in boolean cancelable,
@@ -302,21 +301,31 @@ cite this document as other than work in progress.</p>
   should be set to <code>false</code>. Otherwise, the <code>absolute</code>
   property should be set to <code>true</code>.</p>
 
-  <p> Implementations should set the <code>compassCalibrated</code> property to
-  <code>true</code> if the compass is correctly calibrated. If not, the
-  <code>compassCalibrated</code> property should be set to <code>false</code>.
-  This may imply that user action, such as performing a manual calibration
-  procedure, is required. If an implementation can not determine whether the
-  compass is correctly calibrated, the <code>compassCalibrated</code> property
-  should be set to <code>null</code>.</p>
-
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If any angles ae provided, the
   <code>absolute</code> property must be set appropriately. If an implementation
   can never provide orientation information, the event should be fired
   exactly once, with all properties set to null.</p>
 
-  <h3 id="motion_desc"><span class=secno>4.3 </span>Device Motion</h3>
+  <h3 id="compass_needs_calibration_event"><span class=secno>4.3 </span>Compass Needs Calibration Event</h3>
+
+  <p>The <code><a href="#compass_needs_calibration_event">CompassNeedsCalibrationEvent</a></code> fires on the <code>window</code> object.
+  The event should be fired when one or more event listeners are registered for the <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code> and the user agent determines that a compass used to obtain orientation data is in need of calibration.
+   Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code>.
+  The event must be cancelable.
+
+  <pre class=idl>
+    interface <dfn id="compass_needs_calibration_event">CompassNeedsCalibrationEvent</dfn> : Event {
+    void initCompassNeedsCalibrationEvent(in DOMString type,
+                                          in boolean bubbles,
+                                          in boolean cancelable);
+    }
+  </pre>
+
+  <p> The default action of this event is for the user agent to present the user with details of how to calibrate the compass.
+  This default action can be prevented by cancelling the event.
+
+  <h3 id="motion_desc"><span class=secno>4.4 </span>Device Motion</h3>
 
   <p>Two pieces of data about the device motion are provided; acceleration and
   rotation rate.
@@ -338,7 +347,7 @@ cite this document as other than work in progress.</p>
   angles about the body axes defined in
   <a href="#orientation_description">section 4.1</a>.
 
-  <h3 id="motion_event"><span class=secno>4.4 </span>Device Motion Event</h3>
+  <h3 id="motion_event"><span class=secno>4.5 </span>Device Motion Event</h3>
 
   <p>The <code><a href="#motion_event">DeviceMotionEvent</a></code>
   fires on the <code>window</code> object.  The event must fire at
