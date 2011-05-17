@@ -57,7 +57,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 9 February 2011</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 17 May 2011</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -277,7 +277,7 @@ cite this document as other than work in progress.</p>
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
-    readonly attribute boolean? absolute;
+    readonly attribute boolean absolute;
     readonly attribute boolean? compassCalibrated;
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
@@ -303,10 +303,12 @@ cite this document as other than work in progress.</p>
   property should be set to <code>true</code>.</p>
 
   <p> Implementations should set the <code>compassCalibrated</code> property to
-  <code>true</code> if the compass is correctly calibrated. Otherwise, the
+  <code>true</code> if the compass is correctly calibrated. If not, the
   <code>compassCalibrated</code> property should be set to <code>false</code>.
   This may imply that user action, such as performing a manual calibration
-  procedure, is required.</p>
+  procedure, is required. If an implementation can not determine whether the
+  compass is correctly calibrated, the <code>compassCalibrated</code> property
+  should be set to <code>null</code>.</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If any angles ae provided, the
