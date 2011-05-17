@@ -281,9 +281,9 @@ cite this document as other than work in progress.</p>
     void initDeviceOrientationEvent(in DOMString type,
                                     in boolean bubbles,
                                     in boolean cancelable,
-                                    in double alpha,
-                                    in double beta,
-                                    in double gamma,
+                                    in double? alpha,
+                                    in double? beta,
+                                    in double? gamma,
                                     in boolean absolute);
     }
   </pre>
@@ -379,10 +379,10 @@ cite this document as other than work in progress.</p>
     void initAccelerometerEvent(in DOMString type,
                                 in boolean bubbles,
                                 in boolean cancelable,
-                                in Acceleration acceleration,
-                                in Acceleration accelerationIncludingGravity,
-                                in RotationRate rotationRate,
-                                in double interval);
+                                in Acceleration? acceleration,
+                                in Acceleration? accelerationIncludingGravity,
+                                in RotationRate? rotationRate,
+                                in double? interval);
     }
   </pre>
 
