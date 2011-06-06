@@ -47,8 +47,8 @@
    ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
    ol#rotations li div img { width: 350px; }
   </style>
-  <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet
-  type="text/css">
+  <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet type="text/css">
+ </head>
 
  <body>
   <div class=head> <!--begin-logo-->
@@ -57,7 +57,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 17 May 2011</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 6 June 2011</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -77,18 +77,19 @@
 
     <dt>Editors:</dt>
 
-    <dd>Andrei Popescu, Google, Inc</dd>
     <dd>Steve Block, Google, Inc</dd>
+    <dd>Andrei Popescu, Google, Inc</dd>
    </dl>
 
-<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 2009 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+   <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 0001 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 
    <hr>
   </div>
 
   <h2 class="no-num no-toc" id=abstract>Abstract</h2>
 
-  <p>This specification defines two new DOM event types that provide information about the physical orientation of a hosting device.
+  <p>This specification defines several new DOM event types that provide
+  information about the physical orientation and motion of a hosting device.
 
   <h2 class="no-num no-toc" id=status>Status of This Document</h2>
   <!-- intro boilerplate (required) -->
@@ -133,9 +134,27 @@ cite this document as other than work in progress.</p>
 
   <h2 class="no-num no-toc" id=contents>Table of Contents</h2>
   <!--begin-toc-->
+  <ul class=toc>
+    <li><a href="#conformance-requirements"><span class=secno>1 </span>Conformance requirements</a>
+    <li><a href="#introduction"><span class=secno>2 </span>Introduction</a>
+    <li><a href="#scope"><span class=secno>3 </span>Scope</a>
+    <li><a href="#description"><span class=secno>4 </span>Description</a>
+    <ul class=toc>
+      <li><a href="#deviceorientation"><span class=secno>4.1 </span>deviceorientation Event</a>
+      <li><a href="#compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</a>
+      <li><a href="#devicemotion"><span class=secno>4.3 </span>devicemotion Event</a>
+    </ul>
+    <li><a href="#use-cases-and-requirements"><span class=secno>5 </span>Use-Cases and Requirements</a>
+    <ul class=toc>
+      <li><a href="#use-cases"><span class=secno>5.1 </span>Use-Cases</a>
+      <li><a href="#requirements"><span class=secno>5.2 </span>Requirements</a>
+    </ul>
+    <li><a href="#acknowledgments">Acknowledgments</a>
+    <li><a href="#references">References</a>
+  </ul>
   <!--end-toc-->
 
-  <h2 id=conformance><span class=secno>1 </span>Conformance requirements</h2>
+  <h2 id=conformance-requirements><span class=secno>1 </span>Conformance requirements</h2>
 
   <p>All diagrams, examples, and notes in this specification are
    non-normative, as are all sections explicitly marked non-normative.
@@ -170,241 +189,42 @@ cite this document as other than work in progress.</p>
    ECMAScript Bindings defined in the Web IDL specification, as this
    specification uses that specification's terminology. <a
    href="#ref-webidl">[WEBIDL]</a>
-                                   
+
+  <p>The events introduced by this specification implement the Event interface
+  defined in the DOM Level 2 Events Specification,
+  <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>.
+  Implementations must therefore support this specification.
+
   <h2 id=introduction><span class=secno>2 </span>Introduction</h2>
 
   <p><em>This section is non-normative.</em>
 
-  <p>
+  <p>This specification provides several new DOM events for obtaining
+  information about the physical orientation and movement of the hosting device.
+  The information provided by the events is not raw sensor data, but rather
+  high-level data which is is agnostic of the underlying source of information.
+  Common sources of information include gyroscopes, compasses and
+  accelerometers.
 
-  <h2 id=scope><span class=secno>3 </span>Scope</h2>
+  <p>The first DOM event provided by the specification,
+  <code>deviceorientation</code>, supplies the physical orientation of the
+  device, specified as a series of rotations from a local coordinate frame.
 
-  <p><em>This section is non-normative.</em>
+  <p>The second DOM event provided by this specification,
+  <code>devicemotion</code>, supplies the acceleration of the device, specified
+  in cartesian coordinates relative to a coordinate frame defined in the device.
+  It also supplies the rotation rate of the device about a local coordinate
+  frame.
 
-  <h2 id="api_description"><span class=secno>4 </span>Description</h2>
+  <p>Finally, the specification provides a <code>compassneedscalibration</code>
+  DOM event, which is used to inform Web sites that a compass being used to
+  provide data for one of the above events is in need of calibration.
 
-  <p>This spec provides two new DOM events. The first is a simple,
-  high-level source of information about the physical orientation of a
-  device. While the spec is agnostic to the source of information,
-  this is typically implemented by combining information from an accelerometer
-  and a magnetometer. The second event provides direct access to motion
-  data from an accelerometer and gyroscope and is intended for more sophisticated
-  applications.
-
-  <h3 id="orientation_description"><span class=secno>4.1 </span>Device orientation</h3>
-
-  <p>The orientation of the device is given in terms of the
-  transfromation from a coordinate frame fixed on the Earth to a
-  coordinate frame fixed in the device.</p>
-
-  <p>The Earth coordinate frame is a 'East, North, Up' frame at the user's
-  location. It has the following 3 axes, where the ground plane is tangent to
-  the WGS 84 spheroid at the user's location.<p>
-
-  <ul>
-    <li>East (X) is in the ground plane, perpendicular to the North axis and positive towards the East.</li>
-    <li>North (Y) is in the ground plane and positive towards True North (towards the North Pole).</li>
-    <li>Up (Z) is perpendicular to the ground plane and positive upwards.</li>
-  </ul>
-
-  <p>For a mobile device, the device coordinate frame has the following 3 axes.
-  The axes are defined relative to the standard orientation of the screen,
-  typically portrait, when slide-out keyboards are not deployed. If the
-  orientation of the screen changes when the device is rotated or a slide-out
-  keyboard is deployed, this does not affect the orientation of the coordinate
-  frame relative to the device. Users wishing to detect these changes in screen
-  orientation may be able to do so with the existing
-  <code>orientationchange</code> event.</p>
-
-  <p>TODO: add definitions for other devices, e.g. laptops.</p>
-
-  <ul>
-    <li>x is in the plane of the screen and is positive towards the right hand side of the screen.</li>
-    <li>y is in the plane of the screen and is positive towards the top of the screen.</li>
-    <li>z is perpendicular to the screen, positive out of the screen.</li>
-  </ul>
-
-  <p>The transformation from the Earth frame to the device frame is
-  expressed in terms of 3 rotations, specified in the device
-  frame. Rotations use the right-hand convention: positive rotation around an axis is clockwise when
-  viewed along the positive direction of the axis.</p>
-
-  <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
-
-  <ol id="rotations">
-    <li>
-      <p>Rotate the device frame around its z axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
-      <div>
-        <img src="start.png">
-        <div>Device in the initial position, with Earth (XYZ) and body (xyz) frames aligned.</div>
-      </div>
-      <div>
-        <img src="c-rotation.png">
-        <div>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</div>
-      </div>
-    </li>
-    <li>
-      <p>Rotate the device frame around its x axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
-      <div>
-        <img src="a-rotation.png">
-        <div>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</div>
-      </div>
-    </li>
-    <li>
-      <p>Rotate the device frame around its y axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
-      <div>
-        <img src="b-rotation.png">
-        <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
-      </div>
-    </li>
-  </ol>
-
-  <p>Thus the angles <code>alpha</code>, <code>beta</code> and
-  <code>gamma</code> form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''.
-  <a href="#ref-eulerangles" shape=rect>[EULERANGLES]</a></p>
-
-  <p>Note that this choice of angles follows mathematical convention, but means
-  that <code>alpha</code> is in the opposite sense to a compass heading.</p>
-
-  <h3 id="device_orientation_event"><span class=secno>4.2 </span>Device Orientation Event</h3>
-
-  <p>The <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code> fires on the <code>window</code> object.
-  The event should be fired whenever a significant change in orientation occurs. The definition of a significant
-  change in this context is left to the implementation.</p>
-
-  <pre class=idl>
-    interface <dfn id="device_orientation_event">DeviceOrientationEvent</dfn> : Event {
-    readonly attribute double? alpha;
-    readonly attribute double? beta;
-    readonly attribute double? gamma;
-    readonly attribute boolean absolute;
-    void initDeviceOrientationEvent(in DOMString type,
-                                    in boolean bubbles,
-                                    in boolean cancelable,
-                                    in double? alpha,
-                                    in double? beta,
-                                    in double? gamma,
-                                    in boolean absolute);
-    }
-  </pre>
-
-  <p><br>
-
-  <p> Registration for orientation events is achieved by calling
-  <code>window.addEventListener</code> with event type "deviceorientation".
-  Implementations must only fire events asynchronously, after this call has
-  returned.</p>
-
-  <p> Implementations that are unable to provide absolute values for the three
-  angles may instead provide values relative to some arbitrary orientation, as
-  this may still be of utility. In this case, the <code>absolute</code> property
-  should be set to <code>false</code>. Otherwise, the <code>absolute</code>
-  property should be set to <code>true</code>.</p>
-
-  <p> Implementations that are unable to provide all three angles must
-  set the values of the unknown angles to null. If any angles ae provided, the
-  <code>absolute</code> property must be set appropriately. If an implementation
-  can never provide orientation information, the event should be fired
-  exactly once, with all properties set to null.</p>
-
-  <h3 id="compass_needs_calibration_event"><span class=secno>4.3 </span>Compass Needs Calibration Event</h3>
-
-  <p>The <code><a href="#compass_needs_calibration_event">CompassNeedsCalibrationEvent</a></code> fires on the <code>window</code> object.
-  The event should be fired when one or more event listeners are registered for the <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code> and the user agent determines that a compass used to obtain orientation data is in need of calibration.
-   Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code><a href="#device_orientation_event">DeviceOrientationEvent</a></code>.
-  The event must be cancelable.
-
-  <pre class=idl>
-    interface <dfn id="compass_needs_calibration_event">CompassNeedsCalibrationEvent</dfn> : Event {
-    void initCompassNeedsCalibrationEvent(in DOMString type,
-                                          in boolean bubbles,
-                                          in boolean cancelable);
-    }
-  </pre>
-
-  <p> The default action of this event is for the user agent to present the user with details of how to calibrate the compass.
-  This default action can be prevented by cancelling the event.
-
-  <h3 id="motion_desc"><span class=secno>4.4 </span>Device Motion</h3>
-
-  <p>Two pieces of data about the device motion are provided; acceleration and
-  rotation rate.
-
-  <p>The acceleration data is expressed in m/s^2 and uses the body
-  axes defined in <a href="#orientation_description">section 4.1</a>. The
-  acceleration provided by the <code>acceleration</code> property is that
-  of the body and hence excludes the effect of gravity.
-
-  <p>Implementations that are unable to provide acceleration data without the
-  effect of gravity (due, for example, to the lack of a gyroscope) may instead
-  supply the acceleration including the effect of gravity. This is less useful
-  in many applications but is provided as a means of providing best-effort
-  support. In this case, the values reported are equal to the acceleration of
-  the device, plus an acceleration equal and opposite to the acceleration due
-  to gravity.
-
-  <p>The rotation rate data is expressed in degrees/s and uses the rotation
-  angles about the body axes defined in
-  <a href="#orientation_description">section 4.1</a>.
-
-  <h3 id="motion_event"><span class=secno>4.5 </span>Device Motion Event</h3>
-
-  <p>The <code><a href="#motion_event">DeviceMotionEvent</a></code>
-  fires on the <code>window</code> object.  The event must fire at
-  regular intervals and the interval must be reported, in
-  milliseconds, using the <code>interval</code> attribute of
-  the <code>DeviceMotionEvent</code> object. Note that the interval
-  is a constant for a given implementation.
-
-  <pre class=idl>
-    [Callback, NoInterfaceObject]
-    interface <dfn id="acceleration">Acceleration</dfn> {
-    readonly attribute double? x;
-    readonly attribute double? y;
-    readonly attribute double? z;
-    }
-
-    [Callback, NoInterfaceObject]
-    interface <dfn id="rotation_rate">RotationRate</dfn> {
-    readonly attribute double? alpha;
-    readonly attribute double? beta;
-    readonly attribute double? gamma;
-    }
-
-    interface <dfn id="motion_event">DeviceMotionEvent</dfn> : Event {
-    readonly attribute Acceleration? acceleration;
-    readonly attribute Acceleration? accelerationIncludingGravity;
-    readonly attribute RotationRate? rotationRate;
-    readonly attribute double? interval;
-    void initAccelerometerEvent(in DOMString type,
-                                in boolean bubbles,
-                                in boolean cancelable,
-                                in Acceleration? acceleration,
-                                in Acceleration? accelerationIncludingGravity,
-                                in RotationRate? rotationRate,
-                                in double? interval);
-    }
-  </pre>
-
-  <p><br>
-
-  <p>Registration for motion events is achieved by calling
-  <code>window.addEventListener</code> with event type "devicemotion".
-  Implementations must only fire events asynchronously, after this call has
-  returned.</p>
-
-  <p>Implementations that are unable to provide all properties must
-  set the values of the unknown properties to null. If an implementation
-  can never provide motion information, the event should be fired
-  exactly once, with all properties set to null.</p>
-
-  <h2 id=examples><span class=secno>5 </span>Examples</h2>
-
-  <h3 id="examples_deviceorientation"><span class=secno>5.1 </span>Device Orientation Event</h3>
+  <p>The following code extracts illustrate basic use of the events.
 
   <div class=example>
     <p>Registering to receive
-    <a href="#device_orientation_event"><code>DeviceOrientationEvent</code></a>
+    <a href="#deviceorientation"><code>deviceorientation</code></a>
     events:</p>
     <pre>
       window.addEventListener("deviceorientation", function(event) {
@@ -446,12 +266,19 @@ cite this document as other than work in progress.</p>
     </pre>
   </div>
 
-  <h3 id="examples_devicemotion"><span class=secno>5.2 </span>Device Motion Event</h3>
+  <div class=example>
+    <p>Showing custom UI to instruct the user to calibrate the compass:</p>
+    <pre>
+      window.addEventListener("compassneedscalibration", function(event) {
+          alert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+          event.preventDefault();
+      }, true);
+    </pre>
+  </div>
 
   <div class=example>
     <p>Registering to receive
-    <a href="#motion_event"><code>DeviceMotionEvent</code></a>
-    events:</p>
+    <a href="#motionevent"><code>devicemotion</code></a> events:</p>
     <pre>
       window.addEventListener("devicemotion", function(event) {
           // Process event.acceleration, event.accelerationIncludingGravity,
@@ -486,7 +313,7 @@ cite this document as other than work in progress.</p>
     <p>A device is mounted in a vehicle, with the screen in a vertical plane,
     the top uppermost and facing the rear of the vehicle. The vehicle is
     travelling at speed v around a right-hand bend of radius r. The
-    the device records a positive x component for both <code>acceleration</code>
+    device records a positive x component for both <code>acceleration</code>
     and <code>accelerationIncludingGravity</code>. The device also records a
     negative value for <code>rotationRate.gamma</code>:</p>
     <pre>
@@ -496,27 +323,275 @@ cite this document as other than work in progress.</p>
     </pre>
   </div>
 
-  <h2 id=usecases><span class=secno>6 </span>Use-Cases and Requirements</h2>
+  <h2 id=scope><span class=secno>3 </span>Scope</h2>
 
-  <h3 id="usecases_section"><span class=secno>6.1 </span>Use-Cases</h3>
+  <p><em>This section is non-normative.</em>
 
+  <p>This specification is limited to providing DOM events for retrieving
+  information describing the physical orientation and motion of the hosting
+  device. The intended purpose of this API is to enable simple use cases such
+  as those in <a href="#usecases">Section 5.2</a>.
 
-  <h3 id="requirements_section"><span class=secno>6.2 </span>Requirements</h3>
+  The scope of this specification does not include providing utilities to
+  manipulate this data, such as transformation libraries. Nor does it include
+  providing access to low sensor data, or direct control of these sensors.
+
+  <h2 id="description"><span class=secno>4 </span>Description</h2>
+
+  <h3 id="deviceorientation"><span class=secno>4.1 </span>deviceorientation Event</h3>
+
+  <p>User agents implementing this specification must allow a new DOM event
+  type, named <code>deviceorientation</code>. The corresponding event must be of
+  type <code>DeviceOrientationEvent</code> and must fire on the
+  <code>window</code> object. Registration for, and firing of the
+  <code>deviceorientation</code> event must follow the usual behavior of DOM
+  Level 2 Events, <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>
+
+  <pre class=idl>
+    interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
+    readonly attribute boolean absolute;
+    void initDeviceOrientationEvent(in DOMString type,
+                                    in boolean bubbles,
+                                    in boolean cancelable,
+                                    in double? alpha,
+                                    in double? beta,
+                                    in double? gamma,
+                                    in boolean absolute);
+    }
+  </pre>
+
+  <p>The event should fire whenever a significant change in orientation occurs.
+  The definition of a significant change in this context is left to the
+  implementation.</p>
+
+  <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> properties
+  of the event must specify the orientation of the device in terms of the
+  transformation from a coordinate frame fixed on the Earth to a
+  coordinate frame fixed in the device. The coordinate frames must be oriented
+  as described below.</p>
+
+  <p>The Earth coordinate frame is a 'East, North, Up' frame at the user's
+  location. It has the following 3 axes, where the ground plane is tangent to
+  the spheriod of the World Geodetic System 1984
+  <a href="#ref-wgs84" shape=rect>[WGS84]</a>, at the user's location.
+
+  <ul>
+    <li>East (X) is in the ground plane, perpendicular to the North axis and positive towards the East.</li>
+    <li>North (Y) is in the ground plane and positive towards True North (towards the North Pole).</li>
+    <li>Up (Z) is perpendicular to the ground plane and positive upwards.</li>
+  </ul>
+
+  <p>For a mobile device such as a phone or tablet, the device coordinate frame
+  is defined relative to the standard orientation of the screen,
+  typically portrait, when slide-out keyboards are not deployed. If the
+  orientation of the screen changes when the device is rotated or a slide-out
+  keyboard is deployed, this does not affect the orientation of the coordinate
+  frame relative to the device. Users wishing to detect these changes in screen
+  orientation may be able to do so with the existing
+  <code>orientationchange</code> event.
+  For a laptop computer, the device coordinate frame is defined relative to the
+  keyboard.
+
+  <ul>
+    <li>x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.</li>
+    <li>y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.</li>
+    <li>z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.</li>
+  </ul>
+
+  <p>The transformation from the Earth coordinate frame to the device coordinate
+  frame must use the following system of rotations.
+
+  <p>Rotations must use the right-hand convention, such that positive rotation
+  around an axis is clockwise when viewed along the positive direction of the
+  axis. Starting with the two frames aligned, the rotations are applied in the
+  following order:</p>
+
+  <ol id="rotations">
+    <li>
+      <p>Rotate the device frame around its z axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
+      <div>
+        <img src="start.png" alt="start orientation">
+        <div>Device in the initial position, with Earth (XYZ) and body (xyz) frames aligned.</div>
+      </div>
+      <div>
+        <img src="c-rotation.png" alt="rotation about z axis">
+        <div>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</div>
+      </div>
+    </li>
+    <li>
+      <p>Rotate the device frame around its x axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
+      <div>
+        <img src="a-rotation.png" alt="rotation about x axis">
+        <div>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</div>
+      </div>
+    </li>
+    <li>
+      <p>Rotate the device frame around its y axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
+      <div>
+        <img src="b-rotation.png" alt="rotation about y axis">
+        <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
+      </div>
+    </li>
+  </ol>
+
+  <p>Thus the angles <code>alpha</code>, <code>beta</code> and
+  <code>gamma</code> form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''.
+  <a href="#ref-eulerangles" shape=rect>[EULERANGLES]</a>
+  Note that this choice of angles follows mathematical convention, but means
+  that <code>alpha</code> is in the opposite sense to a compass heading.</p>
+
+  <p> Implementations that are unable to provide absolute values for the three
+  angles may instead provide values relative to some arbitrary orientation, as
+  this may still be of utility. In this case, the <code>absolute</code> property
+  must be set to <code>false</code>. Otherwise, the <code>absolute</code>
+  property must be set to <code>true</code>.</p>
+
+  <p> Implementations that are unable to provide all three angles must
+  set the values of the unknown angles to null. If any angles are provided, the
+  <code>absolute</code> property must be set appropriately. If an implementation
+  can never provide orientation information, the event should be fired
+  with all properties set to null.</p>
+
+  <h3 id="compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</h3>
+
+  <p>User agents implementing this specification must allow a new DOM event
+  type, named <code>compassneedscalibration</code>. The corresponding event must
+  be of type <code>CompassNeedsCalibrationEvent</code> and must fire on the
+  <code>window</code> object. Registration for, and firing of the
+  <code>compassneedscalibration</code> event must follow the usual behavior of
+  DOM Level 2 Events, <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>
+
+  <p>This event must only be fired when one or more event listeners are
+  registered for the
+  <code><a href="#deviceorientation">deviceorientation</a></code> event and the
+  user agent determines that a compass used to obtain orientation data is in
+  need of calibration. Furthermore, user agents should only fire the event if
+  calibrating the compass will increase the accuracy of the data provided by the
+  <code><a href="#deviceorientation">deviceorientation</a></code> event.
+
+  <pre class=idl>
+    interface <dfn id="compassneedscalibration_event">CompassNeedsCalibrationEvent</dfn> : Event {
+    void initCompassNeedsCalibrationEvent(in DOMString type,
+                                          in boolean bubbles,
+                                          in boolean cancelable);
+    }
+  </pre>
+
+  <p>The default action of this event should be for the user agent to present the
+  user with details of how to calibrate the compass. The event must be
+  cancelable, so that web sites can provide their own alternative calibration
+  UI.
+
+  <h3 id="devicemotion"><span class=secno>4.3 </span>devicemotion Event</h3>
+
+  <p>User agents implementing this specification must allow a new DOM event
+  type, named <code>devicemotion</code>. The corresponding event must be of type
+  <code>DeviceMotionEvent</code> and must fire on the <code>window</code>
+  object.
+  Registration for, and firing of the <code>devicemotion</code>
+  event must follow the usual behavior of DOM Level 2 Events,
+  <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>
+
+  <pre class=idl>
+    [Callback, NoInterfaceObject]
+    interface <dfn id="acceleration">Acceleration</dfn> {
+    readonly attribute double? x;
+    readonly attribute double? y;
+    readonly attribute double? z;
+    }
+
+    [Callback, NoInterfaceObject]
+    interface <dfn id="rotation_rate">RotationRate</dfn> {
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
+    }
+
+    interface <dfn id="devicemotion_event">DeviceMotionEvent</dfn> : Event {
+    readonly attribute Acceleration? acceleration;
+    readonly attribute Acceleration? accelerationIncludingGravity;
+    readonly attribute RotationRate? rotationRate;
+    readonly attribute double? interval;
+    void initAccelerometerEvent(in DOMString type,
+                                in boolean bubbles,
+                                in boolean cancelable,
+                                in Acceleration? acceleration,
+                                in Acceleration? accelerationIncludingGravity,
+                                in RotationRate? rotationRate,
+                                in double? interval);
+    }
+  </pre>
+
+  <p>The event must fire at regular intervals and the <code>interval</code>
+  property must provide this interval in milliseconds.
+
+  <p>The <code>acceleration</code> property must provide the acceleration of the
+  hosting device in the body frame defined in
+  <a href="#deviceorientation">section 4.1</a> and must be expressed in m/s^2.
+
+  <p>Implementations that are unable to provide acceleration data without the
+  effect of gravity (due, for example, to the lack of a gyroscope) may instead
+  supply the acceleration including the effect of gravity. This is less useful
+  in many applications but is provided as a means of providing best-effort
+  support. In this case, the <code>accelerationInclusingGravity</code> property
+  must provide the acceleration of the hosting device, plus an acceleration
+  equal and opposite to the acceleration due to gravity. Again, the acceleration
+  must be given in the body frame defined in
+  <a href="#deviceorientation">section 4.1</a> and must be expressed in m/s^2.
+
+  <p>The <code>rotationRate</code> property must provide the rate of rotation of
+  the hosting device in space. It must be expressed as the rate of change of
+  the angles of the defined in <a href="#deviceorientation">section 4.1</a> and
+  must be expressed in deg/s.
+
+  <p>Implementations that are unable to provide all properties must
+  set the values of the unknown properties to null. If an implementation
+  can never provide motion information, the event should be fired
+  with all properties set to null.
+
+  <h2 id=use-cases-and-requirements><span class=secno>5 </span>Use-Cases and Requirements</h2>
+
+  <h3 id="use-cases"><span class=secno>5.1 </span>Use-Cases</h3>
+
+  <h4 id="controlling-a-game"><span class=secno>6.1.1 </span>Controlling a game</h4>
+  <p>A gaming Web application monitors the device's orientation and interprets
+  tilting in a certain direction as a means to control an on-screen sprite.
+
+  <h4 id="gesture-recognition"><span class=secno>6.1.2 </span>Gesture recognition</h4>
+  <p>A Web application monitors the device's acceleration and applies signal
+  processing in order to recognise certain specific gestures. For example, using
+  a shaking gesture to clear a web form.
+
+  <h4 id="mapping"><span class=secno>6.1.3 </span>Mapping</h4>
+  <p>A mapping Web application uses the device's orientation to correctly align
+  the map with reality.
+
+  <h3 id="requirements"><span class=secno>5.2 </span>Requirements</h3>
+
+  <h4 id="requirement-orientation"><span class=secno>5.2.1 </span>The specification must provide data that describes the physical orientation in space of the device.</h4>
+  <h4 id="requirement-motion"><span class=secno>5.2.2 </span>The specification must provide data that describes the motion in space of the device.</h4>
+  <h4 id="requirement-changes"><span class=secno>5.2.3 </span>The specification must allow web applications to register for changes in the device's orientation.</h4>
+  <h4 id="requirement-agnostic"><span class=secno>5.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
+  <h4 id="requirement-use-dom"><span class=secno>5.2.5 </span>The specification must use the existing DOM event framework.</h4>
 
   <h2 class=no-num id=acknowledgments>Acknowledgments</h2>
+
+  <p>Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer
 
   <h2 class=no-num id=references>References</h2>
 
   <dl>
-   <dt><a id=ref-azaloc>[MOZORIENTATION]</a>
-   <dd><em>(Non-normative)</em> <cite><a
-    href="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent">nsIDOMOrientationEvent in Mozilla</a></cite>, See
-    https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent
-   </dd>
+   <dt><a id=ref-domevents>[DOMEVENTS]</a>
+   <dd><cite><a href="http://www.w3.org/TR/DOM-Level-2-Events">DOM Level 2 Events</a></cite>, See http://www.w3.org/TR/DOM-Level-2-Events </dd>
    <dt><a id=ref-eulerangles>[EULERANGLES]</a>
-   <dd><em>(Non-normative)</em> <cite><a
-       href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles
-   </dd>
+   <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles </dd>
+   <dt><a id=ref-azaloc>[MOZORIENTATION]</a>
+   <dd><em>(Non-normative)</em> <cite><a href="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent">nsIDOMOrientationEvent in Mozilla</a></cite>, See https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMOrientationEvent </dd>
+   <dt><a id=ref-wgs84>[WGS84]</a>
+   <dd><cite><a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf">National Imagery and Mapping Agency Technical Report 8350.2, Third Edition</a></cite>.  National Imagery and Mapping Agency, 3 January 2000.  See http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf </dd>
   </dl>
-</body> 
-</html> 
+ </body>
+</html>
