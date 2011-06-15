@@ -457,9 +457,10 @@ cite this document as other than work in progress.</p>
 
   <h3 id="compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</h3>
 
-  <p>User agents implementing this specification must allow a new DOM event
-  type, named <code>compassneedscalibration</code>. The corresponding event must
-  be of type <code>CompassNeedsCalibrationEvent</code> and must fire on the
+  <p>User agents implementing this specification must allow a new DOM event,
+  named <code>compassneedscalibration</code> that uses the <code>Event</code>
+  interface defined in the DOM Level 2 Events specification
+  <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>. This event must fire on the
   <code>window</code> object. Registration for, and firing of the
   <code>compassneedscalibration</code> event must follow the usual behavior of
   DOM Level 2 Events, <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>
@@ -471,14 +472,6 @@ cite this document as other than work in progress.</p>
   need of calibration. Furthermore, user agents should only fire the event if
   calibrating the compass will increase the accuracy of the data provided by the
   <code><a href="#deviceorientation">deviceorientation</a></code> event.
-
-  <pre class=idl>
-    interface <dfn id="compassneedscalibration_event">CompassNeedsCalibrationEvent</dfn> : Event {
-    void initCompassNeedsCalibrationEvent(in DOMString type,
-                                          in boolean bubbles,
-                                          in boolean cancelable);
-    }
-  </pre>
 
   <p>The default action of this event should be for the user agent to present the
   user with details of how to calibrate the compass. The event must be
