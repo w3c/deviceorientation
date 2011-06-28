@@ -490,30 +490,30 @@ cite this document as other than work in progress.</p>
 
   <pre class=idl>
     [Callback, NoInterfaceObject]
-    interface <dfn id="acceleration">Acceleration</dfn> {
+    interface <dfn id="device_acceleration">DeviceAcceleration</dfn> {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
     }
 
     [Callback, NoInterfaceObject]
-    interface <dfn id="rotation_rate">RotationRate</dfn> {
+    interface <dfn id="device_rotation_rate">DeviceRotationRate</dfn> {
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
     }
 
     interface <dfn id="devicemotion_event">DeviceMotionEvent</dfn> : Event {
-    readonly attribute Acceleration? acceleration;
-    readonly attribute Acceleration? accelerationIncludingGravity;
-    readonly attribute RotationRate? rotationRate;
+    readonly attribute DeviceAcceleration? acceleration;
+    readonly attribute DeviceAcceleration? accelerationIncludingGravity;
+    readonly attribute DeviceRotationRate? rotationRate;
     readonly attribute double? interval;
     void initAccelerometerEvent(in DOMString type,
                                 in boolean bubbles,
                                 in boolean cancelable,
-                                in Acceleration? acceleration,
-                                in Acceleration? accelerationIncludingGravity,
-                                in RotationRate? rotationRate,
+                                in DeviceAcceleration? acceleration,
+                                in DeviceAcceleration? accelerationIncludingGravity,
+                                in DeviceRotationRate? rotationRate,
                                 in double? interval);
     }
   </pre>
