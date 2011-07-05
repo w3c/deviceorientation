@@ -467,12 +467,10 @@ cite this document as other than work in progress.</p>
   <code>compassneedscalibration</code> event must follow the usual behavior of
   DOM Level 2 Events, <a href="#ref-domevents" shape=rect>[DOMEVENTS]</a>
 
-  <p>This event must only be fired when one or more event listeners are
-  registered for the
-  <code><a href="#deviceorientation">deviceorientation</a></code> event and the
-  user agent determines that a compass used to obtain orientation data is in
-  need of calibration. Furthermore, user agents should only fire the event if
-  calibrating the compass will increase the accuracy of the data provided by the
+  <p>This event must be fired when the user agent determines that a compass used
+  to obtain orientation data is in need of calibration. Furthermore, user agents
+  should only fire the event if calibrating the compass will increase the
+  accuracy of the data provided by the
   <code><a href="#deviceorientation">deviceorientation</a></code> event.
 
   <p>The default action of this event should be for the user agent to present the
