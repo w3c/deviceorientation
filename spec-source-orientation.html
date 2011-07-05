@@ -518,9 +518,6 @@ cite this document as other than work in progress.</p>
     }
   </pre>
 
-  <p>The event must fire at regular intervals and the <code>interval</code>
-  property must provide this interval in milliseconds.
-
   <p>The <code>acceleration</code> property must provide the acceleration of the
   hosting device in the body frame defined in
   <a href="#deviceorientation">section 4.1</a> and must be expressed in m/s^2.
@@ -539,6 +536,11 @@ cite this document as other than work in progress.</p>
   the hosting device in space. It must be expressed as the rate of change of
   the angles of the defined in <a href="#deviceorientation">section 4.1</a> and
   must be expressed in deg/s.
+
+  <p>The <code>interval</code> property must provide the interval at which
+  data is obtained from the underlying hardware and must be expressed in
+  milliseconds. It must be a constant, to simplify filtering of the data by the
+  Web application.
 
   <p>Implementations that are unable to provide all properties must
   set the values of the unknown properties to null. If an implementation
@@ -566,7 +568,7 @@ cite this document as other than work in progress.</p>
 
   <h4 id="requirement-orientation"><span class=secno>5.2.1 </span>The specification must provide data that describes the physical orientation in space of the device.</h4>
   <h4 id="requirement-motion"><span class=secno>5.2.2 </span>The specification must provide data that describes the motion in space of the device.</h4>
-  <h4 id="requirement-changes"><span class=secno>5.2.3 </span>The specification must allow web applications to register for changes in the device's orientation.</h4>
+  <h4 id="requirement-changes"><span class=secno>5.2.3 </span>The specification must allow Web applications to register for changes in the device's orientation.</h4>
   <h4 id="requirement-agnostic"><span class=secno>5.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
   <h4 id="requirement-use-dom"><span class=secno>5.2.5 </span>The specification must use the existing DOM event framework.</h4>
 
