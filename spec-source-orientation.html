@@ -57,7 +57,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 5 July 2011</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 July 2011</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -364,10 +364,11 @@ cite this document as other than work in progress.</p>
     }
   </pre>
 
-  <p>The event should fire when a listener first registers for the event and
-  whenever a significant change in orientation occurs.
+  <p>The event should fire whenever a significant change in orientation occurs.
   The definition of a significant change in this context is left to the
-  implementation.</p>
+  implementation. In addition, when a new listener registers for the event,
+  implementations should fire the event as soon as sufficiently fresh data is
+  available.</p>
 
   <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> properties
   of the event must specify the orientation of the device in terms of the
