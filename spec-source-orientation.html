@@ -89,7 +89,7 @@
 
   <h2 class="no-num no-toc" id="abstract">Abstract</h2>
 
-  <p>This specification defines several new DOM event types that provide
+  <p>This specification defines several new DOM events that provide
   information about the physical orientation and motion of a hosting device.</p>
 
   <h2 class="no-num no-toc" id="status">Status of This Document</h2>
@@ -203,7 +203,7 @@ cite this document as other than work in progress.</p>
   <p>This specification provides several new DOM events for obtaining
   information about the physical orientation and movement of the hosting device.
   The information provided by the events is not raw sensor data, but rather
-  high-level data which is is agnostic of the underlying source of information.
+  high-level data which is agnostic to the underlying source of information.
   Common sources of information include gyroscopes, compasses and
   accelerometers.
 
@@ -213,7 +213,7 @@ cite this document as other than work in progress.</p>
 
   <p>The second DOM event provided by this specification,
   <code>devicemotion</code>, supplies the acceleration of the device, expressed
-  in cartesian coordinates in a coordinate frame defined in the device.
+  in Cartesian coordinates in a coordinate frame defined in the device.
   It also supplies the rotation rate of the device about a local coordinate
   frame.
 
@@ -341,8 +341,8 @@ cite this document as other than work in progress.</p>
 
   <h3 id="deviceorientation"><span class=secno>4.1 </span>deviceorientation Event</h3>
 
-  <p>User agents implementing this specification must allow a new DOM event
-  type, named <code>deviceorientation</code>. The corresponding event must be of
+  <p>User agents implementing this specification must provide a new DOM event,
+  named <code>deviceorientation</code>. The corresponding event must be of
   type <code>DeviceOrientationEvent</code> and must fire on the
   <code>window</code> object. Registration for, and firing of the
   <code>deviceorientation</code> event must follow the usual behavior of DOM
@@ -388,15 +388,17 @@ cite this document as other than work in progress.</p>
   </ul>
 
   <p>For a mobile device such as a phone or tablet, the device coordinate frame
-  is defined relative to the standard orientation of the screen,
-  typically portrait, when slide-out keyboards are not deployed. If the
+  is defined relative to the screen in its standard orientation, typically
+  portrait. This means that slide-out elements such as keyboards are not
+  deployed, and swiveling elements such as displays are folded to their default
+  position. If the
   orientation of the screen changes when the device is rotated or a slide-out
   keyboard is deployed, this does not affect the orientation of the coordinate
   frame relative to the device. Users wishing to detect these changes in screen
   orientation may be able to do so with the existing
   <code>orientationchange</code> event.
   For a laptop computer, the device coordinate frame is defined relative to the
-  keyboard.
+  integrated keyboard.
 
   <ul>
     <li>x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.</li>
@@ -462,13 +464,13 @@ cite this document as other than work in progress.</p>
 
   <h3 id="compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</h3>
 
-  <p>User agents implementing this specification must allow a new DOM event,
+  <p>User agents implementing this specification must provide a new DOM event,
   named <code>compassneedscalibration</code> that uses the <code>Event</code>
   interface defined in the DOM Level 2 Events specification
   <a href="#ref-domevents">[DOMEVENTS]</a>. This event must fire on the
   <code>window</code> object. Registration for, and firing of the
   <code>compassneedscalibration</code> event must follow the usual behavior of
-  DOM Level 2 Events, <a href="#ref-domevents">[DOMEVENTS]</a>
+  DOM Level 2 Events <a href="#ref-domevents">[DOMEVENTS]</a>.
 
   <p>This event must be fired when the user agent determines that a compass used
   to obtain orientation data is in need of calibration. Furthermore, user agents
@@ -483,8 +485,8 @@ cite this document as other than work in progress.</p>
 
   <h3 id="devicemotion"><span class=secno>4.3 </span>devicemotion Event</h3>
 
-  <p>User agents implementing this specification must allow a new DOM event
-  type, named <code>devicemotion</code>. The corresponding event must be of type
+  <p>User agents implementing this specification must provide a new DOM event,
+  named <code>devicemotion</code>. The corresponding event must be of type
   <code>DeviceMotionEvent</code> and must fire on the <code>window</code>
   object.
   Registration for, and firing of the <code>devicemotion</code>
@@ -561,7 +563,7 @@ cite this document as other than work in progress.</p>
 
   <h4 id="gesture-recognition"><span class=secno>5.1.2 </span>Gesture recognition</h4>
   <p>A Web application monitors the device's acceleration and applies signal
-  processing in order to recognise certain specific gestures. For example, using
+  processing in order to recognize certain specific gestures. For example, using
   a shaking gesture to clear a web form.
 
   <h4 id="mapping"><span class=secno>5.1.3 </span>Mapping</h4>
