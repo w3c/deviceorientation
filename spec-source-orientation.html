@@ -346,7 +346,12 @@ cite this document as other than work in progress.</p>
   type <code>DeviceOrientationEvent</code> and must fire on the
   <code>window</code> object. Registration for, and firing of the
   <code>deviceorientation</code> event must follow the usual behavior of DOM
-  Level 2 Events, <a href="#ref-domevents">[DOMEVENTS]</a>
+  Level 2 Events, <a href="#ref-domevents">[DOMEVENTS]</a>.
+
+  <p>User agents must also provide an event handler IDL attribute
+  <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientation</code> on the
+  <code>window</code> object. The type of this event handler must be
+  <code>DeviceOrientationEvent</code>.
 
   <pre class=idl>
     interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
@@ -472,6 +477,11 @@ cite this document as other than work in progress.</p>
   <code>compassneedscalibration</code> event must follow the usual behavior of
   DOM Level 2 Events <a href="#ref-domevents">[DOMEVENTS]</a>.
 
+  <p>User agents must also provide an event handler IDL attribute
+  <a href="#ref-html5">[HTML5]</a> named <code>oncompassneedscalibration</code>
+  on the <code>window</code> object. The type of this event handler must be
+  <code>Event</code>.
+
   <p>This event must be fired when the user agent determines that a compass used
   to obtain orientation data is in need of calibration. Furthermore, user agents
   should only fire the event if calibrating the compass will increase the
@@ -491,7 +501,12 @@ cite this document as other than work in progress.</p>
   object.
   Registration for, and firing of the <code>devicemotion</code>
   event must follow the usual behavior of DOM Level 2 Events,
-  <a href="#ref-domevents">[DOMEVENTS]</a>
+  <a href="#ref-domevents">[DOMEVENTS]</a>.
+
+  <p>User agents must also provide an event handler IDL attribute
+  <a href="#ref-html5">[HTML5]</a> named <code>ondevicemotion</code> 
+  on the <code>window</code> object. The type of this event handler must be
+  <code>DeviceMotionEvent</code>.
 
   <pre class=idl>
     [Callback, NoInterfaceObject]
@@ -589,6 +604,8 @@ cite this document as other than work in progress.</p>
    <dd><cite><a href="http://www.w3.org/TR/DOM-Level-2-Events">DOM Level 2 Events</a></cite>, See http://www.w3.org/TR/DOM-Level-2-Events</dd>
    <dt><a id="ref-eulerangles">[EULERANGLES]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles</dd>
+   <dt><a id="ref-html5">[HTML5]</a></dt>
+   <dd><cite><a href="http://dev.w3.org/html5/spec/Overview.htm">HTML5</a></cite>, See http://dev.w3.org/html5/spec/Overview.html</dd>
    <dt><a id=ref-rfc2119>[RFC2119]</a></dt>
    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner.  Internet Engineering Task Force, March 1997. See http://www.ietf.org/rfc/rfc2119.txt</dd>
    <dt><a id=ref-webidl>[WEBIDL]</a></dt>
