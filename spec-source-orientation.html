@@ -215,7 +215,8 @@ cite this document as other than work in progress.</p>
   <code>devicemotion</code>, supplies the acceleration of the device, expressed
   in Cartesian coordinates in a coordinate frame defined in the device.
   It also supplies the rotation rate of the device about a local coordinate
-  frame.
+  frame. Where practically possible, the event should provide the acceleration
+  of the device's center of mass.
 
   <p>Finally, the specification provides a <code>compassneedscalibration</code>
   DOM event, which is used to inform Web sites that a compass being used to
