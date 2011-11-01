@@ -46,6 +46,7 @@
    table.matrix { margin-left: 2em; }
    ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
    ol#rotations li div img { width: 350px; }
+   object.equation {display: block; height: 140px; width: 100%; margin: 20px 20px -60px; }
   </style>
   <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet type="text/css">
  </head>
@@ -150,6 +151,7 @@ cite this document as other than work in progress.</p>
       <li><a href="#use-cases"><span class=secno>5.1 </span>Use-Cases</a>
       <li><a href="#requirements"><span class=secno>5.2 </span>Requirements</a>
     </ul>
+    <li><a href="#worked-example"><span class=secno>6 </span>Worked Example</a>
     <li><a href="#acknowledgments">Acknowledgments</a>
     <li><a href="#references">References</a>
   </ul>
@@ -593,6 +595,98 @@ cite this document as other than work in progress.</p>
   <h4 id="requirement-changes"><span class=secno>5.2.3 </span>The specification must allow Web applications to register for changes in the device's orientation.</h4>
   <h4 id="requirement-agnostic"><span class=secno>5.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
   <h4 id="requirement-use-dom"><span class=secno>5.2.5 </span>The specification must use the existing DOM event framework.</h4>
+
+  <h2 id="worked-example">Worked Example</h2>
+
+  <p><em>This section is non-normative.</em>
+
+  <p>The following worked example is intended as an aid to users of the
+  DeviceOrientation event.
+
+  <p><a href="#introduction">Section 2</a> provided an example of using the
+  DeviceOrientation event to obtain a compass heading when the device is held
+  with the screen horizontal. This example shows how to determine the compass
+  heading that the user is 'facing' when holding the device with the screen
+  approximately vertical in front of them. An application of this is an
+  augmented-reality system.
+
+  <p>More precisely, we wish to determine the compass heading of the horizontal
+  component of a vector which is orthogonal to the device's screen and pointing
+  out of the back of the screen.
+
+  <p>If r represents this vector in the rotated device body frame xyz, then r
+  is as follows.
+
+  <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
+    <p><img src="equation1.gif">
+  </object>
+
+  <p>The transformation of r due to the rotation about the z axis can be
+  represented by the following rotation matrix.
+
+  <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
+    <img src="equation2.gif">
+  </object>
+
+  <p>The transformation of r due to the rotation about the x axis can be
+  represented by the following rotation matrix.
+
+  <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
+    <img src="equation3.gif">
+  </object>
+
+  <p>The transformation of r due to the rotation about the y axis can be
+  represented by the following rotation matrix.
+
+  <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
+    <img src="equation4.gif">
+  </object>
+
+  <p>If R resresents the vector r in the earth frame XYZ, then since the inital
+  body frame is aligned with the earth, R is as follows.
+
+  <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
+    <img src="equation5a.gif">
+  </object>
+  <object class="equation" data="equation5b.xhtml" type="application/mathml+xml">
+    <img src="equation5b.gif">
+  </object>
+  <object class="equation" data="equation5c.xhtml" type="application/mathml+xml">
+    <img src="equation5c.gif">
+  </object>
+  <object class="equation" data="equation5d.xhtml" type="application/mathml+xml">
+    <img src="equation5d.gif">
+  </object>
+  <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
+    <img src="equation5e.gif">
+  </object>
+
+  <p>The compass heading &theta; is given by
+
+  <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
+    <img src="equation6.gif">
+  </object>
+
+  <p>provided that &beta; and &gamma; are not both zero.
+
+  <p>As a consistency check, if we set &gamma; = 0, then 
+
+  <object class="equation" data="equation7.xhtml" type="application/mathml+xml">
+    <img src="equation7.gif">
+  </object>
+
+  <p>as expected.
+
+  <p>Alternatively, if we set &beta; = 90, then
+
+  <object class="equation" data="equation8a.xhtml" type="application/mathml+xml">
+    <img src="equation8a.gif">
+  </object>
+  <object class="equation" data="equation8b.xhtml" type="application/mathml+xml">
+    <img src="equation8b.gif">
+  </object>
+
+  <p>as expected.
 
   <h2 class=no-num id="acknowledgments">Acknowledgments</h2>
 
