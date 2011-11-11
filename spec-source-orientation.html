@@ -374,9 +374,8 @@ cite this document as other than work in progress.</p>
 
   <p>The event should fire whenever a significant change in orientation occurs.
   The definition of a significant change in this context is left to the
-  implementation. In addition, when a new listener registers for the event,
-  implementations should fire the event as soon as sufficiently fresh data is
-  available.</p>
+  implementation. Implementations may also fire the event if they have reason
+  to believe that the page does not have sufficiently fresh data.</p>
 
   <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> properties
   of the event must specify the orientation of the device in terms of the
