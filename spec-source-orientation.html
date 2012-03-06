@@ -617,53 +617,53 @@ cite this document as other than work in progress.</p>
   is as follows.
 
   <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
-    <p><img src="equation1.gif">
+    <p><img src="equation1.gif" alt="r = [0; 0; -1]">
   </object>
 
   <p>The transformation of r due to the rotation about the z axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
-    <img src="equation2.gif">
+    <img src="equation2.gif" alt="A = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
   </object>
 
   <p>The transformation of r due to the rotation about the x axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
-    <img src="equation3.gif">
+    <img src="equation3.gif" alt="B = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
   </object>
 
   <p>The transformation of r due to the rotation about the y axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
-    <img src="equation4.gif">
+    <img src="equation4.gif" alt="C = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
   </object>
 
   <p>If R resresents the vector r in the earth frame XYZ, then since the inital
   body frame is aligned with the earth, R is as follows.
 
   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
-    <img src="equation5a.gif">
+    <img src="equation5a.gif" alt="R = ABCr">
   </object>
   <object class="equation" data="equation5b.xhtml" type="application/mathml+xml">
-    <img src="equation5b.gif">
+    <img src="equation5b.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)] [0; 0; -1]">
   </object>
   <object class="equation" data="equation5c.xhtml" type="application/mathml+xml">
-    <img src="equation5c.gif">
+    <img src="equation5c.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [-sin(gamma); 0; -cos(gamma)]">
   </object>
   <object class="equation" data="equation5d.xhtml" type="application/mathml+xml">
-    <img src="equation5d.gif">
+    <img src="equation5d.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [-sin(gamma); sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
-    <img src="equation5e.gif">
+    <img src="equation5e.gif" alt="R = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
 
   <p>The compass heading &theta; is given by
 
   <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
-    <img src="equation6.gif">
+    <img src="equation6.gif" alt="theta = atan(R_x/R_y) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
   </object>
 
   <p>provided that &beta; and &gamma; are not both zero.
@@ -671,7 +671,7 @@ cite this document as other than work in progress.</p>
   <p>As a consistency check, if we set &gamma; = 0, then 
 
   <object class="equation" data="equation7.xhtml" type="application/mathml+xml">
-    <img src="equation7.gif">
+    <img src="equation7.gif" alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha">
   </object>
 
   <p>as expected.
@@ -679,10 +679,10 @@ cite this document as other than work in progress.</p>
   <p>Alternatively, if we set &beta; = 90, then
 
   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml">
-    <img src="equation8a.gif">
+    <img src="equation8a.gif" alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))">
   </object>
   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml">
-    <img src="equation8b.gif">
+    <img src="equation8b.gif" alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)">
   </object>
 
   <p>as expected.
