@@ -194,8 +194,8 @@ cite this document as other than work in progress.</p>
    href="#ref-webidl">[WEBIDL]</a>
 
   <p>The events introduced by this specification implement the Event interface
-  defined in the DOM Level 2 Events Specification,
-  <a href="#ref-domevents">[DOMEVENTS]</a>.
+  defined in the DOM4 Specification,
+  <a href="#ref-domevents">[DOM4]</a>.
   Implementations must therefore support this specification.
 
   <h2 id="introduction"><span class=secno>2 </span>Introduction</h2>
@@ -357,20 +357,30 @@ cite this document as other than work in progress.</p>
   <code>deviceorientation</code>.
 
   <pre class=idl>
-    interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
-    readonly attribute double? alpha;
-    readonly attribute double? beta;
-    readonly attribute double? gamma;
-    readonly attribute boolean absolute;
-    void initDeviceOrientationEvent(in DOMString type,
-                                    in boolean bubbles,
-                                    in boolean cancelable,
-                                    in double? alpha,
-                                    in double? beta,
-                                    in double? gamma,
-                                    in boolean absolute);
-    }
-  </pre>
+      [Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict)]
+      interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
+        readonly attribute double? alpha;
+        readonly attribute double? beta;
+        readonly attribute double? gamma;
+        readonly attribute boolean absolute;
+      }
+
+      dictionary DeviceOrientationEventInit : EventInit {
+        double? alpha;
+        double? beta;
+        double? gamma;
+        boolean absolute;
+      }    
+    </pre>
+
+    <p>The <code>alpha</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>beta</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>gamma</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>absolute</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to false.</p>
 
   <p>The event should fire whenever a significant change in orientation occurs.
   The definition of a significant change in this context is left to the
@@ -378,7 +388,7 @@ cite this document as other than work in progress.</p>
   recommended. Implementations may also fire the event if they have reason to
   believe that the page does not have sufficiently fresh data.</p>
 
-  <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> properties
+  <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> attributes
   of the event must specify the orientation of the device in terms of the
   transformation from a coordinate frame fixed on the Earth to a
   coordinate frame fixed in the device. The coordinate frames must be oriented
@@ -514,34 +524,47 @@ cite this document as other than work in progress.</p>
   <pre class=idl>
     [Callback, NoInterfaceObject]
     interface <dfn id="device_acceleration">DeviceAcceleration</dfn> {
-    readonly attribute double? x;
-    readonly attribute double? y;
-    readonly attribute double? z;
+      readonly attribute double? x;
+      readonly attribute double? y;
+      readonly attribute double? z;
     }
 
     [Callback, NoInterfaceObject]
     interface <dfn id="device_rotation_rate">DeviceRotationRate</dfn> {
-    readonly attribute double? alpha;
-    readonly attribute double? beta;
-    readonly attribute double? gamma;
+      readonly attribute double? alpha;
+      readonly attribute double? beta;
+      readonly attribute double? gamma;
     }
 
+    [Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict)]
     interface <dfn id="devicemotion_event">DeviceMotionEvent</dfn> : Event {
-    readonly attribute DeviceAcceleration? acceleration;
-    readonly attribute DeviceAcceleration? accelerationIncludingGravity;
-    readonly attribute DeviceRotationRate? rotationRate;
-    readonly attribute double? interval;
-    void initAccelerometerEvent(in DOMString type,
-                                in boolean bubbles,
-                                in boolean cancelable,
-                                in DeviceAcceleration? acceleration,
-                                in DeviceAcceleration? accelerationIncludingGravity,
-                                in DeviceRotationRate? rotationRate,
-                                in double? interval);
+      readonly attribute DeviceAcceleration? acceleration;
+      readonly attribute DeviceAcceleration? accelerationIncludingGravity;
+      readonly attribute DeviceRotationRate? rotationRate;
+      readonly attribute double? interval;
+    }
+
+    dictionary DeviceMotionEventInit : EventInit {
+      DeviceAcceleration? acceleration;
+      DeviceAcceleration? accelerationIncludingGravity;
+      DeviceRotationRate? rotationRate;
+      double? interval;
     }
   </pre>
 
-  <p>The <code>acceleration</code> property must provide the acceleration of the
+  <p>The <code>acceleration</code> attribute must return the value it was initialized to.
+  When the object is created, this attribute must be initialized to null.</p>
+  <p>The <code>accelerationIncludingGravity</code> attribute must return the value it was initialized to.
+  When the object is created, this attribute must be initialized to null.</p>
+  <p>The <code>rotationRate</code> attribute must return the value it was initialized to.
+  When the object is created, this attribute must be initialized to null.</p>
+  <p>The <code>interval</code> attribute must return the value it was initialized to.
+  When the object is created, this attribute must be initialized to 0.</p>
+
+  <p>In the <code>DeviceMotionEvent</code> events fired by the user agent, the following requirements
+  must apply:</p>
+  
+  <p>The <code>acceleration</code> attribute must be initialized with the acceleration of the
   hosting device relative to the Earth frame, expressed in the body frame, as
   defined in <a href="#deviceorientation">section 4.1</a>. The acceleration must
   be expressed in m/s^2.
@@ -550,26 +573,26 @@ cite this document as other than work in progress.</p>
   effect of gravity (due, for example, to the lack of a gyroscope) may instead
   supply the acceleration including the effect of gravity. This is less useful
   in many applications but is provided as a means of providing best-effort
-  support. In this case, the <code>accelerationIncludingGravity</code> property
-  must provide the acceleration of the hosting device, plus an acceleration
+  support. In this case, the <code>accelerationIncludingGravity</code> attribute
+  must be initialized with the acceleration of the hosting device, plus an acceleration
   equal and opposite to the acceleration due to gravity. Again, the acceleration
   must be given in the body frame defined in
   <a href="#deviceorientation">section 4.1</a> and must be expressed in m/s^2.
 
-  <p>The <code>rotationRate</code> property must provide the rate of rotation of
+  <p>The <code>rotationRate</code> attribute must be initialized with the rate of rotation of
   the hosting device in space. It must be expressed as the rate of change of
   the angles of the defined in <a href="#deviceorientation">section 4.1</a> and
   must be expressed in deg/s.
 
-  <p>The <code>interval</code> property must provide the interval at which
+  <p>The <code>interval</code> attribute must be initialized with the interval at which
   data is obtained from the underlying hardware and must be expressed in
   milliseconds. It must be a constant, to simplify filtering of the data by the
   Web application.
 
-  <p>Implementations that are unable to provide all properties must
-  set the values of the unknown properties to null. If an implementation
+  <p>Implementations that are unable to provide all attributes must
+  initialize the values of the unknown attributes to null. If an implementation
   can never provide motion information, the event should be fired
-  with all properties set to null.
+  with all attributes set to null.
 
   <h2 id="use-cases-and-requirements"><span class=secno>5 </span>Use-Cases and Requirements</h2>
 
@@ -695,8 +718,8 @@ cite this document as other than work in progress.</p>
   <h2 class=no-num id="references">References</h2>
 
   <dl>
-   <dt><a id="ref-domevents">[DOMEVENTS]</a></dt>
-   <dd><cite><a href="http://www.w3.org/TR/DOM-Level-2-Events">DOM Level 2 Events</a></cite>, See http://www.w3.org/TR/DOM-Level-2-Events</dd>
+   <dt><a id="ref-domevents">[DOM4]</a></dt>
+   <dd><cite><a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html">DOM4</a></cite>, See http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html</dd>
    <dt><a id="ref-eulerangles">[EULERANGLES]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles</dd>
    <dt><a id="ref-html5">[HTML5]</a></dt>
