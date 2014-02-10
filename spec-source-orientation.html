@@ -434,7 +434,7 @@ cite this document as other than work in progress.</p>
 
   <ol id="rotations">
     <li>
-      <p>Rotate the device frame around its z axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360).</p>
+      <p>Rotate the device frame around its z axis by <code>alpha</code> degrees, with <code>alpha</code> in [0, 360].</p>
       <div>
         <img src="start.png" alt="start orientation">
         <div>Device in the initial position, with Earth (XYZ) and body (xyz) frames aligned.</div>
@@ -445,14 +445,14 @@ cite this document as other than work in progress.</p>
       </div>
     </li>
     <li>
-      <p>Rotate the device frame around its x axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180).</p>
+      <p>Rotate the device frame around its x axis by <code>beta</code> degrees, with <code>beta</code> in [-180, 180].</p>
       <div>
         <img src="a-rotation.png" alt="rotation about x axis">
         <div>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</div>
       </div>
     </li>
     <li>
-      <p>Rotate the device frame around its y axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90).</p>
+      <p>Rotate the device frame around its y axis by <code>gamma</code> degrees, with <code>gamma</code> in [-90, 90].</p>
       <div>
         <img src="b-rotation.png" alt="rotation about y axis">
         <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
@@ -493,7 +493,7 @@ cite this document as other than work in progress.</p>
   <p>User agents must also provide an event handler IDL attribute
   <a href="#ref-html5">[HTML5]</a> named <code>oncompassneedscalibration</code>
   on the <code>window</code> object. The type of the corresponding event must be
-  <code>compassneedcalibration</code>.
+  <code>compassneedscalibration</code>.
 
   <p>This event must be fired when the user agent determines that a compass used
   to obtain orientation data is in need of calibration. Furthermore, user agents
@@ -567,7 +567,7 @@ cite this document as other than work in progress.</p>
   <p>The <code>acceleration</code> attribute must be initialized with the acceleration of the
   hosting device relative to the Earth frame, expressed in the body frame, as
   defined in <a href="#deviceorientation">section 4.1</a>. The acceleration must
-  be expressed in m/s^2.
+  be expressed in meters per second squared (m/s<sup>2</sup>).
 
   <p>Implementations that are unable to provide acceleration data without the
   effect of gravity (due, for example, to the lack of a gyroscope) may instead
@@ -577,16 +577,16 @@ cite this document as other than work in progress.</p>
   must be initialized with the acceleration of the hosting device, plus an acceleration
   equal and opposite to the acceleration due to gravity. Again, the acceleration
   must be given in the body frame defined in
-  <a href="#deviceorientation">section 4.1</a> and must be expressed in m/s^2.
+  <a href="#deviceorientation">section 4.1</a> and must be expressed in meters per second squared (m/s<sup>2</sup>).
 
   <p>The <code>rotationRate</code> attribute must be initialized with the rate of rotation of
   the hosting device in space. It must be expressed as the rate of change of
-  the angles of the defined in <a href="#deviceorientation">section 4.1</a> and
-  must be expressed in deg/s.
+  the angles of those defined in <a href="#deviceorientation">section 4.1</a> and
+  must be expressed in degrees per second (deg/s).
 
   <p>The <code>interval</code> attribute must be initialized with the interval at which
   data is obtained from the underlying hardware and must be expressed in
-  milliseconds. It must be a constant, to simplify filtering of the data by the
+  milliseconds (ms). It must be a constant, to simplify filtering of the data by the
   Web application.
 
   <p>Implementations that are unable to provide all attributes must
