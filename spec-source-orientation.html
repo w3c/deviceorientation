@@ -773,7 +773,7 @@ function compassHeading( alpha, beta, gamma ) {
   <p>If M represents the rotation matrix m in the earth frame XYZ, then since the inital body frame is aligned with the earth, M is as follows.
 
   <object class="equation" data="equation9.xhtml" type="application/mathml+xml">
-    <img src="equation9.png" alt="R = ABC">
+    <img src="equation9.png" alt="M = ABC">
   </object>
   </p>
 
@@ -800,11 +800,11 @@ function compassHeading( alpha, beta, gamma ) {
   <p>Where the final combined rotation matrix M is therefore as follows.
 
   <object class="equation" data="equation13.xhtml" type="application/mathml+xml">
-    <img src="equation13.png" alt="R = [[m_11, m_12, m_13], [m_21, m_22, m_23],[ m_31, m_32, m_33 ]] = [[cos(alpha), -sin(alpha), 0], [sin(alpha), cos(alpha), 0],[ 0, 0, 1 ]].[[1, 0, 0], [0, cos(beta), -sin(beta)], [0, sin(beta), cos(beta)]].[[cos(gamma), 0, sin(gamma)], [0, 1, 0], [-sin(gamma), 0, cos(gamma)]]">
+    <img src="equation13.png" alt="M = [[m_11, m_12, m_13], [m_21, m_22, m_23],[ m_31, m_32, m_33 ]] = [[cos(alpha), -sin(alpha), 0], [sin(alpha), cos(alpha), 0],[ 0, 0, 1 ]].[[1, 0, 0], [0, cos(beta), -sin(beta)], [0, sin(beta), cos(beta)]].[[cos(gamma), 0, sin(gamma)], [0, 1, 0], [-sin(gamma), 0, cos(gamma)]]">
   </object>
 
   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
-    <img src="equation13a.png" alt="R = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+    <img src="equation13a.png" alt="M = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
   </object>
 
   <p>The above combined rotation matrix can be represented in JavaScript as follows.
