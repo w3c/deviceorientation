@@ -868,10 +868,10 @@ function getRotationMatrix( alpha, beta, gamma ) {
 
   <p>Another alternate orientation representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
 
-  <p style="height: 240px">To convert any provided deviceorientation values in to a Unit Quaternion representation we can use the following formula:
+  <p style="height: 240px">If Q represents the unit quaternion q in the earth frame XYZ, then since the inital body frame is aligned with the earth, Q is as follows.
 
     <object class="equation" data="equation14.xhtml" type="application/mathml+xml">
-      <img src="equation14.png" alt="Q = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]] = [[w], [x], [y], [z]]">
+      <img src="equation14.png" alt="Q = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]] = [[q_w], [q_x], [q_y], [q_z]]">
     </object>
 
   <p>The above quaternion can be represented in JavaScript as follows:
@@ -908,7 +908,7 @@ function getQuaternion( alpha, beta, gamma ) {
   <p>As a consistency check, we can check that a Unit Quaternion has been constructed correctly using Lagrange's four-square theorem
 
   <object class="equation" data="equation18.xhtml" type="application/mathml+xml">
-    <img src="equation18.png" alt="Q_x^2 * Q_y^2 * Q_z^2 * Q_w^2 = 1">
+    <img src="equation18.png" alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1">
   </object>
 
   <p>as expected.
