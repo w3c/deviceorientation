@@ -643,57 +643,57 @@ cite this document as other than work in progress.</p>
   component of a vector which is orthogonal to the device's screen and pointing
   out of the back of the screen.
 
-  <p>If r represents this vector in the rotated device body frame xyz, then r
+  <p>If v represents this vector in the rotated device body frame xyz, then v
   is as follows.
 
   <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
-    <p><img src="equation1.gif" alt="r = [0; 0; -1]">
+    <p><img src="equation1.png" alt="v = [0; 0; -1]">
   </object>
 
-  <p>The transformation of r due to the rotation about the z axis can be
+  <p>The transformation of v due to the rotation about the z axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
-    <img src="equation2.gif" alt="A = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
+    <img src="equation2.png" alt="A = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
   </object>
 
-  <p>The transformation of r due to the rotation about the x axis can be
+  <p>The transformation of v due to the rotation about the x axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
-    <img src="equation3.gif" alt="B = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
+    <img src="equation3.png" alt="B = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
   </object>
 
-  <p>The transformation of r due to the rotation about the y axis can be
+  <p>The transformation of v due to the rotation about the y axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
-    <img src="equation4.gif" alt="C = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
+    <img src="equation4.png" alt="C = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
   </object>
 
-  <p>If R represents the vector r in the earth frame XYZ, then since the inital
-  body frame is aligned with the earth, R is as follows.
+  <p>If V represents the vector v in the earth frame XYZ, then since the inital
+  body frame is aligned with the earth, V is as follows.
 
   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
-    <img src="equation5a.gif" alt="R = ABCr">
+    <img src="equation5a.png" alt="V = ABCv">
   </object>
   <object class="equation" data="equation5b.xhtml" type="application/mathml+xml">
-    <img src="equation5b.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)] [0; 0; -1]">
+    <img src="equation5b.png" alt="V = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)] [0; 0; -1]">
   </object>
   <object class="equation" data="equation5c.xhtml" type="application/mathml+xml">
-    <img src="equation5c.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [-sin(gamma); 0; -cos(gamma)]">
+    <img src="equation5c.png" alt="V = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [-sin(gamma); 0; -cos(gamma)]">
   </object>
   <object class="equation" data="equation5d.xhtml" type="application/mathml+xml">
-    <img src="equation5d.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [-sin(gamma); sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
+    <img src="equation5d.png" alt="V = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [-sin(gamma); sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
-    <img src="equation5e.gif" alt="R = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
+    <img src="equation5e.png" alt="V = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
 
   <p>The compass heading &theta; is given by
 
   <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
-    <img src="equation6.gif" alt="theta = atan(R_x/R_y) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
+    <img src="equation6.png" alt="theta = atan(V_x/V_y) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
   </object>
 
   <p>provided that &beta; and &gamma; are not both zero.
@@ -737,7 +737,7 @@ function compassHeading( alpha, beta, gamma ) {
   <p>As a consistency check, if we set &gamma; = 0, then
 
   <object class="equation" data="equation7.xhtml" type="application/mathml+xml">
-    <img src="equation7.gif" alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha">
+    <img src="equation7.png" alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha">
   </object>
 
   <p>as expected.
@@ -745,10 +745,10 @@ function compassHeading( alpha, beta, gamma ) {
   <p>Alternatively, if we set &beta; = 90, then
 
   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml">
-    <img src="equation8a.gif" alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))">
+    <img src="equation8a.png" alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))">
   </object>
   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml">
-    <img src="equation8b.gif" alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)">
+    <img src="equation8b.png" alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)">
   </object>
 
   <p>as expected.
@@ -770,10 +770,10 @@ function compassHeading( alpha, beta, gamma ) {
     provided in the <a href="#worked-example">worked example</a> above we
     can represent the orientation of the device body frame as a rotation matrix.
 
-  <p>If M represents the rotation matrix m in the earth frame XYZ, then since the inital body frame is aligned with the earth, M is as follows.
+  <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the inital body frame is aligned with the earth, R is as follows.
 
   <object class="equation" data="equation9.xhtml" type="application/mathml+xml">
-    <img src="equation9.png" alt="M = ABC">
+    <img src="equation9.png" alt="R = ABC">
   </object>
   </p>
 
@@ -797,14 +797,14 @@ function compassHeading( alpha, beta, gamma ) {
 
 -->
 
-  <p>Where the final combined rotation matrix M is therefore as follows.
+  <p>Where the final combined rotation matrix R is therefore as follows.
 
   <object class="equation" data="equation13.xhtml" type="application/mathml+xml">
-    <img src="equation13.png" alt="M = [[m_11, m_12, m_13], [m_21, m_22, m_23],[ m_31, m_32, m_33 ]] = [[cos(alpha), -sin(alpha), 0], [sin(alpha), cos(alpha), 0],[ 0, 0, 1 ]].[[1, 0, 0], [0, cos(beta), -sin(beta)], [0, sin(beta), cos(beta)]].[[cos(gamma), 0, sin(gamma)], [0, 1, 0], [-sin(gamma), 0, cos(gamma)]]">
+    <img src="equation13.png" alt="R = [[m_11, m_12, m_13], [m_21, m_22, m_23],[ m_31, m_32, m_33 ]] = [[cos(alpha), -sin(alpha), 0], [sin(alpha), cos(alpha), 0],[ 0, 0, 1 ]].[[1, 0, 0], [0, cos(beta), -sin(beta)], [0, sin(beta), cos(beta)]].[[cos(gamma), 0, sin(gamma)], [0, 1, 0], [-sin(gamma), 0, cos(gamma)]]">
   </object>
 
   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
-    <img src="equation13a.png" alt="M = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+    <img src="equation13a.png" alt="R = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
   </object>
 
   <p>The above combined rotation matrix can be represented in JavaScript as follows.
@@ -868,10 +868,10 @@ function getRotationMatrix( alpha, beta, gamma ) {
 
   <p>Another alternate orientation representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
 
-  <p style="height: 240px">If Q represents the unit quaternion q in the earth frame XYZ, then since the inital body frame is aligned with the earth, Q is as follows.
+  <p style="height: 240px">If Q represents the unit quaternion of the device in the earth frame XYZ, then since the inital body frame is aligned with the earth, Q is as follows.
 
     <object class="equation" data="equation14.xhtml" type="application/mathml+xml">
-      <img src="equation14.png" alt="Q = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]] = [[q_w], [q_x], [q_y], [q_z]]">
+      <img src="equation14.png" alt="Q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]">
     </object>
 
   <p>The above quaternion can be represented in JavaScript as follows:
