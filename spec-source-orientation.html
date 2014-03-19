@@ -47,6 +47,16 @@
    ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
    ol#rotations li div img { width: 350px; }
    object.equation {display: block; margin: 20px 20px; }
+   table.simple { display: table; border-spacing: 0; border-collapse: collapse; border-bottom: 3px solid #005a9c; }
+   table.simple thead { display: table-header-group; vertical-align: middle; border-color: inherit; }
+   table.simple tbody { display: table-row-group; vertical-align: middle; border-color: inherit; }
+   table.simple th { background: #005a9c; color: #fff; padding: 3px 5px; text-align: center; }
+   table.simple th[scope="row"] { background: inherit; color: inherit; border-top: 1px solid #ddd; }
+   table.simple tr { display: table-row; vertical-align: inherit; border-color: inherit; }
+   table.simple td, table.simple th { display: table-cell; text-align: center; }
+   table.simple td { padding: 3px 10px; border-top: 1px solid #ddd; }
+   table.simple td.left { text-align: left; }
+   table.simple tr:nth-child(even) { background: #f0f6ff; }
   </style>
   <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet type="text/css">
  </head>
@@ -58,7 +68,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 March 2014</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 19 March 2014</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -155,6 +165,7 @@ cite this document as other than work in progress.</p>
     <ul class=toc>
       <li><a href="#worked-example"><span class=secno>A.1 </span>Calculating compass heading</a>
       <li><a href="#worked-example-2"><span class=secno>A.2 </span>Alternate device orientation representations</a>
+      <li><a href="#worked-example-3"><span class=secno>A.3 </span>Handling screen orientation changes</a>
     </ul>
     <li><a href="#acknowledgments">Acknowledgments</a>
     <li><a href="#references">References</a>
@@ -867,6 +878,107 @@ function getQuaternion( alpha, beta, gamma ) {
   </object>
 
   <p>as expected.
+
+  <h3 id="worked-example-3">A.3 Handling screen orientation changes</h3>
+
+  <p><em>This section is non-normative.</em>
+
+  <p>This specification defines the device coordinate frame as relative to the screen in its standard orientation.
+    When the screen orientation changes, from e.g. portrait to landscape or vice-versa, then the initial device coordinate
+    frame may no longer match the actual device orientation frame based on the screen orientation change made.
+
+  <p>It is therefore necessary for applications to compensate for screen orientation changes
+    to ensure that the device coordinate frame continues to match the current screen orientation as expected.
+
+  <p>Screen orientation changes can be represented in the following configurations by a single rotation around the device body frame's z axis:
+
+  <ol>
+    <li><code>0</code> degree rotation around the z axis. This matches the initial body frame of the device.</li>
+    <li><code>90</code> degree rotation counter-clockwise around the z axis.</li>
+    <li><code>180</code> degree rotation counter-clockwise around the z axis.</li>
+    <li>270 degree rotation counter-clockwise around the z axis. This value is provided as <code>-90</code> degrees by the <code>window.orientation</code> API.</li>
+  </ol>
+
+  <p class="note">Screen orientation can currently be detected via the <code>window.orientation</code> API. Web developers can
+    listen for screen orientation changes by registering an <code>orientationchange</code> event listener against the
+     <code>window</code> object and then querying the <code>window.orientation</code> value in the registered event callback function.
+  <p class="issue">
+    There is a pending action to add <code>window.orientation</code>-like behavior to the
+    <a href="https://dvcs.w3.org/hg/screen-orientation/raw-file/tip/Overview.html">Screen Orientation API</a>. This section will be updated accordingly when that change is made.
+
+  <p>If an application would like the device coordinate frame to match the current device orientation frame as determined by the current screen orientation then the following x-, y- and z-axis rotation re-assignments must be applied to Device Orientation values provided from this API when the screen orientation changes to the values below.
+
+  <table class="simple">
+    <thead>
+      <tr>
+        <th rowspan="2">Screen Orientation</th>
+        <th colspan="3">Tait-Bryan axis rotation assignment</th>
+      </tr>
+      <tr>
+        <th>x</th>
+        <th>y</th>
+        <th>z</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="left">0</td>
+        <td>beta (&beta;)</td>
+        <td>gamma (&gamma;)</td>
+        <td>alpha (&alpha;)</td>
+      </tr>
+      <tr>
+        <td class="left">90</td>
+        <td>- gamma (-&gamma;)</td>
+        <td> beta (&beta;)</td>
+        <td>alpha (&alpha;)</td>
+      </tr>
+      <tr>
+        <td class="left">180</td>
+        <td>- beta (-&beta;)</td>
+        <td>- gamma (-&gamma;)</td>
+        <td>alpha (&alpha;)</td>
+      </tr>
+      <tr>
+        <td class="left">-90</td>
+        <td>gamma (&gamma;)</td>
+        <td>- beta (-&beta;)</td>
+        <td>alpha (&alpha;)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>When representing orientation data using a rotation matrix (R) as provided in the <a href="#worked-example-2">previous worked example</a> then current screen orientation angle should be applied to the rotation matrix representation (R) to obtain a rotation matrix that matches the current device frame (R<sub>s</sub>).
+
+  <p>So R<sub>s</sub> can be calculated as
+
+  <object class="equation" data="equation19.xhtml" type="application/mathml+xml">
+    <img src="equation19.png" alt="R_s = R.r_s">
+  </object>
+
+  <p>where r<sub>s</sub> is a z axis based transformation matrix
+
+  <object class="equation" data="equation20.xhtml" type="application/mathml+xml">
+    <img src="equation20.png" alt="r_s = [[cos(theta_s), - sin(theta_s), 0], [ sin(theta_s), cos(theta_s), 0], [0, 0, 1]]">
+  </object>
+
+  <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
+
+  <p>Similarly, when representing orientation data using a quaternion (Q) as provided in the <a href="#worked-example-2">previous worked example</a> then the current screen orientation angle should be applied to the quaternion representation (Q) to obtain a quaternion that matches the current device frame (Q<sub>s</sub>).
+
+  <p>So Q<sub>s</sub> can be calculated as
+
+  <object class="equation" data="equation21.xhtml" type="application/mathml+xml">
+    <img src="equation21.png" alt="Q_s = Q.q_s">
+  </object>
+
+  <p>where q<sub>s</sub> is a z axis based transformation quaternion
+
+  <object class="equation" data="equation22.xhtml" type="application/mathml+xml">
+    <img src="equation22.png" alt="q_s = [[0], [0], [ sin((-theta_s)/2) ], [ cos((-theta_s)/2) ]]">
+  </object>
+
+  <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
 
   <p>&nbsp;
 
