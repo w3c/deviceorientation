@@ -948,6 +948,44 @@ function getQuaternion( alpha, beta, gamma ) {
     </tbody>
   </table>
 
+  <p>The above table for the conversion of axis to compensate for screen orientation changes can be represented in
+    JavaScript as follows:
+
+<pre>
+function getScreenAdjustedTaitBryanAngles( alpha, beta, gamma, screenOrientation ) {
+
+  var _x = beta  ? beta  * degtorad : 0; // beta value
+  var _y = gamma ? gamma * degtorad : 0; // gamma value
+  var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+  var adjustedAlpha = _z;
+  var adjustedBeta, adjustedGamma;
+
+  switch( screenOrientation ) {
+    case 90:
+      adjustedBeta  = - _y;
+      adjustedGamma =   _x;
+      break;
+    case 180:
+      adjustedBeta  = - _x;
+      adjustedGamma = - _y;
+      break;
+    case -90:
+      adjustedBeta  =   _y;
+      adjustedGamma = - _x;
+      break;
+    default: // '0'
+      adjustedBeta  =   _x;
+      adjustedGamma =   _y;
+      break;
+  }
+
+  return [ adjustedAlpha, adjustedBeta, adjustedGamma ];
+
+}
+</pre>
+
+
   <p>When representing orientation data using a rotation matrix (R) as provided in the <a href="#worked-example-2">previous worked example</a> then current screen orientation angle should be applied to the rotation matrix representation (R) to obtain a rotation matrix that matches the current device frame (R<sub>s</sub>).
 
   <p>So R<sub>s</sub> can be calculated as
@@ -964,6 +1002,37 @@ function getQuaternion( alpha, beta, gamma ) {
 
   <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
 
+  <p>The calculation of R<sub>s</sub> can be represented in JavaScript as follows:
+
+<pre>
+function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation ) {
+
+  // Get the standard device rotation matrix
+  var R = getRotationMatrix( alpha, beta, gamma );
+
+  var orientationAngle = screenOrientation ? screenOrientation * degtorad : 0;
+
+  // Construct a screen transformation matrix
+  var r_s = [
+    cos( orientationAngle ),    - sin( orientationAngle ),    0,
+    sin( orientationAngle ),    cos( orientationAngle ),      0,
+    0,                          0,                            1
+  ];
+
+  //
+  // Multiply the device rotation matrix by the screen rotation matrix:
+  //
+  //      R_s = R * r_s
+  //
+  // and return rotation as a rotation matrix in the form:
+  //
+  //      [m11, m12, m13, m21, m22, m23, m31, m32, m33]
+  //
+  return multiplyMatrixes( R, r_s ); // matrix multiplication is out of scope
+
+}
+</pre>
+
   <p>Similarly, when representing orientation data using a quaternion (Q) as provided in the <a href="#worked-example-2">previous worked example</a> then the current screen orientation angle should be applied to the quaternion representation (Q) to obtain a quaternion that matches the current device frame (Q<sub>s</sub>).
 
   <p>So Q<sub>s</sub> can be calculated as
@@ -979,6 +1048,35 @@ function getQuaternion( alpha, beta, gamma ) {
   </object>
 
   <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
+
+  <p>The calculation of Q<sub>s</sub> can be represented in JavaScript as follows:
+
+<pre>
+function getScreenAdjustedQuaternion( alpha, beta, gamma, screenOrientation ) {
+
+  // Get the standard device rotation quaternion
+  var Q = getQuaternion( alpha, beta, gamma );
+
+  var orientationAngle = screenOrientation ? screenOrientation * degtorad : 0;
+
+  var minusHalfAngle = - orientationAngle / 2;
+
+  // Construct the screen transformation quaternion
+  var q_s = [ cos( minusHalfAngle ), 0, 0, sin( minusHalfAngle ) ];
+
+  //
+  // Multiply the device rotation quaternion by the screen transformation quaternion:
+  //
+  //      Q_s = Q * q_s
+  //
+  // and return as a unit quaternion in the form:
+  //
+  //      [w, x, y, z]
+  //
+  return multiplyQuaternions( Q, q_s ); // quaternion multiplication is out of scope
+
+}
+</pre>
 
   <p>&nbsp;
 
