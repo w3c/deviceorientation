@@ -1024,7 +1024,7 @@ function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation 
   //
   //      R_s = R * r_s
   //
-  // and return rotation as a rotation matrix in the form:
+  // and return a screen-adjusted rotation matrix in the form:
   //
   //      [m11, m12, m13, m21, m22, m23, m31, m32, m33]
   //
@@ -1069,7 +1069,7 @@ function getScreenAdjustedQuaternion( alpha, beta, gamma, screenOrientation ) {
   //
   //      Q_s = Q * q_s
   //
-  // and return as a unit quaternion in the form:
+  // and return a screen-adjusted unit quaternion in the form:
   //
   //      [w, x, y, z]
   //
