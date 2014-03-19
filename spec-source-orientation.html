@@ -706,12 +706,14 @@ cite this document as other than work in progress.</p>
 
   <p>provided that &beta; and &gamma; are not both zero.
 
+  <div class="example">
   <p>The compass heading calculation above can be represented in JavaScript as follows:
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function compassHeading( alpha, beta, gamma ) {
+
   var _x = beta  ? beta  * degtorad : 0; // beta value
   var _y = gamma ? gamma * degtorad : 0; // gamma value
   var _z = alpha ? alpha * degtorad : 0; // alpha value
@@ -740,7 +742,9 @@ function compassHeading( alpha, beta, gamma ) {
   return compassHeading * ( 180 / Math.PI ); // Compass Heading (in degrees)
 
 }
+
 </pre>
+  </div>
 
   <p>As a consistency check, if we set &gamma; = 0, then
 
@@ -790,12 +794,14 @@ function compassHeading( alpha, beta, gamma ) {
     <img src="equation13a.png" alt="R = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
   </object>
 
+  <div class="example">
   <p>The above combined rotation matrix can be represented in JavaScript as follows.
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function getRotationMatrix( alpha, beta, gamma ) {
+
   var _x = beta  ? beta  * degtorad : 0; // beta value
   var _y = gamma ? gamma * degtorad : 0; // gamma value
   var _z = alpha ? alpha * degtorad : 0; // alpha value
@@ -830,7 +836,9 @@ function getRotationMatrix( alpha, beta, gamma ) {
   ];
 
 };
+
 </pre>
+  </div>
 
   <p>Another alternate orientation representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
 
@@ -840,12 +848,14 @@ function getRotationMatrix( alpha, beta, gamma ) {
       <img src="equation14.png" alt="Q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]">
     </object>
 
+  <div class="example">
   <p>The above quaternion can be represented in JavaScript as follows:
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function getQuaternion( alpha, beta, gamma ) {
+
   var _x = beta  ? beta  * degtorad : 0; // beta value
   var _y = gamma ? gamma * degtorad : 0; // gamma value
   var _z = alpha ? alpha * degtorad : 0; // alpha value
@@ -869,7 +879,9 @@ function getQuaternion( alpha, beta, gamma ) {
   return [ w, x, y, z ];
 
 }
+
 </pre>
+  </div>
 
   <p>We can check that a Unit Quaternion has been constructed correctly using Lagrange's four-square theorem
 
