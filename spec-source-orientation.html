@@ -729,7 +729,7 @@ function compassHeading( alpha, beta, gamma ) {
     compassHeading += 2 * Math.PI;
   }
 
-  return compassHeading; // Compass Heading (in radians)
+  return compassHeading * ( 180 / Math.PI ); // Compass Heading (in degrees)
 
 }
 </pre>
