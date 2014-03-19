@@ -712,17 +712,17 @@ function compassHeading( alpha, beta, gamma ) {
   var sY = Math.sin( _y );
   var sZ = Math.sin( _z );
 
-  // Calculate Rx and Ry components
-  var Rx = - cZ * sY - sZ * sX * cY;
-  var Ry = - sZ * sY + cZ * sX * cY;
+  // Calculate Vx and Vy components
+  var Vx = - cZ * sY - sZ * sX * cY;
+  var Vy = - sZ * sY + cZ * sX * cY;
 
   // Calculate compass heading
-  var compassHeading = Math.atan( Rx / Ry );
+  var compassHeading = Math.atan( Vx / Vy );
 
   // Convert compass heading to use whole unit circle
-  if( Ry < 0 ) {
+  if( Vy < 0 ) {
     compassHeading += Math.PI;
-  } else if( Rx < 0 ) {
+  } else if( Vx < 0 ) {
     compassHeading += 2 * Math.PI;
   }
 
