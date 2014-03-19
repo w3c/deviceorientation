@@ -846,22 +846,6 @@ function getRotationMatrix( alpha, beta, gamma ) {
 };
 </pre>
 
-  <p>As a consistency check, we can check that the Tait-Bryan angle values derived from our rotation matrix (&alpha;<sub>1</sub>, &beta;<sub>1</sub>, &gamma;<sub>1</sub>) match the Tait-Bryan angle values (&alpha;, &beta;, &gamma;) provided as input
-
-  <object class="equation" data="equation15.xhtml" type="application/mathml+xml">
-    <img src="equation15.png" alt="alpha_1 = tan^-1((-m_12) / m_22) = alpha">
-  </object>
-
-  <object class="equation" data="equation16.xhtml" type="application/mathml+xml">
-    <img src="equation16.png" alt="beta_1 = tan^-1(m_32 / (sqrt(1 - m_32^2))) = beta">
-  </object>
-
-  <object class="equation" data="equation17.xhtml" type="application/mathml+xml">
-    <img src="equation17.png" alt="gamma_1 = tan^-1((-m_31) / m_33) = gamma">
-  </object>
-
-<p>as expected.
-
   <p>Another alternate orientation representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
 
   <p style="height: 240px">If Q represents the unit quaternion of the device in the earth frame XYZ, then since the inital body frame is aligned with the earth, Q is as follows.
@@ -901,7 +885,7 @@ function getQuaternion( alpha, beta, gamma ) {
 }
 </pre>
 
-  <p>As a consistency check, we can check that a Unit Quaternion has been constructed correctly using Lagrange's four-square theorem
+  <p>We can check that a Unit Quaternion has been constructed correctly using Lagrange's four-square theorem
 
   <object class="equation" data="equation18.xhtml" type="application/mathml+xml">
     <img src="equation18.png" alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1">
