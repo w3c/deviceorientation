@@ -759,16 +759,13 @@ function compassHeading( alpha, beta, gamma ) {
 
   <p><em>This section is non-normative.</em>
 
-  <p>When we use Tait-Bryan angles to represent 3-dimensional movement we encounter the problem of
-    gimbal lock. <a href="#ref-gimballock">[GIMBALLOCK]</a>
+  <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock
+    <a href="#ref-gimballock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert
+    the Device Orientation values to other rotation representations.
 
-  <p>By converting deviceorientation event values to alternate orientation representations we can
-    avoid this issue. This is useful in 3d programming such as when creating virtual reality or augmented
-    reality applications.
-
-  <p>The first alternate orientation representation is to use rotation matrixes. By combining the component rotation matrixes
+  <p>The first alternate orientation representation we can use is rotation matrixes. By combining the component rotation matrixes
     provided in the <a href="#worked-example">worked example</a> above we
-    can represent the orientation of the device body frame as a rotation matrix.
+    can represent the orientation of the device body frame as a combined rotation matrix.
 
   <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the inital body frame is aligned with the earth, R is as follows.
 
