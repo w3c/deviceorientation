@@ -46,7 +46,7 @@
    table.matrix { margin-left: 2em; }
    ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
    ol#rotations li div img { width: 350px; }
-   object.equation {display: block; margin: 20px 20px; }
+   object.equation { display: block; margin: 20px 20px; width: 100%; height: inherit; }
   </style>
   <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet type="text/css">
  </head>
@@ -656,47 +656,50 @@ cite this document as other than work in progress.</p>
   represented by the following rotation matrix.
 
   <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
-    <img src="equation2.png" alt="A = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
+    <img src="equation2.png" alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
   </object>
 
   <p>The transformation of v due to the rotation about the x axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
-    <img src="equation3.png" alt="B = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
+    <img src="equation3.png" alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
   </object>
 
   <p>The transformation of v due to the rotation about the y axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
-    <img src="equation4.png" alt="C = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
+    <img src="equation4.png" alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
   </object>
 
-  <p>If V represents the vector v in the earth frame XYZ, then since the initial
-  body frame is aligned with the earth, V is as follows.
+  <p>If R represents the full rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.
+
+  <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
+    <img src="equation13a.png" alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+  </object>
+
+  <p>If v' represents the vector v in the earth frame XYZ, then since the initial
+  body frame is aligned with the earth, v' is as follows.
 
   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
-    <img src="equation5a.png" alt="V = ABCv">
-  </object>
-  <object class="equation" data="equation5b.xhtml" type="application/mathml+xml">
-    <img src="equation5b.png" alt="V = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)] [0; 0; -1]">
+    <img src="equation5a.png" alt="v' = Rv">
   </object>
   </object>
   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
-    <img src="equation5e.png" alt="V = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
+    <img src="equation5e.png" alt="v' = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
 
   <p>The compass heading &theta; is given by
 
   <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
-    <img src="equation6.png" alt="theta = atan(V_x/V_y) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
+    <img src="equation6.png" alt="theta = atan((v'_x)/(v'_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
   </object>
 
   <p>provided that &beta; and &gamma; are not both zero.
 
   <div class="example">
-  <p>The compass heading calculation above can be represented in JavaScript as follows:
+  <p>The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided passed parameters are defined, are <code>absolute</code> values and those parameters are not null.
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
@@ -768,23 +771,12 @@ function compassHeading( alpha, beta, gamma ) {
 
   <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.
 
-  <object class="equation" data="equation9.xhtml" type="application/mathml+xml">
-    <img src="equation9.png" alt="R = ABC">
-  </object>
-  </p>
-
-  <p>Where the final combined rotation matrix R is therefore as follows.
-
-  <object class="equation" data="equation13.xhtml" type="application/mathml+xml">
-    <img src="equation13.png" alt="R = [[m_11, m_12, m_13], [m_21, m_22, m_23],[ m_31, m_32, m_33 ]] = [[cos(alpha), -sin(alpha), 0], [sin(alpha), cos(alpha), 0],[ 0, 0, 1 ]].[[1, 0, 0], [0, cos(beta), -sin(beta)], [0, sin(beta), cos(beta)]].[[cos(gamma), 0, sin(gamma)], [0, 1, 0], [-sin(gamma), 0, cos(gamma)]]">
-  </object>
-
   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
-    <img src="equation13a.png" alt="R = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+    <img src="equation13a.png" alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
   </object>
 
   <div class="example">
-  <p>The above combined rotation matrix can be represented in JavaScript as follows.
+  <p>The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, are <code>absolute</code> values and those parameters are not null.
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
@@ -831,14 +823,14 @@ function getRotationMatrix( alpha, beta, gamma ) {
 
   <p>Another alternate orientation representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
 
-  <p style="height: 240px">If Q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, Q is as follows.
+  <p style="height: 240px">If q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, q is as follows.
 
     <object class="equation" data="equation14.xhtml" type="application/mathml+xml">
-      <img src="equation14.png" alt="Q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]">
+      <img src="equation14.png" alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]">
     </object>
 
   <div class="example">
-  <p>The above quaternion can be represented in JavaScript as follows:
+  <p>The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code>absolute</code> values and those parameters are not null.
 
 <pre>
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
