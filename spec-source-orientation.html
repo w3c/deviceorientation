@@ -1020,11 +1020,14 @@ function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation 
 
   var orientationAngle = screenOrientation ? screenOrientation * degtorad : 0;
 
+  var cA = Math.cos( orientationAngle );
+  var sA = Math.sin( orientationAngle );
+
   // Construct a screen transformation matrix
   var r_s = [
-    cos( orientationAngle ),    - sin( orientationAngle ),    0,
-    sin( orientationAngle ),    cos( orientationAngle ),      0,
-    0,                          0,                            1
+    cA,    -sA,    0,
+    sA,    cA,     0,
+    0,     0,      1
   ];
 
   //
@@ -1073,7 +1076,7 @@ function getScreenAdjustedQuaternion( alpha, beta, gamma, screenOrientation ) {
   var minusHalfAngle = - orientationAngle / 2;
 
   // Construct the screen transformation quaternion
-  var q_s = [ cos( minusHalfAngle ), 0, 0, sin( minusHalfAngle ) ];
+  var q_s = [ Math.cos( minusHalfAngle ), 0, 0, Math.sin( minusHalfAngle ) ];
 
   //
   // Multiply the device rotation quaternion by the screen transformation quaternion:
