@@ -1043,12 +1043,12 @@ function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation 
 </pre>
   </div>
 
-  <p>Similarly, when representing orientation data using a quaternion (Q) as provided in the <a href="#worked-example-2">previous worked example</a> then the current screen orientation angle should be applied to the quaternion representation (Q) - constructed using the original &alpha;, &beta; and &gamma; device orientation values - to obtain a quaternion that matches the current device frame (Q<sub>s</sub>).
+  <p>Similarly, when representing orientation data using a quaternion (q) as provided in the <a href="#worked-example-2">previous worked example</a> then the current screen orientation angle should be applied to the quaternion representation (q) - constructed using the original &alpha;, &beta; and &gamma; device orientation values - to obtain a quaternion that matches the current device frame (q'<sub>s</sub>).
 
-  <p>So Q<sub>s</sub> can be calculated as
+  <p>So q'<sub>s</sub> can be calculated as
 
   <object class="equation" data="equation21.xhtml" type="application/mathml+xml">
-    <img src="equation21.png" alt="Q_s = Q.q_s">
+    <img src="equation21.png" alt="q'_s = q.q_s">
   </object>
 
   <p>where q<sub>s</sub> is a z axis based transformation quaternion
