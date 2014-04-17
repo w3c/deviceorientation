@@ -46,7 +46,7 @@
    table.matrix { margin-left: 2em; }
    ol#rotations li div { display: inline-block; width: 350px; margin-right: 20px; font-size: small; }
    ol#rotations li div img { width: 350px; }
-   object.equation {display: block; height: 140px; width: 100%; margin: 20px 20px -60px; }
+   object.equation { display: block; margin: 20px 20px; width: 100%; height: inherit; }
   </style>
   <link href="http://www.w3.org/StyleSheets/TR/W3C-ED.css" rel=stylesheet type="text/css">
  </head>
@@ -58,7 +58,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 10 February 2014</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 March 2014</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -107,11 +107,11 @@ http://www.w3.org/TR/.</em></p>
   <p>This document was published by the <a
   href="http://www.w3.org/2008/geolocation/">Geolocation Working Group</a>.
   If you wish to make comments regarding this document, please send
-  them to <a 
-  href="mailto:public-geolocation@w3.org">public-geolocation@w3.org</a> (<a 
+  them to <a
+  href="mailto:public-geolocation@w3.org">public-geolocation@w3.org</a> (<a
   href="mailto:public-geolocation-request@w3.org?subject=subscribe">subscribe</a>,
-  <a 
-  href="http://lists.w3.org/Archives/Public/public-geolocation/">archives</a>).</p> 
+  <a
+  href="http://lists.w3.org/Archives/Public/public-geolocation/">archives</a>).</p>
   <p>All feedback is welcome.</p>
   <!-- stability (required) -->
 
@@ -151,7 +151,11 @@ cite this document as other than work in progress.</p>
       <li><a href="#use-cases"><span class=secno>5.1 </span>Use-Cases</a>
       <li><a href="#requirements"><span class=secno>5.2 </span>Requirements</a>
     </ul>
-    <li><a href="#worked-example"><span class=secno>6 </span>Worked Example</a>
+    <li><a href="#examples"><span class=secno>A </span>Examples</a>
+    <ul class=toc>
+      <li><a href="#worked-example"><span class=secno>A.1 </span>Calculating compass heading</a>
+      <li><a href="#worked-example-2"><span class=secno>A.2 </span>Alternate device orientation representations</a>
+    </ul>
     <li><a href="#acknowledgments">Acknowledgments</a>
     <li><a href="#references">References</a>
   </ul>
@@ -370,7 +374,7 @@ cite this document as other than work in progress.</p>
       double? beta;
       double? gamma;
       boolean absolute;
-    }    
+    }
   </pre>
 
     <p>The <code>alpha</code> attribute must return the value it was initialized to.
@@ -517,7 +521,7 @@ cite this document as other than work in progress.</p>
   <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>ondevicemotion</code> 
+  <a href="#ref-html5">[HTML5]</a> named <code>ondevicemotion</code>
   on the <code>window</code> object. The type of the corresponding event must be
   <code>devicemotion</code>.
 
@@ -563,7 +567,7 @@ cite this document as other than work in progress.</p>
 
   <p>In the <code>DeviceMotionEvent</code> events fired by the user agent, the following requirements
   must apply:</p>
-  
+
   <p>The <code>acceleration</code> attribute must be initialized with the acceleration of the
   hosting device relative to the Earth frame, expressed in the body frame, as
   defined in <a href="#deviceorientation">section 4.1</a>. The acceleration must
@@ -619,7 +623,11 @@ cite this document as other than work in progress.</p>
   <h4 id="requirement-agnostic"><span class=secno>5.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
   <h4 id="requirement-use-dom"><span class=secno>5.2.5 </span>The specification must use the existing DOM event framework.</h4>
 
-  <h2 id="worked-example">Worked Example</h2>
+  <h2 id="examples">A. Examples</h2>
+
+  <!-- All equations in this section are created using MathJAX and are provided @ http://jsfiddle.net/richtr/w7Xgu/ -->
+
+  <h3 id="worked-example">A.1 Calculating compass heading</h3>
 
   <p><em>This section is non-normative.</em>
 
@@ -637,65 +645,103 @@ cite this document as other than work in progress.</p>
   component of a vector which is orthogonal to the device's screen and pointing
   out of the back of the screen.
 
-  <p>If r represents this vector in the rotated device body frame xyz, then r
+  <p>If v represents this vector in the rotated device body frame xyz, then v
   is as follows.
 
   <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
-    <p><img src="equation1.gif" alt="r = [0; 0; -1]">
+    <p><img src="equation1.png" alt="v = [0; 0; -1]">
   </object>
 
-  <p>The transformation of r due to the rotation about the z axis can be
+  <p>The transformation of v due to the rotation about the z axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
-    <img src="equation2.gif" alt="A = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
+    <img src="equation2.png" alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]">
   </object>
 
-  <p>The transformation of r due to the rotation about the x axis can be
+  <p>The transformation of v due to the rotation about the x axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
-    <img src="equation3.gif" alt="B = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
+    <img src="equation3.png" alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]">
   </object>
 
-  <p>The transformation of r due to the rotation about the y axis can be
+  <p>The transformation of v due to the rotation about the y axis can be
   represented by the following rotation matrix.
 
   <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
-    <img src="equation4.gif" alt="C = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
+    <img src="equation4.png" alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]">
   </object>
 
-  <p>If R resresents the vector r in the earth frame XYZ, then since the inital
-  body frame is aligned with the earth, R is as follows.
+  <p>If R represents the full rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.
+
+  <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
+    <img src="equation13a.png" alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+  </object>
+
+  <p>If v' represents the vector v in the earth frame XYZ, then since the initial
+  body frame is aligned with the earth, v' is as follows.
 
   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
-    <img src="equation5a.gif" alt="R = ABCr">
+    <img src="equation5a.png" alt="v' = Rv">
   </object>
-  <object class="equation" data="equation5b.xhtml" type="application/mathml+xml">
-    <img src="equation5b.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)] [0; 0; -1]">
-  </object>
-  <object class="equation" data="equation5c.xhtml" type="application/mathml+xml">
-    <img src="equation5c.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)] [-sin(gamma); 0; -cos(gamma)]">
-  </object>
-  <object class="equation" data="equation5d.xhtml" type="application/mathml+xml">
-    <img src="equation5d.gif" alt="R = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1] [-sin(gamma); sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
-    <img src="equation5e.gif" alt="R = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
+    <img src="equation5e.png" alt="v' = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
   </object>
 
   <p>The compass heading &theta; is given by
 
   <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
-    <img src="equation6.gif" alt="theta = atan(R_x/R_y) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
+    <img src="equation6.png" alt="theta = atan((v'_x)/(v'_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))">
   </object>
 
   <p>provided that &beta; and &gamma; are not both zero.
 
-  <p>As a consistency check, if we set &gamma; = 0, then 
+  <div class="example">
+  <p>The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided parameters are defined, not null and represent <code>absolute</code> values.
+
+<pre>
+var degtorad = Math.PI / 180; // Degree-to-Radian conversion
+
+function compassHeading( alpha, beta, gamma ) {
+
+  var _x = beta  ? beta  * degtorad : 0; // beta value
+  var _y = gamma ? gamma * degtorad : 0; // gamma value
+  var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+  var cX = Math.cos( _x );
+  var cY = Math.cos( _y );
+  var cZ = Math.cos( _z );
+  var sX = Math.sin( _x );
+  var sY = Math.sin( _y );
+  var sZ = Math.sin( _z );
+
+  // Calculate Vx and Vy components
+  var Vx = - cZ * sY - sZ * sX * cY;
+  var Vy = - sZ * sY + cZ * sX * cY;
+
+  // Calculate compass heading
+  var compassHeading = Math.atan( Vx / Vy );
+
+  // Convert compass heading to use whole unit circle
+  if( Vy < 0 ) {
+    compassHeading += Math.PI;
+  } else if( Vx < 0 ) {
+    compassHeading += 2 * Math.PI;
+  }
+
+  return compassHeading * ( 180 / Math.PI ); // Compass Heading (in degrees)
+
+}
+
+</pre>
+  </div>
+
+  <p>As a consistency check, if we set &gamma; = 0, then
 
   <object class="equation" data="equation7.xhtml" type="application/mathml+xml">
-    <img src="equation7.gif" alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha">
+    <img src="equation7.png" alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha">
   </object>
 
   <p>as expected.
@@ -703,13 +749,130 @@ cite this document as other than work in progress.</p>
   <p>Alternatively, if we set &beta; = 90, then
 
   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml">
-    <img src="equation8a.gif" alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))">
+    <img src="equation8a.png" alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))">
   </object>
   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml">
-    <img src="equation8b.gif" alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)">
+    <img src="equation8b.png" alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)">
   </object>
 
   <p>as expected.
+
+  <h3 id="worked-example-2">A.2 Alternate device orientation representations</h3>
+
+  <p><em>This section is non-normative.</em>
+
+  <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock
+    <a href="#ref-gimballock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert
+    the Device Orientation values to other rotation representations.
+
+  <p>The first alternate orientation representation uses rotation matrices. By combining the component rotation matrices
+    provided in the <a href="#worked-example">worked example</a> above we
+    can represent the orientation of the device body frame as a combined rotation matrix.
+
+  <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.
+
+  <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
+    <img src="equation13a.png" alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]">
+  </object>
+
+  <div class="example">
+  <p>The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code>absolute</code> values.
+
+<pre>
+var degtorad = Math.PI / 180; // Degree-to-Radian conversion
+
+function getRotationMatrix( alpha, beta, gamma ) {
+
+  var _x = beta  ? beta  * degtorad : 0; // beta value
+  var _y = gamma ? gamma * degtorad : 0; // gamma value
+  var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+  var cX = Math.cos( _x );
+  var cY = Math.cos( _y );
+  var cZ = Math.cos( _z );
+  var sX = Math.sin( _x );
+  var sY = Math.sin( _y );
+  var sZ = Math.sin( _z );
+
+  //
+  // ZXY rotation matrix construction.
+  //
+
+  var m11 = cZ * cY - sZ * sX * sY;
+  var m12 = - cX * sZ;
+  var m13 = cY * sZ * sX + cZ * sY;
+
+  var m21 = cY * sZ + cZ * sX * sY;
+  var m22 = cZ * cX;
+  var m23 = sZ * sY - cZ * cY * sX;
+
+  var m31 = - cX * sY;
+  var m32 = sX;
+  var m33 = cX * cY;
+
+  return [
+    m11,    m12,    m13,
+    m21,    m22,    m23,
+    m31,    m32,    m33
+  ];
+
+};
+
+</pre>
+  </div>
+
+  <p>Another alternate representation of device orientation data is as Quaternions. <a href="#ref-quaternions">[QUATERNIONS]</a>
+
+  <p style="height: 240px">If q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, q is as follows.
+
+    <object class="equation" data="equation14.xhtml" type="application/mathml+xml">
+      <img src="equation14.png" alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]">
+    </object>
+
+  <div class="example">
+  <p>The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code>absolute</code> values and those parameters are not null.
+
+<pre>
+var degtorad = Math.PI / 180; // Degree-to-Radian conversion
+
+function getQuaternion( alpha, beta, gamma ) {
+
+  var _x = beta  ? beta  * degtorad : 0; // beta value
+  var _y = gamma ? gamma * degtorad : 0; // gamma value
+  var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+  var cX = Math.cos( _x/2 );
+  var cY = Math.cos( _y/2 );
+  var cZ = Math.cos( _z/2 );
+  var sX = Math.sin( _x/2 );
+  var sY = Math.sin( _y/2 );
+  var sZ = Math.sin( _z/2 );
+
+  //
+  // ZXY quaternion construction.
+  //
+
+  var w = cX * cY * cZ - sX * sY * sZ;
+  var x = sX * cY * cZ - cX * sY * sZ;
+  var y = cX * sY * cZ + sX * cY * sZ;
+  var z = cX * cY * sZ + sX * sY * cZ;
+
+  return [ w, x, y, z ];
+
+}
+
+</pre>
+  </div>
+
+  <p>We can check that a Unit Quaternion has been constructed correctly using Lagrange's four-square theorem
+
+  <object class="equation" data="equation18.xhtml" type="application/mathml+xml">
+    <img src="equation18.png" alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1">
+  </object>
+
+  <p>as expected.
+
+  <p>&nbsp;
 
   <h2 class=no-num id="acknowledgments">Acknowledgments</h2>
 
@@ -722,8 +885,12 @@ cite this document as other than work in progress.</p>
    <dd><cite><a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html">DOM4</a></cite>, See http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html</dd>
    <dt><a id="ref-eulerangles">[EULERANGLES]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles</dd>
+   <dt><a id="ref-gimballock">[GIMBALLOCK]</a></dt>
+   <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Gimbal_Lock">Gimbal Lock</a></cite>, See http://en.wikipedia.org/wiki/Gimbal_Lock</dd>
    <dt><a id="ref-html5">[HTML5]</a></dt>
    <dd><cite><a href="http://dev.w3.org/html5/spec/Overview.htm">HTML5</a></cite>, See http://dev.w3.org/html5/spec/Overview.html</dd>
+   <dt><a id="ref-quaternions">[QUATERNIONS]</a></dt>
+   <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Quaternion">Quaternions</a></cite>, See http://en.wikipedia.org/wiki/Quaternion</dd>
    <dt><a id=ref-rfc2119>[RFC2119]</a></dt>
    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner.  Internet Engineering Task Force, March 1997. See http://www.ietf.org/rfc/rfc2119.txt</dd>
    <dt><a id=ref-webidl>[WEBIDL]</a></dt>
