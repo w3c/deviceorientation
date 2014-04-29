@@ -887,36 +887,40 @@ function getQuaternion( alpha, beta, gamma ) {
 
   <p><em>This section is non-normative.</em>
 
-  <p>This specification defines the device coordinate frame as relative to the screen in its standard orientation.
-    When the screen orientation changes, from e.g. portrait to landscape or vice-versa, then the device coordinate frame does not change. Therefore the initial device coordinate
-    frame may no longer match the actual device orientation frame based on the screen orientation change made.
+  <p>It may be necessary for applications to compensate for screen orientation changes
+    to ensure that the device coordinate frame continues to match the current screen orientation as expected - defined as the <dfn id="screen-adjusted">screen-adjusted device orientation frame</dfn>.
 
-  <p>It is often necessary for applications to compensate for screen orientation changes
-    to ensure that the device coordinate frame continues to match the current screen orientation as expected.
+  <p>This specification defines its coordinate frame as relative to the screen in its default body frame orientation.
+    When screen orientation changes, from e.g. portrait to landscape or vice-versa, the device coordinate frame and thus, data returned from Device Orientation events, remains unchanged.
 
-  <p>Screen orientation changes can be represented in the following configurations by a single rotation around the device body frame's z axis:
+  <p><em>Typical</em> screen orientation changes can be represented by, but may not be limited to, the following screen rotations around a device body frame's z axis from the default screen orientation in the default body frame:
 
   <ol>
-    <li><code>0</code> degree rotation around the z axis. This matches the initial body frame of the device.</li>
-    <li><code>90</code> degree rotation counter-clockwise around the z axis.</li>
-    <li><code>180</code> degree rotation counter-clockwise around the z axis.</li>
-    <li>270 degree rotation counter-clockwise around the z axis. This value is provided as <code>-90</code> degrees by the <code>window.orientation</code> API.</li>
+    <li><code>0</code> degree rotation around the body frame's z axis. This is the <dfn id="default-screen-orientation">default screen orientation</dfn> of the device.</li>
+    <li><code>90</code> degree rotation clockwise around the body frame's z axis.</li>
+    <li><code>180</code> degree rotation clockwise around the body frame's z axis.</li>
+    <li><code>270</code> degree rotation clockwise around the body frame's z axis.</li>
   </ol>
 
-  <p class="note">Screen orientation can currently be detected via the <code>window.orientation</code> API. Web developers can
-    listen for screen orientation changes by registering an <code>orientationchange</code> event listener against the
-     <code>window</code> object and then querying the <code>window.orientation</code> value in the registered event callback function.
-  <p class="issue">
-    There is a pending action to add <code>window.orientation</code>-like behavior to the
-    <a href="https://dvcs.w3.org/hg/screen-orientation/raw-file/tip/Overview.html">Screen Orientation API</a>. This section will be updated accordingly when that change is made.
+  <p>We can obtain and record the current orientation of the screen around a device body frame's z axis via the Screen Orientation API <a href="#ref-screenorientation">[SCREENORIENTATION]</a> as follows:
 
-  <p>If an application would like the device coordinate frame to match the current device orientation frame as determined by the current screen orientation then the following x-, y- and z-axis rotation re-assignments must be applied to Device Orientation values provided from this API when the screen orientation changes to the values below.
+<pre>
+var screenOrientation = window.screen.orientation.angle || 0;
+
+window.addEventListener("orientationchange", function() {
+  screenOrientation = window.screen.orientation.angle || 0;
+}, false);
+</pre>
+
+  <p>If an application requires its coordinate frame to reflect the way the screen is currently oriented on the device then a <a href="#screen-adjusted">screen-adjusted device orientation frame</a> can be calculated by re-assigning x-, y- and z-axis outputs from Device Orientation events.
+
+  <p>When working directly with Tait-Bryan angles provided from the Device Orientation event then the re-mapping of &alpha;, &beta; and &gamma; device orientation values as follows:
 
   <table class="simple">
     <thead>
       <tr>
-        <th rowspan="2">Screen Orientation</th>
-        <th colspan="3">Tait-Bryan axis rotation assignment</th>
+        <th rowspan="2">Current Screen Orientation<br>(clockwise rotation from <a href="#default-screen-orientation" style="color:#fff">default screen orientation</a>)</th>
+        <th colspan="3">Tait-Bryan axis rotation re-assignment</th>
       </tr>
       <tr>
         <th>x</th>
@@ -944,7 +948,7 @@ function getQuaternion( alpha, beta, gamma ) {
         <td>alpha (&alpha;)</td>
       </tr>
       <tr>
-        <td class="left">-90</td>
+        <td class="left">270</td>
         <td>gamma (&gamma;)</td>
         <td>- beta (-&beta;)</td>
         <td>alpha (&alpha;)</td>
@@ -952,24 +956,29 @@ function getQuaternion( alpha, beta, gamma ) {
     </tbody>
   </table>
 
-  <p>When representing orientation data using a rotation matrix (R) as provided in the <a href="#worked-example-2">previous worked example</a> then current screen orientation angle should be applied to the rotation matrix representation (R) - constructed using the original &alpha;, &beta; and &gamma; device orientation values - to obtain a rotation matrix that matches the current device frame (R<sub>s</sub>).
+  <p class="issue">
+    The table above is included for reference purposes only.
+    <br><br>
+    It is <strong>strongly recommended</strong> that developers employ one of the documented <a href="#worked-example-2">alternate device orientation representations</a> to
+    account for screen orientation changes instead of attempting to directly re-map Tait-Bryan angles and axis'. Use of <a href="#worked-example-2">alternate device orientation representations</a> is recommended due to the non-linear relationship between individual Tait-Bryan angles and their respective axis' and to avoid subsequent issues introduced when applying incompatible linear rotation values to different axis'.
+  </p>
 
-  <p>So R<sub>s</sub> can be calculated as
+  <p>When representing device orientation as a rotation matrix (R) provided in the <a href="#worked-example-2">previous worked example</a> then a screen orientation angle transformation should be applied to the previously calculated rotation matrix representation (R) to obtain a <a href="#screen-adjusted">screen-adjusted</a> rotation matrix that matches the current device frame (R<sub>s</sub>).
+
+  <p>If the current screen orientation value is denoted by &theta; then our <a href="#screen-adjusted">screen-adjusted</a> rotation matrix R<sub>s</sub> can be calculated as
 
   <object class="equation" data="equation19.xhtml" type="application/mathml+xml">
     <img src="equation19.png" alt="R_s = R.r_s">
   </object>
 
-  <p>where r<sub>s</sub> is a z axis based transformation matrix
+  <p>where r<sub>s</sub> is the following z axis based transformation matrix
 
   <object class="equation" data="equation20.xhtml" type="application/mathml+xml">
     <img src="equation20.png" alt="r_s = [[cos(theta_s), - sin(theta_s), 0], [ sin(theta_s), cos(theta_s), 0], [0, 0, 1]]">
   </object>
 
-  <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
-
   <div class="example">
-  <p>The calculation of R<sub>s</sub> can be represented in JavaScript as follows:
+  <p>This calculation of R<sub>s</sub> can be represented in JavaScript as follows:
 
 <pre>
 function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation ) {
@@ -1005,24 +1014,22 @@ function getScreenAdjustedRotationMatrix( alpha, beta, gamma, screenOrientation 
 </pre>
   </div>
 
-  <p>Similarly, when representing orientation data using a quaternion (q) as provided in the <a href="#worked-example-2">previous worked example</a> then the current screen orientation angle should be applied to the quaternion representation (q) - constructed using the original &alpha;, &beta; and &gamma; device orientation values - to obtain a quaternion that matches the current device frame (q'<sub>s</sub>).
+  <p>Similarly, when representing device orientation as a quaternion (q) as also provided in the <a href="#worked-example-2">previous worked example</a> then a screen orientation angle transformation should be applied to the previously calculated quaternion representation (q) to obtain a <a href="#screen-adjusted">screen-adjusted</a> quaternion that matches the current device frame (q'<sub>s</sub>).
 
-  <p>So q'<sub>s</sub> can be calculated as
+  <p>If the current screen orientation value is denoted by &theta; then our <a href="#screen-adjusted">screen-adjusted</a> quaternion q'<sub>s</sub> can be calculated as
 
   <object class="equation" data="equation21.xhtml" type="application/mathml+xml">
     <img src="equation21.png" alt="q'_s = q.q_s">
   </object>
 
-  <p>where q<sub>s</sub> is a z axis based transformation quaternion
+  <p>where q<sub>s</sub> is the following z axis based transformation quaternion
 
   <object class="equation" data="equation22.xhtml" type="application/mathml+xml">
     <img src="equation22.png" alt="q_s = [[0], [0], [ sin((-theta_s)/2) ], [ cos((-theta_s)/2) ]]">
   </object>
 
-  <p>and where &theta;<sub>s</sub> is the current screen orientation angle.
-
   <div class="example">
-  <p>The calculation of Q<sub>s</sub> can be represented in JavaScript as follows:
+  <p>This calculation of q'<sub>s</sub> can be represented in JavaScript as follows:
 
 <pre>
 function getScreenAdjustedQuaternion( alpha, beta, gamma, screenOrientation ) {
@@ -1074,6 +1081,8 @@ function getScreenAdjustedQuaternion( alpha, beta, gamma, screenOrientation ) {
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Quaternion">Quaternions</a></cite>, See http://en.wikipedia.org/wiki/Quaternion</dd>
    <dt><a id=ref-rfc2119>[RFC2119]</a></dt>
    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner.  Internet Engineering Task Force, March 1997. See http://www.ietf.org/rfc/rfc2119.txt</dd>
+   <dt><a id=ref-screenorientation>[SCREENORIENTATION]</a></dt>
+   <dd><cite><a href="https://w3c.github.io/screen-orientation">The Screen Orientation API</a></cite> (Work in progress), Mounir Lamouri, Editor. World Wide Web Consortium, April 2014. See https://w3c.github.io/screen-orientation</dd>
    <dt><a id=ref-webidl>[WEBIDL]</a></dt>
    <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor. World Wide Web Consortium, 19 December 2008. See http://dev.w3.org/2006/webapi/WebIDL</dd>
    <dt><a id="ref-wgs84">[WGS84]</a></dt>
