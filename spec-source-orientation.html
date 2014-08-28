@@ -58,7 +58,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 March 2014</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 28 August 2014</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -366,6 +366,11 @@ cite this document as other than work in progress.</p>
       readonly attribute double? alpha;
       readonly attribute double? beta;
       readonly attribute double? gamma;
+
+      readonly attribute double? screenAlpha;
+      readonly attribute double? screenBeta;
+      readonly attribute double? screenGamma;
+
       readonly attribute boolean absolute;
     }
 
@@ -373,6 +378,9 @@ cite this document as other than work in progress.</p>
       double? alpha;
       double? beta;
       double? gamma;
+      double? screenAlpha;
+      double? screenBeta;
+      double? screenGamma;
       boolean absolute;
     }
   </pre>
@@ -382,6 +390,12 @@ cite this document as other than work in progress.</p>
     <p>The <code>beta</code> attribute must return the value it was initialized to.
     When the object is created, this attribute must be initialized to null.</p>
     <p>The <code>gamma</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>screenAlpha</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>screenBeta</code> attribute must return the value it was initialized to.
+    When the object is created, this attribute must be initialized to null.</p>
+    <p>The <code>screenGamma</code> attribute must return the value it was initialized to.
     When the object is created, this attribute must be initialized to null.</p>
     <p>The <code>absolute</code> attribute must return the value it was initialized to.
     When the object is created, this attribute must be initialized to false.</p>
@@ -395,7 +409,7 @@ cite this document as other than work in progress.</p>
   <p>The <code>alpha</code>, <code>beta</code> and <code>gamma</code> attributes
   of the event must specify the orientation of the device in terms of the
   transformation from a coordinate frame fixed on the Earth to a
-  coordinate frame fixed in the device. The coordinate frames must be oriented
+  coordinate frame fixed in the device. This <dfn>device coordinate frame</dfn> must be oriented
   as described below.</p>
 
   <p>The Earth coordinate frame is a 'East, North, Up' frame at the user's
@@ -471,6 +485,13 @@ cite this document as other than work in progress.</p>
   that <code>alpha</code> is in the opposite sense to a compass heading. It also
   means that the angles do not match the roll-pitch-yaw convention used in
   vehicle dynamics.</p>
+
+  <p>The <code>screenAlpha</code>, <code>screenBeta</code> and <code>screenGamma</code> attributes
+  of the event must specify the orientation of the device in terms of the
+  transformation from the <a>device coordinate frame</a> to the current screen orientation offset of
+  the device's display. This <dfn>screen coordinate frame</dfn> must be oriented
+  to account for the current screen orientation's offset value so that returned <code>screenAlpha</code>, <code>screenBeta</code> and <code>screenGamma</code> attributes match the
+  current up-frame of the screen.</p>
 
   <p> Implementations that are unable to provide absolute values for the three
   angles may instead provide values relative to some arbitrary orientation, as
