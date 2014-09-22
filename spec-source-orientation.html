@@ -205,6 +205,16 @@ cite this document as other than work in progress.</p>
   <a href="#ref-domevents">[DOM4]</a>.
   Implementations must therefore support this specification.
 
+  <p>When support for a feature is disabled (e.g. as an emergency measure to
+   mitigate a security problem, due to lack of sensor support in the current
+   platform, to aid in development, or for performance reasons), user agents
+   <em class="rfc2119" title="MUST">MUST</em> act as if they had no support for
+   the feature whatsoever, and as if the feature was not mentioned in this
+   specification. For example, if a particular feature is accessed via an
+   attribute in a Web IDL interface, the attribute itself would be omitted from
+   the objects that implement that interface - leaving the attribute on the
+   object but making it return null or throw an exception is insufficient.
+
   <h2 id="introduction"><span class=secno>2 </span>Introduction</h2>
 
   <p><em>This section is non-normative.</em>
