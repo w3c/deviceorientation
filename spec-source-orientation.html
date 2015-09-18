@@ -500,13 +500,12 @@ cite this document as other than work in progress.</p>
   <code>window</code> object. The type of the corresponding event must be
   <code>absolutedeviceorientation</code>.
   
-  <p>This event is completely analogous to the <code>deviceorientation</code> event, except
-  additional sensors like the magnetometer are used to provide an absolute orientation. 
-  Implementations that are unable to provide absolute values for the three
-  angles may instead provide values relative to some arbitrary orientation, as
-  this may still be of utility. In this case, the <code>absolute</code> property
-  must be set to <code>false</code>. Otherwise, the <code>absolute</code>
-  property must be set to <code>true</code>.</p>
+  <p>The <code>absolutedeviceorientation</code> event is completely analogous to the 
+  <code>deviceorientation</code> event, except additional sensors like the magnetometer 
+  are used to provide an absolute orientation.
+  The <code>absolute</code> property must be set to <code>true</code>.
+  For implementations that are unable to provide absolute values for the three
+  angles, a one shot null event must be fired.</p>
 
   <h3 id="compassneedscalibration"><span class=secno>4.3 </span>compassneedscalibration Event</h3>
 
