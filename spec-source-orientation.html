@@ -476,11 +476,12 @@ cite this document as other than work in progress.</p>
   means that the angles do not match the roll-pitch-yaw convention used in
   vehicle dynamics.</p>
   
-  <p>The <code>deviceorientation</code> event tries to provide relative values for
-  the three angles, based on just the accelerometer and the gyroscope. The 
-  implementation can still decide to provide absolute orientation if relative is
+  <p>The <code>deviceorientation</code> event tries to provide relative values 
+  for the three angles (relative to some arbitrary orientation), based on just 
+  the accelerometer and the gyroscope. 
+  The implementation can still decide to provide absolute orientation if relative is
   not available or the resulting data is more accurate. In either case, the 
-  <code>absolute</code> property must be set to reflect the choice.</p>
+  <code>absolute</code> property must be set accordingly to reflect the choice.</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If any angles are provided, the
@@ -504,7 +505,7 @@ cite this document as other than work in progress.</p>
   
   <p>The <code>absolutedeviceorientation</code> event is completely analogous to the 
   <code>deviceorientation</code> event, except additional sensors like the magnetometer 
-  are used to provide an absolute orientation. The <code>absolute</code> property must
+  can be used to provide an absolute orientation. The <code>absolute</code> property must
   be set to <code>true</code>. If an implementation can never provide absolute 
   orientation information, the event should be fired with all properties set to null.</p>
 
