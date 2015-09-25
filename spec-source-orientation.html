@@ -146,8 +146,9 @@ cite this document as other than work in progress.</p>
     <li><a href="#description"><span class=secno>4 </span>Description</a>
     <ul class=toc>
       <li><a href="#deviceorientation"><span class=secno>4.1 </span>deviceorientation Event</a>
-      <li><a href="#compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</a>
-      <li><a href="#devicemotion"><span class=secno>4.3 </span>devicemotion Event</a>
+      <li><a href="#absolutedeviceorientation"><span class=secno>4.2 </span>absolutedeviceorientation Event</a>
+      <li><a href="#compassneedscalibration"><span class=secno>4.3 </span>compassneedscalibration Event</a>
+      <li><a href="#devicemotion"><span class=secno>4.4 </span>devicemotion Event</a>
     </ul>
     <li><a href="#use-cases-and-requirements"><span class=secno>5 </span>Use-Cases and Requirements</a>
     <ul class=toc>
@@ -474,20 +475,41 @@ cite this document as other than work in progress.</p>
   that <code>alpha</code> is in the opposite sense to a compass heading. It also
   means that the angles do not match the roll-pitch-yaw convention used in
   vehicle dynamics.</p>
-
-  <p> Implementations that are unable to provide absolute values for the three
-  angles may instead provide values relative to some arbitrary orientation, as
-  this may still be of utility. In this case, the <code>absolute</code> property
-  must be set to <code>false</code>. Otherwise, the <code>absolute</code>
-  property must be set to <code>true</code>.</p>
+  
+  <p>The <code>deviceorientation</code> event tries to provide relative values 
+  for the three angles (relative to some arbitrary orientation), based on just 
+  the accelerometer and the gyroscope. 
+  The implementation can still decide to provide absolute orientation if relative is
+  not available or the resulting data is more accurate. In either case, the 
+  <code>absolute</code> property must be set accordingly to reflect the choice.</p>
 
   <p> Implementations that are unable to provide all three angles must
   set the values of the unknown angles to null. If any angles are provided, the
   <code>absolute</code> property must be set appropriately. If an implementation
   can never provide orientation information, the event should be fired
   with all properties set to null.</p>
+  
+  <h3 id="absolutedeviceorientation"><span class=secno>4.2 </span>absolutedeviceorientation Event</h3>
+  
+  <p>User agents implementing this specification must provide a new DOM event,
+  named <code>absolutedeviceorientation</code>. The corresponding event must be of
+  type <code>DeviceOrientationEvent</code> and must fire on the
+  <code>window</code> object. Registration for, and firing of the
+  <code>absolutedeviceorientation</code> event must follow the usual behavior of DOM4 Events,
+  <a href="#ref-domevents">[DOM4]</a>.
 
-  <h3 id="compassneedscalibration"><span class=secno>4.2 </span>compassneedscalibration Event</h3>
+  <p>User agents must also provide an event handler IDL attribute
+  <a href="#ref-html5">[HTML5]</a> named <code>onabsolutedeviceorientation</code> on the
+  <code>window</code> object. The type of the corresponding event must be
+  <code>absolutedeviceorientation</code>.
+  
+  <p>The <code>absolutedeviceorientation</code> event is completely analogous to the 
+  <code>deviceorientation</code> event, except additional sensors like the magnetometer 
+  can be used to provide an absolute orientation. The <code>absolute</code> property must
+  be set to <code>true</code>. If an implementation can never provide absolute 
+  orientation information, the event should be fired with all properties set to null.</p>
+
+  <h3 id="compassneedscalibration"><span class=secno>4.3 </span>compassneedscalibration Event</h3>
 
   <p>User agents implementing this specification must provide a new DOM event,
   named <code>compassneedscalibration</code> that uses the <code>Event</code>
@@ -513,7 +535,7 @@ cite this document as other than work in progress.</p>
   cancelable, so that web sites can provide their own alternative calibration
   UI.
 
-  <h3 id="devicemotion"><span class=secno>4.3 </span>devicemotion Event</h3>
+  <h3 id="devicemotion"><span class=secno>4.4 </span>devicemotion Event</h3>
 
   <p>User agents implementing this specification must provide a new DOM event,
   named <code>devicemotion</code>. The corresponding event must be of type
