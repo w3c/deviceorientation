@@ -58,7 +58,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 March 2014</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 November 2015</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -81,8 +81,8 @@
 
     <dd>Rich Tibbett, Opera Software ASA</dd>
     <dd>Tim Volodine, Google, Inc</dd>
-    <dd>Steve Block, Google, Inc</dd>
-    <dd>Andrei Popescu, Google, Inc</dd>
+    <dd>Steve Block, Google, Inc (until July 2012)</dd>
+    <dd>Andrei Popescu, Google, Inc (until July 2012)</dd>
 
    </dl>
 
@@ -146,7 +146,7 @@ cite this document as other than work in progress.</p>
     <li><a href="#description"><span class=secno>4 </span>Description</a>
     <ul class=toc>
       <li><a href="#deviceorientation"><span class=secno>4.1 </span>deviceorientation Event</a>
-      <li><a href="#absolutedeviceorientation"><span class=secno>4.2 </span>absolutedeviceorientation Event</a>
+      <li><a href="#deviceorientationabsolute"><span class=secno>4.2 </span>deviceorientationabsolute Event</a>
       <li><a href="#compassneedscalibration"><span class=secno>4.3 </span>compassneedscalibration Event</a>
       <li><a href="#devicemotion"><span class=secno>4.4 </span>devicemotion Event</a>
     </ul>
@@ -489,21 +489,21 @@ cite this document as other than work in progress.</p>
   can never provide orientation information, the event should be fired
   with all properties set to null.</p>
   
-  <h3 id="absolutedeviceorientation"><span class=secno>4.2 </span>absolutedeviceorientation Event</h3>
+  <h3 id="deviceorientationabsolute"><span class=secno>4.2 </span>deviceorientationabsolute Event</h3>
   
   <p>User agents implementing this specification must provide a new DOM event,
-  named <code>absolutedeviceorientation</code>. The corresponding event must be of
+  named <code>deviceorientationabsolute</code>. The corresponding event must be of
   type <code>DeviceOrientationEvent</code> and must fire on the
   <code>window</code> object. Registration for, and firing of the
-  <code>absolutedeviceorientation</code> event must follow the usual behavior of DOM4 Events,
+  <code>deviceorientationabsolute</code> event must follow the usual behavior of DOM4 Events,
   <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>onabsolutedeviceorientation</code> on the
+  <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientationabsolute</code> on the
   <code>window</code> object. The type of the corresponding event must be
-  <code>absolutedeviceorientation</code>.
+  <code>deviceorientationabsolute</code>.
   
-  <p>The <code>absolutedeviceorientation</code> event is completely analogous to the 
+  <p>The <code>deviceorientationabsolute</code> event is completely analogous to the 
   <code>deviceorientation</code> event, except additional sensors like the magnetometer 
   can be used to provide an absolute orientation. The <code>absolute</code> property must
   be set to <code>true</code>. If an implementation can never provide absolute 
