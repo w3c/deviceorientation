@@ -623,30 +623,51 @@ cite this document as other than work in progress.</p>
   can never provide motion information, the event should be fired
   with all attributes set to null.
 
-  <h2 id="use-cases-and-requirements"><span class=secno>5 </span>Use-Cases and Requirements</h2>
+  <h2 id="security-and-privacy"><span class=secno>5 </span>Security and privacy considerations</h2>
 
-  <h3 id="use-cases"><span class=secno>5.1 </span>Use-Cases</h3>
+  <p><em>This section is non-normative.</em></p>
 
-  <h4 id="controlling-a-game"><span class=secno>5.1.1 </span>Controlling a game</h4>
+  <p>The API defined in this specification can be used to obtain information from hardware sensors
+  like accelerometer, gyroscope, etc. The provided information is currently considered not sensitive
+  enough to warrant specific sensor permission grants. However there have been academic efforts to
+  exploit hardware specific sensor bias for fingerprinting purposes
+  <a href="#ref-fingerprint">[FINGERPRINT]</a>. In light of that implementations may consider
+  permissions or visual indicators to signify the use of sensors by the page. Furthermore to minimize
+  privacy risks and the chance of fingerprinting the implementations should take into consideration
+  the following suggestions:
+  <ul>
+    <li>do not fire events when the page where they were registered on is not visible or has been
+    backgrounded,</li>
+    <li>fire events only on the top-level browsing context or same-origin nested iframes,</li>
+    <li>limit the frequency of events (typically 60Hz seems to be sufficient).</li>
+  </ul>
+
+  <p>Additionally implementing these items also have a beneficial impact on the battery life.
+
+  <h2 id="use-cases-and-requirements"><span class=secno>6 </span>Use-Cases and Requirements</h2>
+
+  <h3 id="use-cases"><span class=secno>6.1 </span>Use-Cases</h3>
+
+  <h4 id="controlling-a-game"><span class=secno>6.1.1 </span>Controlling a game</h4>
   <p>A gaming Web application monitors the device's orientation and interprets
   tilting in a certain direction as a means to control an on-screen sprite.
 
-  <h4 id="gesture-recognition"><span class=secno>5.1.2 </span>Gesture recognition</h4>
+  <h4 id="gesture-recognition"><span class=secno>6.1.2 </span>Gesture recognition</h4>
   <p>A Web application monitors the device's acceleration and applies signal
   processing in order to recognize certain specific gestures. For example, using
   a shaking gesture to clear a web form.
 
-  <h4 id="mapping"><span class=secno>5.1.3 </span>Mapping</h4>
+  <h4 id="mapping"><span class=secno>6.1.3 </span>Mapping</h4>
   <p>A mapping Web application uses the device's orientation to correctly align
   the map with reality.
 
-  <h3 id="requirements"><span class=secno>5.2 </span>Requirements</h3>
+  <h3 id="requirements"><span class=secno>6.2 </span>Requirements</h3>
 
-  <h4 id="requirement-orientation"><span class=secno>5.2.1 </span>The specification must provide data that describes the physical orientation in space of the device.</h4>
-  <h4 id="requirement-motion"><span class=secno>5.2.2 </span>The specification must provide data that describes the motion in space of the device.</h4>
-  <h4 id="requirement-changes"><span class=secno>5.2.3 </span>The specification must allow Web applications to register for changes in the device's orientation.</h4>
-  <h4 id="requirement-agnostic"><span class=secno>5.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
-  <h4 id="requirement-use-dom"><span class=secno>5.2.5 </span>The specification must use the existing DOM event framework.</h4>
+  <h4 id="requirement-orientation"><span class=secno>6.2.1 </span>The specification must provide data that describes the physical orientation in space of the device.</h4>
+  <h4 id="requirement-motion"><span class=secno>6.2.2 </span>The specification must provide data that describes the motion in space of the device.</h4>
+  <h4 id="requirement-changes"><span class=secno>6.2.3 </span>The specification must allow Web applications to register for changes in the device's orientation.</h4>
+  <h4 id="requirement-agnostic"><span class=secno>6.2.4 </span>The specification must be agnostic to the underlying sources of orientation and motion data.</h4>
+  <h4 id="requirement-use-dom"><span class=secno>6.2.5 </span>The specification must use the existing DOM event framework.</h4>
 
   <h2 id="examples">A. Examples</h2>
 
@@ -910,6 +931,8 @@ function getQuaternion( alpha, beta, gamma ) {
    <dd><cite><a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html">DOM4</a></cite>, See http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html</dd>
    <dt><a id="ref-eulerangles">[EULERANGLES]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles</dd>
+   <dt><a id="ref-fingerprint">[FINGERPRINT]</a></dt>
+   <dd><em>(Non-normative)</em> <cite><a href="http://arxiv.org/abs/1408.1416">Mobile Device Identification via Sensor Fingerprinting</a></cite>, 6 Aug 2014. See http://arxiv.org/abs/1408.1416</dd>
    <dt><a id="ref-gimballock">[GIMBALLOCK]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Gimbal_Lock">Gimbal Lock</a></cite>, See http://en.wikipedia.org/wiki/Gimbal_Lock</dd>
    <dt><a id="ref-html5">[HTML5]</a></dt>
