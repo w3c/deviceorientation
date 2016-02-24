@@ -638,8 +638,7 @@ cite this document as other than work in progress.</p>
   Furthermore to minimize privacy risks, the chance of fingerprinting and other attacks the implementations
   should take into consideration the following suggestions:
   <ul>
-    <li>do not fire events when the page where they were registered on is not visible or has been
-    backgrounded,</li>
+    <li>do not fire events on invisible or backgrounded pages,</li>
     <li>fire events only on same-origin secure browsing contexts <a href="#ref-secure-contexts">[SECURE-CONTEXTS]</a>,</li>
     <li>limit the frequency of events (typically 60Hz seems to be sufficient).</li>
   </ul>
