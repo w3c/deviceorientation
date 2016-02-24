@@ -632,14 +632,15 @@ cite this document as other than work in progress.</p>
   like accelerometer, gyroscope, etc. The provided information is currently considered not sensitive
   enough to warrant specific sensor permission grants. However there have been academic efforts to
   exploit hardware specific sensor bias for fingerprinting purposes
-  <a href="#ref-fingerprint">[FINGERPRINT]</a>. In light of that implementations may consider
-  permissions or visual indicators to signify the use of sensors by the page. Furthermore to minimize
-  privacy risks and the chance of fingerprinting the implementations should take into consideration
-  the following suggestions:
+  <a href="#ref-fingerprint">[FINGERPRINT]</a>. Some researchers claim to be able to detect user touch
+  actions with some reliability from sensor data<a href="#ref-touch">[TOUCH]</a>. In light of that
+  implementations may consider permissions or visual indicators to signify the use of sensors by the page.
+  Furthermore to minimize privacy risks, the chance of fingerprinting and other attacks the implementations
+  should take into consideration the following suggestions:
   <ul>
     <li>do not fire events when the page where they were registered on is not visible or has been
     backgrounded,</li>
-    <li>fire events only on the top-level browsing context or same-origin nested iframes,</li>
+    <li>fire events only on same-origin secure browsing contexts <a href="#ref-secure-contexts">[SECURE-CONTEXTS]</a>,</li>
     <li>limit the frequency of events (typically 60Hz seems to be sufficient).</li>
   </ul>
 
@@ -942,6 +943,10 @@ function getQuaternion( alpha, beta, gamma ) {
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Quaternion">Quaternions</a></cite>, See http://en.wikipedia.org/wiki/Quaternion</dd>
    <dt><a id=ref-rfc2119>[RFC2119]</a></dt>
    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner.  Internet Engineering Task Force, March 1997. See http://www.ietf.org/rfc/rfc2119.txt</dd>
+   <dt><a id=ref-secure-contexts>[SECURE-CONTEXTS]</a></dt>
+   <dd><cite><a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a></cite>, World Wide Web Consortium, 2 February 2016. See https://w3c.github.io/webappsec-secure-contexts/</dd>
+   <dt><a id="ref-touch">[TOUCH]</a></dt>
+   <dd><em>(Non-normative)</em> <cite><a href="http://arxiv.org/abs/1602.04115">TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript</a></cite>, 12 Feb 2016. See http://arxiv.org/abs/1602.04115</dd>
    <dt><a id=ref-webidl>[WEBIDL]</a></dt>
    <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor. World Wide Web Consortium, 19 December 2008. See http://dev.w3.org/2006/webapi/WebIDL</dd>
    <dt><a id="ref-wgs84">[WGS84]</a></dt>
