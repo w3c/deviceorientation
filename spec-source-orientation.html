@@ -58,7 +58,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 November 2015</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 26 February 2016</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -475,12 +475,12 @@ cite this document as other than work in progress.</p>
   that <code>alpha</code> is in the opposite sense to a compass heading. It also
   means that the angles do not match the roll-pitch-yaw convention used in
   vehicle dynamics.</p>
-  
-  <p>The <code>deviceorientation</code> event tries to provide relative values 
-  for the three angles (relative to some arbitrary orientation), based on just 
-  the accelerometer and the gyroscope. 
+
+  <p>The <code>deviceorientation</code> event tries to provide relative values
+  for the three angles (relative to some arbitrary orientation), based on just
+  the accelerometer and the gyroscope.
   The implementation can still decide to provide absolute orientation if relative is
-  not available or the resulting data is more accurate. In either case, the 
+  not available or the resulting data is more accurate. In either case, the
   <code>absolute</code> property must be set accordingly to reflect the choice.</p>
 
   <p> Implementations that are unable to provide all three angles must
@@ -488,9 +488,9 @@ cite this document as other than work in progress.</p>
   <code>absolute</code> property must be set appropriately. If an implementation
   can never provide orientation information, the event should be fired
   with all properties set to null.</p>
-  
+
   <h3 id="deviceorientationabsolute"><span class=secno>4.2 </span>deviceorientationabsolute Event</h3>
-  
+
   <p>User agents implementing this specification must provide a new DOM event,
   named <code>deviceorientationabsolute</code>. The corresponding event must be of
   type <code>DeviceOrientationEvent</code> and must fire on the
@@ -502,11 +502,11 @@ cite this document as other than work in progress.</p>
   <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientationabsolute</code> on the
   <code>window</code> object. The type of the corresponding event must be
   <code>deviceorientationabsolute</code>.
-  
-  <p>The <code>deviceorientationabsolute</code> event is completely analogous to the 
-  <code>deviceorientation</code> event, except additional sensors like the magnetometer 
+
+  <p>The <code>deviceorientationabsolute</code> event is completely analogous to the
+  <code>deviceorientation</code> event, except additional sensors like the magnetometer
   can be used to provide an absolute orientation. The <code>absolute</code> property must
-  be set to <code>true</code>. If an implementation can never provide absolute 
+  be set to <code>true</code>. If an implementation can never provide absolute
   orientation information, the event should be fired with all properties set to null.</p>
 
   <h3 id="compassneedscalibration"><span class=secno>4.3 </span>compassneedscalibration Event</h3>
@@ -551,14 +551,14 @@ cite this document as other than work in progress.</p>
   <code>devicemotion</code>.
 
   <pre class=idl>
-    [Callback, NoInterfaceObject]
+    [NoInterfaceObject]
     interface <dfn id="device_acceleration">DeviceAcceleration</dfn> {
       readonly attribute double? x;
       readonly attribute double? y;
       readonly attribute double? z;
     }
 
-    [Callback, NoInterfaceObject]
+    [NoInterfaceObject]
     interface <dfn id="device_rotation_rate">DeviceRotationRate</dfn> {
       readonly attribute double? alpha;
       readonly attribute double? beta;
