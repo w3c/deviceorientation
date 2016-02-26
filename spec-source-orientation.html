@@ -58,7 +58,7 @@
 
    <h1 id="title_heading">DeviceOrientation Event Specification</h1>
 
-   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 12 November 2015</h2>
+   <h2 class="no-num no-toc" id="draft_date">Editor's Draft 26 February 2016</h2>
 
    <dl>
     <!-- <dt>This Version:</dt>
@@ -371,14 +371,14 @@ cite this document as other than work in progress.</p>
       readonly attribute double? beta;
       readonly attribute double? gamma;
       readonly attribute boolean absolute;
-    }
+    };
 
     dictionary DeviceOrientationEventInit : EventInit {
       double? alpha;
       double? beta;
       double? gamma;
       boolean absolute;
-    }
+    };
   </pre>
 
     <p>The <code>alpha</code> attribute must return the value it was initialized to.
@@ -556,14 +556,14 @@ cite this document as other than work in progress.</p>
       readonly attribute double? x;
       readonly attribute double? y;
       readonly attribute double? z;
-    }
+    };
 
     [Callback, NoInterfaceObject]
     interface <dfn id="device_rotation_rate">DeviceRotationRate</dfn> {
       readonly attribute double? alpha;
       readonly attribute double? beta;
       readonly attribute double? gamma;
-    }
+    };
 
     [Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict)]
     interface <dfn id="devicemotion_event">DeviceMotionEvent</dfn> : Event {
@@ -571,14 +571,14 @@ cite this document as other than work in progress.</p>
       readonly attribute DeviceAcceleration? accelerationIncludingGravity;
       readonly attribute DeviceRotationRate? rotationRate;
       readonly attribute double? interval;
-    }
+    };
 
     dictionary DeviceMotionEventInit : EventInit {
       DeviceAcceleration? acceleration;
       DeviceAcceleration? accelerationIncludingGravity;
       DeviceRotationRate? rotationRate;
       double? interval;
-    }
+    };
   </pre>
 
   <p>The <code>acceleration</code> attribute must return the value it was initialized to.
