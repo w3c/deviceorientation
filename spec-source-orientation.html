@@ -382,10 +382,10 @@ cite this document as other than work in progress.</p>
     };
 
     dictionary DeviceOrientationEventInit : EventInit {
-      double? alpha;
-      double? beta;
-      double? gamma;
-      boolean absolute;
+      double? alpha = null;
+      double? beta = null;
+      double? gamma = null;
+      boolean absolute = false;
     };
   </pre>
 
@@ -565,7 +565,7 @@ cite this document as other than work in progress.</p>
       readonly attribute double? y;
       readonly attribute double? z;
     };
-
+    
     [NoInterfaceObject]
     interface <dfn id="device_rotation_rate">DeviceRotationRate</dfn> {
       readonly attribute double? alpha;
@@ -581,11 +581,23 @@ cite this document as other than work in progress.</p>
       readonly attribute double? interval;
     };
 
+    dictionary DeviceAccelerationInit {
+      double? x = null;
+      double? y = null;
+      double? z = null;
+    };
+
+    dictionary DeviceRotationRateInit {
+      double? alpha = null;
+      double? beta = null;
+      double? gamma = null;
+    };
+
     dictionary DeviceMotionEventInit : EventInit {
-      DeviceAcceleration? acceleration;
-      DeviceAcceleration? accelerationIncludingGravity;
-      DeviceRotationRate? rotationRate;
-      double? interval;
+      DeviceAccelerationInit acceleration;
+      DeviceAccelerationInit accelerationIncludingGravity;
+      DeviceRotationRateInit rotationRate;
+      double? interval = null;
     };
   </pre>
 
