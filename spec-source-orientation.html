@@ -369,10 +369,14 @@ cite this document as other than work in progress.</p>
 
   <p>User agents must also provide an event handler IDL attribute
   <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientation</code> on the
-  <code>window</code> object. The type of the corresponding event must be
-  <code>deviceorientation</code>.
-
+  <code>window</code> object. The type of the corresponding
+  <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
+  must be <code>deviceorientation</code>.
   <pre class=idl>
+    partial interface Window {
+      attribute EventHandler ondeviceorientation;
+    };
+
     [Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict)]
     interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
       readonly attribute double? alpha;
@@ -508,8 +512,9 @@ cite this document as other than work in progress.</p>
 
   <p>User agents must also provide an event handler IDL attribute
   <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientationabsolute</code> on the
-  <code>window</code> object. The type of the corresponding event must be
-  <code>deviceorientationabsolute</code>.
+  <code>window</code> object. The type of the corresponding
+  <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
+  must be <code>deviceorientationabsolute</code>.
 
   <p>The <code>deviceorientationabsolute</code> event is completely analogous to the
   <code>deviceorientation</code> event, except additional sensors like the magnetometer
@@ -555,10 +560,14 @@ cite this document as other than work in progress.</p>
 
   <p>User agents must also provide an event handler IDL attribute
   <a href="#ref-html5">[HTML5]</a> named <code>ondevicemotion</code>
-  on the <code>window</code> object. The type of the corresponding event must be
-  <code>devicemotion</code>.
-
+  on the <code>window</code> object. The type of the corresponding
+  <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
+  must be <code>devicemotion</code>.
   <pre class=idl>
+    partial interface Window {
+      attribute EventHandler ondevicemotion;
+    };
+
     [NoInterfaceObject]
     interface <dfn id="device_acceleration">DeviceAcceleration</dfn> {
       readonly attribute double? x;
