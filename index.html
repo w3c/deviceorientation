@@ -516,6 +516,11 @@ cite this document as other than work in progress.</p>
   <code>window</code> object. The type of the corresponding
   <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
   must be <code>deviceorientationabsolute</code>.
+  <pre class=idl>
+    partial interface Window {
+      attribute EventHandler ondeviceorientationabsolute;
+    };
+  </pre>
 
   <p>The <code>deviceorientationabsolute</code> event is completely analogous to the
   <code>deviceorientation</code> event, except additional sensors like the magnetometer
