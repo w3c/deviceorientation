@@ -589,7 +589,7 @@ cite this document as other than work in progress.</p>
       readonly attribute DeviceAcceleration? acceleration;
       readonly attribute DeviceAcceleration? accelerationIncludingGravity;
       readonly attribute DeviceRotationRate? rotationRate;
-      readonly attribute double? interval;
+      readonly attribute double interval;
     };
 
     dictionary DeviceAccelerationInit {
@@ -608,7 +608,7 @@ cite this document as other than work in progress.</p>
       DeviceAccelerationInit? acceleration;
       DeviceAccelerationInit? accelerationIncludingGravity;
       DeviceRotationRateInit? rotationRate;
-      double? interval = null;
+      double interval = 0;
     };
   </pre>
 
