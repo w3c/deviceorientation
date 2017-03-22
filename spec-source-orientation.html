@@ -652,7 +652,8 @@ cite this document as other than work in progress.</p>
   <p>Implementations that are unable to provide all attributes must
   initialize the values of the unknown attributes to null. If an implementation
   can never provide motion information, the event should be fired
-  with all attributes set to null.
+  with the <code>acceleration</code>, <code>accelerationIncludingGravity</code> and
+  <code>rotationRate</code> attributes set to null.
 
   <h2 id="security-and-privacy"><span class=secno>5 </span>Security and privacy considerations</h2>
 
