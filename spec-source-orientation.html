@@ -368,7 +368,7 @@ cite this document as other than work in progress.</p>
   <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientation</code> on the
+  <a href="#ref-html5">[HTML51]</a> named <code>ondeviceorientation</code> on the
   <code>window</code> object. The type of the corresponding
   <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
   must be <code>deviceorientation</code>.
@@ -512,7 +512,7 @@ cite this document as other than work in progress.</p>
   <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>ondeviceorientationabsolute</code> on the
+  <a href="#ref-html5">[HTML51]</a> named <code>ondeviceorientationabsolute</code> on the
   <code>window</code> object. The type of the corresponding
   <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
   must be <code>deviceorientationabsolute</code>.
@@ -535,7 +535,7 @@ cite this document as other than work in progress.</p>
   DOM4 Events <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>oncompassneedscalibration</code>
+  <a href="#ref-html5">[HTML51]</a> named <code>oncompassneedscalibration</code>
   on the <code>window</code> object. The type of the corresponding event must be
   <code>compassneedscalibration</code>.
 
@@ -561,7 +561,7 @@ cite this document as other than work in progress.</p>
   <a href="#ref-domevents">[DOM4]</a>.
 
   <p>User agents must also provide an event handler IDL attribute
-  <a href="#ref-html5">[HTML5]</a> named <code>ondevicemotion</code>
+  <a href="#ref-html5">[HTML51]</a> named <code>ondevicemotion</code>
   on the <code>window</code> object. The type of the corresponding
   <a href="https://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event type</a>
   must be <code>devicemotion</code>.
@@ -962,25 +962,35 @@ function getQuaternion( alpha, beta, gamma ) {
 
   <dl>
    <dt><a id="ref-domevents">[DOM4]</a></dt>
-   <dd><cite><a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html">DOM4</a></cite>, See http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html</dd>
+   <dd><cite><a href="http://www.w3.org/TR/2015/REC-dom-20151119/">DOM4</a></cite>, Anne van Kesteren, et al., Editors. World Wide Web Consortium, 19 November 2015. See http://www.w3.org/TR/2015/REC-dom-20151119/</dd>
+
    <dt><a id="ref-eulerangles">[EULERANGLES]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a></cite>, See http://en.wikipedia.org/wiki/Euler_angles</dd>
+
    <dt><a id="ref-fingerprint">[FINGERPRINT]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://arxiv.org/abs/1408.1416">Mobile Device Identification via Sensor Fingerprinting</a></cite>, 6 Aug 2014. See http://arxiv.org/abs/1408.1416</dd>
+
    <dt><a id="ref-gimballock">[GIMBALLOCK]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Gimbal_Lock">Gimbal Lock</a></cite>, See http://en.wikipedia.org/wiki/Gimbal_Lock</dd>
-   <dt><a id="ref-html5">[HTML5]</a></dt>
-   <dd><cite><a href="http://dev.w3.org/html5/spec/Overview.htm">HTML5</a></cite>, See http://dev.w3.org/html5/spec/Overview.html</dd>
+
+   <dt><a id="ref-html5">[HTML51]</a></dt>
+   <dd><cite><a href="https://www.w3.org/TR/2016/REC-html51-20161101/">HTML 5.1</a></cite>, Steve Faulkner, et al., Editors. World Wide Web Consortium, 1 November 2016. See https://www.w3.org/TR/2016/REC-html51-20161101/</dd>
+
    <dt><a id="ref-quaternions">[QUATERNIONS]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://en.wikipedia.org/wiki/Quaternion">Quaternions</a></cite>, See http://en.wikipedia.org/wiki/Quaternion</dd>
+
    <dt><a id=ref-rfc2119>[RFC2119]</a></dt>
    <dd><cite><a href="http://www.ietf.org/rfc/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner.  Internet Engineering Task Force, March 1997. See http://www.ietf.org/rfc/rfc2119.txt</dd>
+
    <dt><a id=ref-secure-contexts>[SECURE-CONTEXTS]</a></dt>
-   <dd><cite><a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a></cite>, World Wide Web Consortium, 2 February 2016. See https://w3c.github.io/webappsec-secure-contexts/</dd>
+   <dd><cite><a href="https://www.w3.org/TR/2016/CR-secure-contexts-20160915/">Secure Contexts</a></cite>, Mike West, Editor. World Wide Web Consortium, 15 September 2016. See https://www.w3.org/TR/2016/CR-secure-contexts-20160915/</dd>
+
    <dt><a id="ref-touch">[TOUCH]</a></dt>
    <dd><em>(Non-normative)</em> <cite><a href="http://arxiv.org/abs/1602.04115">TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript</a></cite>, 12 Feb 2016. See http://arxiv.org/abs/1602.04115</dd>
+
    <dt><a id=ref-webidl>[WEBIDL]</a></dt>
-   <dd><cite><a href="http://dev.w3.org/2006/webapi/WebIDL/">Web IDL</a></cite>, Cameron McCormack, Editor. World Wide Web Consortium, 19 December 2008. See http://dev.w3.org/2006/webapi/WebIDL</dd>
+   <dd><cite><a href="https://www.w3.org/TR/2016/REC-WebIDL-1-20161215/">Web IDL</a></cite>, Cameron McCormack, et al., Editors. World Wide Web Consortium, 15 December 2016. See https://www.w3.org/TR/2016/REC-WebIDL-1-20161215/</dd>
+
    <dt><a id="ref-wgs84">[WGS84]</a></dt>
    <dd><cite><a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf">National Imagery and Mapping Agency Technical Report 8350.2, Third Edition</a></cite>. National Imagery and Mapping Agency, 3 January 2000. See http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf</dd>
   </dl>
