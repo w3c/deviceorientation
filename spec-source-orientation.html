@@ -377,7 +377,7 @@ cite this document as other than work in progress.</p>
       attribute EventHandler ondeviceorientation;
     };
 
-    [Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict)]
+    [Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict), Exposed=Window]
     interface <dfn id="deviceorientation_event">DeviceOrientationEvent</dfn> : Event {
       readonly attribute double? alpha;
       readonly attribute double? beta;
@@ -584,7 +584,7 @@ cite this document as other than work in progress.</p>
       readonly attribute double? gamma;
     };
 
-    [Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict)]
+    [Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict), Exposed=Window]
     interface <dfn id="devicemotion_event">DeviceMotionEvent</dfn> : Event {
       readonly attribute DeviceAcceleration? acceleration;
       readonly attribute DeviceAcceleration? accelerationIncludingGravity;
