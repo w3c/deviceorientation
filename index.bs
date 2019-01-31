@@ -129,7 +129,7 @@ A device in free-fall, with the screen horizontal and upmost, has an {{DeviceMot
 </div>
 
 <div class="example">
-A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both {{DeviceMotionEvent/acceleration}} and {{DeviceMotionEvent/accelerationIncludingGravity}}. The device also records a negative value for {{DeviceMotionEvent/rotationRate!!attribute}}.{{DeviceRotationRate/gamma}}:
+A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both {{DeviceMotionEvent/acceleration}} and {{DeviceMotionEvent/accelerationIncludingGravity}}. The device also records a negative value for {{DeviceMotionEvent/rotationRate!!attribute}}.{{DeviceMotionEventRotationRate/gamma}}:
 <pre class="lang-json">
 {acceleration: {x: v^2/r, y: 0, z: 0},
  accelerationIncludingGravity: {x: v^2/r, y: 0, z: 9.81},
@@ -277,15 +277,13 @@ partial interface Window {
     attribute EventHandler ondevicemotion;
 };
 
-[NoInterfaceObject]
-interface DeviceAcceleration {
+interface DeviceMotionEventAcceleration {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
 };
 
-[NoInterfaceObject]
-interface DeviceRotationRate {
+interface DeviceMotionEventRotationRate {
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
@@ -293,28 +291,28 @@ interface DeviceRotationRate {
 
 [Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict), Exposed=Window]
 interface DeviceMotionEvent : Event {
-    readonly attribute DeviceAcceleration? acceleration;
-    readonly attribute DeviceAcceleration? accelerationIncludingGravity;
-    readonly attribute DeviceRotationRate? rotationRate;
+    readonly attribute DeviceMotionEventAcceleration? acceleration;
+    readonly attribute DeviceMotionEventAcceleration? accelerationIncludingGravity;
+    readonly attribute DeviceMotionEventRotationRate? rotationRate;
     readonly attribute double interval;
 };
 
-dictionary DeviceAccelerationInit {
+dictionary DeviceMotionEventAccelerationInit {
     double? x = null;
     double? y = null;
     double? z = null;
 };
 
-dictionary DeviceRotationRateInit {
+dictionary DeviceMotionEventRotationRateInit {
     double? alpha = null;
     double? beta = null;
     double? gamma = null;
 };
 
 dictionary DeviceMotionEventInit : EventInit {
-    DeviceAccelerationInit acceleration;
-    DeviceAccelerationInit accelerationIncludingGravity;
-    DeviceRotationRateInit rotationRate;
+    DeviceMotionEventAccelerationInit acceleration;
+    DeviceMotionEventAccelerationInit accelerationIncludingGravity;
+    DeviceMotionEventRotationRateInit rotationRate;
     double interval = 0;
 };
 </pre>
