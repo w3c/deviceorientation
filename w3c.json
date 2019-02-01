@@ -3,7 +3,7 @@
   "contacts": [
     "xfq"
   ],
-  "shortName": "deviceorientation",
+  "shortName": "orientation-event",
   "repo-type": "rec-track",
   "policy": "open"
 }
