@@ -1221,7 +1221,7 @@ Possible extra rowspan handling
   </style>
   <meta content="Bikeshed version 0da7328bb90ef81993146377e4e0fed236969c4c" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="a92514fceae3a437e58da66b18ccb88ed2a3fb58" name="document-revision">
+  <meta content="29569e91f4ddcd38e6000ebdc9791b83083c3426" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1628,7 +1628,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </pre>
    </div>
    <div class="example" id="example-08216a06">
-    <a class="self-link" href="#example-08216a06"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicerotationrate-gamma" id="ref-for-dom-devicerotationrate-gamma">gamma</a></code>: 
+    <a class="self-link" href="#example-08216a06"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
 <pre class="lang-json highlight"><c- p>{</c->acceleration: {x: v^2/r, y: 0, z: 0<c- p>}</c->,
  accelerationIncludingGravity: <c- p>{</c->x: v^2/r, y: 0, z: 9.81<c- p>}</c->,
  rotationRate: <c- p>{</c->alpha: 0, beta: 0, gamma: -v/r*180/pi<c- p>}</c-> };
@@ -1737,44 +1737,42 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondevicemotion"><code><c- g>ondevicemotion</c-></code></dfn>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NoInterfaceObject" id="ref-for-NoInterfaceObject"><c- g>NoInterfaceObject</c-></a>]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="deviceacceleration"><code><c- g>DeviceAcceleration</c-></code></dfn> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceacceleration-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-deviceacceleration-x"></a></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceacceleration-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-deviceacceleration-y"></a></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceacceleration-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-deviceacceleration-z"></a></dfn>;
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicemotioneventacceleration"><code><c- g>DeviceMotionEventAcceleration</c-></code></dfn> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceMotionEventAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventacceleration-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-devicemotioneventacceleration-x"></a></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceMotionEventAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventacceleration-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-devicemotioneventacceleration-y"></a></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceMotionEventAcceleration" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventacceleration-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-devicemotioneventacceleration-z"></a></dfn>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NoInterfaceObject" id="ref-for-NoInterfaceObject①"><c- g>NoInterfaceObject</c-></a>]
-<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicerotationrate"><code><c- g>DeviceRotationRate</c-></code></dfn> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicerotationrate-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-devicerotationrate-alpha"></a></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicerotationrate-beta"><code><c- g>beta</c-></code><a class="self-link" href="#dom-devicerotationrate-beta"></a></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicerotationrate-gamma"><code><c- g>gamma</c-></code></dfn>;
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicemotioneventrotationrate"><code><c- g>DeviceMotionEventRotationRate</c-></code></dfn> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceMotionEventRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventrotationrate-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-devicemotioneventrotationrate-alpha"></a></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a>? <dfn class="idl-code" data-dfn-for="DeviceMotionEventRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventrotationrate-beta"><code><c- g>beta</c-></code><a class="self-link" href="#dom-devicemotioneventrotationrate-beta"></a></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEventRotationRate" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-devicemotioneventrotationrate-gamma"><code><c- g>gamma</c-></code></dfn>;
 };
 
 [<dfn class="idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="constructor" data-export data-lt="DeviceMotionEvent(type, eventInitDict)|DeviceMotionEvent(type)" id="dom-devicemotionevent-devicemotionevent"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-devicemotionevent-devicemotionevent"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEvent/DeviceMotionEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-devicemotionevent-devicemotionevent-type-eventinitdict-type"><code><c- g>type</c-></code><a class="self-link" href="#dom-devicemotionevent-devicemotionevent-type-eventinitdict-type"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventinit" id="ref-for-dictdef-devicemotioneventinit"><c- n>DeviceMotionEventInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEvent/DeviceMotionEvent(type, eventInitDict)" data-dfn-type="argument" data-export id="dom-devicemotionevent-devicemotionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code><a class="self-link" href="#dom-devicemotionevent-devicemotionevent-type-eventinitdict-eventinitdict"></a></dfn>), <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicemotionevent"><code><c- g>DeviceMotionEvent</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①"><c- n>Event</c-></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#deviceacceleration" id="ref-for-deviceacceleration"><c- n>DeviceAcceleration</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceAcceleration?" id="dom-devicemotionevent-acceleration"><code><c- g>acceleration</c-></code></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#deviceacceleration" id="ref-for-deviceacceleration①"><c- n>DeviceAcceleration</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceAcceleration?" id="dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></dfn>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicerotationrate" id="ref-for-devicerotationrate"><c- n>DeviceRotationRate</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceRotationRate?" id="dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration"><c- n>DeviceMotionEventAcceleration</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventAcceleration?" id="dom-devicemotionevent-acceleration"><code><c- g>acceleration</c-></code></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration①"><c- n>DeviceMotionEventAcceleration</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventAcceleration?" id="dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></dfn>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventrotationrate" id="ref-for-devicemotioneventrotationrate"><c- n>DeviceMotionEventRotationRate</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventRotationRate?" id="dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-devicemotionevent-interval"><code><c- g>interval</c-></code></dfn>;
 };
 
-<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-deviceaccelerationinit"><code><c- g>DeviceAccelerationInit</c-></code></dfn> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceaccelerationinit-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-deviceaccelerationinit-x"></a></dfn> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceaccelerationinit-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-deviceaccelerationinit-y"></a></dfn> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceaccelerationinit-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-deviceaccelerationinit-z"></a></dfn> = <c- b>null</c->;
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></dfn> {
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventaccelerationinit-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-devicemotioneventaccelerationinit-x"></a></dfn> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventaccelerationinit-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-devicemotioneventaccelerationinit-y"></a></dfn> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventAccelerationInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventaccelerationinit-z"><code><c- g>z</c-></code><a class="self-link" href="#dom-devicemotioneventaccelerationinit-z"></a></dfn> = <c- b>null</c->;
 };
 
-<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicerotationrateinit"><code><c- g>DeviceRotationRateInit</c-></code></dfn> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicerotationrateinit-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-devicerotationrateinit-alpha"></a></dfn> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicerotationrateinit-beta"><code><c- g>beta</c-></code><a class="self-link" href="#dom-devicerotationrateinit-beta"></a></dfn> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicerotationrateinit-gamma"><code><c- g>gamma</c-></code><a class="self-link" href="#dom-devicerotationrateinit-gamma"></a></dfn> = <c- b>null</c->;
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicemotioneventrotationrateinit"><code><c- g>DeviceMotionEventRotationRateInit</c-></code></dfn> {
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventrotationrateinit-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-devicemotioneventrotationrateinit-alpha"></a></dfn> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventrotationrateinit-beta"><code><c- g>beta</c-></code><a class="self-link" href="#dom-devicemotioneventrotationrateinit-beta"></a></dfn> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceMotionEventRotationRateInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-devicemotioneventrotationrateinit-gamma"><code><c- g>gamma</c-></code><a class="self-link" href="#dom-devicemotioneventrotationrateinit-gamma"></a></dfn> = <c- b>null</c->;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicemotioneventinit"><code><c- g>DeviceMotionEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①"><c- n>EventInit</c-></a> {
-    <a class="n" data-link-type="idl-name" href="#dictdef-deviceaccelerationinit" id="ref-for-dictdef-deviceaccelerationinit"><c- n>DeviceAccelerationInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceAccelerationInit " id="dom-devicemotioneventinit-acceleration"><code><c- g>acceleration</c-></code><a class="self-link" href="#dom-devicemotioneventinit-acceleration"></a></dfn>;
-    <a class="n" data-link-type="idl-name" href="#dictdef-deviceaccelerationinit" id="ref-for-dictdef-deviceaccelerationinit①"><c- n>DeviceAccelerationInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceAccelerationInit " id="dom-devicemotioneventinit-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code><a class="self-link" href="#dom-devicemotioneventinit-accelerationincludinggravity"></a></dfn>;
-    <a class="n" data-link-type="idl-name" href="#dictdef-devicerotationrateinit" id="ref-for-dictdef-devicerotationrateinit"><c- n>DeviceRotationRateInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceRotationRateInit " id="dom-devicemotioneventinit-rotationrate"><code><c- g>rotationRate</c-></code><a class="self-link" href="#dom-devicemotioneventinit-rotationrate"></a></dfn>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventaccelerationinit" id="ref-for-dictdef-devicemotioneventaccelerationinit"><c- n>DeviceMotionEventAccelerationInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceMotionEventAccelerationInit " id="dom-devicemotioneventinit-acceleration"><code><c- g>acceleration</c-></code><a class="self-link" href="#dom-devicemotioneventinit-acceleration"></a></dfn>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventaccelerationinit" id="ref-for-dictdef-devicemotioneventaccelerationinit①"><c- n>DeviceMotionEventAccelerationInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceMotionEventAccelerationInit " id="dom-devicemotioneventinit-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code><a class="self-link" href="#dom-devicemotioneventinit-accelerationincludinggravity"></a></dfn>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventrotationrateinit" id="ref-for-dictdef-devicemotioneventrotationrateinit"><c- n>DeviceMotionEventRotationRateInit</c-></a> <dfn class="idl-code" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="DeviceMotionEventRotationRateInit " id="dom-devicemotioneventinit-rotationrate"><code><c- g>rotationRate</c-></code><a class="self-link" href="#dom-devicemotioneventinit-rotationrate"></a></dfn>;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><c- b>double</c-></a> <dfn class="idl-code" data-default="0" data-dfn-for="DeviceMotionEventInit" data-dfn-type="dict-member" data-export data-type="double " id="dom-devicemotioneventinit-interval"><code><c- g>interval</c-></code><a class="self-link" href="#dom-devicemotioneventinit-interval"></a></dfn> = 0;
 };
 </pre>
@@ -2010,25 +2008,27 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li>
     alpha
     <ul>
+     <li><a href="#dom-devicemotioneventrotationrate-alpha">attribute for DeviceMotionEventRotationRate</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationevent-alpha">attribute for DeviceOrientationEvent</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrate-alpha">attribute for DeviceRotationRate</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventrotationrateinit-alpha">dict-member for DeviceMotionEventRotationRateInit</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationeventinit-alpha">dict-member for DeviceOrientationEventInit</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrateinit-alpha">dict-member for DeviceRotationRateInit</a><span>, in §4.4</span>
     </ul>
    <li>
     beta
     <ul>
+     <li><a href="#dom-devicemotioneventrotationrate-beta">attribute for DeviceMotionEventRotationRate</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationevent-beta">attribute for DeviceOrientationEvent</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrate-beta">attribute for DeviceRotationRate</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventrotationrateinit-beta">dict-member for DeviceMotionEventRotationRateInit</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationeventinit-beta">dict-member for DeviceOrientationEventInit</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrateinit-beta">dict-member for DeviceRotationRateInit</a><span>, in §4.4</span>
     </ul>
    <li><a href="#def-compassneedscalibration">compassneedscalibration</a><span>, in §4.3</span>
-   <li><a href="#deviceacceleration">DeviceAcceleration</a><span>, in §4.4</span>
-   <li><a href="#dictdef-deviceaccelerationinit">DeviceAccelerationInit</a><span>, in §4.4</span>
    <li><a href="#def-devicemotion">devicemotion</a><span>, in §4.4</span>
    <li><a href="#devicemotionevent">DeviceMotionEvent</a><span>, in §4.4</span>
+   <li><a href="#devicemotioneventacceleration">DeviceMotionEventAcceleration</a><span>, in §4.4</span>
+   <li><a href="#dictdef-devicemotioneventaccelerationinit">DeviceMotionEventAccelerationInit</a><span>, in §4.4</span>
    <li><a href="#dictdef-devicemotioneventinit">DeviceMotionEventInit</a><span>, in §4.4</span>
+   <li><a href="#devicemotioneventrotationrate">DeviceMotionEventRotationRate</a><span>, in §4.4</span>
+   <li><a href="#dictdef-devicemotioneventrotationrateinit">DeviceMotionEventRotationRateInit</a><span>, in §4.4</span>
    <li><a href="#dom-devicemotionevent-devicemotionevent">DeviceMotionEvent(type)</a><span>, in §4.4</span>
    <li><a href="#dom-devicemotionevent-devicemotionevent">DeviceMotionEvent(type, eventInitDict)</a><span>, in §4.4</span>
    <li><a href="#def-deviceorientation">deviceorientation</a><span>, in §4.1</span>
@@ -2037,15 +2037,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li><a href="#dictdef-deviceorientationeventinit">DeviceOrientationEventInit</a><span>, in §4.1</span>
    <li><a href="#dom-deviceorientationevent-deviceorientationevent">DeviceOrientationEvent(type)</a><span>, in §4.1</span>
    <li><a href="#dom-deviceorientationevent-deviceorientationevent">DeviceOrientationEvent(type, eventInitDict)</a><span>, in §4.1</span>
-   <li><a href="#devicerotationrate">DeviceRotationRate</a><span>, in §4.4</span>
-   <li><a href="#dictdef-devicerotationrateinit">DeviceRotationRateInit</a><span>, in §4.4</span>
    <li>
     gamma
     <ul>
+     <li><a href="#dom-devicemotioneventrotationrate-gamma">attribute for DeviceMotionEventRotationRate</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationevent-gamma">attribute for DeviceOrientationEvent</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrate-gamma">attribute for DeviceRotationRate</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventrotationrateinit-gamma">dict-member for DeviceMotionEventRotationRateInit</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationeventinit-gamma">dict-member for DeviceOrientationEventInit</a><span>, in §4.1</span>
-     <li><a href="#dom-devicerotationrateinit-gamma">dict-member for DeviceRotationRateInit</a><span>, in §4.4</span>
     </ul>
    <li>
     interval
@@ -2066,20 +2064,20 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li>
     x
     <ul>
-     <li><a href="#dom-deviceacceleration-x">attribute for DeviceAcceleration</a><span>, in §4.4</span>
-     <li><a href="#dom-deviceaccelerationinit-x">dict-member for DeviceAccelerationInit</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventacceleration-x">attribute for DeviceMotionEventAcceleration</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventaccelerationinit-x">dict-member for DeviceMotionEventAccelerationInit</a><span>, in §4.4</span>
     </ul>
    <li>
     y
     <ul>
-     <li><a href="#dom-deviceacceleration-y">attribute for DeviceAcceleration</a><span>, in §4.4</span>
-     <li><a href="#dom-deviceaccelerationinit-y">dict-member for DeviceAccelerationInit</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventacceleration-y">attribute for DeviceMotionEventAcceleration</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventaccelerationinit-y">dict-member for DeviceMotionEventAccelerationInit</a><span>, in §4.4</span>
     </ul>
    <li>
     z
     <ul>
-     <li><a href="#dom-deviceacceleration-z">attribute for DeviceAcceleration</a><span>, in §4.4</span>
-     <li><a href="#dom-deviceaccelerationinit-z">dict-member for DeviceAccelerationInit</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventacceleration-z">attribute for DeviceMotionEventAcceleration</a><span>, in §4.4</span>
+     <li><a href="#dom-devicemotioneventaccelerationinit-z">dict-member for DeviceMotionEventAccelerationInit</a><span>, in §4.4</span>
     </ul>
   </ul>
   <aside class="dfn-panel" data-for="term-for-event-orientationchange">
@@ -2175,12 +2173,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-Exposed①">4.4. devicemotion Event</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-NoInterfaceObject">
-   <a href="https://heycam.github.io/webidl/#NoInterfaceObject">https://heycam.github.io/webidl/#NoInterfaceObject</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-NoInterfaceObject">4.4. devicemotion Event</a> <a href="#ref-for-NoInterfaceObject①">(2)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
@@ -2228,7 +2220,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <ul>
      <li><span class="dfn-paneled" id="term-for-idl-DOMString" style="color:initial">DOMString</span>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
-     <li><span class="dfn-paneled" id="term-for-NoInterfaceObject" style="color:initial">NoInterfaceObject</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-idl-double" style="color:initial">double</span>
     </ul>
@@ -2298,44 +2289,42 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③①"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-window-ondevicemotion"><code><c- g>ondevicemotion</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NoInterfaceObject" id="ref-for-NoInterfaceObject②"><c- g>NoInterfaceObject</c-></a>]
-<c- b>interface</c-> <a href="#deviceacceleration"><code><c- g>DeviceAcceleration</c-></code></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceacceleration-x"><code><c- g>x</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceacceleration-y"><code><c- g>y</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceacceleration-z"><code><c- g>z</c-></code></a>;
+<c- b>interface</c-> <a href="#devicemotioneventacceleration"><code><c- g>DeviceMotionEventAcceleration</c-></code></a> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventacceleration-x"><code><c- g>x</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventacceleration-y"><code><c- g>y</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventacceleration-z"><code><c- g>z</c-></code></a>;
 };
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NoInterfaceObject" id="ref-for-NoInterfaceObject①①"><c- g>NoInterfaceObject</c-></a>]
-<c- b>interface</c-> <a href="#devicerotationrate"><code><c- g>DeviceRotationRate</c-></code></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicerotationrate-alpha"><code><c- g>alpha</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicerotationrate-beta"><code><c- g>beta</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicerotationrate-gamma"><code><c- g>gamma</c-></code></a>;
+<c- b>interface</c-> <a href="#devicemotioneventrotationrate"><code><c- g>DeviceMotionEventRotationRate</c-></code></a> {
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventrotationrate-alpha"><code><c- g>alpha</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventrotationrate-beta"><code><c- g>beta</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-devicemotioneventrotationrate-gamma"><code><c- g>gamma</c-></code></a>;
 };
 
 [<a href="#dom-devicemotionevent-devicemotionevent"><code><c- g>Constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①"><c- b>DOMString</c-></a> <a href="#dom-devicemotionevent-devicemotionevent-type-eventinitdict-type"><code><c- g>type</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventinit" id="ref-for-dictdef-devicemotioneventinit①"><c- n>DeviceMotionEventInit</c-></a> <a href="#dom-devicemotionevent-devicemotionevent-type-eventinitdict-eventinitdict"><code><c- g>eventInitDict</c-></code></a>), <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>interface</c-> <a href="#devicemotionevent"><code><c- g>DeviceMotionEvent</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#event" id="ref-for-event①①"><c- n>Event</c-></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#deviceacceleration" id="ref-for-deviceacceleration②"><c- n>DeviceAcceleration</c-></a>? <a data-readonly data-type="DeviceAcceleration?" href="#dom-devicemotionevent-acceleration"><code><c- g>acceleration</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#deviceacceleration" id="ref-for-deviceacceleration①①"><c- n>DeviceAcceleration</c-></a>? <a data-readonly data-type="DeviceAcceleration?" href="#dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></a>;
-    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicerotationrate" id="ref-for-devicerotationrate①"><c- n>DeviceRotationRate</c-></a>? <a data-readonly data-type="DeviceRotationRate?" href="#dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration②"><c- n>DeviceMotionEventAcceleration</c-></a>? <a data-readonly data-type="DeviceMotionEventAcceleration?" href="#dom-devicemotionevent-acceleration"><code><c- g>acceleration</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration①①"><c- n>DeviceMotionEventAcceleration</c-></a>? <a data-readonly data-type="DeviceMotionEventAcceleration?" href="#dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></a>;
+    <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventrotationrate" id="ref-for-devicemotioneventrotationrate①"><c- n>DeviceMotionEventRotationRate</c-></a>? <a data-readonly data-type="DeviceMotionEventRotationRate?" href="#dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-devicemotionevent-interval"><code><c- g>interval</c-></code></a>;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-deviceaccelerationinit"><code><c- g>DeviceAccelerationInit</c-></code></a> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceaccelerationinit-x"><code><c- g>x</c-></code></a> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceaccelerationinit-y"><code><c- g>y</c-></code></a> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceaccelerationinit-z"><code><c- g>z</c-></code></a> = <c- b>null</c->;
+<c- b>dictionary</c-> <a href="#dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></a> {
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventaccelerationinit-x"><code><c- g>x</c-></code></a> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventaccelerationinit-y"><code><c- g>y</c-></code></a> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventaccelerationinit-z"><code><c- g>z</c-></code></a> = <c- b>null</c->;
 };
 
-<c- b>dictionary</c-> <a href="#dictdef-devicerotationrateinit"><code><c- g>DeviceRotationRateInit</c-></code></a> {
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicerotationrateinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicerotationrateinit-beta"><code><c- g>beta</c-></code></a> = <c- b>null</c->;
-    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicerotationrateinit-gamma"><code><c- g>gamma</c-></code></a> = <c- b>null</c->;
+<c- b>dictionary</c-> <a href="#dictdef-devicemotioneventrotationrateinit"><code><c- g>DeviceMotionEventRotationRateInit</c-></code></a> {
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventrotationrateinit-alpha"><code><c- g>alpha</c-></code></a> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventrotationrateinit-beta"><code><c- g>beta</c-></code></a> = <c- b>null</c->;
+    <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-devicemotioneventrotationrateinit-gamma"><code><c- g>gamma</c-></code></a> = <c- b>null</c->;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-devicemotioneventinit"><code><c- g>DeviceMotionEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit①①"><c- n>EventInit</c-></a> {
-    <a class="n" data-link-type="idl-name" href="#dictdef-deviceaccelerationinit" id="ref-for-dictdef-deviceaccelerationinit②"><c- n>DeviceAccelerationInit</c-></a> <a data-type="DeviceAccelerationInit " href="#dom-devicemotioneventinit-acceleration"><code><c- g>acceleration</c-></code></a>;
-    <a class="n" data-link-type="idl-name" href="#dictdef-deviceaccelerationinit" id="ref-for-dictdef-deviceaccelerationinit①①"><c- n>DeviceAccelerationInit</c-></a> <a data-type="DeviceAccelerationInit " href="#dom-devicemotioneventinit-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></a>;
-    <a class="n" data-link-type="idl-name" href="#dictdef-devicerotationrateinit" id="ref-for-dictdef-devicerotationrateinit①"><c- n>DeviceRotationRateInit</c-></a> <a data-type="DeviceRotationRateInit " href="#dom-devicemotioneventinit-rotationrate"><code><c- g>rotationRate</c-></code></a>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventaccelerationinit" id="ref-for-dictdef-devicemotioneventaccelerationinit②"><c- n>DeviceMotionEventAccelerationInit</c-></a> <a data-type="DeviceMotionEventAccelerationInit " href="#dom-devicemotioneventinit-acceleration"><code><c- g>acceleration</c-></code></a>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventaccelerationinit" id="ref-for-dictdef-devicemotioneventaccelerationinit①①"><c- n>DeviceMotionEventAccelerationInit</c-></a> <a data-type="DeviceMotionEventAccelerationInit " href="#dom-devicemotioneventinit-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></a>;
+    <a class="n" data-link-type="idl-name" href="#dictdef-devicemotioneventrotationrateinit" id="ref-for-dictdef-devicemotioneventrotationrateinit①"><c- n>DeviceMotionEventRotationRateInit</c-></a> <a data-type="DeviceMotionEventRotationRateInit " href="#dom-devicemotioneventinit-rotationrate"><code><c- g>rotationRate</c-></code></a>;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨①"><c- b>double</c-></a> <a data-default="0" data-type="double " href="#dom-devicemotioneventinit-interval"><code><c- g>interval</c-></code></a> = 0;
 };
 
@@ -2442,22 +2431,22 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-dom-window-ondevicemotion">4.4. devicemotion Event</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="deviceacceleration">
-   <b><a href="#deviceacceleration">#deviceacceleration</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="devicemotioneventacceleration">
+   <b><a href="#devicemotioneventacceleration">#devicemotioneventacceleration</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-deviceacceleration">4.4. devicemotion Event</a> <a href="#ref-for-deviceacceleration①">(2)</a>
+    <li><a href="#ref-for-devicemotioneventacceleration">4.4. devicemotion Event</a> <a href="#ref-for-devicemotioneventacceleration①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="devicerotationrate">
-   <b><a href="#devicerotationrate">#devicerotationrate</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="devicemotioneventrotationrate">
+   <b><a href="#devicemotioneventrotationrate">#devicemotioneventrotationrate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-devicerotationrate">4.4. devicemotion Event</a>
+    <li><a href="#ref-for-devicemotioneventrotationrate">4.4. devicemotion Event</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-devicerotationrate-gamma">
-   <b><a href="#dom-devicerotationrate-gamma">#dom-devicerotationrate-gamma</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-devicemotioneventrotationrate-gamma">
+   <b><a href="#dom-devicemotioneventrotationrate-gamma">#dom-devicemotioneventrotationrate-gamma</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-devicerotationrate-gamma">2. Introduction</a>
+    <li><a href="#ref-for-dom-devicemotioneventrotationrate-gamma">2. Introduction</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="devicemotionevent">
@@ -2493,16 +2482,16 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-dom-devicemotionevent-interval">4.4. devicemotion Event</a> <a href="#ref-for-dom-devicemotionevent-interval①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dictdef-deviceaccelerationinit">
-   <b><a href="#dictdef-deviceaccelerationinit">#dictdef-deviceaccelerationinit</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dictdef-devicemotioneventaccelerationinit">
+   <b><a href="#dictdef-devicemotioneventaccelerationinit">#dictdef-devicemotioneventaccelerationinit</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-deviceaccelerationinit">4.4. devicemotion Event</a> <a href="#ref-for-dictdef-deviceaccelerationinit①">(2)</a>
+    <li><a href="#ref-for-dictdef-devicemotioneventaccelerationinit">4.4. devicemotion Event</a> <a href="#ref-for-dictdef-devicemotioneventaccelerationinit①">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dictdef-devicerotationrateinit">
-   <b><a href="#dictdef-devicerotationrateinit">#dictdef-devicerotationrateinit</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dictdef-devicemotioneventrotationrateinit">
+   <b><a href="#dictdef-devicemotioneventrotationrateinit">#dictdef-devicemotioneventrotationrateinit</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-devicerotationrateinit">4.4. devicemotion Event</a>
+    <li><a href="#ref-for-dictdef-devicemotioneventrotationrateinit">4.4. devicemotion Event</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-devicemotioneventinit">
