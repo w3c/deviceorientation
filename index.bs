@@ -158,7 +158,7 @@ partial interface Window {
     attribute EventHandler ondeviceorientation;
 };
 
-[Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict), Exposed=Window]
+[Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict), Exposed=Window, SecureContext]
 interface DeviceOrientationEvent : Event {
     readonly attribute double? alpha;
     readonly attribute double? beta;
@@ -277,19 +277,21 @@ partial interface Window {
     attribute EventHandler ondevicemotion;
 };
 
+[SecureContext]
 interface DeviceMotionEventAcceleration {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
 };
 
+[SecureContext]
 interface DeviceMotionEventRotationRate {
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
 };
 
-[Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict), Exposed=Window]
+[Constructor(DOMString type, optional DeviceMotionEventInit eventInitDict), Exposed=Window, SecureContext]
 interface DeviceMotionEvent : Event {
     readonly attribute DeviceMotionEventAcceleration? acceleration;
     readonly attribute DeviceMotionEventAcceleration? accelerationIncludingGravity;
