@@ -155,7 +155,7 @@ User agents must also provide an event handler IDL attribute [[!HTML]] named {{W
 
 <pre class="idl">
 partial interface Window {
-    attribute EventHandler ondeviceorientation;
+    [SecureContext] attribute EventHandler ondeviceorientation;
 };
 
 [Constructor(DOMString type, optional DeviceOrientationEventInit eventInitDict), Exposed=Window, SecureContext]
@@ -274,7 +274,7 @@ User agents must also provide an event handler IDL attribute [[!HTML] named {{Wi
 
 <pre class="idl">
 partial interface Window {
-    attribute EventHandler ondevicemotion;
+    [SecureContext] attribute EventHandler ondevicemotion;
 };
 
 [SecureContext]
