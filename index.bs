@@ -244,7 +244,7 @@ User agents must also provide an event handler IDL attribute [[!HTML]] named {{W
 
 <pre class="idl">
 partial interface Window {
-    attribute EventHandler ondeviceorientationabsolute;
+    [SecureContext] attribute EventHandler ondeviceorientationabsolute;
 };
 </pre>
 
