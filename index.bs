@@ -215,7 +215,7 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
      <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
      <a for="environment settings object">origin</a> to <var>permission</var>.
 
-     <li><p>Fullfill <var>promise</var> with <var>permission</var>.
+     <li><p>Fulfill <var>promise</var> with <var>permission</var>.
     </ol>
   </ol>
 
@@ -395,7 +395,7 @@ The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, mu
      <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
      <a for="environment settings object">origin</a> to <var>permission</var>.
 
-     <li><p>Fullfill <var>promise</var> with <var>permission</var>.
+     <li><p>Fulfill <var>promise</var> with <var>permission</var>.
     </ol>
   </ol>
 
