@@ -1219,8 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 5c6f03edb0a08c2c20ffbe1dde9fa74a4cbd3a8a" name="generator">
+  <meta content="Bikeshed version eee3e9e7543e2188fb60d183a6cf3fe3a7d971c1" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
+  <meta content="e8765accca66a7b31ce2f242f4ae2aa7c5048a04" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1467,7 +1468,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-02-27">27 February 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-03-15">15 March 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1485,7 +1486,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -1527,6 +1528,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#deviceorientationabsolute"><span class="secno">4.2</span> <span class="content">deviceorientationabsolute Event</span></a>
       <li><a href="#compassneedscalibration"><span class="secno">4.3</span> <span class="content">compassneedscalibration Event</span></a>
       <li><a href="#devicemotion"><span class="secno">4.4</span> <span class="content">devicemotion Event</span></a>
+      <li><a href="#id=permission-model"><span class="secno">4.5</span> <span class="content">Permission model</span></a>
      </ol>
     <li><a href="#security-and-privacy"><span class="secno">5</span> <span class="content">Security and privacy considerations</span></a>
     <li>
@@ -1650,6 +1652,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceorientationevent-beta"><code><c- g>beta</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceorientationevent-gamma"><code><c- g>gamma</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-deviceorientationevent-absolute"><code><c- g>absolute</c-></code></dfn>;
+
+    <c- b>static</c-> <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-deviceorientationeventinit"><code><c- g>DeviceOrientationEventInit</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit"><c- n>EventInit</c-></a> {
@@ -1658,11 +1662,42 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceOrientationEventInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceorientationeventinit-gamma"><code><c- g>gamma</c-></code><a class="self-link" href="#dom-deviceorientationeventinit-gamma"></a></dfn> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="idl-code" data-default="false" data-dfn-for="DeviceOrientationEventInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-deviceorientationeventinit-absolute"><code><c- g>absolute</c-></code><a class="self-link" href="#dom-deviceorientationeventinit-absolute"></a></dfn> = <c- b>false</c->;
 };
+
+<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-permissionstate"><code><c- g>PermissionState</c-></code></dfn> {
+    <dfn class="idl-code" data-dfn-for="PermissionState" data-dfn-type="enum-value" data-export id="dom-permissionstate-granted"><code><c- s>"granted"</c-></code><a class="self-link" href="#dom-permissionstate-granted"></a></dfn>,
+    <dfn class="idl-code" data-dfn-for="PermissionState" data-dfn-type="enum-value" data-export id="dom-permissionstate-denied"><code><c- s>"denied"</c-></code><a class="self-link" href="#dom-permissionstate-denied"></a></dfn>,
+};
 </pre>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha②">alpha</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta①">beta</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma①">gamma</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute">absolute</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to false.</p>
+   <p>The static <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-requestpermission" id="ref-for-dom-deviceorientationevent-requestpermission">requestPermission()</a></code> operation, when invoked, must run these steps:</p>
+   <ol>
+    <li>
+     <p>Let <var>promise</var> be a new promise. </p>
+    <li>
+     <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: </p>
+     <ol>
+      <li>
+       <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a>. </p>
+      <li>
+       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code>NotAllowedError</code> exception and abort these steps. </p>
+      <li>
+       <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
+   for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin①">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
+      <li>
+       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> to run these steps: </p>
+       <ol>
+        <li>
+         <p>Set <a data-link-type="dfn" href="#permission" id="ref-for-permission①">permission</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object②">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin②">origin</a> to <var>permission</var>. </p>
+        <li>
+         <p>Fullfill <var>promise</var> with <var>permission</var>. </p>
+       </ol>
+     </ol>
+    <li>
+     <p>Return <var>promise</var>. </p>
+   </ol>
    <p>The event should fire whenever a significant change in orientation occurs. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> attributes of the event must specify the orientation of the device in terms of the transformation from a coordinate frame fixed on the Earth to a coordinate frame fixed in the device. The coordinate frames must be oriented as described below.</p>
    <p>The Earth coordinate frame is a 'East, North, Up' frame at the user’s location. It has the following 3 axes, where the ground plane is tangent to the spheriod of the World Geodetic System 1984 <a data-link-type="biblio" href="#biblio-wgs84">[WGS84]</a>, at the user’s location.</p>
@@ -1756,6 +1791,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration①"><c- n>DeviceMotionEventAcceleration</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventAcceleration?" id="dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventrotationrate" id="ref-for-devicemotioneventrotationrate"><c- n>DeviceMotionEventRotationRate</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventRotationRate?" id="dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-devicemotionevent-interval"><code><c- g>interval</c-></code></dfn>;
+
+    <c- b>static</c-> <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate①"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></dfn> {
@@ -1781,12 +1818,60 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity③">accelerationIncludingGravity</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate①">rotationRate</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-interval" id="ref-for-dom-devicemotionevent-interval">interval</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to 0.</p>
+   <p>The static <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-requestpermission" id="ref-for-dom-devicemotionevent-requestpermission">requestPermission()</a></code> operation, when invoked, must run these steps:</p>
+   <ol>
+    <li>
+     <p>Let <var>promise</var> be a new promise. </p>
+    <li>
+     <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>: </p>
+     <ol>
+      <li>
+       <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission②">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object③">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a>. </p>
+      <li>
+       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation①">triggered by user activation</a>, then reject <var>promise</var> with a <code>NotAllowedError</code> exception and abort these steps. </p>
+      <li>
+       <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
+   for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object④">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin④">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
+      <li>
+       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task①">Queue a task</a> to run these steps: </p>
+       <ol>
+        <li>
+         <p>Set <a data-link-type="dfn" href="#permission" id="ref-for-permission③">permission</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object⑤">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin⑤">origin</a> to <var>permission</var>. </p>
+        <li>
+         <p>Fullfill <var>promise</var> with <var>permission</var>. </p>
+       </ol>
+     </ol>
+    <li>
+     <p>Return <var>promise</var>. </p>
+   </ol>
    <p>In the <code class="idl"><a data-link-type="idl" href="#devicemotionevent" id="ref-for-devicemotionevent①">DeviceMotionEvent</a></code> events fired by the user agent, the following requirements must apply:</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration③">acceleration</a></code> attribute must be initialized with the acceleration of the hosting device relative to the Earth frame, expressed in the body frame, as defined in <a href="#deviceorientation">deviceorientation Event</a> section. The acceleration must be expressed in meters per second squared (m/s2).</p>
    <p>Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply the acceleration including the effect of gravity. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity④">accelerationIncludingGravity</a></code> attribute must be initialized with the acceleration of the hosting device, plus an acceleration equal and opposite to the acceleration due to gravity. Again, the acceleration must be given in the body frame defined in <a href="#deviceorientation">deviceorientation Event</a> section and must be expressed in meters per second squared (m/s2).</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate②">rotationRate</a></code> attribute must be initialized with the rate of rotation of the hosting device in space. It must be expressed as the rate of change of the angles defined as <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑨">alpha</a></code> (x axis), <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑧">beta</a></code> (y axis), <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑧">gamma</a></code> (z axis) and must be expressed in degrees per second (deg/s).</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-interval" id="ref-for-dom-devicemotionevent-interval①">interval</a></code> attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.</p>
    <p>Implementations that are unable to provide all attributes must initialize the values of the unknown attributes to null. If an implementation can never provide motion information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate③">rotationRate</a></code> attributes set to null.</p>
+   <h3 class="heading settled" data-level="4.5" id="id=permission-model"><span class="secno">4.5. </span><span class="content">Permission model</span><a class="self-link" href="#id=permission-model"></a></h3>
+   <p>Implementations may choose to share device orientation &amp; motion only if the
+user (or user agent on behalf of the user) has granted <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="permission">permission</dfn>.
+The <a data-link-type="dfn" href="#permission" id="ref-for-permission④">permission</a> to share device orientation &amp; motion
+for a given <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> is one of three strings: </p>
+   <dl>
+    <dt>"<code>default</code>" 
+    <dd>
+     <p>This is equivalent to "<code>denied</code>", but the user has made no
+  explicit choice thus far. </p>
+    <dt>"<code>denied</code>" 
+    <dd>
+     <p>This means the user does not want
+  to share device orientation or motion. </p>
+    <dt>"<code>granted</code>" 
+    <dd>
+     <p>This means device orientation or motion may be shared. </p>
+   </dl>
+   <p class="note" role="note">There is no equivalent to "<code>default</code>"
+meaning "<code>granted</code>". In that case
+"<code>granted</code>" is simply returned as there would be no reason
+for the application to ask for <a data-link-type="dfn" href="#permission" id="ref-for-permission⑤">permission</a>. </p>
    <h2 class="heading settled" data-level="5" id="security-and-privacy"><span class="secno">5. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
    <p>The API defined in this specification can be used to obtain information from hardware sensors, such as accelerometer, gyroscope and magnetometer. Provided data may be considered as sensitive and could become a subject of attack from malicious web pages. The main attack vectors can be categorized into following categories:</p>
    <ul>
@@ -1982,7 +2067,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <object class="equation" data="equation18.xhtml" type="application/mathml+xml"> <img alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1" src="equation18.png"> </object>
    <p>as expected.</p>
    <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
-   <p>Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer</p>
+   <p>Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez</p>
   </main>
 <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -2023,6 +2108,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li><a href="#dom-deviceorientationeventinit-beta">dict-member for DeviceOrientationEventInit</a><span>, in §4.1</span>
     </ul>
    <li><a href="#def-compassneedscalibration">compassneedscalibration</a><span>, in §4.3</span>
+   <li><a href="#dom-permissionstate-denied">"denied"</a><span>, in §4.1</span>
    <li><a href="#def-devicemotion">devicemotion</a><span>, in §4.4</span>
    <li><a href="#devicemotionevent">DeviceMotionEvent</a><span>, in §4.4</span>
    <li><a href="#devicemotioneventacceleration">DeviceMotionEventAcceleration</a><span>, in §4.4</span>
@@ -2046,6 +2132,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li><a href="#dom-devicemotioneventrotationrateinit-gamma">dict-member for DeviceMotionEventRotationRateInit</a><span>, in §4.4</span>
      <li><a href="#dom-deviceorientationeventinit-gamma">dict-member for DeviceOrientationEventInit</a><span>, in §4.1</span>
     </ul>
+   <li><a href="#dom-permissionstate-granted">"granted"</a><span>, in §4.1</span>
    <li>
     interval
     <ul>
@@ -2056,6 +2143,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li><a href="#dom-window-ondevicemotion">ondevicemotion</a><span>, in §4.4</span>
    <li><a href="#dom-window-ondeviceorientation">ondeviceorientation</a><span>, in §4.1</span>
    <li><a href="#dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a><span>, in §4.2</span>
+   <li><a href="#permission">permission</a><span>, in §4.5</span>
+   <li><a href="#enumdef-permissionstate">PermissionState</a><span>, in §4.1</span>
+   <li>
+    requestPermission()
+    <ul>
+     <li><a href="#dom-devicemotionevent-requestpermission">method for DeviceMotionEvent</a><span>, in §4.4</span>
+     <li><a href="#dom-deviceorientationevent-requestpermission">method for DeviceOrientationEvent</a><span>, in §4.1</span>
+    </ul>
    <li>
     rotationRate
     <ul>
@@ -2133,10 +2228,31 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-event-handler-event-type②">4.4. devicemotion Event</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-in-parallel">
+   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-in-parallel">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-in-parallel①">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-nested-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-nested-browsing-context">5. Security and privacy considerations</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-settings-object-origin">4.1. deviceorientation Event</a> <a href="#ref-for-concept-settings-object-origin①">(2)</a> <a href="#ref-for-concept-settings-object-origin②">(3)</a>
+    <li><a href="#ref-for-concept-settings-object-origin③">4.4. devicemotion Event</a> <a href="#ref-for-concept-settings-object-origin④">(2)</a> <a href="#ref-for-concept-settings-object-origin⑤">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-queue-a-task">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-queue-a-task">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-queue-a-task①">4.4. devicemotion Event</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
@@ -2215,7 +2331,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li><span class="dfn-paneled" id="term-for-window" style="color:initial">Window</span>
      <li><span class="dfn-paneled" id="term-for-active-document" style="color:initial">active document</span>
      <li><span class="dfn-paneled" id="term-for-event-handler-event-type" style="color:initial">event handler event type</span>
+     <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
      <li><span class="dfn-paneled" id="term-for-nested-browsing-context" style="color:initial">nested browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin" style="color:initial">origin <small>(for environment settings object)</small></span>
+     <li><span class="dfn-paneled" id="term-for-queue-a-task" style="color:initial">queue a task</span>
      <li><span class="dfn-paneled" id="term-for-top-level-browsing-context" style="color:initial">top-level browsing context</span>
      <li><span class="dfn-paneled" id="term-for-dom-window" style="color:initial">window</span>
     </ul>
@@ -2278,6 +2397,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①⓪"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceorientationevent-beta"><code><c- g>beta</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceorientationevent-gamma"><code><c- g>gamma</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-deviceorientationevent-absolute"><code><c- g>absolute</c-></code></a>;
+
+    <c- b>static</c-> <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate②"><c- n>PermissionState</c-></a>> <a href="#dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-deviceorientationeventinit"><code><c- g>DeviceOrientationEventInit</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit②"><c- n>EventInit</c-></a> {
@@ -2285,6 +2406,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceorientationeventinit-beta"><code><c- g>beta</c-></code></a> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤①"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceorientationeventinit-gamma"><code><c- g>gamma</c-></code></a> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-deviceorientationeventinit-absolute"><code><c- g>absolute</c-></code></a> = <c- b>false</c->;
+};
+
+<c- b>enum</c-> <a href="#enumdef-permissionstate"><code><c- g>PermissionState</c-></code></a> {
+    <a href="#dom-permissionstate-granted"><code><c- s>"granted"</c-></code></a>,
+    <a href="#dom-permissionstate-denied"><code><c- s>"denied"</c-></code></a>,
 };
 
 <c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window①①"><c- g>Window</c-></a> {
@@ -2319,6 +2445,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventacceleration" id="ref-for-devicemotioneventacceleration①①"><c- n>DeviceMotionEventAcceleration</c-></a>? <a data-readonly data-type="DeviceMotionEventAcceleration?" href="#dom-devicemotionevent-accelerationincludinggravity"><code><c- g>accelerationIncludingGravity</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#devicemotioneventrotationrate" id="ref-for-devicemotioneventrotationrate①"><c- n>DeviceMotionEventRotationRate</c-></a>? <a data-readonly data-type="DeviceMotionEventRotationRate?" href="#dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②①"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-devicemotionevent-interval"><code><c- g>interval</c-></code></a>;
+
+    <c- b>static</c-> <c- b>Promise</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate①①"><c- n>PermissionState</c-></a>> <a href="#dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></a> {
@@ -2399,10 +2527,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-dom-deviceorientationevent-absolute⑤">A.2 Alternate device orientation representations</a> <a href="#ref-for-dom-deviceorientationevent-absolute⑥">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-deviceorientationevent-requestpermission">
+   <b><a href="#dom-deviceorientationevent-requestpermission">#dom-deviceorientationevent-requestpermission</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-deviceorientationevent-requestpermission">4.1. deviceorientation Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dictdef-deviceorientationeventinit">
    <b><a href="#dictdef-deviceorientationeventinit">#dictdef-deviceorientationeventinit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-deviceorientationeventinit">4.1. deviceorientation Event</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-permissionstate">
+   <b><a href="#enumdef-permissionstate">#enumdef-permissionstate</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-permissionstate">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-enumdef-permissionstate①">4.4. devicemotion Event</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="def-deviceorientationabsolute">
@@ -2494,6 +2635,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-dom-devicemotionevent-interval">4.4. devicemotion Event</a> <a href="#ref-for-dom-devicemotionevent-interval①">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-devicemotionevent-requestpermission">
+   <b><a href="#dom-devicemotionevent-requestpermission">#dom-devicemotionevent-requestpermission</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-devicemotionevent-requestpermission">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dictdef-devicemotioneventaccelerationinit">
    <b><a href="#dictdef-devicemotioneventaccelerationinit">#dictdef-devicemotioneventaccelerationinit</a></b><b>Referenced in:</b>
    <ul>
@@ -2510,6 +2657,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <b><a href="#dictdef-devicemotioneventinit">#dictdef-devicemotioneventinit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-devicemotioneventinit">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="permission">
+   <b><a href="#permission">#permission</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-permission">4.1. deviceorientation Event</a> <a href="#ref-for-permission①">(2)</a>
+    <li><a href="#ref-for-permission②">4.4. devicemotion Event</a> <a href="#ref-for-permission③">(2)</a>
+    <li><a href="#ref-for-permission④">4.5. Permission model</a> <a href="#ref-for-permission⑤">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

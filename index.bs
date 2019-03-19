@@ -164,6 +164,8 @@ interface DeviceOrientationEvent : Event {
     readonly attribute double? beta;
     readonly attribute double? gamma;
     readonly attribute boolean absolute;
+
+    static Promise&lt;PermissionState> requestPermission();
 };
 
 dictionary DeviceOrientationEventInit : EventInit {
@@ -171,6 +173,11 @@ dictionary DeviceOrientationEventInit : EventInit {
     double? beta = null;
     double? gamma = null;
     boolean absolute = false;
+};
+
+enum PermissionState {
+    "granted",
+    "denied",
 };
 </pre>
 
@@ -181,6 +188,39 @@ The {{DeviceOrientationEvent/beta}} attribute must return the value it was initi
 The {{DeviceOrientationEvent/gamma}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
 
 The {{DeviceOrientationEvent/absolute}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to false.
+
+The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoked, must run these steps:
+<ol>
+ <li><p>Let <var>promise</var> be a new promise.
+
+ <li>
+  <p>Run these steps <a>in parallel</a>:
+  
+  <ol>
+   <li><p>Let <var>permission</var> be <a>permission</a> for
+   <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
+
+   <li><p>If <var>permission</var> is "<code>default</code>" and the method call was not <a>triggered by user activation</a>, then reject <var>promise</var> with a
+   <code>NotAllowedError</code> exception and abort these steps.
+
+   <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
+   for the <a>relevant settings object</a>'s
+   <a for="environment settings object">origin</a> is acceptable. If it is, set
+   <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise.
+
+   <li>
+    <p><a>Queue a task</a> to run these steps:
+
+    <ol>
+     <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
+     <a for="environment settings object">origin</a> to <var>permission</var>.
+
+     <li><p>Fullfill <var>promise</var> with <var>permission</var>.
+    </ol>
+  </ol>
+
+ <li><p>Return <var>promise</var>.
+</ol>
 
 The event should fire whenever a significant change in orientation occurs. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.
 
@@ -297,6 +337,8 @@ interface DeviceMotionEvent : Event {
     readonly attribute DeviceMotionEventAcceleration? accelerationIncludingGravity;
     readonly attribute DeviceMotionEventRotationRate? rotationRate;
     readonly attribute double interval;
+
+    static Promise&lt;PermissionState> requestPermission();
 };
 
 dictionary DeviceMotionEventAccelerationInit {
@@ -327,6 +369,39 @@ The {{DeviceMotionEvent/rotationRate}} attribute must return the value it was in
 
 The {{DeviceMotionEvent/interval}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to 0.
 
+The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, must run these steps:
+<ol>
+ <li><p>Let <var>promise</var> be a new promise.
+
+ <li>
+  <p>Run these steps <a>in parallel</a>:
+  
+  <ol>
+   <li><p>Let <var>permission</var> be <a>permission</a> for
+   <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
+
+   <li><p>If <var>permission</var> is "<code>default</code>" and the method call was not <a>triggered by user activation</a>, then reject <var>promise</var> with a
+   <code>NotAllowedError</code> exception and abort these steps.
+
+   <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
+   for the <a>relevant settings object</a>'s
+   <a for="environment settings object">origin</a> is acceptable. If it is, set
+   <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise.
+
+   <li>
+    <p><a>Queue a task</a> to run these steps:
+
+    <ol>
+     <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
+     <a for="environment settings object">origin</a> to <var>permission</var>.
+
+     <li><p>Fullfill <var>promise</var> with <var>permission</var>.
+    </ol>
+  </ol>
+
+ <li><p>Return <var>promise</var>.
+</ol>
+
 In the {{DeviceMotionEvent}} events fired by the user agent, the following requirements must apply:
 
 The {{DeviceMotionEvent/acceleration}} attribute must be initialized with the acceleration of the hosting device relative to the Earth frame, expressed in the body frame, as defined in [[#deviceorientation|deviceorientation Event]] section. The acceleration must be expressed in meters per second squared (m/s2).
@@ -338,6 +413,31 @@ The {{DeviceMotionEvent/rotationRate}} attribute must be initialized with the ra
 The {{DeviceMotionEvent/interval}} attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.
 
 Implementations that are unable to provide all attributes must initialize the values of the unknown attributes to null. If an implementation can never provide motion information, the event should be fired with the {{DeviceMotionEvent/acceleration}}, {{DeviceMotionEvent/accelerationIncludingGravity}} and {{DeviceMotionEvent/rotationRate}} attributes set to null.
+
+<h3 id="id=permission-model">Permission model</h3>
+
+<p>Implementations may choose to share device orientation &amp; motion only if the
+user (or user agent on behalf of the user) has granted <dfn>permission</dfn>.
+The <a>permission</a> to share device orientation &amp; motion
+for a given <a for=/>origin</a> is one of three strings:
+
+<dl>
+  <dt>"<code>default</code>"
+  <dd><p>This is equivalent to "<code>denied</code>", but the user has made no
+  explicit choice thus far.
+
+  <dt>"<code>denied</code>"
+  <dd><p>This means the user does not want
+  to share device orientation or motion.
+
+  <dt>"<code>granted</code>"
+  <dd><p>This means device orientation or motion may be shared.
+</dl>
+
+<p class=note>There is no equivalent to "<code>default</code>"
+meaning "<code>granted</code>". In that case
+"<code>granted</code>" is simply returned as there would be no reason
+for the application to ask for <a>permission</a>.
 
 Security and privacy considerations {#security-and-privacy}
 ===========================================================
@@ -609,7 +709,15 @@ as expected.
 
 <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
-Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer
+Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez
+
+<pre class="anchors">
+urlPrefix: https://html.spec.whatwg.org/multipage/
+    urlPrefix: webappapis.html; type: dfn
+        text: relevant settings object
+    urlPrefix: interaction.html; type: dfn
+        text: triggered by user activation
+</pre>
 
 <pre class="biblio">
 {
