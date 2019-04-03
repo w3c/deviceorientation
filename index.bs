@@ -6,11 +6,13 @@ Status: ED
 Group: dap
 TR: http://www.w3.org/TR/orientation-event/
 ED: https://w3c.github.io/deviceorientation/
+Previous Version: https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/
 Repository: w3c/deviceorientation
-Editor: Rich Tibbett, Opera Software ASA
-Editor: Tim Volodine, Google Inc
-Editor: Steve Block, Google Inc until July 2012
-Editor: Andrei Popescu, Google Inc until July 2012
+Editor: Devices and Sensors Working Group
+Former Editor: Rich Tibbett, Opera Software ASA
+Former Editor: Tim Volodine, Google Inc
+Former Editor: Steve Block, Google Inc until July 2012
+Former Editor: Andrei Popescu, Google Inc until July 2012
 Abstract: This specification defines several new DOM events that provide information about the physical orientation and motion of a hosting device.
 Boilerplate: omit issues-index, omit conformance, repository-issue-tracking off
 !Feedback: <a href="https://github.com/w3c/deviceorientation">GitHub w3c/deviceorientation</a>
@@ -195,7 +197,7 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
 
  <li>
   <p>Run these steps <a>in parallel</a>:
-  
+
   <ol>
    <li><p>Let <var>permission</var> be <a>permission</a> for
    <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
@@ -383,7 +385,7 @@ The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, mu
 
  <li>
   <p>Run these steps <a>in parallel</a>:
-  
+
   <ol>
    <li><p>Let <var>permission</var> be <a>permission</a> for
    <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
