@@ -179,7 +179,7 @@ dictionary DeviceOrientationEventInit : EventInit {
 
 enum PermissionState {
     "granted",
-    "denied",
+    "denied"
 };
 </pre>
 
