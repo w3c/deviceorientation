@@ -1219,9 +1219,9 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version 4d208866a95a1121fceca549a36bfb09c5bf1705" name="generator">
+  <meta content="Bikeshed version df1bf04b71c9fb8a3d724e46fc13f9cf7065df60" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="fd6286e92e5446ce694c62a8ae86e761fcf497ef" name="document-revision">
+  <meta content="d6ab89b3dce1629e15a0dc55ee88345fed650ffa" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1468,7 +1468,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-03">3 April 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-09">9 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1515,7 +1515,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2019/Process-20190301/" id="w3c_process_revision">1 March 2019 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2018/Process-20180201/" id="w3c_process_revision">1 February 2018 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1857,6 +1857,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-interval" id="ref-for-dom-devicemotionevent-interval①">interval</a></code> attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.</p>
    <p>Implementations that are unable to provide all attributes must initialize the values of the unknown attributes to null. If an implementation can never provide motion information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate③">rotationRate</a></code> attributes set to null.</p>
    <h3 class="heading settled" data-level="4.5" id="id=permission-model"><span class="secno">4.5. </span><span class="content">Permission model</span><a class="self-link" href="#id=permission-model"></a></h3>
+   <div class="issue" id="issue-53485653"><a class="self-link" href="#issue-53485653"></a>Further implementation experience is being gathered for the permission model and specification clarifications informed by this experience are being discussed in <a href="https://github.com/w3c/deviceorientation/issues/74">GitHub issue #74</a>.</div>
    <p>Implementations may choose to share device orientation &amp; motion only if the
 user (or user agent on behalf of the user) has granted <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="permission">permission</dfn>.
 The <a data-link-type="dfn" href="#permission" id="ref-for-permission④">permission</a> to share device orientation &amp; motion
@@ -2373,7 +2374,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-webidl">[WEBIDL]
-   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>

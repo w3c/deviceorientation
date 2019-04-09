@@ -426,6 +426,8 @@ Implementations that are unable to provide all attributes must initialize the va
 
 <h3 id="id=permission-model">Permission model</h3>
 
+<div class="issue">Further implementation experience is being gathered for the permission model and specification clarifications informed by this experience are being discussed in <a href="https://github.com/w3c/deviceorientation/issues/74">GitHub issue #74</a>.</div>
+
 <p>Implementations may choose to share device orientation &amp; motion only if the
 user (or user agent on behalf of the user) has granted <dfn>permission</dfn>.
 The <a>permission</a> to share device orientation &amp; motion
