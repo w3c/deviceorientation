@@ -1219,9 +1219,8 @@ Possible extra rowspan handling
       background-attachment: fixed;
     }
   </style>
-  <meta content="Bikeshed version df1bf04b71c9fb8a3d724e46fc13f9cf7065df60" name="generator">
+  <meta content="Bikeshed version 4d208866a95a1121fceca549a36bfb09c5bf1705" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="d6ab89b3dce1629e15a0dc55ee88345fed650ffa" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1468,7 +1467,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-09">9 April 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-15">15 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1515,7 +1514,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2018/Process-20180201/" id="w3c_process_revision">1 February 2018 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2019/Process-20190301/" id="w3c_process_revision">1 March 2019 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1686,7 +1685,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code>NotAllowedError</code> exception and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin①">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -1834,7 +1833,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission②">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object③">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation①">triggered by user activation</a>, then reject <var>promise</var> with a <code>NotAllowedError</code> exception and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation①">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://heycam.github.io/webidl/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object④">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin④">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -2283,6 +2282,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-dom-visibilitystate-visible">5. Security and privacy considerations</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-idl-DOMException">
+   <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-idl-DOMException">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-idl-DOMException①">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
    <a href="https://heycam.github.io/webidl/#idl-DOMString">https://heycam.github.io/webidl/#idl-DOMString</a><b>Referenced in:</b>
    <ul>
@@ -2295,6 +2301,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <ul>
     <li><a href="#ref-for-Exposed">4.1. deviceorientation Event</a>
     <li><a href="#ref-for-Exposed①">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-notallowederror">
+   <a href="https://heycam.github.io/webidl/#notallowederror">https://heycam.github.io/webidl/#notallowederror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-notallowederror">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-notallowederror①">4.4. devicemotion Event</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-SecureContext">
@@ -2353,8 +2366,10 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-idl-DOMException" style="color:initial">DOMException</span>
      <li><span class="dfn-paneled" id="term-for-idl-DOMString" style="color:initial">DOMString</span>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
+     <li><span class="dfn-paneled" id="term-for-notallowederror" style="color:initial">NotAllowedError</span>
      <li><span class="dfn-paneled" id="term-for-SecureContext" style="color:initial">SecureContext</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-idl-double" style="color:initial">double</span>
@@ -2374,7 +2389,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-webidl">[WEBIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
