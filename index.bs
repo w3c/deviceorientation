@@ -203,7 +203,7 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
    <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
 
    <li><p>If <var>permission</var> is "<code>default</code>" and the method call was not <a>triggered by user activation</a>, then reject <var>promise</var> with a
-   <code>NotAllowedError</code> exception and abort these steps.
+   {{NotAllowedError!!exception}} {{DOMException}} and abort these steps.
 
    <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
    for the <a>relevant settings object</a>'s
@@ -391,7 +391,7 @@ The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, mu
    <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
 
    <li><p>If <var>permission</var> is "<code>default</code>" and the method call was not <a>triggered by user activation</a>, then reject <var>promise</var> with a
-   <code>NotAllowedError</code> exception and abort these steps.
+   {{NotAllowedError!!exception}} {{DOMException}} and abort these steps.
 
    <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
    for the <a>relevant settings object</a>'s
