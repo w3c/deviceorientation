@@ -327,14 +327,14 @@ partial interface Window {
     [SecureContext] attribute EventHandler ondevicemotion;
 };
 
-[SecureContext]
+[Exposed=Window, SecureContext]
 interface DeviceMotionEventAcceleration {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
 };
 
-[SecureContext]
+[Exposed=Window, SecureContext]
 interface DeviceMotionEventRotationRate {
     readonly attribute double? alpha;
     readonly attribute double? beta;
