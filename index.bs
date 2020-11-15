@@ -328,18 +328,16 @@ partial interface Window {
     [SecureContext] attribute EventHandler ondevicemotion;
 };
 
-[Exposed=Window, SecureContext]
-interface DeviceMotionEventAcceleration {
-    readonly attribute double? x;
-    readonly attribute double? y;
-    readonly attribute double? z;
+dictionary DeviceMotionEventAcceleration {
+    double? x = null;
+    double? y = null;
+    double? z = null;
 };
 
-[Exposed=Window, SecureContext]
-interface DeviceMotionEventRotationRate {
-    readonly attribute double? alpha;
-    readonly attribute double? beta;
-    readonly attribute double? gamma;
+dictionary DeviceMotionEventRotationRate {
+    double? alpha = null;
+    double? beta = null;
+    double? gamma = null;
 };
 
 [Exposed=Window, SecureContext]
@@ -353,22 +351,10 @@ interface DeviceMotionEvent : Event {
     static Promise&lt;PermissionState> requestPermission();
 };
 
-dictionary DeviceMotionEventAccelerationInit {
-    double? x = null;
-    double? y = null;
-    double? z = null;
-};
-
-dictionary DeviceMotionEventRotationRateInit {
-    double? alpha = null;
-    double? beta = null;
-    double? gamma = null;
-};
-
 dictionary DeviceMotionEventInit : EventInit {
-    DeviceMotionEventAccelerationInit acceleration;
-    DeviceMotionEventAccelerationInit accelerationIncludingGravity;
-    DeviceMotionEventRotationRateInit rotationRate;
+    DeviceMotionEventAcceleration acceleration;
+    DeviceMotionEventAcceleration accelerationIncludingGravity;
+    DeviceMotionEventRotationRate rotationRate;
     double interval = 0;
 };
 </pre>
