@@ -5,9 +5,9 @@
   <title>DeviceOrientation Event Specification</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version ab22c204, updated Wed Dec 2 13:42:32 2020 -0800" name="generator">
+  <meta content="Bikeshed version 7573c85df, updated Fri Feb 19 16:30:08 2021 -0800" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="73af01a47246a5c41320d27269c69d630a507d9a" name="document-revision">
+  <meta content="82219248ac468073996e1ad33cc025c87545705a" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -568,7 +568,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-12-02">2 December 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-02-23">23 February 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -590,7 +590,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2020 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -611,10 +611,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="https://www.w3.org/das/">Devices and Sensors Working Group</a>. </p>
    <p> This document was produced by a group operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/">W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
    <p> This document is governed by the <a href="https://www.w3.org/2020/Process-20200915/" id="w3c_process_revision">15 September 2020 W3C Process Document</a>. </p>
    <p></p>
   </div>
@@ -688,18 +688,18 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <div class="example" id="example-f3190052">
     <a class="self-link" href="#example-f3190052"></a> A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation: 
-<pre class="lang-json highlight"><c- p>{</c->alpha: 90,
- beta: 0,
- gamma: 0<c- p>}</c->;
+<pre class="lang-json highlight"><c- p>{</c->alpha<c- p>:</c-> <c- mi>90</c-><c- p>,</c->
+ be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ gamma<c- p>:</c-> <c- mi>0</c-><c- p>}</c->;
 </pre>
     <p>To get the compass heading, one would simply subtract <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha">alpha</a></code> from 360 degrees. As the device is turned on the horizontal surface, the compass heading is (360 - alpha).</p>
    </div>
    <div class="example" id="example-f560d6db"><a class="self-link" href="#example-f560d6db"></a> A user is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing upwards. The value of <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta">beta</a></code> is 90, irrespective of what <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①">alpha</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma">gamma</a></code> are. </div>
    <div class="example" id="example-7f23e354">
     <a class="self-link" href="#example-7f23e354"></a> A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is: 
-<pre class="lang-json highlight"><c- p>{</c->alpha: 270 - alpha,
- beta: 0,
- gamma: 90<c- p>}</c->;
+<pre class="lang-json highlight"><c- p>{</c->alpha<c- p>:</c-> <c- mi>270</c-> <c- mi>-</c-> alpha<c- p>,</c->
+ be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ gamma<c- p>:</c-> <c- mi>90</c-><c- p>}</c->;
 </pre>
    </div>
    <div class="example" id="example-e96b4fed">
@@ -720,23 +720,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <div class="example" id="example-5899c0c6">
     <a class="self-link" href="#example-5899c0c6"></a> A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>: 
-<pre class="lang-json highlight"><c- p>{</c->x: 0,
- y: 0,
- z: 9.8<c- p>}</c->;
+<pre class="lang-json highlight"><c- p>{</c->x<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ y<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ z<c- p>:</c-> <c- mf>9.8</c-><c- p>}</c->;
 </pre>
    </div>
    <div class="example" id="example-773b8d86">
     <a class="self-link" href="#example-773b8d86"></a> A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration: 
-<pre class="lang-json highlight"><c- p>{</c->x: 0,
- y: 0,
- z: -9.8<c- p>}</c->;
+<pre class="lang-json highlight"><c- p>{</c->x<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ y<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
+ z<c- p>:</c-> <c- mf>-9.8</c-><c- p>}</c->;
 </pre>
    </div>
    <div class="example" id="example-9e6e8e59">
     <a class="self-link" href="#example-9e6e8e59"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
-<pre class="lang-json highlight"><c- p>{</c->acceleration: {x: v^2/r, y: 0, z: 0<c- p>}</c->,
- accelerationIncludingGravity: <c- p>{</c->x: v^2/r, y: 0, z: 9.8<c- p>}</c->,
- rotationRate: <c- p>{</c->alpha: 0, beta: 0, gamma: -v/r*180/pi<c- p>}</c-> };
+<pre class="lang-json highlight"><c- p>{</c->accelera<c- kc>t</c->io<c- kc>n</c-><c- p>:</c-> <c- p>{</c->x<c- p>:</c-> v^<c- mi>2</c->/r<c- p>,</c-> y<c- p>:</c-> <c- mi>0</c-><c- p>,</c-> z<c- p>:</c-> <c- mi>0</c-><c- p>},</c->
+ accelera<c- kc>t</c->io<c- kc>n</c->I<c- kc>n</c->cludi<c- kc>n</c->gGravi<c- kc>t</c->y<c- p>:</c-> <c- p>{</c->x<c- p>:</c-> v^<c- mi>2</c->/r<c- p>,</c-> y<c- p>:</c-> <c- mi>0</c-><c- p>,</c-> z<c- p>:</c-> <c- mf>9.8</c-><c- p>},</c->
+ ro<c- kc>tat</c->io<c- kc>n</c->Ra<c- kc>te</c-><c- p>:</c-> <c- p>{</c->alpha<c- p>:</c-> <c- mi>0</c-><c- p>,</c-> be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-> gamma<c- p>:</c-> <c- mi>-</c->v/r*<c- mi>180</c->/pi<c- p>}</c-> <c- p>}</c->;
 </pre>
    </div>
    <h2 class="heading settled" data-level="3" id="scope"><span class="secno">3. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h2>
@@ -1053,13 +1053,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <div class="example" id="example-cad08fa0">
     <a class="self-link" href="#example-cad08fa0"></a> 
     <p>The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute④">absolute</a></code> values.</p>
-<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mi>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> compassHeading<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
-  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// beta value</c->
-  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
-  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
+  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// beta value</c->
+  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
+  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
 
   <c- a>var</c-> cX <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _x <c- p>);</c->
   <c- a>var</c-> cY <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _y <c- p>);</c->
@@ -1076,13 +1076,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
   <c- a>var</c-> compassHeading <c- o>=</c-> Math<c- p>.</c->atan<c- p>(</c-> Vx <c- o>/</c-> Vy <c- p>);</c->
 
   <c- c1>// Convert compass heading to use whole unit circle</c->
-  <c- k>if</c-><c- p>(</c-> Vy <c- o>&lt;</c-> <c- mi>0</c-> <c- p>)</c-> <c- p>{</c->
+  <c- k>if</c-><c- p>(</c-> Vy <c- o>&lt;</c-> <c- mf>0</c-> <c- p>)</c-> <c- p>{</c->
     compassHeading <c- o>+=</c-> Math<c- p>.</c->PI<c- p>;</c->
-  <c- p>}</c-> <c- k>else</c-> <c- k>if</c-><c- p>(</c-> Vx <c- o>&lt;</c-> <c- mi>0</c-> <c- p>)</c-> <c- p>{</c->
-    compassHeading <c- o>+=</c-> <c- mi>2</c-> <c- o>*</c-> Math<c- p>.</c->PI<c- p>;</c->
+  <c- p>}</c-> <c- k>else</c-> <c- k>if</c-><c- p>(</c-> Vx <c- o>&lt;</c-> <c- mf>0</c-> <c- p>)</c-> <c- p>{</c->
+    compassHeading <c- o>+=</c-> <c- mf>2</c-> <c- o>*</c-> Math<c- p>.</c->PI<c- p>;</c->
   <c- p>}</c->
 
-  <c- k>return</c-> compassHeading <c- o>*</c-> <c- p>(</c-> <c- mi>180</c-> <c- o>/</c-> Math<c- p>.</c->PI <c- p>);</c-> <c- c1>// Compass Heading (in degrees)</c->
+  <c- k>return</c-> compassHeading <c- o>*</c-> <c- p>(</c-> <c- mf>180</c-> <c- o>/</c-> Math<c- p>.</c->PI <c- p>);</c-> <c- c1>// Compass Heading (in degrees)</c->
 
 <c- p>}</c->
 </pre>
@@ -1102,13 +1102,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" src="equation13a.png"> </object>
    <div class="example" id="example-76d62ad0">
     <a class="self-link" href="#example-76d62ad0"></a> The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑤">absolute</a></code> values. 
-<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mi>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getRotationMatrix<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
-  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// beta value</c->
-  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
-  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
+  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// beta value</c->
+  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
+  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
 
   <c- a>var</c-> cX <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _x <c- p>);</c->
   <c- a>var</c-> cY <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _y <c- p>);</c->
@@ -1147,20 +1147,20 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" src="equation14.png"> </object>
    <div class="example" id="example-8f884833">
     <a class="self-link" href="#example-8f884833"></a> The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑥">absolute</a></code> values and those parameters are not null. 
-<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mi>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getQuaternion<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
-  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// beta value</c->
-  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
-  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mi>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
+  <c- a>var</c-> _x <c- o>=</c-> beta  <c- o>?</c-> beta  <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// beta value</c->
+  <c- a>var</c-> _y <c- o>=</c-> gamma <c- o>?</c-> gamma <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// gamma value</c->
+  <c- a>var</c-> _z <c- o>=</c-> alpha <c- o>?</c-> alpha <c- o>*</c-> degtorad <c- o>:</c-> <c- mf>0</c-><c- p>;</c-> <c- c1>// alpha value</c->
 
-  <c- a>var</c-> cX <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _x<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
-  <c- a>var</c-> cY <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _y<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
-  <c- a>var</c-> cZ <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _z<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
-  <c- a>var</c-> sX <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _x<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
-  <c- a>var</c-> sY <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _y<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
-  <c- a>var</c-> sZ <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _z<c- o>/</c-><c- mi>2</c-> <c- p>);</c->
+  <c- a>var</c-> cX <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _x<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
+  <c- a>var</c-> cY <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _y<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
+  <c- a>var</c-> cZ <c- o>=</c-> Math<c- p>.</c->cos<c- p>(</c-> _z<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
+  <c- a>var</c-> sX <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _x<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
+  <c- a>var</c-> sY <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _y<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
+  <c- a>var</c-> sZ <c- o>=</c-> Math<c- p>.</c->sin<c- p>(</c-> _z<c- o>/</c-><c- mf>2</c-> <c- p>);</c->
 
   <c- c1>//</c->
   <c- c1>// ZXY quaternion construction.</c->
