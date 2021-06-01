@@ -325,7 +325,7 @@ The default action of this event should be for the user agent to present the use
 
 User agents implementing this specification must provide a new DOM event, named <dfn id="def-devicemotion"><code>devicemotion</code></dfn>. The corresponding event must be of type {{DeviceMotionEvent}} and must fire on the {{window!!attribute}} object. Registration for, and firing of the [=devicemotion=] event must follow the usual behavior of DOM4 Events, [[!DOM4]].
 
-User agents must also provide an event handler IDL attribute [[!HTML] named {{Window/ondevicemotion}} on the {{window!!attribute}} object. The type of the corresponding [=event handler event type=] must be [=devicemotion=].
+User agents must also provide an event handler IDL attribute [[!HTML]] named {{Window/ondevicemotion}} on the {{window!!attribute}} object. The type of the corresponding [=event handler event type=] must be [=devicemotion=].
 
 <pre class="idl">
 partial interface Window {
