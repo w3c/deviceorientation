@@ -6,7 +6,6 @@ Status: ED
 Group: dap
 TR: http://www.w3.org/TR/orientation-event/
 ED: https://w3c.github.io/deviceorientation/
-Previous Version: https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/
 Repository: w3c/deviceorientation
 Editor: Devices and Sensors Working Group
 Former Editor: Rich Tibbett, Opera Software ASA
