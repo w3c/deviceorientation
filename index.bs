@@ -755,7 +755,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
         "title": "Euler Angles"
     },
     "TOUCH": {
-        "href": "http://arxiv.org/abs/1602.04115",
+        "href": "https://arxiv.org/abs/1602.04115",
         "title": "TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript",
         "date": "12 Feb 2016"
     },
@@ -769,7 +769,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
         "date": "2011"
     },
     "FINGERPRINT": {
-        "href": "http://arxiv.org/abs/1408.1416",
+        "href": "https://arxiv.org/abs/1408.1416",
         "title": "Mobile Device Identification via Sensor Fingerprinting",
         "date": "6 Aug 2014"
     },
