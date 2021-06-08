@@ -5,9 +5,9 @@
   <title>DeviceOrientation Event Specification</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 7573c85df, updated Fri Feb 19 16:30:08 2021 -0800" name="generator">
+  <meta content="Bikeshed version 800b43329, updated Tue May 25 14:13:32 2021 -0700" name="generator">
   <link href="http://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="82219248ac468073996e1ad33cc025c87545705a" name="document-revision">
+  <meta content="e5ee0046b89e4300e4bcb20624a584456182c114" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -114,9 +114,9 @@ pre .property::before, pre .property::after {
     --ins-bg: transparent;
 
     --a-normal-text: #034575;
-    --a-normal-underline: #707070;
+    --a-normal-underline: #bbb;
     --a-visited-text: var(--a-normal-text);
-    --a-visited-underline: #bbb;
+    --a-visited-underline: #707070;
     --a-hover-bg: rgba(75%, 75%, 75%, .25);
     --a-active-text: #c00;
     --a-active-underline: #c00;
@@ -259,6 +259,62 @@ figcaption:not(.no-marker)::before {
 [data-md] > :last-child {
     margin-bottom: 0;
 }</style>
+<style>/* style-mdn-anno */
+
+            @media (max-width: 767px) { .mdn-anno { opacity: .1 } }
+            .mdn-anno { font: 1em sans-serif; padding: 0.3em; position: absolute; z-index: 8; right: 0.3em; background: #EEE; color: black; box-shadow: 0 0 3px #999; overflow: hidden; border-collapse: initial; border-spacing: initial; min-width: 9em; max-width: min-content; white-space: nowrap; word-wrap: normal; hyphens: none}
+            .mdn-anno:not(.wrapped) { opacity: 1}
+            .mdn-anno:hover { z-index: 9 }
+            .mdn-anno.wrapped { min-width: 0 }
+            .mdn-anno.wrapped > :not(button) { display: none; }
+            .mdn-anno > .mdn-anno-btn { cursor: pointer; border: none; color: #000; background: transparent; margin: -8px; float: right; padding: 10px 8px 8px 8px; outline: none; }
+            .mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag { color: red; padding-right: 2px; }
+            .mdn-anno > .mdn-anno-btn > .all-engines-flag { color: green; padding-right: 2px; }
+            .mdn-anno > .mdn-anno-btn > span { color: #fff; background-color: #000; font-weight: normal; font-family: zillaslab, Palatino, "Palatino Linotype", serif; padding: 2px 3px 0px 3px; line-height: 1.3em; vertical-align: top; }
+            .mdn-anno > .feature { margin-top: 20px; }
+            .mdn-anno > .feature:not(:first-of-type) { border-top: 1px solid #999; margin-top: 6px; padding-top: 2px; }
+            .mdn-anno > .feature > .less-than-two-engines-text { color: red }
+            .mdn-anno > .feature > .all-engines-text { color: green }
+            .mdn-anno > .feature > p { font-size: .75em; margin-top: 6px; margin-bottom: 0; }
+            .mdn-anno > .feature > p + p { margin-top: 3px; }
+            .mdn-anno > .feature > .support { display: block; font-size: 0.6em; margin: 0; padding: 0; margin-top: 2px }
+            .mdn-anno > .feature > .support + div { padding-top: 0.5em; }
+            .mdn-anno > .feature > .support > hr { display: block; border: none; border-top: 1px dotted #999; padding: 3px 0px 0px 0px; margin: 2px 3px 0px 3px; }
+            .mdn-anno > .feature > .support > hr::before { content: ""; }
+            .mdn-anno > .feature > .support > span { padding: 0.2em 0; display: block; display: table; }
+            .mdn-anno > .feature > .support > span.no { color: #CCCCCC; filter: grayscale(100%); }
+            .mdn-anno > .feature > .support > span.no::before { opacity: 0.5; }
+            .mdn-anno > .feature > .support > span:first-of-type { padding-top: 0.5em; }
+            .mdn-anno > .feature > .support > span > span { padding: 0 0.5em; display: table-cell; }
+            .mdn-anno > .feature > .support > span > span:first-child { width: 100%; }
+            .mdn-anno > .feature > .support > span > span:last-child { width: 100%; white-space: pre; padding: 0; }
+            .mdn-anno > .feature > .support > span::before { content: ' '; display: table-cell; min-width: 1.5em; height: 1.5em; background: no-repeat center center; background-size: contain; text-align: right; font-size: 0.75em; font-weight: bold; }
+            .mdn-anno > .feature > .support > .chrome_android::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
+            .mdn-anno > .feature > .support > .firefox_android::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
+            .mdn-anno > .feature > .support > .chrome::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
+            .mdn-anno > .feature > .support > .edge_blink::before { background-image: url(https://resources.whatwg.org/browser-logos/edge.svg); }
+            .mdn-anno > .feature > .support > .edge::before { background-image: url(https://resources.whatwg.org/browser-logos/edge_legacy.svg); }
+            .mdn-anno > .feature > .support > .firefox::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
+            .mdn-anno > .feature > .support > .ie::before { background-image: url(https://resources.whatwg.org/browser-logos/ie.png); }
+            .mdn-anno > .feature > .support > .safari_ios::before { background-image: url(https://resources.whatwg.org/browser-logos/safari-ios.svg); }
+            .mdn-anno > .feature > .support > .nodejs::before { background-image: url(https://nodejs.org/static/images/favicons/favicon.ico); }
+            .mdn-anno > .feature > .support > .opera_android::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
+            .mdn-anno > .feature > .support > .opera::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
+            .mdn-anno > .feature > .support > .safari::before { background-image: url(https://resources.whatwg.org/browser-logos/safari.png); }
+            .mdn-anno > .feature > .support > .samsunginternet_android::before { background-image: url(https://resources.whatwg.org/browser-logos/samsung.svg); }
+            .mdn-anno > .feature > .support > .webview_android::before { background-image: url(https://resources.whatwg.org/browser-logos/android-webview.png); }
+            .name-slug-mismatch { color: red }
+            .caniuse-status:hover { z-index: 9; }
+
+            /* dt, li, .issue, .note, and .example are "position: relative", so to put annotation at right margin, must move to right of containing block */
+            .h-entry:not(.status-LS) dt > .mdn-anno, .h-entry:not(.status-LS) li > .mdn-anno, .h-entry:not(.status-LS) .issue > .mdn-anno, .h-entry:not(.status-LS) .note > .mdn-anno, .h-entry:not(.status-LS) .example > .mdn-anno { right: -6.7em; }
+            .h-entry p + .mdn-anno { margin-top: 0; }
+            h2 + .mdn-anno.after { margin: -48px 0 0 0; }
+            h3 + .mdn-anno.after { margin: -46px 0 0 0; }
+            h4 + .mdn-anno.after { margin: -42px 0 0 0; }
+            h5 + .mdn-anno.after { margin: -40px 0 0 0; }
+            h6 + .mdn-anno.after { margin: -40px 0 0 0; }
+            </style>
 <style>/* style-selflinks */
 
 :root {
@@ -568,18 +624,17 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-02-23">23 February 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-06-08">8 June 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://w3c.github.io/deviceorientation/">https://w3c.github.io/deviceorientation/</a>
      <dt>Latest published version:
      <dd><a href="http://www.w3.org/TR/orientation-event/">http://www.w3.org/TR/orientation-event/</a>
-     <dt>Previous Versions:
-     <dd><a href="https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/" rel="prev">https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/</a>
      <dt>Feedback:
      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Borientation-event%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[orientation-event] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
-     <dd><a href="https://github.com/w3c/deviceorientation">GitHub w3c/deviceorientation</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/w3c/deviceorientation/issues">DeviceOrientation Event Specification Issues Repository</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Devices and Sensors Working Group</span>
      <dt class="editor">Former Editors:
@@ -590,7 +645,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -744,8 +799,68 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>This specification is limited to providing DOM events for retrieving information describing the physical orientation and motion of the hosting device. The intended purpose of this API is to enable simple use cases such as those in <a href="#use-cases">Use-Cases</a> section. The scope of this specification does not include providing utilities to manipulate this data, such as transformation libraries. Nor does it include providing access to low sensor data, or direct control of these sensors.</p>
    <h2 class="heading settled" data-level="4" id="description"><span class="secno">4. </span><span class="content">Description</span><a class="self-link" href="#description"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="deviceorientation"><span class="secno">4.1. </span><span class="content">deviceorientation Event</span><a class="self-link" href="#deviceorientation"></a></h3>
+   <div class="mdn-anno wrapped after">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent" title="The DeviceOrientationEvent provides web developers with information from the physical orientation of the device running the web page.">DeviceOrientationEvent</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari yes"><span>Safari</span><span>5+</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientation_event" title="The deviceorientation event is fired when fresh data is available from an orientation sensor about the current orientation of the device as compared to the Earth coordinate frame. This data is gathered from a magnetometer inside the device.">Window/deviceorientation_event</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari yes"><span>Safari</span><span>Yes</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>12+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>18</span></span><span class="ie no"><span>IE</span><span>?</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
+     </div>
+    </div>
+   </div>
    <p>User agents implementing this specification must provide a new DOM event, named <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="def-deviceorientation"><code>deviceorientation</code></dfn>. The corresponding event must be of type <code class="idl"><a data-link-type="idl" href="#deviceorientationevent" id="ref-for-deviceorientationevent">DeviceOrientationEvent</a></code> and must fire on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window">window</a></code> object. Registration for, and firing of the <a data-link-type="dfn" href="#def-deviceorientation" id="ref-for-def-deviceorientation②">deviceorientation</a> event must follow the usual behavior of DOM4 Events, <a data-link-type="biblio" href="#biblio-dom4">[DOM4]</a>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/ondeviceorientation" title="An event handler for the deviceorientation event, which contains information about a relative device orientation change.">Window/ondeviceorientation</a></p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>9+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>9+</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+     </div>
+    </div>
+   </div>
    <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientation" id="ref-for-dom-window-ondeviceorientation">ondeviceorientation</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window①">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event type</a> must be <a data-link-type="dfn" href="#def-deviceorientation" id="ref-for-def-deviceorientation③">deviceorientation</a>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/DeviceOrientationEvent" title="The DeviceOrientationEvent constructor creates a new DeviceOrientationEvent.">DeviceOrientationEvent/DeviceOrientationEvent</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>59+</span></span><span class="webview_android yes"><span>Android WebView</span><span>59+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.0+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+   </div>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondeviceorientation"><code><c- g>ondeviceorientation</c-></code></dfn>;
 };
@@ -776,6 +891,22 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha②">alpha</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta①">beta</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma①">gamma</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/absolute" title="Indicates whether or not the device is providing orientation data absolutely (that is, in reference to the Earth&apos;s coordinate frame) or using some arbitrary frame determined by the device. See Orientation and motion data explained for details.">DeviceOrientationEvent/absolute</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+   </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute">absolute</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to false.</p>
    <p>The static <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-requestpermission" id="ref-for-dom-deviceorientationevent-requestpermission">requestPermission()</a></code> operation, when invoked, must run these steps:</p>
    <ol>
@@ -804,6 +935,48 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <p>Return <var>promise</var>. </p>
    </ol>
    <p>The event should fire whenever a significant change in orientation occurs. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/alpha" title="Returns the rotation of the device around the Z axis; that is, the number of degrees by which the device is being twisted around the center of the screen. See Orientation and motion data explained for details.">DeviceOrientationEvent/alpha</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/beta" title="Returns the rotation of the device around the X axis; that is, the number of degrees, ranged between -180 and 180, by which the device is tipped forward or backward. See Orientation and motion data explained for details.">DeviceOrientationEvent/beta</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/gamma" title="Returns the rotation of the device around the Y axis; that is, the number of degrees, ranged between -90 and 90, by which the device is tilted left or right. See Orientation and motion data explained for details.">DeviceOrientationEvent/gamma</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+   </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> attributes of the event must specify the orientation of the device in terms of the transformation from a coordinate frame fixed on the Earth to a coordinate frame fixed in the device. The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha④">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta③">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma③">gamma</a></code> attributes must be expressed in degrees and must not be more precise than 0.1 degrees. The coordinate frames must be oriented as described below.</p>
    <p>The Earth coordinate frame is a 'East, North, Up' frame at the user’s location. It has the following 3 axes, where the ground plane is tangent to the spheriod of the World Geodetic System 1984 <a data-link-type="biblio" href="#biblio-wgs84">[WGS84]</a>, at the user’s location.</p>
    <ul>
@@ -831,23 +1004,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li>
      <p>Rotate the device frame around its z axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑤">alpha</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑥">alpha</a></code> in [0, 360).</p>
      <div>
-       <img alt="start orientation" src="start.png"> 
+       <img alt="start orientation" height="450" src="start.png" width="450"> 
       <div>Device in the initial position, with Earth (XYZ) and body (xyz) frames aligned.</div>
      </div>
      <div>
-       <img alt="rotation about z axis" src="c-rotation.png"> 
+       <img alt="rotation about z axis" height="450" src="c-rotation.png" width="450"> 
       <div>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</div>
      </div>
     <li>
      <p>Rotate the device frame around its x axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta④">beta</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑤">beta</a></code> in [-180, 180).</p>
      <div>
-       <img alt="rotation about x axis" src="a-rotation.png"> 
+       <img alt="rotation about x axis" height="450" src="a-rotation.png" width="450"> 
       <div>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</div>
      </div>
     <li>
      <p>Rotate the device frame around its y axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma④">gamma</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑤">gamma</a></code> in [-90, 90).</p>
      <div>
-       <img alt="rotation about y axis" src="b-rotation.png"> 
+       <img alt="rotation about y axis" height="450" src="b-rotation.png" width="450"> 
       <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
      </div>
    </ol>
@@ -874,8 +1047,172 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>This event must be fired when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <a data-link-type="dfn" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑥">deviceorientation</a> event.</p>
    <p>The default action of this event should be for the user agent to present the user with details of how to calibrate the compass. The event must be cancelable, so that web sites can provide their own alternative calibration UI.</p>
    <h3 class="heading settled" data-level="4.4" id="devicemotion"><span class="secno">4.4. </span><span class="content">devicemotion Event</span><a class="self-link" href="#devicemotion"></a></h3>
+   <div class="mdn-anno wrapped after">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent" title="The DeviceMotionEvent provides web developers with information about the speed of changes for the device&apos;s position and orientation.">DeviceMotionEvent</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari yes"><span>Safari</span><span>5+</span></span><span class="chrome yes"><span>Chrome</span><span>11+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event" title="The devicemotion event is fired at a regular interval and indicates the amount of physical force of acceleration the device is receiving at that time. It also provides information about the rate of rotation, if available.">Window/devicemotion_event</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>18</span></span><span class="ie no"><span>IE</span><span>?</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>Yes</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android no"><span>Opera Mobile</span><span>None</span></span>
+     </div>
+    </div>
+   </div>
    <p>User agents implementing this specification must provide a new DOM event, named <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="def-devicemotion"><code>devicemotion</code></dfn>. The corresponding event must be of type <code class="idl"><a data-link-type="idl" href="#devicemotionevent" id="ref-for-devicemotionevent">DeviceMotionEvent</a></code> and must fire on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑥">window</a></code> object. Registration for, and firing of the <a data-link-type="dfn" href="#def-devicemotion" id="ref-for-def-devicemotion②">devicemotion</a> event must follow the usual behavior of DOM4 Events, <a data-link-type="biblio" href="#biblio-dom4">[DOM4]</a>.</p>
-   <p>User agents must also provide an event handler IDL attribute [[!HTML] named <code class="idl"><a data-link-type="idl" href="#dom-window-ondevicemotion" id="ref-for-dom-window-ondevicemotion">ondevicemotion</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑦">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type②">event handler event type</a> must be <a data-link-type="dfn" href="#def-devicemotion" id="ref-for-def-devicemotion③">devicemotion</a>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/ondevicemotion" title="An event handler for the devicemotion events sent to the window.">Window/ondevicemotion</a></p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>9+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>9+</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>4.4+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+     </div>
+    </div>
+   </div>
+   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondevicemotion" id="ref-for-dom-window-ondevicemotion">ondevicemotion</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑦">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type②">event handler event type</a> must be <a data-link-type="dfn" href="#def-devicemotion" id="ref-for-def-devicemotion③">devicemotion</a>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/DeviceMotionEvent" title="The DeviceMotionEvent constructor creates a new DeviceMotionEvent.">DeviceMotionEvent/DeviceMotionEvent</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>59+</span></span><span class="webview_android yes"><span>Android WebView</span><span>59+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.0+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/x" title="This read-only property indicates the amount of acceleration that occurred along the X axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/x</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/y" title="This read-only property indicates the amount of acceleration that occurred along the Y axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/y</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/z" title="This read-only property indicates the amount of acceleration that occurred along the Z axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/z</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration" title="A DeviceMotionEventAcceleration object provides information about the amount of acceleration the device is experiencing along all three axes.">DeviceMotionEventAcceleration</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>74+</span></span><span class="webview_android yes"><span>Android WebView</span><span>74+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>11.0+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/alpha" title="This property indicates the rate of rotation around the Z axis -- in degrees per second -- in a DeviceMotionEventRotationRate object.">DeviceMotionEventRotationRate/alpha</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/beta" title="This property indicates the rate of rotation around the X axis -- in degrees per second -- in a DeviceMotionEventRotationRate object.">DeviceMotionEventRotationRate/beta</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/gamma" title="This property indicates the rate of rotation around the Y axis -- in degrees per second -- in a DeviceMotionEventRotationRate object.">DeviceMotionEventRotationRate/gamma</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>28+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.5+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate" title="A DeviceMotionEventRotationRate object provides information about the rate at which the device is rotating around all three axes.">DeviceMotionEventRotationRate</a></p>
+     <p class="less-than-two-engines-text">In only one current engine.</p>
+     <div class="support">
+      <span class="firefox no"><span>Firefox</span><span>?</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>None</span></span>
+      <hr>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink no"><span>Edge</span><span>None</span></span>
+      <hr>
+      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>74+</span></span><span class="webview_android yes"><span>Android WebView</span><span>74+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>11.0+</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+   </div>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window③"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext③"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondevicemotion"><code><c- g>ondevicemotion</c-></code></dfn>;
 };
@@ -955,9 +1292,73 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <p>Return <var>promise</var>. </p>
    </ol>
    <p>In the <code class="idl"><a data-link-type="idl" href="#devicemotionevent" id="ref-for-devicemotionevent①">DeviceMotionEvent</a></code> events fired by the user agent, the following requirements must apply:</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/acceleration" title="The acceleration property returns the amount of acceleration recorded by the device, in meters per second squared (m/s2).">DeviceMotionEvent/acceleration</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>Yes</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+     </div>
+    </div>
+   </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration③">acceleration</a></code> attribute must be initialized with the acceleration of the hosting device relative to the Earth frame, expressed in the body frame, as defined in <a href="#deviceorientation">deviceorientation Event</a> section. The acceleration must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/accelerationIncludingGravity" title="The accelerationIncludingGravity property returns the amount of acceleration recorded by the device, in meters per second squared (m/s2). Unlike DeviceMotionEvent.acceleration which compensates for the influence of gravity, its value is the sum of the acceleration of the device as induced by the user and the acceleration caused by gravity.">DeviceMotionEvent/accelerationIncludingGravity</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>Yes</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+   </div>
    <p>Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply the acceleration including the effect of gravity. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity④">accelerationIncludingGravity</a></code> attribute must be initialized with the acceleration of the hosting device, plus an acceleration equal and opposite to the acceleration due to gravity. Again, the acceleration must be given in the body frame defined in <a href="#deviceorientation">deviceorientation Event</a> section and must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/rotationRate" title="Returns the rate at which the device is rotating around each of its axes in degrees per second.">DeviceMotionEvent/rotationRate</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>Yes</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+   </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate②">rotationRate</a></code> attribute must be initialized with the rate of rotation of the hosting device in space. It must be expressed as the rate of change of the angles defined as <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①⓪">alpha</a></code> (x axis), <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑨">beta</a></code> (y axis), <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑨">gamma</a></code> (z axis). Each attribute must be expressed in degrees per second (deg/s) and must not be more precise than 0.1 degrees per second.</p>
+   <div class="mdn-anno wrapped">
+    <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
+    <div class="feature">
+     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/interval" title="Returns the interval, in milliseconds, at which data is obtained from the underlying hardware. You can use this to determine the granularity of motion events.">DeviceMotionEvent/interval</a></p>
+     <p class="all-engines-text">In all current engines.</p>
+     <div class="support">
+      <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>?</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
+      <hr>
+      <span class="opera yes"><span>Opera</span><span>Yes</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
+      <hr>
+      <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <hr>
+      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>Yes</span></span><span class="webview_android yes"><span>Android WebView</span><span>Yes</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>Yes</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>Yes</span></span>
+     </div>
+    </div>
+   </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-interval" id="ref-for-dom-devicemotionevent-interval①">interval</a></code> attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.</p>
    <p>Implementations that are unable to provide all attributes must initialize the values of the unknown attributes to null. If an implementation can never provide motion information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate③">rotationRate</a></code> attributes set to null.</p>
    <h3 class="heading settled" data-level="4.5" id="id=permission-model"><span class="secno">4.5. </span><span class="content">Permission model</span><a class="self-link" href="#id=permission-model"></a></h3>
@@ -1034,21 +1435,21 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <p>More precisely, we wish to determine the compass heading of the horizontal component of a vector which is orthogonal to the device’s screen and pointing out of the back of the screen.</p>
    <p>If v represents this vector in the rotated device body frame xyz, then v is as follows.</p>
    <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
-    <p><img alt="v = [0; 0; -1]" src="equation1.png"> </p>
+    <p><img alt="v = [0; 0; -1]" height="64" src="equation1.png" width="81"> </p>
    </object>
    <p>The transformation of v due to the rotation about the z axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation2.xhtml" type="application/mathml+xml"> <img alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]" src="equation2.png"> </object>
+   <object class="equation" data="equation2.xhtml" type="application/mathml+xml"> <img alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]" height="71" src="equation2.png" width="203"> </object>
    <p>The transformation of v due to the rotation about the x axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation3.xhtml" type="application/mathml+xml"> <img alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]" src="equation3.png"> </object>
+   <object class="equation" data="equation3.xhtml" type="application/mathml+xml"> <img alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]" height="72" src="equation3.png" width="203"> </object>
    <p>The transformation of v due to the rotation about the y axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation4.xhtml" type="application/mathml+xml"> <img alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]" src="equation4.png"> </object>
+   <object class="equation" data="equation4.xhtml" type="application/mathml+xml"> <img alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]" height="72" src="equation4.png" width="203"> </object>
    <p>If R represents the full rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.</p>
-   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" src="equation13a.png"> </object>
+   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
    <p>If v' represents the vector v in the earth frame XYZ, then since the initial body frame is aligned with the earth, v' is as follows.</p>
-   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml"> <img alt="v&apos; = Rv" src="equation5a.png"> </object>
-   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml"> <img alt="v&apos; = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]" src="equation5e.png"> </object>
+   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml"> <img alt="v&apos; = Rv" height="26" src="equation5a.png" width="62"> </object>
+   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml"> <img alt="v&apos; = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]" height="76" src="equation5e.png" width="332"> </object>
    <p>The compass heading θ is given by</p>
-   <object class="equation" data="equation6.xhtml" type="application/mathml+xml"> <img alt="theta = atan((v’_x)/(v’_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))" src="equation6.png"> </object>
+   <object class="equation" data="equation6.xhtml" type="application/mathml+xml"> <img alt="theta = atan((v’_x)/(v’_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))" height="62" src="equation6.png" width="491"> </object>
    <p>provided that β and γ are not both zero.</p>
    <div class="example" id="example-cad08fa0">
     <a class="self-link" href="#example-cad08fa0"></a> 
@@ -1088,18 +1489,18 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
 </pre>
    </div>
    <p>As a consistency check, if we set γ = 0, then</p>
-   <object class="equation" data="equation7.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha" src="equation7.png"> </object>
+   <object class="equation" data="equation7.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha" height="59" src="equation7.png" width="263"> </object>
    <p>as expected.</p>
    <p>Alternatively, if we set β = 90, then</p>
-   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml"> <img alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))" src="equation8a.png"> </object>
-   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)" src="equation8b.png"> </object>
+   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml"> <img alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))" height="61" src="equation8a.png" width="327"> </object>
+   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)" height="61" src="equation8b.png" width="288"> </object>
    <p>as expected.</p>
    <h3 class="heading settled" id="worked-example-2"><span class="content">A.2 Alternate device orientation representations</span><a class="self-link" href="#worked-example-2"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock <a data-link-type="biblio" href="#biblio-gimballock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert the Device Orientation values to other rotation representations.</p>
    <p>The first alternate orientation representation uses rotation matrices. By combining the component rotation matrices provided in the <a href="#worked-example">worked example</a> above we can represent the orientation of the device body frame as a combined rotation matrix.</p>
    <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.</p>
-   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" src="equation13a.png"> </object>
+   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
    <div class="example" id="example-76d62ad0">
     <a class="self-link" href="#example-76d62ad0"></a> The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑤">absolute</a></code> values. 
 <pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
@@ -1144,7 +1545,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    </div>
    <p>Another alternate representation of device orientation data is as Quaternions. <a data-link-type="biblio" href="#biblio-quaternions">[QUATERNIONS]</a></p>
    <p>If q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, q is as follows.</p>
-   <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" src="equation14.png"> </object>
+   <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" height="192" src="equation14.png" width="534"> </object>
    <div class="example" id="example-8f884833">
     <a class="self-link" href="#example-8f884833"></a> The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑥">absolute</a></code> values and those parameters are not null. 
 <pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
@@ -1177,7 +1578,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
 </pre>
    </div>
    <p>We can check that a Unit Quaternion has been constructed correctly using Lagrange’s four-square theorem</p>
-   <object class="equation" data="equation18.xhtml" type="application/mathml+xml"> <img alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1" src="equation18.png"> </object>
+   <object class="equation" data="equation18.xhtml" type="application/mathml+xml"> <img alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1" height="28" src="equation18.png" width="164"> </object>
    <p>as expected.</p>
    <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
    <p>Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez</p>
@@ -1541,7 +1942,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-eulerangles">[EULERANGLES]
    <dd><a href="https://en.wikipedia.org/wiki/Euler_angles">Euler Angles</a>. URL: <a href="https://en.wikipedia.org/wiki/Euler_angles">https://en.wikipedia.org/wiki/Euler_angles</a>
    <dt id="biblio-fingerprint">[FINGERPRINT]
-   <dd><a href="http://arxiv.org/abs/1408.1416">Mobile Device Identification via Sensor Fingerprinting</a>. 6 Aug 2014. URL: <a href="http://arxiv.org/abs/1408.1416">http://arxiv.org/abs/1408.1416</a>
+   <dd><a href="https://arxiv.org/abs/1408.1416">Mobile Device Identification via Sensor Fingerprinting</a>. 6 Aug 2014. URL: <a href="https://arxiv.org/abs/1408.1416">https://arxiv.org/abs/1408.1416</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
    <dd>Simon Pieters; Chris Harrelson. <a href="https://www.w3.org/TR/geometry-1/">Geometry Interfaces Module Level 1</a>. 4 December 2018. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
    <dt id="biblio-gimballock">[GIMBALLOCK]
@@ -1553,7 +1954,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-sensorid">[SENSORID]
    <dd>Zhang, Jiexin; Beresford, Alastair R.; Sheret, Ian. <a href="https://doi.org/10.1109/SP.2019.00072">SensorID: Sensor Calibration Fingerprinting for Smartphones</a>. 2019. URL: <a href="https://doi.org/10.1109/SP.2019.00072">https://doi.org/10.1109/SP.2019.00072</a>
    <dt id="biblio-touch">[TOUCH]
-   <dd><a href="http://arxiv.org/abs/1602.04115">TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript</a>. 12 Feb 2016. URL: <a href="http://arxiv.org/abs/1602.04115">http://arxiv.org/abs/1602.04115</a>
+   <dd><a href="https://arxiv.org/abs/1602.04115">TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript</a>. 12 Feb 2016. URL: <a href="https://arxiv.org/abs/1602.04115">https://arxiv.org/abs/1602.04115</a>
    <dt id="biblio-wgs84">[WGS84]
    <dd>National Imagery and Mapping Agency. <a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf">Department of Defence World Geodetic System 1984</a>. 3 January 2000. Technical Report 8350.2, Third Edition. URL: <a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf">http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf</a>
   </dl>
@@ -1896,3 +2297,11 @@ document.body.addEventListener("click", function(e) {
 
 });
 </script>
+<script>/* script-mdn-anno */
+
+            document.body.addEventListener("click", (e) => {
+                if(e.target.closest(".mdn-anno-btn")) {
+                    e.target.closest(".mdn-anno").classList.toggle("wrapped");
+                }
+            });
+            </script>
