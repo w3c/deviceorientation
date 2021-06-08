@@ -6,7 +6,6 @@ Status: ED
 Group: dap
 TR: http://www.w3.org/TR/orientation-event/
 ED: https://w3c.github.io/deviceorientation/
-Previous Version: https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/
 Repository: w3c/deviceorientation
 Editor: Devices and Sensors Working Group
 Former Editor: Rich Tibbett, Opera Software ASA
@@ -14,8 +13,9 @@ Former Editor: Tim Volodine, Google Inc
 Former Editor: Steve Block, Google Inc until July 2012
 Former Editor: Andrei Popescu, Google Inc until July 2012
 Abstract: This specification defines several new DOM events that provide information about the physical orientation and motion of a hosting device.
-Boilerplate: omit issues-index, omit conformance, repository-issue-tracking off
-!Feedback: <a href="https://github.com/w3c/deviceorientation">GitHub w3c/deviceorientation</a>
+Boilerplate: omit issues-index, omit conformance, repository-issue-tracking no
+Include MDN Panels: if possible
+Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
 </pre>
 <pre class="anchors">
 urlPrefix: https://compat.spec.whatwg.org/; spec: COMPATIBILITY
