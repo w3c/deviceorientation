@@ -134,7 +134,7 @@ A device in free-fall, with the screen horizontal and upmost, has an {{DeviceMot
 A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both {{DeviceMotionEvent/acceleration}} and {{DeviceMotionEvent/accelerationIncludingGravity}}. The device also records a negative value for {{DeviceMotionEvent/rotationRate!!attribute}}.{{DeviceMotionEventRotationRate/gamma}}:
 <pre class="lang-json">
 {acceleration: {x: v^2/r, y: 0, z: 0},
- accelerationIncludingGravity: {x: v^2/r, y: 0, z: 9.8},
+ accelerationIncludingGravity: {x: v^2/r, y: 9.8, z: 0},
  rotationRate: {alpha: 0, beta: 0, gamma: -v/r*180/pi} };
 </pre>
 </div>
