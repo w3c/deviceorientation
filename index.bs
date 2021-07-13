@@ -4,7 +4,7 @@ Shortname: orientation-event
 Level: none
 Status: ED
 Group: dap
-TR: http://www.w3.org/TR/orientation-event/
+TR: https://www.w3.org/TR/orientation-event/
 ED: https://w3c.github.io/deviceorientation/
 Repository: w3c/deviceorientation
 Editor: Devices and Sensors Working Group
