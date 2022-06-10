@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 37b7e7e68, updated Fri May 27 15:08:11 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="21c8ea96f648150cc6e9f5a54303fbf2edd1130b" name="document-revision">
+  <meta content="faca6fe86a2389e9ad431f6dda6a481350e2af60" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1068,7 +1068,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler②"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-oncompassneedscalibration"><code><c- g>oncompassneedscalibration</c-></code></dfn>;
 };
 </pre>
-   <p>User agent must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration③">compassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑤">window</a></code> object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑥">deviceorientation</a></code> event.</p>
+   <p>User agents must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration③">compassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑤">window</a></code> object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑥">deviceorientation</a></code> event.</p>
    <p>The default action of this event should be for the user agent to present the user with details of how to calibrate the compass. The event must be cancelable, so that web sites can provide their own alternative calibration UI.</p>
    <h3 class="heading settled" data-level="4.4" id="devicemotion"><span class="secno">4.4. </span><span class="content">devicemotion Event</span><a class="self-link" href="#devicemotion"></a></h3>
    <div class="mdn-anno wrapped after">
