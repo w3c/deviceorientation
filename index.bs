@@ -317,7 +317,7 @@ partial interface Window {
 };
 </pre>
 
-User agent must [=fire an event=] named {{compassneedscalibration}} on the {{window!!attribute}} object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the {{deviceorientation}} event.
+User agents must [=fire an event=] named {{compassneedscalibration}} on the {{window!!attribute}} object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the {{deviceorientation}} event.
 
 The default action of this event should be for the user agent to present the user with details of how to calibrate the compass. The event must be cancelable, so that web sites can provide their own alternative calibration UI.
 
