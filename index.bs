@@ -71,10 +71,12 @@ window.addEventListener("deviceorientation", function(event) {
 
 <div class="example">
 A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation:
-<pre class="lang-json">
-{alpha: 90,
- beta: 0,
- gamma: 0};
+<pre class="lang-js">
+{
+  alpha: 90,
+  beta: 0,
+  gamma: 0
+};
 </pre>
 To get the compass heading, one would simply subtract {{DeviceOrientationEvent/alpha}} from 360 degrees. As the device is turned on the horizontal surface, the compass heading is (360 - alpha).
 </div>
@@ -85,10 +87,12 @@ A user is holding the device in their hand, with the screen in a vertical plane 
 
 <div class="example">
 A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is:
-<pre class="lang-json">
-{alpha: 270 - alpha,
- beta: 0,
- gamma: 90};
+<pre class="lang-js">
+{
+  alpha: 270 - alpha,
+  beta: 0,
+  gamma: 90
+};
 </pre>
 </div>
 
@@ -114,28 +118,34 @@ window.addEventListener("devicemotion", function(event) {
 
 <div class="example">
 A device lying flat on a horizontal surface with the screen upmost has an {{DeviceMotionEvent/acceleration}} of zero and the following value for {{DeviceMotionEvent/accelerationIncludingGravity}}:
-<pre class="lang-json">
-{x: 0,
- y: 0,
- z: 9.8};
+<pre class="lang-js">
+{
+  x: 0,
+  y: 0,
+  z: 9.8
+};
 </pre>
 </div>
 
 <div class="example">
 A device in free-fall, with the screen horizontal and upmost, has an {{DeviceMotionEvent/accelerationIncludingGravity}} of zero and the following value for acceleration:
-<pre class="lang-json">
-{x: 0,
- y: 0,
- z: -9.8};
+<pre class="lang-js">
+{
+  x: 0,
+  y: 0,
+  z: -9.8
+};
 </pre>
 </div>
 
 <div class="example">
 A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both {{DeviceMotionEvent/acceleration}} and {{DeviceMotionEvent/accelerationIncludingGravity}}. The device also records a negative value for {{DeviceMotionEvent/rotationRate!!attribute}}.{{DeviceMotionEventRotationRate/gamma}}:
-<pre class="lang-json">
-{acceleration: {x: v^2/r, y: 0, z: 0},
- accelerationIncludingGravity: {x: v^2/r, y: 9.8, z: 0},
- rotationRate: {alpha: 0, beta: 0, gamma: -v/r*180/pi} };
+<pre class="lang-js">
+{
+  acceleration: {x: v^2/r, y: 0, z: 0},
+  accelerationIncludingGravity: {x: v^2/r, y: 9.8, z: 0},
+  rotationRate: {alpha: 0, beta: 0, gamma: -v/r*180/pi}
+};
 </pre>
 </div>
 
