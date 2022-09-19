@@ -5,9 +5,9 @@
   <title>DeviceOrientation Event Specification</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 37b7e7e68, updated Fri May 27 15:08:11 2022 -0700" name="generator">
+  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="faca6fe86a2389e9ad431f6dda6a481350e2af60" name="document-revision">
+  <meta content="5791e0bf5081ca56b653312d1929fd7b1383b6b1" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -634,7 +634,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-06-10">10 June 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-19">19 September 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -750,20 +750,24 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 <c- p>},</c-> <c- kc>true</c-><c- p>);</c->
 </pre>
    </div>
-   <div class="example" id="example-f3190052">
-    <a class="self-link" href="#example-f3190052"></a> A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation: 
-<pre class="lang-json highlight"><c- p>{</c->alpha<c- p>:</c-> <c- mi>90</c-><c- p>,</c->
- be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- gamma<c- p>:</c-> <c- mi>0</c-><c- p>}</c->;
+   <div class="example" id="example-f65d12d9">
+    <a class="self-link" href="#example-f65d12d9"></a> A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation: 
+<pre class="lang-js highlight"><c- p>{</c->
+  alpha<c- o>:</c-> <c- mf>90</c-><c- p>,</c->
+  beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  gamma<c- o>:</c-> <c- mf>0</c->
+<c- p>};</c->
 </pre>
     <p>To get the compass heading, one would simply subtract <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha">alpha</a></code> from 360 degrees. As the device is turned on the horizontal surface, the compass heading is (360 - alpha).</p>
    </div>
    <div class="example" id="example-f560d6db"><a class="self-link" href="#example-f560d6db"></a> A user is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing upwards. The value of <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta">beta</a></code> is 90, irrespective of what <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①">alpha</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma">gamma</a></code> are. </div>
-   <div class="example" id="example-7f23e354">
-    <a class="self-link" href="#example-7f23e354"></a> A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is: 
-<pre class="lang-json highlight"><c- p>{</c->alpha<c- p>:</c-> <c- mi>270</c-> <c- mi>-</c-> alpha<c- p>,</c->
- be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- gamma<c- p>:</c-> <c- mi>90</c-><c- p>}</c->;
+   <div class="example" id="example-69c0a149">
+    <a class="self-link" href="#example-69c0a149"></a> A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is: 
+<pre class="lang-js highlight"><c- p>{</c->
+  alpha<c- o>:</c-> <c- mf>270</c-> <c- o>-</c-> alpha<c- p>,</c->
+  beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  gamma<c- o>:</c-> <c- mf>90</c->
+<c- p>};</c->
 </pre>
    </div>
    <div class="example" id="example-e96b4fed">
@@ -782,25 +786,31 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 <c- p>},</c-> <c- kc>true</c-><c- p>);</c->
 </pre>
    </div>
-   <div class="example" id="example-5899c0c6">
-    <a class="self-link" href="#example-5899c0c6"></a> A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>: 
-<pre class="lang-json highlight"><c- p>{</c->x<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- y<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- z<c- p>:</c-> <c- mf>9.8</c-><c- p>}</c->;
+   <div class="example" id="example-1567e206">
+    <a class="self-link" href="#example-1567e206"></a> A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>: 
+<pre class="lang-js highlight"><c- p>{</c->
+  x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  z<c- o>:</c-> <c- mf>9.8</c->
+<c- p>};</c->
 </pre>
    </div>
-   <div class="example" id="example-773b8d86">
-    <a class="self-link" href="#example-773b8d86"></a> A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration: 
-<pre class="lang-json highlight"><c- p>{</c->x<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- y<c- p>:</c-> <c- mi>0</c-><c- p>,</c->
- z<c- p>:</c-> <c- mf>-9.8</c-><c- p>}</c->;
+   <div class="example" id="example-13939e42">
+    <a class="self-link" href="#example-13939e42"></a> A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration: 
+<pre class="lang-js highlight"><c- p>{</c->
+  x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
+  z<c- o>:</c-> <c- o>-</c-><c- mf>9.8</c->
+<c- p>};</c->
 </pre>
    </div>
-   <div class="example" id="example-a6f095c7">
-    <a class="self-link" href="#example-a6f095c7"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
-<pre class="lang-json highlight"><c- p>{</c->accelera<c- kc>t</c->io<c- kc>n</c-><c- p>:</c-> <c- p>{</c->x<c- p>:</c-> v^<c- mi>2</c->/r<c- p>,</c-> y<c- p>:</c-> <c- mi>0</c-><c- p>,</c-> z<c- p>:</c-> <c- mi>0</c-><c- p>},</c->
- accelera<c- kc>t</c->io<c- kc>n</c->I<c- kc>n</c->cludi<c- kc>n</c->gGravi<c- kc>t</c->y<c- p>:</c-> <c- p>{</c->x<c- p>:</c-> v^<c- mi>2</c->/r<c- p>,</c-> y<c- p>:</c-> <c- mf>9.8</c-><c- p>,</c-> z<c- p>:</c-> <c- mi>0</c-><c- p>},</c->
- ro<c- kc>tat</c->io<c- kc>n</c->Ra<c- kc>te</c-><c- p>:</c-> <c- p>{</c->alpha<c- p>:</c-> <c- mi>0</c-><c- p>,</c-> be<c- kc>ta</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-> gamma<c- p>:</c-> <c- mi>-</c->v/r*<c- mi>180</c->/pi<c- p>}</c-> <c- p>}</c->;
+   <div class="example" id="example-7dd1a0c3">
+    <a class="self-link" href="#example-7dd1a0c3"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
+<pre class="lang-js highlight"><c- p>{</c->
+  acceleration<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
+  accelerationIncludingGravity<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>9.8</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
+  rotationRate<c- o>:</c-> <c- p>{</c->alpha<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> gamma<c- o>:</c-> <c- o>-</c->v<c- o>/</c->r<c- o>*</c-><c- mf>180</c-><c- o>/</c->pi<c- p>}</c->
+<c- p>};</c->
 </pre>
    </div>
    <h2 class="heading settled" data-level="3" id="scope"><span class="secno">3. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h2>
@@ -820,7 +830,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
      </div>
     </div>
     <div class="feature">
@@ -833,7 +843,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
      </div>
     </div>
    </div>
@@ -850,7 +860,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
      </div>
     </div>
    </div>
@@ -862,11 +872,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>17+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>46+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>17+</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>59+</span></span><span class="webview_android yes"><span>Android WebView</span><span>59+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>43+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -907,11 +917,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>4.4+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -951,11 +961,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -964,11 +974,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -977,11 +987,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>18+</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1006,7 +1016,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </ul>
    <p>The transformation from the Earth coordinate frame to the device coordinate frame must use the following system of rotations.</p>
    <p>Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
-   <p class="note" role="note"><span>Note:</span> the coordinate system used by this specification differs from <a href="https://www.w3.org/TR/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
+   <p class="note" role="note"><span>Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
    <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
    <ol id="rotations">
     <li>
@@ -1047,11 +1057,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>50+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>37+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
-      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+      <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
       <hr>
-      <span class="firefox_android no"><span>Firefox for Android</span><span>None</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>50+</span></span><span class="webview_android yes"><span>Android WebView</span><span>50+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>5.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>37+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1079,11 +1089,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1092,11 +1102,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1109,11 +1119,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1125,11 +1135,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>29+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>46+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>29+</span></span><span class="safari_ios no"><span>iOS Safari</span><span>None</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>59+</span></span><span class="webview_android yes"><span>Android WebView</span><span>59+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>7.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>43+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1138,11 +1148,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1151,11 +1161,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1164,11 +1174,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1177,11 +1187,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1190,11 +1200,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1203,11 +1213,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1216,11 +1226,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
     <div class="feature">
@@ -1229,11 +1239,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1324,11 +1334,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1341,16 +1351,16 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
    <p>Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply the acceleration including the effect of gravity. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity④">accelerationIncludingGravity</a></code> attribute must be initialized with the acceleration of the hosting device, plus an acceleration equal and opposite to the acceleration due to gravity. Again, the acceleration must be given in the body frame defined in <a href="#deviceorientation">deviceorientation Event</a> section and must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.</p>
-   <p class="note" role="note">Note: in practice, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> represents the raw readings obtained from an <a href="https://www.w3.org/TR/motion-sensors/#accelerometer">Motion Sensors Explainer § accelerometer</a>, or the <a data-link-type="biblio" href="#biblio-g-force">[G-FORCE]</a> while <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code> provides the readings of a <a href="https://www.w3.org/TR/motion-sensors/#linear-acceleration-sensor">Motion Sensors Explainer § linear-acceleration-sensor</a> and is likely a sensor fusion. </p>
+   <p class="note" role="note">Note: in practice, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> represents the raw readings obtained from an <a href="https://w3c.github.io/motion-sensors/#accelerometer">Motion Sensors Explainer § accelerometer</a>, or the <a data-link-type="biblio" href="#biblio-g-force">[G-FORCE]</a> while <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code> provides the readings of a <a href="https://w3c.github.io/motion-sensors/#linear-acceleration-sensor">Motion Sensors Explainer § linear-acceleration-sensor</a> and is likely a sensor fusion. </p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -1359,11 +1369,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1376,11 +1386,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <div class="support">
       <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
       <hr>
-      <span class="opera yes"><span>Opera</span><span>18+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
+      <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
       <hr>
       <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
       <hr>
-      <span class="firefox_android yes"><span>Firefox for Android</span><span>6+</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>31+</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>2.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>18+</span></span>
+      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
      </div>
     </div>
    </div>
@@ -1939,7 +1949,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><span class="dfn-paneled" id="term-for-dom-window">window</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[page-visibility]</a> defines the following terms:
+    <a data-link-type="biblio">[PAGE-VISIBILITY]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dom-visibilitystate-visible">visible</span>
     </ul>
@@ -1968,7 +1978,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
-   <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/"><cite>Secure Contexts</cite></a>. 18 September 2021. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
+   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/"><cite>Secure Contexts</cite></a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
@@ -1983,15 +1993,15 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dt id="biblio-g-force">[G-FORCE]
    <dd><a href="https://en.wikipedia.org/wiki/G-force"><cite>G-Force</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/G-force">https://en.wikipedia.org/wiki/G-force</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Chris Harrelson. <a href="https://www.w3.org/TR/geometry-1/"><cite>Geometry Interfaces Module Level 1</cite></a>. 4 December 2018. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
+   <dd>Simon Pieters; Chris Harrelson. <a href="https://drafts.fxtf.org/geometry/"><cite>Geometry Interfaces Module Level 1</cite></a>. URL: <a href="https://drafts.fxtf.org/geometry/">https://drafts.fxtf.org/geometry/</a>
    <dt id="biblio-gimballock">[GIMBALLOCK]
    <dd><a href="https://en.wikipedia.org/wiki/Gimbal_Lock"><cite>Gimbal Lock</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Gimbal_Lock">https://en.wikipedia.org/wiki/Gimbal_Lock</a>
    <dt id="biblio-indoorpos">[INDOORPOS]
    <dd>Shala, Ubejd; Angel Rodriguez. <a href="http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A475619&amp;dswid=9050"><cite>Indoor positioning using sensor-fusion in android devices</cite></a>. 2011. URL: <a href="http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A475619&amp;dswid=9050">http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A475619&amp;dswid=9050</a>
    <dt id="biblio-motion-sensors">[MOTION-SENSORS]
-   <dd>Kenneth Christiansen; Alexander Shalamov. <a href="https://www.w3.org/TR/motion-sensors/"><cite>Motion Sensors Explainer</cite></a>. 30 August 2017. NOTE. URL: <a href="https://www.w3.org/TR/motion-sensors/">https://www.w3.org/TR/motion-sensors/</a>
+   <dd>Kenneth Christiansen; Alexander Shalamov. <a href="https://w3c.github.io/motion-sensors/"><cite>Motion Sensors Explainer</cite></a>. URL: <a href="https://w3c.github.io/motion-sensors/">https://w3c.github.io/motion-sensors/</a>
    <dt id="biblio-quaternions">[QUATERNIONS]
-   <dd><a href="https://en.wikipedia.org/wiki/Quaternion"><cite> Quaternions</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a>
+   <dd><a href="https://en.wikipedia.org/wiki/Quaternion"><cite>Quaternions</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a>
    <dt id="biblio-sensorid">[SENSORID]
    <dd>Zhang, Jiexin; Beresford, Alastair R.; Sheret, Ian. <a href="https://doi.org/10.1109/SP.2019.00072"><cite>SensorID: Sensor Calibration Fingerprinting for Smartphones</cite></a>. 2019. URL: <a href="https://doi.org/10.1109/SP.2019.00072">https://doi.org/10.1109/SP.2019.00072</a>
    <dt id="biblio-touch">[TOUCH]
