@@ -5,9 +5,10 @@
   <title>DeviceOrientation Event Specification</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="5791e0bf5081ca56b653312d1929fd7b1383b6b1" name="document-revision">
+  <meta content="8a2fe13d0a53df09a87c82d8525ff35fb765e904" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -270,61 +271,226 @@ a[href].issue-return {
     margin-bottom: 0;
 }</style>
 <style>/* style-mdn-anno */
-
-            @media (max-width: 767px) { .mdn-anno { opacity: .1 } }
-            .mdn-anno { font: 1em sans-serif; padding: 0.3em; position: absolute; z-index: 8; right: 0.3em; background: #EEE; color: black; box-shadow: 0 0 3px #999; overflow: hidden; border-collapse: initial; border-spacing: initial; min-width: 9em; max-width: min-content; white-space: nowrap; word-wrap: normal; hyphens: none}
-            .mdn-anno:not(.wrapped) { opacity: 1}
-            .mdn-anno:hover { z-index: 9 }
-            .mdn-anno.wrapped { min-width: 0 }
-            .mdn-anno.wrapped > :not(button) { display: none; }
-            .mdn-anno > .mdn-anno-btn { cursor: pointer; border: none; color: #000; background: transparent; margin: -8px; float: right; padding: 10px 8px 8px 8px; outline: none; }
-            .mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag { color: red; padding-right: 2px; }
-            .mdn-anno > .mdn-anno-btn > .all-engines-flag { color: green; padding-right: 2px; }
-            .mdn-anno > .mdn-anno-btn > span { color: #fff; background-color: #000; font-weight: normal; font-family: zillaslab, Palatino, "Palatino Linotype", serif; padding: 2px 3px 0px 3px; line-height: 1.3em; vertical-align: top; }
-            .mdn-anno > .feature { margin-top: 20px; }
-            .mdn-anno > .feature:not(:first-of-type) { border-top: 1px solid #999; margin-top: 6px; padding-top: 2px; }
-            .mdn-anno > .feature > .less-than-two-engines-text { color: red }
-            .mdn-anno > .feature > .all-engines-text { color: green }
-            .mdn-anno > .feature > p { font-size: .75em; margin-top: 6px; margin-bottom: 0; }
-            .mdn-anno > .feature > p + p { margin-top: 3px; }
-            .mdn-anno > .feature > .support { display: block; font-size: 0.6em; margin: 0; padding: 0; margin-top: 2px }
-            .mdn-anno > .feature > .support + div { padding-top: 0.5em; }
-            .mdn-anno > .feature > .support > hr { display: block; border: none; border-top: 1px dotted #999; padding: 3px 0px 0px 0px; margin: 2px 3px 0px 3px; }
-            .mdn-anno > .feature > .support > hr::before { content: ""; }
-            .mdn-anno > .feature > .support > span { padding: 0.2em 0; display: block; display: table; }
-            .mdn-anno > .feature > .support > span.no { color: #CCCCCC; filter: grayscale(100%); }
-            .mdn-anno > .feature > .support > span.no::before { opacity: 0.5; }
-            .mdn-anno > .feature > .support > span:first-of-type { padding-top: 0.5em; }
-            .mdn-anno > .feature > .support > span > span { padding: 0 0.5em; display: table-cell; }
-            .mdn-anno > .feature > .support > span > span:first-child { width: 100%; }
-            .mdn-anno > .feature > .support > span > span:last-child { width: 100%; white-space: pre; padding: 0; }
-            .mdn-anno > .feature > .support > span::before { content: ' '; display: table-cell; min-width: 1.5em; height: 1.5em; background: no-repeat center center; background-size: contain; text-align: right; font-size: 0.75em; font-weight: bold; }
-            .mdn-anno > .feature > .support > .chrome_android::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
-            .mdn-anno > .feature > .support > .firefox_android::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
-            .mdn-anno > .feature > .support > .chrome::before { background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg); }
-            .mdn-anno > .feature > .support > .edge_blink::before { background-image: url(https://resources.whatwg.org/browser-logos/edge.svg); }
-            .mdn-anno > .feature > .support > .edge::before { background-image: url(https://resources.whatwg.org/browser-logos/edge_legacy.svg); }
-            .mdn-anno > .feature > .support > .firefox::before { background-image: url(https://resources.whatwg.org/browser-logos/firefox.png); }
-            .mdn-anno > .feature > .support > .ie::before { background-image: url(https://resources.whatwg.org/browser-logos/ie.png); }
-            .mdn-anno > .feature > .support > .safari_ios::before { background-image: url(https://resources.whatwg.org/browser-logos/safari-ios.svg); }
-            .mdn-anno > .feature > .support > .nodejs::before { background-image: url(https://nodejs.org/static/images/favicons/favicon.ico); }
-            .mdn-anno > .feature > .support > .opera_android::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
-            .mdn-anno > .feature > .support > .opera::before { background-image: url(https://resources.whatwg.org/browser-logos/opera.svg); }
-            .mdn-anno > .feature > .support > .safari::before { background-image: url(https://resources.whatwg.org/browser-logos/safari.png); }
-            .mdn-anno > .feature > .support > .samsunginternet_android::before { background-image: url(https://resources.whatwg.org/browser-logos/samsung.svg); }
-            .mdn-anno > .feature > .support > .webview_android::before { background-image: url(https://resources.whatwg.org/browser-logos/android-webview.png); }
-            .name-slug-mismatch { color: red }
-            .caniuse-status:hover { z-index: 9; }
-
-            /* dt, li, .issue, .note, and .example are "position: relative", so to put annotation at right margin, must move to right of containing block */
-            .h-entry:not(.status-LS) dt > .mdn-anno, .h-entry:not(.status-LS) li > .mdn-anno, .h-entry:not(.status-LS) .issue > .mdn-anno, .h-entry:not(.status-LS) .note > .mdn-anno, .h-entry:not(.status-LS) .example > .mdn-anno { right: -6.7em; }
-            .h-entry p + .mdn-anno { margin-top: 0; }
-            h2 + .mdn-anno.after { margin: -48px 0 0 0; }
-            h3 + .mdn-anno.after { margin: -46px 0 0 0; }
-            h4 + .mdn-anno.after { margin: -42px 0 0 0; }
-            h5 + .mdn-anno.after { margin: -40px 0 0 0; }
-            h6 + .mdn-anno.after { margin: -40px 0 0 0; }
-            </style>
+@media (max-width: 767px) {
+	.mdn-anno {
+		opacity: .1;
+	}
+}
+:root {
+	--mdn-bg: #EEE;
+	--mdn-shadow: #999;
+	--mdn-nosupport-text: #ccc;
+}
+.mdn-anno {
+	font: 1em sans-serif;
+	padding: 0.3em;
+	position: absolute;
+	z-index: 8;
+	right: 0.3em;
+	background: var(--mdn-bg, #EEE);
+	color: var(--text, black);
+	box-shadow: 0 0 3px var(--mdn-shadow, #999);
+	overflow: hidden;
+	border-collapse: initial;
+	border-spacing: initial;
+	min-width: 9em;
+	max-width: min-content;
+	white-space: nowrap;
+	word-wrap: normal;
+	hyphens: none;
+	border-radius: .25em;
+}
+.mdn-anno:not(.wrapped) {
+	opacity: 1;
+	z-index: 9;
+}
+.mdn-anno.wrapped {
+	min-width: 0;
+}
+.mdn-anno.wrapped > :not(button) {
+	display: none;
+}
+.mdn-anno:hover {
+	outline: var(--text, black) 1px solid;
+}
+.mdn-anno > .mdn-anno-btn {
+	cursor: pointer;
+	border: none;
+	color: #000;
+	background: transparent;
+	margin: -8px;
+	float: right;
+	padding: 10px 8px 8px 8px;
+	outline: none;
+}
+.mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag {
+	color: red;
+	padding-right: 2px;
+}
+.mdn-anno > .mdn-anno-btn > .all-engines-flag {
+	color: green;
+	padding-right: 2px;
+}
+.mdn-anno > .mdn-anno-btn > span {
+	color: #fff;
+	background-color: #000;
+	font-weight: normal;
+	font-family: zillaslab, Palatino, "Palatino Linotype", serif;
+	padding: 2px 3px 0px 3px;
+	line-height: 1.3em;
+	vertical-align: top;
+}
+.mdn-anno > .feature {
+	margin-top: 20px;
+}
+.mdn-anno > .feature:not(:first-of-type) {
+	border-top: 1px solid #999;
+	margin-top: 6px;
+	padding-top: 2px;
+}
+.mdn-anno > .feature > .less-than-two-engines-text {
+	color: red;
+}
+.mdn-anno > .feature > .all-engines-text {
+	color: green;
+}
+.mdn-anno > .feature > p {
+	font-size: .75em;
+	margin-top: 6px;
+	margin-bottom: 0;
+}
+.mdn-anno > .feature > p + p {
+	margin-top: 3px;
+}
+.mdn-anno > .feature > .support {
+	display: block;
+	font-size: 0.6em;
+	margin: 0;
+	padding: 0;
+	margin-top: 2px;
+}
+.mdn-anno > .feature > .support + div {
+	padding-top: 0.5em;
+}
+.mdn-anno > .feature > .support > hr {
+	display: block;
+	border: none;
+	border-top: 1px dotted #999;
+	padding: 3px 0px 0px 0px;
+	margin: 2px 3px 0px 3px;
+}
+.mdn-anno > .feature > .support > hr::before {
+	content: "";
+}
+.mdn-anno > .feature > .support > span {
+	padding: 0.2em 0;
+	display: block;
+	display: table;
+}
+.mdn-anno > .feature > .support > span.no {
+	color: var(--mdn-nosupport-text);
+	filter: grayscale(100%);
+}
+.mdn-anno > .feature > .support > span.no::before {
+	opacity: 0.5;
+}
+.mdn-anno > .feature > .support > span:first-of-type {
+	padding-top: 0.5em;
+}
+.mdn-anno > .feature > .support > span > span {
+	padding: 0 0.5em;
+	display: table-cell;
+}
+.mdn-anno > .feature > .support > span > span:first-child {
+	width: 100%;
+}
+.mdn-anno > .feature > .support > span > span:last-child {
+	width: 100%;
+	white-space: pre;
+	padding: 0;
+}
+.mdn-anno > .feature > .support > span::before {
+	content: ' ';
+	display: table-cell;
+	min-width: 1.5em;
+	height: 1.5em;
+	background: no-repeat center center;
+	background-size: contain;
+	text-align: right;
+	font-size: 0.75em;
+	font-weight: bold;
+}
+.mdn-anno > .feature > .support > .chrome_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg);
+}
+.mdn-anno > .feature > .support > .firefox_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/firefox.png);
+}
+.mdn-anno > .feature > .support > .chrome::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/chrome.svg);
+}
+.mdn-anno > .feature > .support > .edge_blink::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/edge.svg);
+}
+.mdn-anno > .feature > .support > .edge::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/edge_legacy.svg);
+}
+.mdn-anno > .feature > .support > .firefox::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/firefox.png);
+}
+.mdn-anno > .feature > .support > .ie::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/ie.png);
+}
+.mdn-anno > .feature > .support > .safari_ios::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/safari-ios.svg);
+}
+.mdn-anno > .feature > .support > .nodejs::before {
+	background-image: url(https://nodejs.org/static/images/favicons/favicon.ico);
+}
+.mdn-anno > .feature > .support > .opera_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/opera.svg);
+}
+.mdn-anno > .feature > .support > .opera::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/opera.svg);
+}
+.mdn-anno > .feature > .support > .safari::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/safari.png);
+}
+.mdn-anno > .feature > .support > .samsunginternet_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/samsung.svg);
+}
+.mdn-anno > .feature > .support > .webview_android::before {
+	background-image: url(https://resources.whatwg.org/browser-logos/android-webview.png);
+}
+.name-slug-mismatch {
+	color: red;
+}
+.caniuse-status:hover {
+	z-index: 9;
+}
+/* dt, li, .issue, .note, and .example are "position: relative", so to put annotation at right margin, must move to right of containing block */;
+.h-entry:not(.status-LS) dt > .mdn-anno, .h-entry:not(.status-LS) li > .mdn-anno, .h-entry:not(.status-LS) .issue > .mdn-anno, .h-entry:not(.status-LS) .note > .mdn-anno, .h-entry:not(.status-LS) .example > .mdn-anno {
+	right: -6.7em;
+}
+.h-entry p + .mdn-anno {
+	margin-top: 0;
+}
+ h2 + .mdn-anno.after {
+	margin: -48px 0 0 0;
+}
+ h3 + .mdn-anno.after {
+	margin: -46px 0 0 0;
+}
+ h4 + .mdn-anno.after {
+	margin: -42px 0 0 0;
+}
+ h5 + .mdn-anno.after {
+	margin: -40px 0 0 0;
+}
+ h6 + .mdn-anno.after {
+	margin: -40px 0 0 0;
+}
+</style>
 <style>/* style-selflinks */
 
 :root {
@@ -351,6 +517,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -566,6 +740,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
+}@media (prefers-color-scheme: dark) {
+	:root {
+		--mdn-bg: #222;
+		--mdn-shadow: #444;
+		--mdn-nosupport-text: #666;
+	}
 }
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -634,27 +814,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-19">19 September 2022</time></p>
-   <div data-fill-with="spec-metadata">
-    <dl>
-     <dt>This version:
-     <dd><a class="u-url" href="https://w3c.github.io/deviceorientation/">https://w3c.github.io/deviceorientation/</a>
-     <dt>Latest published version:
-     <dd><a href="https://www.w3.org/TR/orientation-event/">https://www.w3.org/TR/orientation-event/</a>
-     <dt>Feedback:
-     <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Borientation-event%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[orientation-event] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
-     <dd><a href="https://github.com/w3c/deviceorientation/issues">DeviceOrientation Event Specification Issues Repository</a>
-     <dt class="editor">Editor:
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Devices and Sensors Working Group</span>
-     <dt class="editor">Former Editors:
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Rich Tibbett</span> (<span class="p-org org">Opera Software ASA</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Tim Volodine</span> (<span class="p-org org">Google Inc</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Steve Block</span> (<span class="p-org org">Google Inc until July 2012</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Andrei Popescu</span> (<span class="p-org org">Google Inc until July 2012</span>)
-    </dl>
-   </div>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-09">9 January 2023</time></p>
+   <details open>
+    <summary>More details about this document</summary>
+    <div data-fill-with="spec-metadata">
+     <dl>
+      <dt>This version:
+      <dd><a class="u-url" href="https://w3c.github.io/deviceorientation/">https://w3c.github.io/deviceorientation/</a>
+      <dt>Latest published version:
+      <dd><a href="https://www.w3.org/TR/orientation-event/">https://www.w3.org/TR/orientation-event/</a>
+      <dt>Feedback:
+      <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Borientation-event%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[orientation-event] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
+      <dd><a href="https://github.com/w3c/deviceorientation/issues">DeviceOrientation Event Specification Issues Repository</a>
+      <dt class="editor">Editor:
+      <dd class="editor p-author h-card vcard"><span class="p-name fn">Devices and Sensors Working Group</span>
+      <dt class="editor">Former Editors:
+      <dd class="editor p-author h-card vcard"><span class="p-name fn">Rich Tibbett</span> (<span class="p-org org">Opera Software ASA</span>)
+      <dd class="editor p-author h-card vcard"><span class="p-name fn">Tim Volodine</span> (<span class="p-org org">Google Inc</span>)
+      <dd class="editor p-author h-card vcard"><span class="p-name fn">Steve Block</span> (<span class="p-org org">Google Inc until July 2012</span>)
+      <dd class="editor p-author h-card vcard"><span class="p-name fn">Andrei Popescu</span> (<span class="p-org org">Google Inc until July 2012</span>)
+     </dl>
+    </div>
+   </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -675,7 +858,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a>. </p>
    <p> This document was produced by a group operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
@@ -730,12 +913,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <main>
    <h2 class="heading settled" data-level="1" id="conformance-requirements"><span class="secno">1. </span><span class="content">Conformance requirements</span><a class="self-link" href="#conformance-requirements"></a></h2>
    <p>All diagrams, examples, and notes in this specification are non-normative, as are all sections explicitly marked non-normative. Everything else in this specification is normative.</p>
-   <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC2119. For readability, these words do not appear in all uppercase letters in this specification. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a></p>
+   <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC2119. For readability, these words do not appear in all uppercase letters in this specification. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a></p>
    <p>Requirements phrased in the imperative as part of algorithms (such as "strip any leading space characters" or "return false and abort these steps") are to be interpreted with the meaning of the key word ("must", "should", "may", etc) used in introducing the algorithm.</p>
    <p>Conformance requirements phrased as algorithms or specific steps may be implemented in any manner, so long as the end result is equivalent. (In particular, the algorithms defined in this specification are intended to be easy to follow, and not intended to be performant.)</p>
    <p>User agents may impose implementation-specific limits on otherwise unconstrained inputs, e.g. to prevent denial of service attacks, to guard against running out of memory, or to work around platform-specific limitations.</p>
-   <p>Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification, as this specification uses that specification’s terminology. <a data-link-type="biblio" href="#biblio-webidl">[WEBIDL]</a></p>
-   <p>The events introduced by this specification implement the Event interface defined in the DOM Specification, <a data-link-type="biblio" href="#biblio-dom">[DOM]</a>. Implementations must therefore support this specification.</p>
+   <p>Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification, as this specification uses that specification’s terminology. <a data-link-type="biblio" href="#biblio-webidl" title="Web IDL Standard">[WEBIDL]</a></p>
+   <p>The events introduced by this specification implement the Event interface defined in the DOM Specification, <a data-link-type="biblio" href="#biblio-dom" title="DOM Standard">[DOM]</a>. Implementations must therefore support this specification.</p>
    <h2 class="heading settled" data-level="2" id="introduction"><span class="secno">2. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>This specification provides several new DOM events for obtaining information about the physical orientation and movement of the hosting device. The information provided by the events is not raw sensor data, but rather high-level data which is agnostic to the underlying source of information. Common sources of information include gyroscopes, compasses and accelerometers.</p>
@@ -864,7 +1047,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientation" id="ref-for-dom-window-ondeviceorientation">ondeviceorientation</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation②">deviceorientation</a></code>.</p>
+   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientation" id="ref-for-dom-window-ondeviceorientation">ondeviceorientation</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation②">deviceorientation</a></code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><span>MDN</span></button>
     <div class="feature">
@@ -880,7 +1063,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window"><c- g>Window</c-></a> {
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondeviceorientation"><code><c- g>ondeviceorientation</c-></code></dfn>;
 };
 
@@ -936,7 +1119,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> does not have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin①">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -952,7 +1135,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li>
      <p>Return <var>promise</var>. </p>
    </ol>
-   <p>Whenever a significant change in orientation occurs, the User Agent must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation③">deviceorientation</a></code> using <code class="idl"><a data-link-type="idl" href="#deviceorientationevent" id="ref-for-deviceorientationevent">DeviceOrientationEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window①">window</a></code> object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.</p>
+   <p>Whenever a significant change in orientation occurs, the User Agent must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation③">deviceorientation</a></code> using <code class="idl"><a data-link-type="idl" href="#deviceorientationevent" id="ref-for-deviceorientationevent">DeviceOrientationEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window①">window</a></code> object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -996,7 +1179,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </div>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> attributes of the event must specify the orientation of the device in terms of the transformation from a coordinate frame fixed on the Earth to a coordinate frame fixed in the device. The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha④">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta③">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma③">gamma</a></code> attributes must be expressed in degrees and must not be more precise than 0.1 degrees. The coordinate frames must be oriented as described below.</p>
-   <p>The Earth coordinate frame is a 'East, North, Up' frame at the user’s location. It has the following 3 axes, where the ground plane is tangent to the spheriod of the World Geodetic System 1984 <a data-link-type="biblio" href="#biblio-wgs84">[WGS84]</a>, at the user’s location.</p>
+   <p>The Earth coordinate frame is a 'East, North, Up' frame at the user’s location. It has the following 3 axes, where the ground plane is tangent to the spheriod of the World Geodetic System 1984 <a data-link-type="biblio" href="#biblio-wgs84" title="Department of Defence World Geodetic System 1984">[WGS84]</a>, at the user’s location.</p>
    <ul>
     <li data-md>
      <p>East (X) is in the ground plane, perpendicular to the North axis and positive towards the East.</p>
@@ -1016,7 +1199,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </ul>
    <p>The transformation from the Earth coordinate frame to the device coordinate frame must use the following system of rotations.</p>
    <p>Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
-   <p class="note" role="note"><span>Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
+   <p class="note" role="note"><span>Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
    <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
    <ol id="rotations">
     <li>
@@ -1042,13 +1225,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <div>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</div>
      </div>
    </ol>
-   <p>Thus the angles <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑦">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑥">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑥">gamma</a></code> form a set of intrinsic Tait-Bryan angles of type Z - X' - Y''. <a data-link-type="biblio" href="#biblio-eulerangles">[EULERANGLES]</a> Note that this choice of angles follows mathematical convention, but means that alpha is in the opposite sense to a compass heading. It also means that the angles do not match the roll-pitch-yaw convention used in vehicle dynamics.</p>
+   <p>Thus the angles <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑦">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑥">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑥">gamma</a></code> form a set of intrinsic Tait-Bryan angles of type Z - X' - Y''. <a data-link-type="biblio" href="#biblio-eulerangles" title="Euler Angles">[EULERANGLES]</a> Note that this choice of angles follows mathematical convention, but means that alpha is in the opposite sense to a compass heading. It also means that the angles do not match the roll-pitch-yaw convention used in vehicle dynamics.</p>
    <p>The <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation④">deviceorientation</a></code> event tries to provide relative values for the three angles (relative to some arbitrary orientation), based on just the accelerometer and the gyroscope. The implementation can still decide to provide absolute orientation if relative is not available or the resulting data is more accurate. In either case, the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute①">absolute</a></code> property must be set accordingly to reflect the choice.</p>
    <p>Implementations that are unable to provide all three angles must set the values of the unknown angles to null. If any angles are provided, the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute②">absolute</a></code> property must be set appropriately. If an implementation can never provide orientation information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑧">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑦">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑦">gamma</a></code> attributes set to null.</p>
    <h3 class="heading settled" data-level="4.2" id="deviceorientationabsolute"><span class="secno">4.2. </span><span class="content">deviceorientationabsolute Event</span><a class="self-link" href="#deviceorientationabsolute"></a></h3>
    <div class="issue" id="issue-58b60688"><a class="self-link" href="#issue-58b60688"></a> The <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute">deviceorientationabsolute</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a></code> event handler IDL attribute have <a href="https://wpt.fyi/results/orientation-event/ondeviceorientationabsolute.https.html">limited implementation experience</a>. </div>
-   <p>User agents implementing this specification must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn> using <code class="idl"><a data-link-type="idl" href="#deviceorientationevent" id="ref-for-deviceorientationevent①">DeviceOrientationEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window②">window</a></code> object whenever a significant change in orientation occurs.</p>
-   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute①">ondeviceorientationabsolute</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window③">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type①">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute①">deviceorientationabsolute</a></code>.</p>
+   <p>User agents implementing this specification must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire①">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn> using <code class="idl"><a data-link-type="idl" href="#deviceorientationevent" id="ref-for-deviceorientationevent①">DeviceOrientationEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window②">window</a></code> object whenever a significant change in orientation occurs.</p>
+   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute①">ondeviceorientationabsolute</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window③">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type①">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute①">deviceorientationabsolute</a></code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
     <div class="feature">
@@ -1065,7 +1248,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window①"><c- g>Window</c-></a> {
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window①"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondeviceorientationabsolute"><code><c- g>ondeviceorientationabsolute</c-></code></dfn>;
 };
 </pre>
@@ -1073,12 +1256,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <h3 class="heading settled" data-level="4.3" id="compassneedscalibration"><span class="secno">4.3. </span><span class="content">compassneedscalibration Event</span><a class="self-link" href="#compassneedscalibration"></a></h3>
    <div class="issue" id="issue-d45eac76"><a class="self-link" href="#issue-d45eac76"></a> The <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration①">compassneedscalibration</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-oncompassneedscalibration" id="ref-for-dom-window-oncompassneedscalibration">oncompassneedscalibration</a></code> event handler IDL attribute have <a href="https://github.com/w3c/deviceorientation/issues/38">limited implementation experience</a>. </div>
    <p>User agents implementing this specification must provide a new DOM event, named <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-compassneedscalibration"><code>compassneedscalibration</code></dfn>.</p>
-   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-oncompassneedscalibration" id="ref-for-dom-window-oncompassneedscalibration①">oncompassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window④">window</a></code> object. The type of the corresponding event must be <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration②">compassneedscalibration</a></code>.</p>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window②"><c- g>Window</c-></a> {
+   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-oncompassneedscalibration" id="ref-for-dom-window-oncompassneedscalibration①">oncompassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window④">window</a></code> object. The type of the corresponding event must be <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration②">compassneedscalibration</a></code>.</p>
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window②"><c- g>Window</c-></a> {
     <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler②"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-oncompassneedscalibration"><code><c- g>oncompassneedscalibration</c-></code></dfn>;
 };
 </pre>
-   <p>User agents must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration③">compassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑤">window</a></code> object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑥">deviceorientation</a></code> event.</p>
+   <p>User agents must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire②">fire an event</a> named <code class="idl"><a data-link-type="idl" href="#def-compassneedscalibration" id="ref-for-def-compassneedscalibration③">compassneedscalibration</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window⑤">window</a></code> object when the user agent determines that a compass used to obtain orientation data is in need of calibration. Furthermore, user agents should only fire the event if calibrating the compass will increase the accuracy of the data provided by the <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑥">deviceorientation</a></code> event.</p>
    <p>The default action of this event should be for the user agent to present the user with details of how to calibrate the compass. The event must be cancelable, so that web sites can provide their own alternative calibration UI.</p>
    <h3 class="heading settled" data-level="4.4" id="devicemotion"><span class="secno">4.4. </span><span class="content">devicemotion Event</span><a class="self-link" href="#devicemotion"></a></h3>
    <div class="mdn-anno wrapped after">
@@ -1110,7 +1293,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-   <p>User agents implementing this specification must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire③">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-devicemotion"><code>devicemotion</code></dfn> using <code class="idl"><a data-link-type="idl" href="#devicemotionevent" id="ref-for-devicemotionevent">DeviceMotionEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑥">window</a></code> object.</p>
+   <p>User agents implementing this specification must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire③">fire an event</a> named <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-devicemotion"><code>devicemotion</code></dfn> using <code class="idl"><a data-link-type="idl" href="#devicemotionevent" id="ref-for-devicemotionevent">DeviceMotionEvent</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window⑥">window</a></code> object.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -1127,7 +1310,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondevicemotion" id="ref-for-dom-window-ondevicemotion">ondevicemotion</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window" id="ref-for-dom-window⑦">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type②">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion②">devicemotion</a></code>.</p>
+   <p>User agents must also provide an event handler IDL attribute <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a> named <code class="idl"><a data-link-type="idl" href="#dom-window-ondevicemotion" id="ref-for-dom-window-ondevicemotion">ondevicemotion</a></code> on the <code class="idl"><a class="idl-code" data-link-type="attribute" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window" id="ref-for-dom-window⑦">window</a></code> object. The type of the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type②">event handler event type</a> must be <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion②">devicemotion</a></code>.</p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><span>MDN</span></button>
     <div class="feature">
@@ -1247,7 +1430,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </div>
     </div>
    </div>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window" id="ref-for-window③"><c- g>Window</c-></a> {
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window③"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext③"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler③"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-window-ondevicemotion"><code><c- g>ondevicemotion</c-></code></dfn>;
 };
 
@@ -1309,7 +1492,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission②">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object③">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation①">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object④">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin④">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -1360,7 +1543,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </div>
    <p>Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply the acceleration including the effect of gravity. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity④">accelerationIncludingGravity</a></code> attribute must be initialized with the acceleration of the hosting device, plus an acceleration equal and opposite to the acceleration due to gravity. Again, the acceleration must be given in the body frame defined in <a href="#deviceorientation">deviceorientation Event</a> section and must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.</p>
-   <p class="note" role="note">Note: in practice, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> represents the raw readings obtained from an <a href="https://w3c.github.io/motion-sensors/#accelerometer">Motion Sensors Explainer § accelerometer</a>, or the <a data-link-type="biblio" href="#biblio-g-force">[G-FORCE]</a> while <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code> provides the readings of a <a href="https://w3c.github.io/motion-sensors/#linear-acceleration-sensor">Motion Sensors Explainer § linear-acceleration-sensor</a> and is likely a sensor fusion. </p>
+   <p class="note" role="note">Note: in practice, <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity⑤">accelerationIncludingGravity</a></code> represents the raw readings obtained from an <a href="https://w3c.github.io/motion-sensors/#accelerometer">Motion Sensors Explainer § accelerometer</a>, or the <a data-link-type="biblio" href="#biblio-g-force" title="G-Force">[G-FORCE]</a> while <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration④">acceleration</a></code> provides the readings of a <a href="https://w3c.github.io/motion-sensors/#linear-acceleration-sensor">Motion Sensors Explainer § linear-acceleration-sensor</a> and is likely a sensor fusion. </p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -1401,7 +1584,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>Implementations may choose to share device orientation &amp; motion only if the
 user (or user agent on behalf of the user) has granted <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="permission">permission</dfn>.
 The <a data-link-type="dfn" href="#permission" id="ref-for-permission④">permission</a> to share device orientation &amp; motion
-for a given <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a> is one of three strings: </p>
+for a given <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> is one of three strings: </p>
    <dl>
     <dt>"<code>default</code>" 
     <dd>
@@ -1420,23 +1603,23 @@ meaning "<code>granted</code>". In that case
 "<code>granted</code>" is simply returned as there would be no reason
 for the application to ask for <a data-link-type="dfn" href="#permission" id="ref-for-permission⑤">permission</a>. </p>
    <h2 class="heading settled" data-level="5" id="security-and-privacy"><span class="secno">5. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy"></a></h2>
-   <p>The API defined in this specification can be used to obtain information from hardware sensors, such as accelerometer, gyroscope and magnetometer. Provided data may be considered as sensitive and could become a subject of attack from malicious web pages. The calibration of accelerometers, gyroscopes and magnetometers may reveal persistent details about the particular sensor hardware <a data-link-type="biblio" href="#biblio-sensorid">[SENSORID]</a>. The main attack vectors can be categorized into following categories:</p>
+   <p>The API defined in this specification can be used to obtain information from hardware sensors, such as accelerometer, gyroscope and magnetometer. Provided data may be considered as sensitive and could become a subject of attack from malicious web pages. The calibration of accelerometers, gyroscopes and magnetometers may reveal persistent details about the particular sensor hardware <a data-link-type="biblio" href="#biblio-sensorid" title="SensorID: Sensor Calibration Fingerprinting for Smartphones">[SENSORID]</a>. The main attack vectors can be categorized into following categories:</p>
    <ul>
     <li data-md>
-     <p>Monitoring of a user input <a data-link-type="biblio" href="#biblio-touch">[TOUCH]</a></p>
+     <p>Monitoring of a user input <a data-link-type="biblio" href="#biblio-touch" title="TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript">[TOUCH]</a></p>
     <li data-md>
-     <p>Location tracking <a data-link-type="biblio" href="#biblio-indoorpos">[INDOORPOS]</a></p>
+     <p>Location tracking <a data-link-type="biblio" href="#biblio-indoorpos" title="Indoor positioning using sensor-fusion in android devices">[INDOORPOS]</a></p>
     <li data-md>
-     <p>User identification <a data-link-type="biblio" href="#biblio-fingerprint">[FINGERPRINT]</a></p>
+     <p>User identification <a data-link-type="biblio" href="#biblio-fingerprint" title="Mobile Device Identification via Sensor Fingerprinting">[FINGERPRINT]</a></p>
    </ul>
    <p>In light of that, implementations may consider permissions or visual indicators to signify the use of sensors by the web page. Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:</p>
    <ul>
     <li data-md>
-     <p>fire events only when <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-visible" id="ref-for-dom-visibilitystate-visible">visible</a>,</p>
+     <p>fire events only when <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-visible" id="ref-for-dom-visibilitystate-visible">visible</a>,</p>
     <li data-md>
-     <p>fire events only on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> and same-origin <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context" id="ref-for-nested-browsing-context">nested browsing contexts</a>,</p>
+     <p>fire events only on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> and same-origin <a data-link-type="dfn">nested browsing contexts</a>,</p>
     <li data-md>
-     <p>fire events only on secure browsing contexts <a data-link-type="biblio" href="#biblio-secure-contexts">[SECURE-CONTEXTS]</a>,</p>
+     <p>fire events only on secure browsing contexts <a data-link-type="biblio" href="#biblio-secure-contexts" title="Secure Contexts">[SECURE-CONTEXTS]</a>,</p>
     <li data-md>
      <p>limit precision of attribute values as described in the previous sections.</p>
    </ul>
@@ -1532,7 +1715,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <p>as expected.</p>
    <h3 class="heading settled" id="worked-example-2"><span class="content">A.2 Alternate device orientation representations</span><a class="self-link" href="#worked-example-2"></a></h3>
    <p><em>This section is non-normative.</em></p>
-   <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock <a data-link-type="biblio" href="#biblio-gimballock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert the Device Orientation values to other rotation representations.</p>
+   <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock <a data-link-type="biblio" href="#biblio-gimballock" title="Gimbal Lock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert the Device Orientation values to other rotation representations.</p>
    <p>The first alternate orientation representation uses rotation matrices. By combining the component rotation matrices provided in the <a href="#worked-example">worked example</a> above we can represent the orientation of the device body frame as a combined rotation matrix.</p>
    <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.</p>
    <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
@@ -1578,7 +1761,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
 <c- p>};</c->
 </pre>
    </div>
-   <p>Another alternate representation of device orientation data is as Quaternions. <a data-link-type="biblio" href="#biblio-quaternions">[QUATERNIONS]</a></p>
+   <p>Another alternate representation of device orientation data is as Quaternions. <a data-link-type="biblio" href="#biblio-quaternions" title="Quaternions">[QUATERNIONS]</a></p>
    <p>If q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, q is as follows.</p>
    <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" height="192" src="equation14.png" width="534"> </object>
    <div class="example" id="example-8f884833">
@@ -1737,6 +1920,19 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><a href="#dom-devicemotioneventaccelerationinit-z">dict-member for DeviceMotionEventAccelerationInit</a><span>, in § 4.4</span>
     </ul>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-relevant-settings-object">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-relevant-settings-object">4.1. deviceorientation Event</a> <a href="#ref-for-relevant-settings-object①">(2)</a> <a href="#ref-for-relevant-settings-object②">(3)</a>
+    <li><a href="#ref-for-relevant-settings-object③">4.4. devicemotion Event</a> <a href="#ref-for-relevant-settings-object④">(2)</a> <a href="#ref-for-relevant-settings-object⑤">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-triggered-by-user-activation">
+   <a href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation">https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-triggered-by-user-activation">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-event-orientationchange">
    <a href="https://compat.spec.whatwg.org/#event-orientationchange">https://compat.spec.whatwg.org/#event-orientationchange</a><b>Referenced in:</b>
    <ul>
@@ -1788,7 +1984,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-window">
-   <a href="https://html.spec.whatwg.org/multipage/window-object.html#window">https://html.spec.whatwg.org/multipage/window-object.html#window</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window">https://html.spec.whatwg.org/multipage/nav-history-apis.html#window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-window">4.1. deviceorientation Event</a>
     <li><a href="#ref-for-window①">4.2. deviceorientationabsolute Event</a>
@@ -1796,10 +1992,10 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-window③">4.4. devicemotion Event</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-active-document">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">https://html.spec.whatwg.org/multipage/browsers.html#active-document</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-nav-document">
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document">https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-active-document">5. Security and privacy considerations</a>
+    <li><a href="#ref-for-nav-document">5. Security and privacy considerations</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event-handler-event-type">
@@ -1817,10 +2013,10 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-in-parallel①">4.4. devicemotion Event</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-nested-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-concept-origin">
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-nested-browsing-context">5. Security and privacy considerations</a>
+    <li><a href="#ref-for-concept-origin">4.5. Permission model</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
@@ -1837,14 +2033,26 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-queue-a-task①">4.4. devicemotion Event</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-relevant-global">4.1. deviceorientation Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-top-level-browsing-context">5. Security and privacy considerations</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-transient-activation">
+   <a href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">https://html.spec.whatwg.org/multipage/interaction.html#transient-activation</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-transient-activation">4.1. deviceorientation Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-dom-window">
-   <a href="https://html.spec.whatwg.org/multipage/window-object.html#dom-window">https://html.spec.whatwg.org/multipage/window-object.html#dom-window</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window">https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-window">4.1. deviceorientation Event</a> <a href="#ref-for-dom-window①">(2)</a>
     <li><a href="#ref-for-dom-window②">4.2. deviceorientationabsolute Event</a> <a href="#ref-for-dom-window③">(2)</a>
@@ -1917,6 +2125,12 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
+    <a data-link-type="biblio">[]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-relevant-settings-object">relevant settings object</span>
+     <li><span class="dfn-paneled" id="term-for-triggered-by-user-activation">triggered by user activation</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[COMPATIBILITY]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-event-orientationchange">orientationchange</span>
@@ -1939,13 +2153,15 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <ul>
      <li><span class="dfn-paneled" id="term-for-eventhandler">EventHandler</span>
      <li><span class="dfn-paneled" id="term-for-window">Window</span>
-     <li><span class="dfn-paneled" id="term-for-active-document">active document</span>
+     <li><span class="dfn-paneled" id="term-for-nav-document">active document</span>
      <li><span class="dfn-paneled" id="term-for-event-handler-event-type">event handler event type</span>
      <li><span class="dfn-paneled" id="term-for-in-parallel">in parallel</span>
-     <li><span class="dfn-paneled" id="term-for-nested-browsing-context">nested browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin">origin <small>(for environment settings object)</small></span>
      <li><span class="dfn-paneled" id="term-for-queue-a-task">queue a task</span>
+     <li><span class="dfn-paneled" id="term-for-concept-relevant-global">relevant global object</span>
      <li><span class="dfn-paneled" id="term-for-top-level-browsing-context">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-transient-activation">transient activation</span>
      <li><span class="dfn-paneled" id="term-for-dom-window">window</span>
     </ul>
    <li>
@@ -1985,7 +2201,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-css-transforms-2">[CSS-TRANSFORMS-2]
-   <dd>CSS Transforms Module Level 2 URL: <a href="https://www.w3.org/TR/css-transforms-2/">https://www.w3.org/TR/css-transforms-2/</a>
+   <dd>Tab Atkins Jr.; et al. <a href="https://drafts.csswg.org/css-transforms-2/"><cite>CSS Transforms Module Level 2</cite></a>. URL: <a href="https://drafts.csswg.org/css-transforms-2/">https://drafts.csswg.org/css-transforms-2/</a>
    <dt id="biblio-eulerangles">[EULERANGLES]
    <dd><a href="https://en.wikipedia.org/wiki/Euler_angles"><cite>Euler Angles</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Euler_angles">https://en.wikipedia.org/wiki/Euler_angles</a>
    <dt id="biblio-fingerprint">[FINGERPRINT]
@@ -2010,7 +2226,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dd>National Imagery and Mapping Agency. <a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf"><cite>Department of Defence World Geodetic System 1984</cite></a>. 3 January 2000. Technical Report 8350.2, Third Edition. URL: <a href="http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf">http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window"><c- g>Window</c-></a> {
+<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-window-ondeviceorientation"><code><c- g>ondeviceorientation</c-></code></a>;
 };
 
@@ -2037,15 +2253,15 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <a href="#dom-permissionstate-denied"><code><c- s>"denied"</c-></code></a>,
 };
 
-<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window"><c- g>Window</c-></a> {
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-window-ondeviceorientationabsolute"><code><c- g>ondeviceorientationabsolute</c-></code></a>;
 };
 
-<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window"><c- g>Window</c-></a> {
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
     <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-window-oncompassneedscalibration"><code><c- g>oncompassneedscalibration</c-></code></a>;
 };
 
-<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window"><c- g>Window</c-></a> {
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-window-ondevicemotion"><code><c- g>ondevicemotion</c-></code></a>;
 };
 
@@ -2349,10 +2565,8 @@ document.body.addEventListener("click", function(e) {
 });
 </script>
 <script>/* script-mdn-anno */
-
-            document.body.addEventListener("click", (e) => {
-                if(e.target.closest(".mdn-anno-btn")) {
-                    e.target.closest(".mdn-anno").classList.toggle("wrapped");
-                }
-            });
-            </script>
+document.body.addEventListener("click", (e) => {
+    if(e.target.closest(".mdn-anno-btn")) {
+        e.target.closest(".mdn-anno").classList.toggle("wrapped");
+    }
+});</script>
