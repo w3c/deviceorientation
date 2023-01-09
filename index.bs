@@ -213,7 +213,7 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
    <li><p>Let <var>permission</var> be <a>permission</a> for
    <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
 
-   <li><p>If <var>permission</var> is "<code>default</code>" and the method call was not <a>triggered by user activation</a>, then reject <var>promise</var> with a
+   <li><p>If <var>permission</var> is "<code>default</code>" and <a>relevant global object</a> does not have <a>transient activation</a>, then reject <var>promise</var> with a
    {{NotAllowedError!!exception}} {{DOMException}} and abort these steps.
 
    <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
