@@ -187,11 +187,6 @@ dictionary DeviceOrientationEventInit : EventInit {
     double? gamma = null;
     boolean absolute = false;
 };
-
-enum PermissionState {
-    "granted",
-    "denied",
-};
 </pre>
 
 The {{DeviceOrientationEvent/alpha}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
