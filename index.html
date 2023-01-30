@@ -6,9 +6,9 @@
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
+  <meta content="Bikeshed version 859efb4bd, updated Fri Jan 27 16:04:01 2023 -0800" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="8a2fe13d0a53df09a87c82d8525ff35fb765e904" name="document-revision">
+  <meta content="7e1e1d961cd25762f4ef143fc4d92b0f006ebcb8" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -814,7 +814,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-09">9 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-30">30 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -837,7 +837,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -1075,7 +1075,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②"><c- b>double</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export data-readonly data-type="double?" id="dom-deviceorientationevent-gamma"><code><c- g>gamma</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-deviceorientationevent-absolute"><code><c- g>absolute</c-></code></dfn>;
 
-    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dom-permissionstate" id="ref-for-dom-permissionstate"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-deviceorientationeventinit"><code><c- g>DeviceOrientationEventInit</c-></code></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit" id="ref-for-dictdef-eventinit"><c- n>EventInit</c-></a> {
@@ -1083,11 +1083,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceOrientationEventInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceorientationeventinit-beta"><code><c- g>beta</c-></code><a class="self-link" href="#dom-deviceorientationeventinit-beta"></a></dfn> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a>? <dfn class="idl-code" data-default="null" data-dfn-for="DeviceOrientationEventInit" data-dfn-type="dict-member" data-export data-type="double? " id="dom-deviceorientationeventinit-gamma"><code><c- g>gamma</c-></code><a class="self-link" href="#dom-deviceorientationeventinit-gamma"></a></dfn> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="idl-code" data-default="false" data-dfn-for="DeviceOrientationEventInit" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-deviceorientationeventinit-absolute"><code><c- g>absolute</c-></code><a class="self-link" href="#dom-deviceorientationeventinit-absolute"></a></dfn> = <c- b>false</c->;
-};
-
-<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-permissionstate"><code><c- g>PermissionState</c-></code></dfn> {
-    <dfn class="idl-code" data-dfn-for="PermissionState" data-dfn-type="enum-value" data-export id="dom-permissionstate-granted"><code><c- s>"granted"</c-></code><a class="self-link" href="#dom-permissionstate-granted"></a></dfn>,
-    <dfn class="idl-code" data-dfn-for="PermissionState" data-dfn-type="enum-value" data-export id="dom-permissionstate-denied"><code><c- s>"denied"</c-></code><a class="self-link" href="#dom-permissionstate-denied"></a></dfn>,
 };
 </pre>
    <p>The <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha②">alpha</a></code> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.</p>
@@ -1199,7 +1194,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </ul>
    <p>The transformation from the Earth coordinate frame to the device coordinate frame must use the following system of rotations.</p>
    <p>Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
-   <p class="note" role="note"><span>Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
    <p>Starting with the two frames aligned, the rotations are applied in the following order:</p>
    <ol id="rotations">
     <li>
@@ -1456,7 +1451,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#devicemotioneventrotationrate" id="ref-for-devicemotioneventrotationrate"><c- n>DeviceMotionEventRotationRate</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="DeviceMotionEventRotationRate?" id="dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></dfn>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-devicemotionevent-interval"><code><c- g>interval</c-></code></dfn>;
 
-    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-permissionstate" id="ref-for-enumdef-permissionstate①"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dom-permissionstate" id="ref-for-dom-permissionstate①"><c- n>PermissionState</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="method" data-export data-lt="requestPermission()" id="dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></dfn>();
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></dfn> {
@@ -1852,7 +1847,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><a href="#dom-devicemotionevent-devicemotionevent">constructor for DeviceMotionEvent</a><span>, in § 4.4</span>
      <li><a href="#dom-deviceorientationevent-deviceorientationevent">constructor for DeviceOrientationEvent</a><span>, in § 4.1</span>
     </ul>
-   <li><a href="#dom-permissionstate-denied">"denied"</a><span>, in § 4.1</span>
    <li><a href="#def-devicemotion">devicemotion</a><span>, in § 4.4</span>
    <li><a href="#devicemotionevent">DeviceMotionEvent</a><span>, in § 4.4</span>
    <li><a href="#devicemotioneventacceleration">DeviceMotionEventAcceleration</a><span>, in § 4.4</span>
@@ -1876,7 +1870,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><a href="#dom-devicemotioneventrotationrateinit-gamma">dict-member for DeviceMotionEventRotationRateInit</a><span>, in § 4.4</span>
      <li><a href="#dom-deviceorientationeventinit-gamma">dict-member for DeviceOrientationEventInit</a><span>, in § 4.1</span>
     </ul>
-   <li><a href="#dom-permissionstate-granted">"granted"</a><span>, in § 4.1</span>
    <li>
     interval
     <ul>
@@ -1888,7 +1881,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <li><a href="#dom-window-ondeviceorientation">ondeviceorientation</a><span>, in § 4.1</span>
    <li><a href="#dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a><span>, in § 4.2</span>
    <li><a href="#permission">permission</a><span>, in § 4.5</span>
-   <li><a href="#enumdef-permissionstate">PermissionState</a><span>, in § 4.1</span>
    <li>
     requestPermission()
     <ul>
@@ -2066,6 +2058,13 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-dom-visibilitystate-visible">5. Security and privacy considerations</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-permissionstate">
+   <a href="https://w3c.github.io/permissions/#dom-permissionstate">https://w3c.github.io/permissions/#dom-permissionstate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-permissionstate">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-dom-permissionstate①">4.4. devicemotion Event</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
@@ -2170,6 +2169,11 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><span class="dfn-paneled" id="term-for-dom-visibilitystate-visible">visible</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-permissionstate">PermissionState</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-idl-DOMException">DOMException</span>
@@ -2191,6 +2195,8 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
    <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/"><cite>Page Visibility (Second Edition)</cite></a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
+   <dt id="biblio-permissions">[PERMISSIONS]
+   <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
@@ -2238,7 +2244,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>? <a data-readonly data-type="double?" href="#dom-deviceorientationevent-gamma"><code><c- g>gamma</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-deviceorientationevent-absolute"><code><c- g>absolute</c-></code></a>;
 
-    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-permissionstate"><c- n>PermissionState</c-></a>> <a href="#dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dom-permissionstate"><c- n>PermissionState</c-></a>> <a href="#dom-deviceorientationevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-deviceorientationeventinit"><code><c- g>DeviceOrientationEventInit</c-></code></a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#dictdef-eventinit"><c- n>EventInit</c-></a> {
@@ -2246,11 +2252,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceorientationeventinit-beta"><code><c- g>beta</c-></code></a> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>? <a data-default="null" data-type="double? " href="#dom-deviceorientationeventinit-gamma"><code><c- g>gamma</c-></code></a> = <c- b>null</c->;
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-deviceorientationeventinit-absolute"><code><c- g>absolute</c-></code></a> = <c- b>false</c->;
-};
-
-<c- b>enum</c-> <a href="#enumdef-permissionstate"><code><c- g>PermissionState</c-></code></a> {
-    <a href="#dom-permissionstate-granted"><code><c- s>"granted"</c-></code></a>,
-    <a href="#dom-permissionstate-denied"><code><c- s>"denied"</c-></code></a>,
 };
 
 <c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
@@ -2287,7 +2288,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#devicemotioneventrotationrate"><c- n>DeviceMotionEventRotationRate</c-></a>? <a data-readonly data-type="DeviceMotionEventRotationRate?" href="#dom-devicemotionevent-rotationrate"><code><c- g>rotationRate</c-></code></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-devicemotionevent-interval"><code><c- g>interval</c-></code></a>;
 
-    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-permissionstate"><c- n>PermissionState</c-></a>> <a href="#dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/permissions/#dom-permissionstate"><c- n>PermissionState</c-></a>> <a href="#dom-devicemotionevent-requestpermission"><code><c- g>requestPermission</c-></code></a>();
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-devicemotioneventaccelerationinit"><code><c- g>DeviceMotionEventAccelerationInit</c-></code></a> {
@@ -2378,13 +2379,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <b><a href="#dictdef-deviceorientationeventinit">#dictdef-deviceorientationeventinit</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-deviceorientationeventinit">4.1. deviceorientation Event</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="enumdef-permissionstate">
-   <b><a href="#enumdef-permissionstate">#enumdef-permissionstate</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-permissionstate">4.1. deviceorientation Event</a>
-    <li><a href="#ref-for-enumdef-permissionstate①">4.4. devicemotion Event</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="def-deviceorientationabsolute">
