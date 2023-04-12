@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="23db73200bace0c87175109bb5591bc99d21f6d2" name="document-revision">
+  <meta content="e03086da98945a39a4ac6aa526bc524162bade75" name="document-revision">
 <style>/* style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -808,7 +808,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-03">3 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-12">12 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1023,7 +1023,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> does not have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> does not have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin①">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -1164,7 +1164,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>
        <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission" id="ref-for-permission②">permission</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object③">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin③">origin</a>. </p>
       <li>
-       <p>If <var>permission</var> is "<code>default</code>" and the method call was not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps. </p>
+       <p>If <var>permission</var> is "<code>default</code>" and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> does not have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation①">transient activation</a>, then reject <var>promise</var> with a <code class="idl"><a class="idl-code" data-link-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> and abort these steps. </p>
       <li>
        <p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
    for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object④">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin④">origin</a> is acceptable. If it is, set <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise. </p>
@@ -1536,12 +1536,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <li><a href="#ref-for-relevant-settings-object③">4.3. devicemotion Event</a> <a href="#ref-for-relevant-settings-object④">(2)</a> <a href="#ref-for-relevant-settings-object⑤">(3)</a>
    </ul>
   </aside>
-  <aside aria-labelledby="infopaneltitle-for-1212106cbd312aa8876417bbae421df2" class="dfn-panel" data-for="1212106cbd312aa8876417bbae421df2" id="infopanel-for-1212106cbd312aa8876417bbae421df2">
-   <span id="infopaneltitle-for-1212106cbd312aa8876417bbae421df2" style="display:none">Info about the 'triggered by user activation' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation">https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-triggered-by-user-activation">4.3. devicemotion Event</a>
-   </ul>
-  </aside>
   <aside aria-labelledby="infopaneltitle-for-f283775a81d0563c993cea58ec943179" class="dfn-panel" data-for="f283775a81d0563c993cea58ec943179" id="infopanel-for-f283775a81d0563c993cea58ec943179">
    <span id="infopaneltitle-for-f283775a81d0563c993cea58ec943179" style="display:none">Info about the 'orientationchange' external reference.</span><a href="https://compat.spec.whatwg.org/#event-orientationchange">https://compat.spec.whatwg.org/#event-orientationchange</a><b>Referenced in:</b>
    <ul>
@@ -1643,6 +1637,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <span id="infopaneltitle-for-2233058c8f0998915af8393ee2abbc1d" style="display:none">Info about the 'relevant global object' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-relevant-global">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-concept-relevant-global①">4.3. devicemotion Event</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-c104b697744f6f246969dcc26b898f11" class="dfn-panel" data-for="c104b697744f6f246969dcc26b898f11" id="infopanel-for-c104b697744f6f246969dcc26b898f11">
@@ -1655,6 +1650,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <span id="infopaneltitle-for-5b762d09d78e8674458b84982b3cb3c9" style="display:none">Info about the 'transient activation' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">https://html.spec.whatwg.org/multipage/interaction.html#transient-activation</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-transient-activation">4.1. deviceorientation Event</a>
+    <li><a href="#ref-for-transient-activation①">4.3. devicemotion Event</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-70cc826a4635f67d3a89efe7d82b5c3d" class="dfn-panel" data-for="70cc826a4635f67d3a89efe7d82b5c3d" id="infopanel-for-70cc826a4635f67d3a89efe7d82b5c3d">
@@ -1740,7 +1736,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     <a data-link-type="biblio">[]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="bfb9cb6617f81a424ab20212af73bae3">relevant settings object</span>
-     <li><span class="dfn-paneled" id="1212106cbd312aa8876417bbae421df2">triggered by user activation</span>
     </ul>
    <li>
     <a data-link-type="biblio">[COMPATIBILITY]</a> defines the following terms:
