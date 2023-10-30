@@ -22,9 +22,6 @@ Issue Tracking: DeviceOrientation Event Specification Issues Repository https://
 urlPrefix: https://compat.spec.whatwg.org/; spec: COMPATIBILITY
     type: interface
         text: orientationchange; url: event-orientationchange
-urlPrefix: https://www.w3.org/TR/page-visibility-2/; spec: PAGE-VISIBILITY
-    type: dfn
-        text: visible; url: dom-visibilitystate-visible
 </pre>
 
 Conformance requirements {#conformance-requirements}
@@ -444,9 +441,9 @@ The API defined in this specification can be used to obtain information from har
 
 In light of that, implementations may consider permissions or visual indicators to signify the use of sensors by the web page. Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:
 
-* fire events only when [=active document=] is [=visible=],
-* fire events only on the [=top-level browsing context=] and same-origin [=nested browsing contexts=],
-* fire events only on secure browsing contexts [[!SECURE-CONTEXTS]],
+* fire events only when a [=/navigable=]'s [=navigable/active document=]'s [=visibility state=] is "<code>visible</code>",
+* fire events only on the [=/top-level traversable=]'s [=navigable/active window=] and [=child navigables=]' [=navigable/active windows=] whose [=relevant settings object=]'s [=environment settings object/origin=] is [=same origin=] with the [=/top-level traversable=]'s [=navigable/active window=]'s [=relevant settings object=]'s [=environment settings object/origin=].
+* fire events on a [=/navigable=]'s [=navigable/active windows=] only when its [=relevant settings object=] is a [=secure context=],
 * limit precision of attribute values as described in the previous sections.
 
 Additionally, implementing these items may also have a beneficial impact on the battery life of mobile devices.
