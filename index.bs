@@ -18,11 +18,6 @@ Boilerplate: omit issues-index, omit conformance, repository-issue-tracking no
 Include MDN Panels: if possible
 Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
 </pre>
-<pre class="anchors">
-urlPrefix: https://compat.spec.whatwg.org/; spec: COMPATIBILITY
-    type: interface
-        text: orientationchange; url: event-orientationchange
-</pre>
 
 Conformance requirements {#conformance-requirements}
 ====================================================
@@ -226,11 +221,13 @@ The Earth coordinate frame is a 'East, North, Up' frame at the user's location. 
 * North (Y) is in the ground plane and positive towards True North (towards the North Pole).
 * Up (Z) is perpendicular to the ground plane and positive upwards.
 
-For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. Users wishing to detect these changes in screen orientation may be able to do so with the existing {{orientationchange}} event. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
+For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
 
 * x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
 * y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
 * z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.
+
+Note: Users wishing to detect changes in screen orientation should refer to [[SCREEN-ORIENTATION]].
 
 The transformation from the Earth coordinate frame to the device coordinate frame must use the following system of rotations.
 
