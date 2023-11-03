@@ -137,6 +137,79 @@ Scope {#scope}
 
 This specification is limited to providing DOM events for retrieving information describing the physical orientation and motion of the hosting device. The intended purpose of this API is to enable simple use cases such as those in [[#use-cases|Use-Cases]] section. The scope of this specification does not include providing utilities to manipulate this data, such as transformation libraries. Nor does it include providing access to low sensor data, or direct control of these sensors.
 
+Model {#model}
+=====
+
+Device Orientation {#device-orientation-model}
+------------------
+
+This specification expresses a device's physical orientation as a series of rotations relative to an <a>implementation-defined</a> reference coordinate frame.
+
+The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that are applied on the <a>device coordinate system</a> defined in [[!ACCELEROMETER]] and summarized below:
+
+* x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
+* y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
+* z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.
+
+For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
+
+Note: Users wishing to detect changes in screen orientation should refer to [[SCREEN-ORIENTATION]].
+
+Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.
+
+Note: the coordinate system used by this specification differs from [[css-transforms-2#transform-rendering]], where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, {{DOMMatrix/rotateSelf()}} and {{DOMMatrixReadOnly/rotate()}}, specified in [[GEOMETRY-1]], apply rotations in an Z - Y' - X'' order, which differs from the order specified here.
+
+A rotation represented by {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} is carried out by the following steps:
+
+1. Rotate the device frame around its z axis by {{DeviceOrientationEvent/alpha}} degrees, with {{DeviceOrientationEvent/alpha}} in [0, 360).
+    <figure>
+      <img src="start.png" alt="start orientation">
+      <figcaption>Device in the initial position, with the reference (XYZ) and body (xyz) frames aligned.</figcaption>
+    </figure>
+    <figure>
+      <img src="c-rotation.png" alt="rotation about z axis">
+      <figcaption>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</figcaption>
+    </figure>
+1. Rotate the device frame around its x axis by {{DeviceOrientationEvent/beta}} degrees, with {{DeviceOrientationEvent/beta}} in [-180, 180).
+    <figure>
+      <img src="a-rotation.png" alt="rotation about x axis">
+      <figcaption>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</figcaption>
+    </figure>
+1. Rotate the device frame around its y axis by {{DeviceOrientationEvent/gamma}} degrees, with {{DeviceOrientationEvent/gamma}} in [-90, 90).
+    <figure>
+      <img src="b-rotation.png" alt="rotation about y axis">
+      <figcaption>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</figcaption>
+    </figure>
+
+Note: This choice of angles follows mathematical convention, but means that alpha is in the opposite sense to a compass heading. It also means that the angles do not match the roll-pitch-yaw convention used in vehicle dynamics.
+
+### Choice of reference coordinate system ### {#choice-of-reference-coordinate-system}
+
+A device's orientation is always relative to another coordinate system, whose choice influences the kind of information that the orientation conveys as well as the source of the orientation data.
+
+<dfn>Relative orientation</dfn> is measured with an accelerometer and a gyroscope, and the reference coordinate system is arbitrary. Consequently, the orientation data provides information about changes relative to the initial position of the device.
+
+Note: In native platform terms, this is similar to a relative <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_GAME_ROTATION_VECTOR">game rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1615953-xarbitraryzvertical">xArbitraryZVertical</a> option for Core Motion.
+
+<dfn>Absolute orientation</dfn> is measured with an accelerometer, a gyroscope and a magnetometer, and the reference coordinate system is the <a>Earth's reference coordinate system</a>.
+
+Note: In native platform terms, this is similar to an absolute <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_ROTATION_VECTOR">rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1616123-xmagneticnorthzvertical">xMagneticNorthZVertical</a> option for Core Motion.
+
+Device Motion {#device-motion-model}
+-------------
+
+This specification expresses a device's motion in space by measuring its acceleration and rotation rate, which are obtained from an accelerometer and a gyroscope. The data is provided relative to the <a>device coordinate system</a> summarized in the previous section.
+
+Acceleration is the rate of change of velocity of a device with respect to time. Is is expressed in meters per second squared (m/s<sup>2</sup>). When the acceleration <dfn lt="acceleration with gravity">includes gravity</dfn>, its value includes the effect of gravity  and represents proper acceleration ([[PROPERACCELERATION]]). When the device is in free-fall, the acceleration is 0 m/s<sup>2</sup>.
+
+<dfn>Linear acceleration</dfn>, on the other hand, represents the device's acceleration rate without the contribution of the gravity force. When the device is laying flat on a table, its <a>linear acceleration</a> is 0 m/s<sup>2</sup>.
+
+Note: In practice, <a>acceleration with gravity</a> represents the raw readings obtained from an [[MOTION-SENSORS#accelerometer]], or the [[G-FORCE]] whereas <a>linear acceleration</a> provides the readings of a [[MOTION-SENSORS#linear-acceleration-sensor]] and is likely a fusion sensor. [[MOTION-SENSORS]] and [[ACCELEROMETER]] both contain a more detailed discussion about the different types of accelerometers and accelerations that can be measured.
+
+The <dfn>rotation rate</dfn> measures the rate at which the device rotates about a specified axis in the <a>device coordinate system</a>. As with device orientation, rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis. The <a>rotation rate</a> is measured in degrees per second (deg/s).
+
+Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
+
 Description {#description}
 ==========================
 
@@ -211,53 +284,11 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
 
 Whenever a significant change in orientation occurs, the User Agent must [=fire an event=] named <a event for="Window"><code>deviceorientation</code></a> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.
 
-The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes of the event must specify the orientation of the device in terms of the transformation from an <a>implementation-defined</a> reference coordinate frame. In other words, the "<a event><code>deviceorientation</code></a>" event provides values rotation values around the three axes of some arbitrary reference frame, based on just the accelerometer and the gyroscope.
-
-Note: The reference frame that corresponds to 0 in all angles is arbitrary. It may be the the <a>Earth's reference coordinate system</a>, but that is a requirement only for the "<a event><code>deviceorientationabsolute</code></a>" event. In native platform terms, this is similar to a relative <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_GAME_ROTATION_VECTOR">game rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1615953-xarbitraryzvertical">xArbitraryZVertical</a> option for Core Motion.
+The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes of the event must specify the <a>relative orientation</a> of the device in terms of the transformation from an <a>implementation-defined</a> reference coordinate frame.
 
 The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes must be expressed in degrees and must not be more precise than 0.1 degrees.
 
-The rotations expressed by {{DeviceOrientationEvent}} use the <a>device coordinate system</a> defined in [[!ACCELEROMETER]] and summarized below:
-
-* x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
-* y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
-* z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.
-
-For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
-
-Note: Users wishing to detect changes in screen orientation should refer to [[SCREEN-ORIENTATION]].
-
-Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.
-
-Note: the coordinate system used by this specification differs from [[css-transforms-2#transform-rendering]], where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, {{DOMMatrix/rotateSelf()}} and {{DOMMatrixReadOnly/rotate()}}, specified in [[GEOMETRY-1]], apply rotations in an Z - Y' - X'' order, which differs from the order specified here.
-
-A rotation represented by {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that is carried out by the following steps:
-
-1. Rotate the device frame around its z axis by {{DeviceOrientationEvent/alpha}} degrees, with {{DeviceOrientationEvent/alpha}} in [0, 360).
-    <figure>
-      <img src="start.png" alt="start orientation">
-      <figcaption>Device in the initial position, with the reference (XYZ) and body (xyz) frames aligned.</figcaption>
-    </figure>
-    <figure>
-      <img src="c-rotation.png" alt="rotation about z axis">
-      <figcaption>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</figcaption>
-    </figure>
-1. Rotate the device frame around its x axis by {{DeviceOrientationEvent/beta}} degrees, with {{DeviceOrientationEvent/beta}} in [-180, 180).
-    <figure>
-      <img src="a-rotation.png" alt="rotation about x axis">
-      <figcaption>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</figcaption>
-    </figure>
-1. Rotate the device frame around its y axis by {{DeviceOrientationEvent/gamma}} degrees, with {{DeviceOrientationEvent/gamma}} in [-90, 90).
-    <figure>
-      <img src="b-rotation.png" alt="rotation about y axis">
-      <figcaption>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</figcaption>
-    </figure>
-
-Note: This choice of angles follows mathematical convention, but means that alpha is in the opposite sense to a compass heading. It also means that the angles do not match the roll-pitch-yaw convention used in vehicle dynamics.
-
-The implementation can still decide to provide <dfn>absolute orientation data</dfn> if relative orientation data is not available or the resulting data is more accurate. <a>Absolute orientation data</a> is calculated with the <a>Earth's reference coordinate system</a> as the reference frame. In either case, the {{DeviceOrientationEvent/absolute}} property must be set accordingly to reflect the choice.
-
-Note: In native platform terms, this is similar to an absolute <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_ROTATION_VECTOR">rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1616123-xmagneticnorthzvertical">xMagneticNorthZVertical</a> option for Core Motion.
+If <a>relative orientation</a> data cannot be obtained or the resulting data is more accurate, the implementation can choose to provide <a>absolute orientation</a> data instead. In either case, the {{DeviceOrientationEvent/absolute}} property must be set accordingly to reflect the choice.
 
 Implementations that are unable to provide all three angles must set the values of the unknown angles to null. If any angles are provided, the {{DeviceOrientationEvent/absolute}} property must be set appropriately. If an implementation can never provide orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
 
@@ -277,7 +308,7 @@ partial interface Window {
 };
 </pre>
 
-A "<a event><code>deviceorientationabsolute</code></a>" event is completely analogous to the {{deviceorientation}} event, except that it provides <a>absolute orientation data</a> that uses the <a>Earth's reference coordinate system</a> as the reference frame and needs input from a magnetometer.
+A "<a event><code>deviceorientationabsolute</code></a>" event is completely analogous to the {{deviceorientation}} event, except that it must always provide <a>absolute orientation</a> data.
 
 The {{DeviceOrientationEvent/absolute}} property must be set to true.
 
@@ -382,13 +413,11 @@ The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, mu
 
 In the {{DeviceMotionEvent}} events fired by the user agent, the following requirements must apply:
 
-The {{DeviceMotionEvent/acceleration}} attribute must be initialized with the acceleration of the hosting device relative to the Earth frame, expressed in the <a>device coordinate system</a>. The acceleration must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.
+The {{DeviceMotionEvent/acceleration}} attribute must be initialized with the device's <a>linear acceleration</a>. The value must not be more precise than 0.1 m/s<sup>2</sup>.
 
-Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply the acceleration including the effect of gravity. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute must be initialized with the acceleration of the hosting device, plus an acceleration equal and opposite to the acceleration due to gravity. Again, the acceleration must be given in the <a>device coordinate system</a> and must be expressed in meters per second squared (m/s<sup>2</sup>) and must not be more precise than 0.1 m/s<sup>2</sup>.
+Implementations that are unable to provide acceleration data without the effect of gravity (due, for example, to the lack of a gyroscope) may instead supply <a>acceleration with gravity</a>. This is less useful in many applications but is provided as a means of providing best-effort support. In this case, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute must be initialized with the <a>acceleration with gravity</a> measurements. Again, the value must not be more precise than 0.1 m/s<sup>2</sup>.
 
-<p class=note>Note: in practice, {{DeviceMotionEvent/accelerationIncludingGravity}} represents the raw readings obtained from an [[MOTION-SENSORS#accelerometer]], or the [[G-FORCE]] while {{DeviceMotionEvent/acceleration}} provides the readings of a [[MOTION-SENSORS#linear-acceleration-sensor]] and is likely a fusion sensor.
-
-The {{DeviceMotionEvent/rotationRate}} attribute must be initialized with the rate of rotation of the hosting device in space. It must be expressed as the rate of change of the angles defined as {{DeviceOrientationEvent/alpha}} (x axis), {{DeviceOrientationEvent/beta}} (y axis), {{DeviceOrientationEvent/gamma}} (z axis). Each attribute must be expressed in degrees per second (deg/s) and must not be more precise than 0.1 degrees per second.
+The {{DeviceMotionEvent/rotationRate}} attribute must be initialized with the device's <a>rotation rate</a>. It must be expressed as the rate of change of the angles defined as {{DeviceOrientationEvent/alpha}} (x axis), {{DeviceOrientationEvent/beta}} (y axis), {{DeviceOrientationEvent/gamma}} (z axis). Each attribute must not be more precise than 0.1 degrees per second.
 
 The {{DeviceMotionEvent/interval}} attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.
 
@@ -734,6 +763,10 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
     "GIMBALLOCK": {
         "href": "https://en.wikipedia.org/wiki/Gimbal_Lock",
         "title": "Gimbal Lock"
+    },
+    "PROPERACCELERATION": {
+        "href": "https://en.wikipedia.org/wiki/Proper_acceleration",
+        "title": "Proper acceleration"
     },
     "QUATERNIONS": {
         "href": "https://en.wikipedia.org/wiki/Quaternion",
