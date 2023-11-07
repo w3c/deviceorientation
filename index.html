@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="ee9ea9e2c25535fbfa87d4392373cd403c00c75c" name="document-revision">
+  <meta content="fc30f5ef4bc926f8e6394336d1d64cb610188138" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1110,7 +1110,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li data-md>
      <p>Up (Z) is perpendicular to the ground plane and positive upwards.</p>
    </ul>
-   <p>For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. Users wishing to detect these changes in screen orientation may be able to do so with the existing <code class="idl"><a data-link-type="idl" href="https://compat.spec.whatwg.org/#event-orientationchange" id="ref-for-event-orientationchange">orientationchange</a></code> event. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.</p>
+   <p>For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.</p>
    <ul>
     <li data-md>
      <p>x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.</p>
@@ -1119,6 +1119,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li data-md>
      <p>z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.</p>
    </ul>
+   <p class="note" role="note"><span class="marker">Note:</span> Users wishing to detect changes in screen orientation should refer to <a data-link-type="biblio" href="#biblio-screen-orientation" title="Screen Orientation">[SCREEN-ORIENTATION]</a>.</p>
    <p>The transformation from the Earth coordinate frame to the device coordinate frame must use the following system of rotations.</p>
    <p>Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
    <p class="note" role="note"><span class="marker">Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
@@ -1597,11 +1598,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><span class="dfn-paneled" id="9c4c1e66">relevant settings object</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[COMPATIBILITY]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="c8905e68">orientationchange</span>
-    </ul>
-   <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="129bdae8">Event</span>
@@ -1690,6 +1686,8 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dd>Kenneth Christiansen; Alexander Shalamov. <a href="https://w3c.github.io/motion-sensors/"><cite>Motion Sensors Explainer</cite></a>. URL: <a href="https://w3c.github.io/motion-sensors/">https://w3c.github.io/motion-sensors/</a>
    <dt id="biblio-quaternions">[QUATERNIONS]
    <dd><a href="https://en.wikipedia.org/wiki/Quaternion"><cite>Quaternions</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a>
+   <dt id="biblio-screen-orientation">[SCREEN-ORIENTATION]
+   <dd>Marcos Caceres. <a href="https://w3c.github.io/screen-orientation/"><cite>Screen Orientation</cite></a>. URL: <a href="https://w3c.github.io/screen-orientation/">https://w3c.github.io/screen-orientation/</a>
    <dt id="biblio-sensorid">[SENSORID]
    <dd>Zhang, Jiexin; Beresford, Alastair R.; Sheret, Ian. <a href="https://doi.org/10.1109/SP.2019.00072"><cite>SensorID: Sensor Calibration Fingerprinting for Smartphones</cite></a>. 2019. URL: <a href="https://doi.org/10.1109/SP.2019.00072">https://doi.org/10.1109/SP.2019.00072</a>
    <dt id="biblio-touch">[TOUCH]
@@ -2473,7 +2471,6 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
 <script>/* Boilerplate: script-dfn-panel-json */
 window.dfnpanelData = {};
 window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}, {"id": "ref-for-relevant-settings-object\u2460"}, {"id": "ref-for-relevant-settings-object\u2461"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2462"}, {"id": "ref-for-relevant-settings-object\u2463"}, {"id": "ref-for-relevant-settings-object\u2464"}], "title": "4.3. devicemotion Event"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2465"}, {"id": "ref-for-relevant-settings-object\u2466"}, {"id": "ref-for-relevant-settings-object\u2467"}], "title": "5. Security and privacy considerations"}], "external": true};
-window.dfnpanelData['c8905e68'] = {"dfnID": "c8905e68", "url": "https://compat.spec.whatwg.org/#event-orientationchange", "dfnText": "orientationchange", "refSections": [{"refs": [{"id": "ref-for-event-orientationchange"}], "title": "4.1. deviceorientation Event"}], "external": true};
 window.dfnpanelData['129bdae8'] = {"dfnID": "129bdae8", "url": "https://dom.spec.whatwg.org/#event", "dfnText": "Event", "refSections": [{"refs": [{"id": "ref-for-event"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-event\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['44a7708c'] = {"dfnID": "44a7708c", "url": "https://dom.spec.whatwg.org/#dictdef-eventinit", "dfnText": "EventInit", "refSections": [{"refs": [{"id": "ref-for-dictdef-eventinit"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dictdef-eventinit\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['5fd23811'] = {"dfnID": "5fd23811", "url": "https://dom.spec.whatwg.org/#concept-event-fire", "dfnText": "fire an event", "refSections": [{"refs": [{"id": "ref-for-concept-event-fire"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-concept-event-fire\u2460"}], "title": "4.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-concept-event-fire\u2461"}], "title": "4.3. devicemotion Event"}], "external": true};
