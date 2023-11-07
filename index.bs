@@ -147,9 +147,7 @@ Description {#description}
 
 <h3 id="deviceorientation">deviceorientation Event</h3>
 
-User agents implementing this specification must provide a new DOM event, named <dfn event for=Window id="def-deviceorientation"><code>deviceorientation</code></dfn>.
-
-User agents must also provide an event handler IDL attribute [[!HTML]] named {{Window/ondeviceorientation}} on the {{window!!attribute}} object. The type of the corresponding [=event handler event type=] must be {{deviceorientation}}.
+The {{Window/ondeviceorientation}} attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientation</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-deviceorientation"><code>deviceorientation</code></dfn>.
 
 <pre class="idl">
 partial interface Window {
@@ -216,7 +214,7 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
  <li><p>Return <var>promise</var>.
 </ol>
 
-Whenever a significant change in orientation occurs, the User Agent must [=fire an event=] named {{deviceorientation}} using {{DeviceOrientationEvent}} on the {{window!!attribute}} object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.
+Whenever a significant change in orientation occurs, the User Agent must [=fire an event=] named <a event for="Window"><code>deviceorientation</code></a> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.
 
 The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes of the event must specify the orientation of the device in terms of the transformation from a coordinate frame fixed on the Earth to a coordinate frame fixed in the device. The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes must be expressed in degrees and must not be more precise than 0.1 degrees. The coordinate frames must be oriented as described below.
 
@@ -280,9 +278,9 @@ Implementations that are unable to provide all three angles must set the values 
 The {{deviceorientationabsolute}} event and its {{Window/ondeviceorientationabsolute}} event handler IDL attribute have <a href="https://wpt.fyi/results/orientation-event/ondeviceorientationabsolute.https.html">limited implementation experience</a>.
 </div>
 
-User agents implementing this specification must [=fire an event=] named <dfn event for="Window" id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object whenever a significant change in orientation occurs.
+User agents implementing this specification must [=fire an event=] named <a event for="Window"><code>deviceorientationabsolute</code></a> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object whenever a significant change in orientation occurs.
 
-User agents must also provide an event handler IDL attribute [[!HTML]] named {{Window/ondeviceorientationabsolute}} on the {{window!!attribute}} object. The type of the corresponding [=event handler event type=] must be {{deviceorientationabsolute}}.
+The {{Window/ondeviceorientationabsolute}} attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientationabsolute</code> [=event handler=], whose [=event handler event type=] is <dfn event for="Window" id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn>.
 
 <pre class="idl">
 partial interface Window {
@@ -294,9 +292,9 @@ The {{deviceorientationabsolute}} event is completely analogous to the {{deviceo
 
 <h3 id="devicemotion">devicemotion Event</h3>
 
-User agents implementing this specification must [=fire an event=] named <dfn event for=Window id="def-devicemotion"><code>devicemotion</code></dfn> using {{DeviceMotionEvent}} on the {{window!!attribute}} object.
+User agents implementing this specification must [=fire an event=] named <a event for="Window"><code>devicemotion</code></a> using {{DeviceMotionEvent}} on the {{window!!attribute}} object.
 
-User agents must also provide an event handler IDL attribute [[!HTML]] named {{Window/ondevicemotion}} on the {{window!!attribute}} object. The type of the corresponding [=event handler event type=] must be {{devicemotion}}.
+The {{Window/ondevicemotion}} attribute is an [=event handler IDL attribute=] for the <code>ondevicemotion</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-devicemotion"><code>devicemotion</code></dfn>.
 
 <pre class="idl">
 partial interface Window {
