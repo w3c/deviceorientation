@@ -5,11 +5,10 @@
   <title>DeviceOrientation Event Specification</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version bf22245b8, updated Tue Apr 18 15:53:37 2023 -0700" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="e468d70f3895fac4df1cb17d50585d483806c5ed" name="document-revision">
-<style>/* style-autolinks */
+  <meta content="5e62e4ead7d8d77530009f8a537ab50646fbb693" name="document-revision">
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -70,8 +69,16 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
 </style>
-<style>/* style-colors */
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -180,8 +187,120 @@ pre .property::before, pre .property::after {
 
     --editedrec-bg: darkorange;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
 </style>
-<style>/* style-counters */
+<style>/* Boilerplate: style-counters */
 body {
     counter-reset: example figure issue;
 }
@@ -210,10 +329,16 @@ figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
 }
 </style>
-<style>/* style-dfn-panel */
+<style>/* Boilerplate: style-dfn-panel */
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
 }
 .dfn-panel {
     position: absolute;
@@ -257,7 +382,60 @@ figcaption:not(.no-marker)::before {
 
 .dfn-paneled[role="button"] { cursor: pointer; }
 </style>
-<style>/* style-issues */
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -266,7 +444,7 @@ a[href].issue-return {
     text-decoration: none;
 }
 </style>
-<style>/* style-md-lists */
+<style>/* Boilerplate: style-md-lists */
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -276,11 +454,18 @@ a[href].issue-return {
     margin-bottom: 0;
 }
 </style>
-<style>/* style-mdn-anno */
+<style>/* Boilerplate: style-mdn-anno */
 :root {
 	--mdn-bg: #EEE;
 	--mdn-shadow: #999;
 	--mdn-nosupport-text: #ccc;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--mdn-bg: #222;
+		--mdn-shadow: #444;
+		--mdn-nosupport-text: #666;
+	}
 }
 .mdn-anno {
 	background: var(--mdn-bg, #EEE);
@@ -489,7 +674,7 @@ a[href].issue-return {
 	margin: -40px 0 0 0;
 }
 </style>
-<style>/* style-selflinks */
+<style>/* Boilerplate: style-selflinks */
 
 :root {
     --selflink-text: white;
@@ -549,12 +734,15 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* style-syntax-highlighting */
+<style>/* Boilerplate: style-syntax-highlighting */
 
             pre.idl.highlight {
                 background: var(--borderedblock-bg, var(--def-bg));
             }
             
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -611,142 +799,8 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-darkmode */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #ddd;
-        --bg: black;
 
-        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
-
-        --logo-bg: #1a5e9a;
-        --logo-active-bg: #c00;
-        --logo-text: white;
-
-        --tocnav-normal-text: #999;
-        --tocnav-normal-bg: var(--bg);
-        --tocnav-hover-text: var(--tocnav-normal-text);
-        --tocnav-hover-bg: #080808;
-        --tocnav-active-text: #f44;
-        --tocnav-active-bg: var(--tocnav-normal-bg);
-
-        --tocsidebar-text: var(--text);
-        --tocsidebar-bg: #080808;
-        --tocsidebar-shadow: rgba(255,255,255,.1);
-        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-        --toclink-text: var(--text);
-        --toclink-underline: #6af;
-        --toclink-visited-text: var(--toclink-text);
-        --toclink-visited-underline: #054572;
-
-        --heading-text: #8af;
-
-        --hr-text: var(--text);
-
-        --algo-border: #456;
-
-        --del-text: #f44;
-        --del-bg: transparent;
-        --ins-text: #4a4;
-        --ins-bg: transparent;
-
-        --a-normal-text: #6af;
-        --a-normal-underline: #555;
-        --a-visited-text: var(--a-normal-text);
-        --a-visited-underline: var(--a-normal-underline);
-        --a-hover-bg: rgba(25%, 25%, 25%, .2);
-        --a-active-text: #f44;
-        --a-active-underline: var(--a-active-text);
-
-        --borderedblock-bg: rgba(255, 255, 255, .05);
-
-        --blockquote-border: silver;
-        --blockquote-bg: var(--borderedblock-bg);
-        --blockquote-text: currentcolor;
-
-        --issue-border: #e05252;
-        --issue-bg: var(--borderedblock-bg);
-        --issue-text: var(--text);
-        --issueheading-text: hsl(0deg, 70%, 70%);
-
-        --example-border: hsl(50deg, 90%, 60%);
-        --example-bg: var(--borderedblock-bg);
-        --example-text: var(--text);
-        --exampleheading-text: hsl(50deg, 70%, 70%);
-
-        --note-border: hsl(120deg, 100%, 35%);
-        --note-bg: var(--borderedblock-bg);
-        --note-text: var(--text);
-        --noteheading-text: hsl(120, 70%, 70%);
-        --notesummary-underline: silver;
-
-        --assertion-border: #444;
-        --assertion-bg: var(--borderedblock-bg);
-        --assertion-text: var(--text);
-
-        --advisement-border: orange;
-        --advisement-bg: #222218;
-        --advisement-text: var(--text);
-        --advisementheading-text: #f84;
-
-        --warning-border: red;
-        --warning-bg: hsla(40,100%,20%,0.95);
-        --warning-text: var(--text);
-
-        --amendment-border: #330099;
-        --amendment-bg: #080010;
-        --amendment-text: var(--text);
-        --amendmentheading-text: #cc00ff;
-
-        --def-border: #8ccbf2;
-        --def-bg: #080818;
-        --def-text: var(--text);
-        --defrow-border: #136;
-
-        --datacell-border: silver;
-
-        --indexinfo-text: #aaa;
-
-        --indextable-hover-text: var(--text);
-        --indextable-hover-bg: #181818;
-
-        --outdatedspec-bg: rgba(255, 255, 255, .5);
-        --outdatedspec-text: black;
-        --outdated-bg: maroon;
-        --outdated-text: white;
-        --outdated-shadow: red;
-
-        --editedrec-bg: darkorange;
-    }
-    /* In case a transparent-bg image doesn't expect to be on a dark bg,
-       which is quite common in practice... */
-    img { background: white; }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}
-@media (prefers-color-scheme: dark) {
-	:root {
-		--mdn-bg: #222;
-		--mdn-shadow: #444;
-		--mdn-nosupport-text: #666;
-	}
-}
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
 
@@ -814,7 +868,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-04-21">21 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-11-07">7 November 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -838,7 +892,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -863,7 +917,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
 	that page also includes instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20230612/" id="w3c_process_revision">12 June 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1230,11 +1284,11 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <p>In light of that, implementations may consider permissions or visual indicators to signify the use of sensors by the web page. Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:</p>
    <ul>
     <li data-md>
-     <p>fire events only when <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a> is <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-visible" id="ref-for-dom-visibilitystate-visible">visible</a>,</p>
+     <p>fire events only when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable">navigable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state">visibility state</a> is "<code>visible</code>",</p>
     <li data-md>
-     <p>fire events only on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> and same-origin <a data-link-type="dfn">nested browsing contexts</a>,</p>
+     <p>fire events only on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable">top-level traversable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window">active window</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable" id="ref-for-child-navigable">child navigables</a>' <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window①">active windows</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object⑥">relevant settings object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin⑥">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin">same origin</a> with the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable①">top-level traversable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window②">active window</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object⑦">relevant settings object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin⑦">origin</a>.</p>
     <li data-md>
-     <p>fire events only on secure browsing contexts <a data-link-type="biblio" href="#biblio-secure-contexts" title="Secure Contexts">[SECURE-CONTEXTS]</a>,</p>
+     <p>fire events on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable①">navigable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window③">active windows</a> only when its <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object⑧">relevant settings object</a> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>,</p>
     <li data-md>
      <p>limit precision of attribute values as described in the previous sections.</p>
    </ul>
@@ -1567,20 +1621,21 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
      <li><span class="dfn-paneled" id="f0951476">EventHandler</span>
      <li><span class="dfn-paneled" id="5d7209e9">Window</span>
      <li><span class="dfn-paneled" id="35972864">active document</span>
+     <li><span class="dfn-paneled" id="101c721c">active window</span>
+     <li><span class="dfn-paneled" id="f23dc013">child navigable</span>
      <li><span class="dfn-paneled" id="9d386f55">event handler event type</span>
      <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
+     <li><span class="dfn-paneled" id="9c19b7fc">navigable</span>
      <li><span class="dfn-paneled" id="086e3aff">origin</span>
      <li><span class="dfn-paneled" id="43ac8374">origin <small>(for environment settings object)</small></span>
      <li><span class="dfn-paneled" id="9a517a7d">queue a task</span>
      <li><span class="dfn-paneled" id="e99bd18e">relevant global object</span>
-     <li><span class="dfn-paneled" id="ae2a6342">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="7393da89">same origin</span>
+     <li><span class="dfn-paneled" id="65181da8">secure context</span>
+     <li><span class="dfn-paneled" id="bd736ec6">top-level traversable</span>
      <li><span class="dfn-paneled" id="47fe679e">transient activation</span>
+     <li><span class="dfn-paneled" id="b4c365f8">visibility state</span>
      <li><span class="dfn-paneled" id="9f156e6b">window</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[PAGE-VISIBILITY]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="59b2d841">visible</span>
     </ul>
    <li>
     <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
@@ -1607,14 +1662,10 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
-   <dt id="biblio-page-visibility">[PAGE-VISIBILITY]
-   <dd>Jatinder Mann; Arvind Jain. <a href="https://www.w3.org/TR/page-visibility/"><cite>Page Visibility (Second Edition)</cite></a>. 29 October 2013. REC. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
-   <dd>Mike West. <a href="https://w3c.github.io/webappsec-secure-contexts/"><cite>Secure Contexts</cite></a>. URL: <a href="https://w3c.github.io/webappsec-secure-contexts/">https://w3c.github.io/webappsec-secure-contexts/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
@@ -2112,50 +2163,7 @@ for the application to ask for <a data-link-type="dfn" href="#permission" id="re
     </div>
    </div>
   </details>
-<script>/* position-annos */
-"use strict";
-{
-
-function repositionAnnoPanels(){
-    const panels = [...document.querySelectorAll("[data-anno-for]")];
-    const main = document.querySelector("main");
-    let mainRect;
-    if(main) mainRect = main.getBoundingClientRect();
-    for(const panel of panels) {
-        const dfn = document.getElementById(panel.getAttribute("data-anno-for"));
-        if(!dfn) {
-            console.log("Can't find the annotation panel target:", panel);
-            continue;
-        }
-        const rect = dfn.getBoundingClientRect();
-        const top = window.scrollY + rect.top
-        panel.style.top = top + "px";
-        panel.top = top;
-        panel.height = rect.height;
-        panel.classList.remove("unpositioned");
-        const panelRect = panel.getBoundingClientRect()
-        if(main) {
-            panel.classList.toggle("overlapping-main", panelRect.left < mainRect.right)
-        }
-    }
-    let vSoFar = 0;
-    for(const panel of panels.sort(cmpTops)) {
-        if(panel.top < vSoFar) {
-            panel.top = vSoFar;
-            panel.style.top = vSoFar + "px";
-        }
-        vSoFar = panel.top + panel.height + 15;
-    }
-}
-
-function cmpTops(a,b) {
-    return a.top - b.top;
-}
-
-window.addEventListener("load", repositionAnnoPanels);
-window.addEventListener("resize", repositionAnnoPanels);
-}</script>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
 "use strict";
 {
     const dfnsJson = window.dfnsJson || {};
@@ -2308,9 +2316,162 @@ window.addEventListener("resize", repositionAnnoPanels);
     }
 }
 </script>
-<script>/* script-dfn-panel-json */
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
 window.dfnpanelData = {};
-window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}, {"id": "ref-for-relevant-settings-object\u2460"}, {"id": "ref-for-relevant-settings-object\u2461"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2462"}, {"id": "ref-for-relevant-settings-object\u2463"}, {"id": "ref-for-relevant-settings-object\u2464"}], "title": "4.3. devicemotion Event"}], "external": true};
+window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}, {"id": "ref-for-relevant-settings-object\u2460"}, {"id": "ref-for-relevant-settings-object\u2461"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2462"}, {"id": "ref-for-relevant-settings-object\u2463"}, {"id": "ref-for-relevant-settings-object\u2464"}], "title": "4.3. devicemotion Event"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2465"}, {"id": "ref-for-relevant-settings-object\u2466"}, {"id": "ref-for-relevant-settings-object\u2467"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['c8905e68'] = {"dfnID": "c8905e68", "url": "https://compat.spec.whatwg.org/#event-orientationchange", "dfnText": "orientationchange", "refSections": [{"refs": [{"id": "ref-for-event-orientationchange"}], "title": "4.1. deviceorientation Event"}], "external": true};
 window.dfnpanelData['129bdae8'] = {"dfnID": "129bdae8", "url": "https://dom.spec.whatwg.org/#event", "dfnText": "Event", "refSections": [{"refs": [{"id": "ref-for-event"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-event\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['44a7708c'] = {"dfnID": "44a7708c", "url": "https://dom.spec.whatwg.org/#dictdef-eventinit", "dfnText": "EventInit", "refSections": [{"refs": [{"id": "ref-for-dictdef-eventinit"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dictdef-eventinit\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
@@ -2320,16 +2481,21 @@ window.dfnpanelData['78578e0a'] = {"dfnID": "78578e0a", "url": "https://drafts.f
 window.dfnpanelData['f0951476'] = {"dfnID": "f0951476", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler", "dfnText": "EventHandler", "refSections": [{"refs": [{"id": "ref-for-eventhandler"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-eventhandler\u2460"}], "title": "4.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-eventhandler\u2461"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['5d7209e9'] = {"dfnID": "5d7209e9", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#window", "dfnText": "Window", "refSections": [{"refs": [{"id": "ref-for-window"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-window\u2460"}], "title": "4.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-window\u2461"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['35972864'] = {"dfnID": "35972864", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document", "dfnText": "active document", "refSections": [{"refs": [{"id": "ref-for-nav-document"}], "title": "5. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['101c721c'] = {"dfnID": "101c721c", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window", "dfnText": "active window", "refSections": [{"refs": [{"id": "ref-for-nav-window"}, {"id": "ref-for-nav-window\u2460"}, {"id": "ref-for-nav-window\u2461"}, {"id": "ref-for-nav-window\u2462"}], "title": "5. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['f23dc013'] = {"dfnID": "f23dc013", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable", "dfnText": "child navigable", "refSections": [{"refs": [{"id": "ref-for-child-navigable"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['9d386f55'] = {"dfnID": "9d386f55", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type", "dfnText": "event handler event type", "refSections": [{"refs": [{"id": "ref-for-event-handler-event-type"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-event-handler-event-type\u2460"}], "title": "4.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-event-handler-event-type\u2461"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['a72449dd'] = {"dfnID": "a72449dd", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel", "dfnText": "in parallel", "refSections": [{"refs": [{"id": "ref-for-in-parallel"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-in-parallel\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
+window.dfnpanelData['9c19b7fc'] = {"dfnID": "9c19b7fc", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#navigable", "dfnText": "navigable", "refSections": [{"refs": [{"id": "ref-for-navigable"}, {"id": "ref-for-navigable\u2460"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "4.4. Permission model"}], "external": true};
-window.dfnpanelData['43ac8374'] = {"dfnID": "43ac8374", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin", "dfnText": "origin (for environment settings object)", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-origin"}, {"id": "ref-for-concept-settings-object-origin\u2460"}, {"id": "ref-for-concept-settings-object-origin\u2461"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-concept-settings-object-origin\u2462"}, {"id": "ref-for-concept-settings-object-origin\u2463"}, {"id": "ref-for-concept-settings-object-origin\u2464"}], "title": "4.3. devicemotion Event"}], "external": true};
+window.dfnpanelData['43ac8374'] = {"dfnID": "43ac8374", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin", "dfnText": "origin (for environment settings object)", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-origin"}, {"id": "ref-for-concept-settings-object-origin\u2460"}, {"id": "ref-for-concept-settings-object-origin\u2461"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-concept-settings-object-origin\u2462"}, {"id": "ref-for-concept-settings-object-origin\u2463"}, {"id": "ref-for-concept-settings-object-origin\u2464"}], "title": "4.3. devicemotion Event"}, {"refs": [{"id": "ref-for-concept-settings-object-origin\u2465"}, {"id": "ref-for-concept-settings-object-origin\u2466"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['9a517a7d'] = {"dfnID": "9a517a7d", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task", "dfnText": "queue a task", "refSections": [{"refs": [{"id": "ref-for-queue-a-task"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-queue-a-task\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['e99bd18e'] = {"dfnID": "e99bd18e", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global", "dfnText": "relevant global object", "refSections": [{"refs": [{"id": "ref-for-concept-relevant-global"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-concept-relevant-global\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
-window.dfnpanelData['ae2a6342'] = {"dfnID": "ae2a6342", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context", "dfnText": "top-level browsing context", "refSections": [{"refs": [{"id": "ref-for-top-level-browsing-context"}], "title": "5. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['7393da89'] = {"dfnID": "7393da89", "url": "https://html.spec.whatwg.org/multipage/browsers.html#same-origin", "dfnText": "same origin", "refSections": [{"refs": [{"id": "ref-for-same-origin"}], "title": "5. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['65181da8'] = {"dfnID": "65181da8", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context", "dfnText": "secure context", "refSections": [{"refs": [{"id": "ref-for-secure-context"}], "title": "5. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['bd736ec6'] = {"dfnID": "bd736ec6", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable", "dfnText": "top-level traversable", "refSections": [{"refs": [{"id": "ref-for-top-level-traversable"}, {"id": "ref-for-top-level-traversable\u2460"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['47fe679e'] = {"dfnID": "47fe679e", "url": "https://html.spec.whatwg.org/multipage/interaction.html#transient-activation", "dfnText": "transient activation", "refSections": [{"refs": [{"id": "ref-for-transient-activation"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-transient-activation\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
+window.dfnpanelData['b4c365f8'] = {"dfnID": "b4c365f8", "url": "https://html.spec.whatwg.org/multipage/interaction.html#visibility-state", "dfnText": "visibility state", "refSections": [{"refs": [{"id": "ref-for-visibility-state"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['9f156e6b'] = {"dfnID": "9f156e6b", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-window", "dfnText": "window", "refSections": [{"refs": [{"id": "ref-for-dom-window"}, {"id": "ref-for-dom-window\u2460"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dom-window\u2461"}, {"id": "ref-for-dom-window\u2462"}], "title": "4.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-dom-window\u2463"}, {"id": "ref-for-dom-window\u2464"}], "title": "4.3. devicemotion Event"}], "external": true};
-window.dfnpanelData['59b2d841'] = {"dfnID": "59b2d841", "url": "https://www.w3.org/TR/page-visibility-2/#dom-visibilitystate-visible", "dfnText": "visible", "refSections": [{"refs": [{"id": "ref-for-dom-visibilitystate-visible"}], "title": "5. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['6c3bee60'] = {"dfnID": "6c3bee60", "url": "https://w3c.github.io/permissions/#dom-permissionstate", "dfnText": "PermissionState", "refSections": [{"refs": [{"id": "ref-for-dom-permissionstate"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dom-permissionstate\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.spec.whatwg.org/#idl-DOMException", "dfnText": "DOMException", "refSections": [{"refs": [{"id": "ref-for-idl-DOMException"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-idl-DOMException\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
 window.dfnpanelData['8855a9aa'] = {"dfnID": "8855a9aa", "url": "https://webidl.spec.whatwg.org/#idl-DOMString", "dfnText": "DOMString", "refSections": [{"refs": [{"id": "ref-for-idl-DOMString"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460"}], "title": "4.3. devicemotion Event"}], "external": true};
@@ -2364,8 +2530,9 @@ window.dfnpanelData['dom-devicemotionevent-requestpermission'] = {"dfnID": "dom-
 window.dfnpanelData['dictdef-devicemotioneventaccelerationinit'] = {"dfnID": "dictdef-devicemotioneventaccelerationinit", "url": "#dictdef-devicemotioneventaccelerationinit", "dfnText": "DeviceMotionEventAccelerationInit", "refSections": [{"refs": [{"id": "ref-for-dictdef-devicemotioneventaccelerationinit"}, {"id": "ref-for-dictdef-devicemotioneventaccelerationinit\u2460"}], "title": "4.3. devicemotion Event"}], "external": false};
 window.dfnpanelData['dictdef-devicemotioneventrotationrateinit'] = {"dfnID": "dictdef-devicemotioneventrotationrateinit", "url": "#dictdef-devicemotioneventrotationrateinit", "dfnText": "DeviceMotionEventRotationRateInit", "refSections": [{"refs": [{"id": "ref-for-dictdef-devicemotioneventrotationrateinit"}], "title": "4.3. devicemotion Event"}], "external": false};
 window.dfnpanelData['dictdef-devicemotioneventinit'] = {"dfnID": "dictdef-devicemotioneventinit", "url": "#dictdef-devicemotioneventinit", "dfnText": "DeviceMotionEventInit", "refSections": [{"refs": [{"id": "ref-for-dictdef-devicemotioneventinit"}], "title": "4.3. devicemotion Event"}], "external": false};
-window.dfnpanelData['permission'] = {"dfnID": "permission", "url": "#permission", "dfnText": "permission", "refSections": [{"refs": [{"id": "ref-for-permission"}, {"id": "ref-for-permission\u2460"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permission\u2461"}, {"id": "ref-for-permission\u2462"}], "title": "4.3. devicemotion Event"}, {"refs": [{"id": "ref-for-permission\u2463"}, {"id": "ref-for-permission\u2464"}], "title": "4.4. Permission model"}], "external": false};</script>
-<script>/* script-dom-helper */
+window.dfnpanelData['permission'] = {"dfnID": "permission", "url": "#permission", "dfnText": "permission", "refSections": [{"refs": [{"id": "ref-for-permission"}, {"id": "ref-for-permission\u2460"}], "title": "4.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permission\u2461"}, {"id": "ref-for-permission\u2462"}], "title": "4.3. devicemotion Event"}, {"refs": [{"id": "ref-for-permission\u2463"}, {"id": "ref-for-permission\u2464"}], "title": "4.4. Permission model"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
 function query(sel) { return document.querySelector(sel); }
 
 function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
@@ -2559,4 +2726,49 @@ function parseHTML(markup) {
 		el.innerHTML = markup;
 		return el.content;
 	}
-}</script>
+}
+</script>
+<script>/* Boilerplate: script-position-annos */
+"use strict";
+{
+
+function repositionAnnoPanels(){
+    const panels = [...document.querySelectorAll("[data-anno-for]")];
+    const main = document.querySelector("main");
+    let mainRect;
+    if(main) mainRect = main.getBoundingClientRect();
+    for(const panel of panels) {
+        const dfn = document.getElementById(panel.getAttribute("data-anno-for"));
+        if(!dfn) {
+            console.log("Can't find the annotation panel target:", panel);
+            continue;
+        }
+        const rect = dfn.getBoundingClientRect();
+        const top = window.scrollY + rect.top
+        panel.style.top = top + "px";
+        panel.top = top;
+        panel.height = rect.height;
+        panel.classList.remove("unpositioned");
+        const panelRect = panel.getBoundingClientRect()
+        if(main) {
+            panel.classList.toggle("overlapping-main", panelRect.left < mainRect.right)
+        }
+    }
+    let vSoFar = 0;
+    for(const panel of panels.sort(cmpTops)) {
+        if(panel.top < vSoFar) {
+            panel.top = vSoFar;
+            panel.style.top = vSoFar + "px";
+        }
+        vSoFar = panel.top + panel.height + 15;
+    }
+}
+
+function cmpTops(a,b) {
+    return a.top - b.top;
+}
+
+window.addEventListener("load", repositionAnnoPanels);
+window.addEventListener("resize", repositionAnnoPanels);
+}
+</script>
