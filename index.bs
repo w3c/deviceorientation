@@ -213,12 +213,10 @@ The <dfn>rotation rate</dfn> measures the rate at which the device rotates about
 
 Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
 
-Description {#description}
+API {#api}
 ==========================
 
 <h3 id="deviceorientation">deviceorientation Event</h3>
-
-The {{Window/ondeviceorientation}} attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientation</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-deviceorientation"><code>deviceorientation</code></dfn>.
 
 <pre class="idl">
 partial interface Window {
@@ -244,15 +242,19 @@ dictionary DeviceOrientationEventInit : EventInit {
 };
 </pre>
 
-The {{DeviceOrientationEvent/alpha}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+The <dfn attribute for="Window">ondeviceorientation</dfn> attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientation</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-deviceorientation"><code>deviceorientation</code></dfn>.
 
-The {{DeviceOrientationEvent/beta}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+The <dfn attribute for="DeviceOrientationEvent">alpha</dfn> attribute must return the value it was initialized to. It represents the rotation around the Z axis in the Z - X' - Y'' intrinsic Tait-Bryan angles described in [[#device-orientation-model]].
 
-The {{DeviceOrientationEvent/gamma}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+The <dfn attribute for="DeviceOrientationEvent">beta</dfn> attribute must return the value it was initialized to. It represents the rotation around the X' axis (produced after the rotation around the Z axis has been applied) axis in the Z - X' - Y'' intrinsic Tait-Bryan angles described in [[#device-orientation-model]].
 
-The {{DeviceOrientationEvent/absolute}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to false.
+The <dfn attribute for="DeviceOrientationEvent">gamma</dfn> attribute must return the value it was initialized to. It represents the rotation around the Y'' axis (produced after the rotation around the Z and X' axes have been applied in this order) in the Z - X' - Y'' intrinsic Tait-Bryan angles described in [[#device-orientation-model]].
 
-The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoked, must run these steps:
+The <dfn attribute for="DeviceOrientationEvent">absolute</dfn> attribute must return the value it was initialized to. It indicates whether <a>relative orientation</a> or <a>absolute orientation</a> data is being provided.
+
+<div algorithm>
+The <dfn method for="DeviceOrientationEvent">requestPermission()</dfn> method steps are:
+
 <ol>
  <li><p>Let <var>promise</var> be a new promise.
 
@@ -284,16 +286,44 @@ The static {{DeviceOrientationEvent/requestPermission()}} operation, when invoke
 
  <li><p>Return <var>promise</var>.
 </ol>
+</div>
 
-Whenever a significant change in orientation occurs, the User Agent must [=fire an event=] named <a event for="Window"><code>deviceorientation</code></a> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object. The definition of a significant change in this context is left to the implementation, though a maximum threshold for change of one degree is recommended. Implementations may also fire the event if they have reason to believe that the page does not have sufficiently fresh data.
+<div algorithm>
+To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string), <var>window</var> (a {{Window}}) and <var>absolute</var> (a boolean):
 
-The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes of the event must specify the <a>relative orientation</a> of the device in terms of the transformation from an <a>implementation-defined</a> reference coordinate frame.
+  1. If <var>absolute</var> is false:
+    1. Let <var>orientation</var> be the device's <a>relative orientation</a> in the tridimensional plane.
+  1. Otherwise:
+    1. Let <var>orientation</var> be the device's <a>absolute orientation</a> in the tridimensional plane.
+  1. Let <var>z rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
+  1. If <var>z rotation</var> is not null, limit <var>z rotation</var>'s precision to 0.1 degrees.
+  1. Let <var>x rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
+  1. If <var>x rotation</var> is not null, limit <var>x rotation</var>'s precision to 0.1 degrees.
+  1. Let <var>y rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Y'' axis, or null if the implementation cannot provide an angle value.
+  1. If <var>y rotation</var> is not null, limit <var>y rotation</var>'s precision to 0.1 degrees.
+  1. <a>Fire an event</a> named <var>event name</var> at <var>window</var>, using {{DeviceOrientationEvent}}, with the {{DeviceOrientationEvent/alpha}} attribute initialized to <var>z rotation</var>, the {{DeviceOrientationEvent/beta}} attribute initialized to <var>x rotation</var>, the {{DeviceOrientationEvent/gamma}} attribute initialized to <var>y rotation</var>, and the {{DeviceOrientationEvent/absolute}} attribute initialized to <var>absolute</var>.
 
-The {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes must be expressed in degrees and must not be more precise than 0.1 degrees.
+</div>
 
-If <a>relative orientation</a> data cannot be obtained or the resulting data is more accurate, the implementation can choose to provide <a>absolute orientation</a> data instead. In either case, the {{DeviceOrientationEvent/absolute}} property must be set accordingly to reflect the choice.
+A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window"><code>deviceorientation</code></a> or <a event for="Window"><code>deviceorientationabsolute</code></a> event. The process of determining whether a <a>significant change in orientation</a> has occurred is <a>implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
 
-Implementations that are unable to provide all three angles must set the values of the unknown angles to null. If any angles are provided, the {{DeviceOrientationEvent/absolute}} property must be set appropriately. If an implementation can never provide orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
+<div algorithm="deviceorientation firing steps">
+Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+
+  1. If the implementation cannot provide <a>relative orientation</a> or the resulting <a>absolute orientation</a> data is more accurate:
+    1. Let <var>absolute</var> be true.
+  1. Otherwise:
+    1. Let <var>absolute</var> be false.
+  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientation</code></a>, <var>window</var>, and <var>absolute</var>.
+
+</div>
+
+<!--
+  * https://github.com/w3c/deviceorientation/issues/118: Does this mean a single event should be fired?
+  * https://github.com/w3c/deviceorientation/issues/119: Should absolute's value be set here too?
+  * Should this be a proper <dfn> in an algorithm?
+-->
+If an implementation can never provide orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
 
 <h3 id="deviceorientationabsolute">deviceorientationabsolute Event</h3>
 
@@ -301,45 +331,89 @@ Implementations that are unable to provide all three angles must set the values 
 The {{deviceorientationabsolute}} event and its {{Window/ondeviceorientationabsolute}} event handler IDL attribute have <a href="https://wpt.fyi/results/orientation-event/ondeviceorientationabsolute.https.html">limited implementation experience</a>.
 </div>
 
-User agents implementing this specification must [=fire an event=] named <a event for="Window"><code>deviceorientationabsolute</code></a> using {{DeviceOrientationEvent}} on the {{window!!attribute}} object whenever a significant change in orientation occurs.
-
-The {{Window/ondeviceorientationabsolute}} attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientationabsolute</code> [=event handler=], whose [=event handler event type=] is <dfn event for="Window" id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn>.
-
 <pre class="idl">
 partial interface Window {
     [SecureContext] attribute EventHandler ondeviceorientationabsolute;
 };
 </pre>
 
-A "<a event><code>deviceorientationabsolute</code></a>" event is completely analogous to the {{deviceorientation}} event, except that it must always provide <a>absolute orientation</a> data.
+The <dfn attribute for="Window">ondeviceorientationabsolute</dfn> attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientationabsolute</code> [=event handler=], whose [=event handler event type=] is <dfn event for="Window" id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn>.
 
-The {{DeviceOrientationEvent/absolute}} property must be set to true.
+A <a event for="Window"><code>deviceorientationabsolute</code></a> event is completely analogous to the <a event for="Window"><code>deviceorientation</code></a> event, except that it must always provide <a>absolute orientation</a> data.
 
+<div algorithm="deviceorientationabsolute firing steps">
+Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+
+  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientationabsolute</code></a>, <var>window</var>, and true.
+
+</div>
+
+<!--
+  * https://github.com/w3c/deviceorientation/issues/118: Does this mean a single event should be fired?
+  * https://github.com/w3c/deviceorientation/issues/119: Should absolute's value be set here too?
+  * Should this be a proper <dfn> in an algorithm?
+-->
 If an implementation can never provide absolute orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
 
 <h3 id="devicemotion">devicemotion Event</h3>
 
-User agents implementing this specification must [=fire an event=] named <a event for="Window"><code>devicemotion</code></a> using {{DeviceMotionEvent}} on the {{window!!attribute}} object.
-
-The {{Window/ondevicemotion}} attribute is an [=event handler IDL attribute=] for the <code>ondevicemotion</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-devicemotion"><code>devicemotion</code></dfn>.
+### The DeviceMotionEventAcceleration interface ### {#device-motion-event-acceleration-api}
 
 <pre class="idl">
-partial interface Window {
-    [SecureContext] attribute EventHandler ondevicemotion;
-};
-
 [Exposed=Window, SecureContext]
 interface DeviceMotionEventAcceleration {
     readonly attribute double? x;
     readonly attribute double? y;
     readonly attribute double? z;
 };
+</pre>
 
+The {{DeviceMotionEventAcceleration}} interface represents the device's acceleration as described in [[#device-motion-model]]. It has the following associated data:
+
+ : <dfn for="DeviceMotionEventAcceleration">x axis acceleration</dfn>
+ :: The device's acceleration rate along the X axis, or null. It is initially null.
+ : <dfn for="DeviceMotionEventAcceleration">y axis acceleration</dfn>
+ :: The device's acceleration rate along the Y axis, or null. It is initially null.
+ : <dfn for="DeviceMotionEventAcceleration">z axis acceleration</dfn>
+ :: The device's acceleration rate along the Z axis, or null. It is initially null.
+
+The <dfn attribute for="DeviceMotionEventAcceleration">x</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a>.
+
+The <dfn attribute for="DeviceMotionEventAcceleration">y</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a>.
+
+The <dfn attribute for="DeviceMotionEventAcceleration">z</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a>.
+
+### The DeviceMotionEventRotationRate interface ### {#device-motion-event-rotation-rate-api}
+
+<pre class="idl">
 [Exposed=Window, SecureContext]
 interface DeviceMotionEventRotationRate {
     readonly attribute double? alpha;
     readonly attribute double? beta;
     readonly attribute double? gamma;
+};
+</pre>
+
+The {{DeviceMotionEventRotationRate}} interface represents the device's <a>rotation rate</a> as described in [[#device-motion-model]]. It has the following associated data:
+
+ : <dfn for="DeviceMotionEventRotationRate">x axis rotation rate</dfn>
+ :: The device's rotation rate about the X axis, or null. It is initially null.
+ : <dfn for="DeviceMotionEventRotationRate">y axis rotation rate</dfn>
+ :: The device's rotation rate about the Y axis, or null. It is initially null.
+ : <dfn for="DeviceMotionEventRotationRate">z axis rotation rate</dfn>
+ :: The device's rotation rate about the Z axis, or null. It is initially null.
+
+The <dfn attribute for="DeviceMotionEventRotationRate">alpha</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a>.
+
+The <dfn attribute for="DeviceMotionEventRotationRate">beta</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a>.
+
+The <dfn attribute for="DeviceMotionEventRotationRate">gamma</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a>.
+
+### The DeviceMotionEvent interface ### {#device-motion-event-api}
+
+<pre class="idl">
+partial interface Window {
+    [SecureContext] attribute EventHandler ondevicemotion;
 };
 
 [Exposed=Window, SecureContext]
@@ -373,15 +447,23 @@ dictionary DeviceMotionEventInit : EventInit {
 };
 </pre>
 
-The {{DeviceMotionEvent/acceleration}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+The <dfn attribute for="Window">ondevicemotion</dfn> attribute is an [=event handler IDL attribute=] for the <code>ondevicemotion</code> [=event handler=], whose [=event handler event type=] is <dfn event for=Window id="def-devicemotion"><code>devicemotion</code></dfn>.
 
-The {{DeviceMotionEvent/accelerationIncludingGravity}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+<!--
+https://github.com/w3c/deviceorientation/issues/91: if we align DeviceMotionEvent's attributes with DeviceMotionEventInit's attributes, the "when the object is created" part can be removed since it will be redundant.
+-->
 
-The {{DeviceMotionEvent/rotationRate}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null.
+The <dfn attribute for="DeviceMotionEvent">acceleration</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>linear acceleration</a>.
 
-The {{DeviceMotionEvent/interval}} attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to 0.
+The <dfn attribute for="DeviceMotionEvent">accelerationIncludingGravity</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>acceleration with gravity</a>.
 
-The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, must run these steps:
+The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>rotation rate</a>.
+
+The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return the value it was initialized to. It represents the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It is constant to simplify filtering of the data by the Web application.
+
+<div algorithm>
+The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps are:
+
 <ol>
  <li><p>Let <var>promise</var> be a new promise.
 
@@ -413,18 +495,47 @@ The static {{DeviceMotionEvent/requestPermission()}} operation, when invoked, mu
 
  <li><p>Return <var>promise</var>.
 </ol>
+</div>
 
-In the {{DeviceMotionEvent}} events fired by the user agent, the following requirements must apply:
+<div algorithm="devicemotion firing steps">
+At an <a>implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
 
-The {{DeviceMotionEvent/acceleration}} attribute must be initialized with the device's <a>linear acceleration</a>. The value must not be more precise than 0.1 m/s<sup>2</sup>.
+  1. Let <var>acceleration</var> be null.
+  1. Let <var>accelerationIncludingGravity</var> be null.
+  1. Let <var>rotationRate</var> be null.
+  1. If the implementation is able to provide <a>linear acceleration</a>:
+    1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>linear acceleration</a> along the X axis, or null if it cannot be provided.
+    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>linear acceleration</a> along the Y axis, or null if it cannot be provided.
+    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>linear acceleration</a> along the Z axis, or null if it cannot be provided.
+    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. If the implementation is able to provide <a>acceleration with gravity</a>:
+    1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>acceleration with gravity</a> along the X axis, or null if it cannot be provided.
+    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Y axis, or null if it cannot be provided.
+    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Z axis, or null if it cannot be provided.
+    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. If the implementation is able to provide <a>rotation rate</a>:
+    1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
+    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to the device's <a>rotation rate</a> about the X axis, or null if it cannot be provided.
+    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to the device's <a>rotation rate</a> about the Y axis, or null if it cannot be provided.
+    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to the device's <a>rotation rate</a> about the Z axis, or null if it cannot be provided.
+    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+  1. <a>Fire an event</a> named <a event for="Window"><code>devicemotion</code></a> at <var>window</var>, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to <var>acceleration</var>, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to <var>accelerationIncludingGravity</var>, the {{DeviceMotionEvent/rotationRate}} attribute initialized to <var>rotationRate</var>, and the {{DeviceMotionEvent/interval}} attribute initialized to <var>interval</var>.
 
-Implementations that are unable to provide acceleration data without the effect of gravity may instead supply <a>acceleration with gravity</a>. In this case, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute must be initialized with the <a>acceleration with gravity</a> measurements. Again, the value must not be more precise than 0.1 m/s<sup>2</sup>.
+</div>
 
-The {{DeviceMotionEvent/rotationRate}} attribute must be initialized with the device's <a>rotation rate</a>. It must be expressed as the rate of change of the angles defined as {{DeviceOrientationEvent/alpha}} (x axis), {{DeviceOrientationEvent/beta}} (y axis), {{DeviceOrientationEvent/gamma}} (z axis). Each attribute must not be more precise than 0.1 degrees per second.
-
-The {{DeviceMotionEvent/interval}} attribute must be initialized with the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It must be a constant, to simplify filtering of the data by the Web application.
-
-Implementations that are unable to provide all attributes must initialize the values of the unknown attributes to null. If an implementation can never provide motion information, the event should be fired with the {{DeviceMotionEvent/acceleration}}, {{DeviceMotionEvent/accelerationIncludingGravity}} and {{DeviceMotionEvent/rotationRate}} attributes set to null.
+<!--
+  * https://github.com/w3c/deviceorientation/issues/118: Does this mean a single event should be fired?
+  * Should this be a proper <dfn> in an algorithm?
+-->
+If an implementation can never provide motion information, the event should be fired with the {{DeviceMotionEvent/acceleration}}, {{DeviceMotionEvent/accelerationIncludingGravity}} and {{DeviceMotionEvent/rotationRate}} attributes set to null.
 
 <h3 id="id=permission-model">Permission model</h3>
 
