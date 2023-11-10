@@ -17,6 +17,7 @@ Abstract: This specification defines several new DOM events that provide informa
 Boilerplate: omit issues-index, omit conformance, repository-issue-tracking no
 Include MDN Panels: if possible
 Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
+Markup Shorthands: css no
 </pre>
 
 Conformance requirements {#conformance-requirements}
