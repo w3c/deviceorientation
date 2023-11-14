@@ -213,6 +213,29 @@ The <dfn>rotation rate</dfn> measures the rate at which the device rotates about
 
 Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
 
+Permissions API integration {#permissions-api-integration}
+===========================
+
+This specification defines the following <a>default powerful features</a>:
+
+ * "<dfn permission><code>accelerometer</code></dfn>"
+ * "<dfn permission><code>gyroscope</code></dfn>"
+ * "<dfn permission><code>magnetometer</code></dfn>"
+
+<div class="note">
+<span class="marker">Note:</span> Usage of the <a>powerful features</a> above by this specification is as follows:
+
+  - The <a event for="Window"><code>deviceorientation</code></a> event requires "<a permission><code>accelerometer</code></a>" and "<a permission><code>gyroscope</code></a>" when providing <a>relative orientation</a> data. For the implementation to fall back to <a>absolute orientation</a> data, "<a permission><code>magnetometer</code></a>" is also required.
+  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires "<a permission><code>accelerometer</code></a>", "<a permission><code>gyroscope</code></a>" and "<a permission><code>magnetometer</code></a>".
+  - The <a event for="Window"><code>devicemotion</code></a> event requires "<a permission><code>accelerometer</code></a>" and "<a permission><code>gyroscope</code></a>".
+
+</div>
+
+Task Source {#taks-source}
+===========
+
+The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <dfn>device motion and orientation task source</dfn>.
+
 API {#api}
 ==========================
 
@@ -231,7 +254,7 @@ interface DeviceOrientationEvent : Event {
     readonly attribute double? gamma;
     readonly attribute boolean absolute;
 
-    static Promise&lt;PermissionState> requestPermission();
+    static Promise&lt;PermissionState> requestPermission(optional boolean absolute = false);
 };
 
 dictionary DeviceOrientationEventInit : EventInit {
@@ -253,39 +276,24 @@ The <dfn attribute for="DeviceOrientationEvent">gamma</dfn> attribute must retur
 The <dfn attribute for="DeviceOrientationEvent">absolute</dfn> attribute must return the value it was initialized to. It indicates whether <a>relative orientation</a> or <a>absolute orientation</a> data is being provided.
 
 <div algorithm>
-The <dfn method for="DeviceOrientationEvent">requestPermission()</dfn> method steps are:
+The <dfn method for="DeviceOrientationEvent">requestPermission(<var>absolute</var>)</dfn> method steps are:
 
-<ol>
- <li><p>Let <var>promise</var> be a new promise.
+ 1. Let <var>global</var> be the <a>current global object</a>.
+ 1. If <a>this</a>'s <a>relevant global object</a> does not have <a>transient activation</a>, return <a>a promise rejected with</a> a "{{NotAllowedError}}" {{DOMException}}.
+ 1. Let <var>result</var> be <a>a new promise</a> in <a>this</a>'s <a>relevant Realm</a>.
+ 1. Run these steps <a>in parallel</a>:
+     1. If <var>absolute</var> is true:
+         1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>", "<a permission>magnetometer</a>" ».
+     1. Otherwise:
+         1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
+     1. Let <var>permissionState</var> be "<a for="permission">granted</a>".
+     1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
+         1. If the result of <a>requesting permission to use</a> <var>name</var> is "<a for="permission">denied</a>":
+             1. Set <var>permissionState</var> to "<a for="permission">denied</a>".
+             1. <a>Break</a>
+     1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>resolve</a> <var>result</var> with <var>permissionState</var>.</li>
+ 1. Return <var>result</var>.
 
- <li>
-  <p>Run these steps <a>in parallel</a>:
-
-  <ol>
-   <li><p>Let <var>permission</var> be <a>permission</a> for
-   <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
-
-   <li><p>If <var>permission</var> is "<code>default</code>" and the <a>relevant global object</a> does not have <a>transient activation</a>, then reject <var>promise</var> with a
-   {{NotAllowedError!!exception}} {{DOMException}} and abort these steps.
-
-   <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device orientation
-   for the <a>relevant settings object</a>'s
-   <a for="environment settings object">origin</a> is acceptable. If it is, set
-   <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise.
-
-   <li>
-    <p><a>Queue a task</a> to run these steps:
-
-    <ol>
-     <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
-     <a for="environment settings object">origin</a> to <var>permission</var>.
-
-     <li><p>Fulfill <var>promise</var> with <var>permission</var>.
-    </ol>
-  </ol>
-
- <li><p>Return <var>promise</var>.
-</ol>
 </div>
 
 <div algorithm>
@@ -293,15 +301,23 @@ To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string)
 
   1. If <var>absolute</var> is false:
     1. Let <var>orientation</var> be the device's <a>relative orientation</a> in the tridimensional plane.
+    1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
   1. Otherwise:
     1. Let <var>orientation</var> be the device's <a>absolute orientation</a> in the tridimensional plane.
-  1. Let <var>z rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
-  1. If <var>z rotation</var> is not null, limit <var>z rotation</var>'s precision to 0.1 degrees.
-  1. Let <var>x rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
-  1. If <var>x rotation</var> is not null, limit <var>x rotation</var>'s precision to 0.1 degrees.
-  1. Let <var>y rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Y'' axis, or null if the implementation cannot provide an angle value.
-  1. If <var>y rotation</var> is not null, limit <var>y rotation</var>'s precision to 0.1 degrees.
-  1. <a>Fire an event</a> named <var>event name</var> at <var>window</var>, using {{DeviceOrientationEvent}}, with the {{DeviceOrientationEvent/alpha}} attribute initialized to <var>z rotation</var>, the {{DeviceOrientationEvent/beta}} attribute initialized to <var>x rotation</var>, the {{DeviceOrientationEvent/gamma}} attribute initialized to <var>y rotation</var>, and the {{DeviceOrientationEvent/absolute}} attribute initialized to <var>absolute</var>.
+    1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>", "<a permission>magnetometer</a>" ».
+  1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
+  1. Run these steps <a>in parallel</a>:
+    1. <a for="list">For each</a> <var>permission name</var> in <var>permissions</var>:
+        1. Let <var>state</var> be the result of <a>getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.
+        1. If <var>state</var> is not "<a for="permission">granted</a>", return.
+    1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>window</var> to run the following steps:
+        1. Let <var>z rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
+        1. If <var>z rotation</var> is not null, limit <var>z rotation</var>'s precision to 0.1 degrees.
+        1. Let <var>x rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
+        1. If <var>x rotation</var> is not null, limit <var>x rotation</var>'s precision to 0.1 degrees.
+        1. Let <var>y rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Y'' axis, or null if the implementation cannot provide an angle value.
+        1. If <var>y rotation</var> is not null, limit <var>y rotation</var>'s precision to 0.1 degrees.
+        1. <a>Fire an event</a> named <var>event name</var> at <var>window</var>, using {{DeviceOrientationEvent}}, with the {{DeviceOrientationEvent/alpha}} attribute initialized to <var>z rotation</var>, the {{DeviceOrientationEvent/beta}} attribute initialized to <var>x rotation</var>, the {{DeviceOrientationEvent/gamma}} attribute initialized to <var>y rotation</var>, and the {{DeviceOrientationEvent/absolute}} attribute initialized to <var>absolute</var>.
 
 </div>
 
@@ -464,37 +480,18 @@ The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return 
 <div algorithm>
 The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps are:
 
-<ol>
- <li><p>Let <var>promise</var> be a new promise.
+ 1. Let <var>global</var> be the <a>current global object</a>.
+ 1. If <a>this</a>'s <a>relevant global object</a> does not have <a>transient activation</a>, return <a>a promise rejected with</a> a "{{NotAllowedError}}" {{DOMException}}.
+ 1. Let <var>result</var> be <a>a new promise</a> in <a>this</a>'s <a>relevant Realm</a>.
+ 1. Run these steps <a>in parallel</a>:
+     1. Let <var>permissionState</var> be "<a for="permission">granted</a>".
+     1. <a for="list">For each</a> <var>name</var> of « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" »:
+         1. If the result of <a>requesting permission to use</a> <var>name</var> is "<a for="permission">denied</a>":
+             1. Set <var>permissionState</var> to "<a for="permission">denied</a>".
+             1. <a>Break</a>
+     1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>resolve</a> <var>result</var> with <var>permissionState</var>.</li>
+ 1. Return <var>result</var>.
 
- <li>
-  <p>Run these steps <a>in parallel</a>:
-
-  <ol>
-   <li><p>Let <var>permission</var> be <a>permission</a> for
-   <a>relevant settings object</a>'s <a for="environment settings object">origin</a>.
-
-   <li><p>If <var>permission</var> is "<code>default</code>" and the <a>relevant global object</a> does not have <a>transient activation</a>, then reject <var>promise</var> with a
-   {{NotAllowedError!!exception}} {{DOMException}} and abort these steps.
-
-   <li><p>If <var>permission</var> is "<code>default</code>", ask the user whether sharing device motion
-   for the <a>relevant settings object</a>'s
-   <a for="environment settings object">origin</a> is acceptable. If it is, set
-   <var>permission</var> to "<code>granted</code>", and "<code>denied</code>" otherwise.
-
-   <li>
-    <p><a>Queue a task</a> to run these steps:
-
-    <ol>
-     <li><p>Set <a>permission</a> for the <a>relevant settings object</a>'s
-     <a for="environment settings object">origin</a> to <var>permission</var>.
-
-     <li><p>Fulfill <var>promise</var> with <var>permission</var>.
-    </ol>
-  </ol>
-
- <li><p>Return <var>promise</var>.
-</ol>
 </div>
 
 <div algorithm="devicemotion firing steps">
@@ -503,31 +500,37 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
   1. Let <var>acceleration</var> be null.
   1. Let <var>accelerationIncludingGravity</var> be null.
   1. Let <var>rotationRate</var> be null.
-  1. If the implementation is able to provide <a>linear acceleration</a>:
-    1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>linear acceleration</a> along the X axis, or null if it cannot be provided.
-    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>linear acceleration</a> along the Y axis, or null if it cannot be provided.
-    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-    1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>linear acceleration</a> along the Z axis, or null if it cannot be provided.
-    1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-  1. If the implementation is able to provide <a>acceleration with gravity</a>:
-    1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>acceleration with gravity</a> along the X axis, or null if it cannot be provided.
-    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Y axis, or null if it cannot be provided.
-    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-    1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Z axis, or null if it cannot be provided.
-    1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-  1. If the implementation is able to provide <a>rotation rate</a>:
-    1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
-    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to the device's <a>rotation rate</a> about the X axis, or null if it cannot be provided.
-    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to the device's <a>rotation rate</a> about the Y axis, or null if it cannot be provided.
-    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-    1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to the device's <a>rotation rate</a> about the Z axis, or null if it cannot be provided.
-    1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-  1. <a>Fire an event</a> named <a event for="Window"><code>devicemotion</code></a> at <var>window</var>, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to <var>acceleration</var>, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to <var>accelerationIncludingGravity</var>, the {{DeviceMotionEvent/rotationRate}} attribute initialized to <var>rotationRate</var>, and the {{DeviceMotionEvent/interval}} attribute initialized to <var>interval</var>.
+  1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
+  1. Run these steps <a>in parallel</a>:
+    1. <a for="list">For each</a> <var>permission name</var> in « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" »:
+        1. Let <var>state</var> be the result of <a>getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.
+        1. If <var>state</var> is not "<a for="permission">granted</a>", return.
+    1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>window</var> to run the following steps:
+        1. If the implementation is able to provide <a>linear acceleration</a>:
+            1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>linear acceleration</a> along the X axis, or null if it cannot be provided.
+            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>linear acceleration</a> along the Y axis, or null if it cannot be provided.
+            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>linear acceleration</a> along the Z axis, or null if it cannot be provided.
+            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+        1. If the implementation is able to provide <a>acceleration with gravity</a>:
+            1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>acceleration with gravity</a> along the X axis, or null if it cannot be provided.
+            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Y axis, or null if it cannot be provided.
+            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Z axis, or null if it cannot be provided.
+            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+        1. If the implementation is able to provide <a>rotation rate</a>:
+            1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
+            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to the device's <a>rotation rate</a> about the X axis, or null if it cannot be provided.
+            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to the device's <a>rotation rate</a> about the Y axis, or null if it cannot be provided.
+            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to the device's <a>rotation rate</a> about the Z axis, or null if it cannot be provided.
+            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+        1. <a>Fire an event</a> named <a event for="Window"><code>devicemotion</code></a> at <var>window</var>, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to <var>acceleration</var>, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to <var>accelerationIncludingGravity</var>, the {{DeviceMotionEvent/rotationRate}} attribute initialized to <var>rotationRate</var>, and the {{DeviceMotionEvent/interval}} attribute initialized to <var>interval</var>.
 
 </div>
 
@@ -536,33 +539,6 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
   * Should this be a proper <dfn> in an algorithm?
 -->
 If an implementation can never provide motion information, the event should be fired with the {{DeviceMotionEvent/acceleration}}, {{DeviceMotionEvent/accelerationIncludingGravity}} and {{DeviceMotionEvent/rotationRate}} attributes set to null.
-
-<h3 id="id=permission-model">Permission model</h3>
-
-<div class="issue">Further implementation experience is being gathered for the permission model and specification clarifications informed by this experience are being discussed in <a href="https://github.com/w3c/deviceorientation/issues/74">GitHub issue #74</a>.</div>
-
-<p>Implementations may choose to share device orientation &amp; motion only if the
-user (or user agent on behalf of the user) has granted <dfn>permission</dfn>.
-The <a>permission</a> to share device orientation &amp; motion
-for a given <a for=/>origin</a> is one of three strings:
-
-<dl>
-  <dt>"<code>default</code>"
-  <dd><p>This is equivalent to "<code>denied</code>", but the user has made no
-  explicit choice thus far.
-
-  <dt>"<code>denied</code>"
-  <dd><p>This means the user does not want
-  to share device orientation or motion.
-
-  <dt>"<code>granted</code>"
-  <dd><p>This means device orientation or motion may be shared.
-</dl>
-
-<p class=note>There is no equivalent to "<code>default</code>"
-meaning "<code>granted</code>". In that case
-"<code>granted</code>" is simply returned as there would be no reason
-for the application to ask for <a>permission</a>.
 
 Security and privacy considerations {#security-and-privacy}
 ===========================================================
@@ -573,7 +549,9 @@ The API defined in this specification can be used to obtain information from har
 * Location tracking [[INDOORPOS]]
 * User identification [[FINGERPRINT]]
 
-In light of that, implementations may consider permissions or visual indicators to signify the use of sensors by the web page. Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:
+In light of that, implementations may consider visual indicators to signify the use of sensors by the web page. Additionally, this specification requires users to give <a>express permission</a> for the user agent to provide device motion and/or orientation data via the <code>requestPermission()</code> API calls.
+
+Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:
 
 * fire events only when a [=/navigable=]'s [=navigable/active document=]'s [=visibility state=] is "<code>visible</code>",
 * fire events only on the [=/top-level traversable=]'s [=navigable/active window=] and [=child navigables=]' [=navigable/active windows=] whose [=relevant settings object=]'s [=environment settings object/origin=] is [=same origin=] with the [=/top-level traversable=]'s [=navigable/active window=]'s [=relevant settings object=]'s [=environment settings object/origin=].
