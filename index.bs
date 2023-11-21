@@ -19,6 +19,15 @@ Include MDN Panels: if possible
 Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
 Markup Shorthands: css no
 </pre>
+<pre class="anchors">
+urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
+    type: dfn
+        text: can provide readings flag; url: virtual-sensor-can-provide-readings-flag
+        text: virtual sensor mapping; url: virtual-sensor-mapping
+urlPrefix: https://w3c.github.io/webdriver/; spec: WEBDRIVER2
+    type: dfn
+        text: get a property; url: dfn-getting-properties
+</pre>
 
 Conformance requirements {#conformance-requirements}
 ====================================================
@@ -320,12 +329,23 @@ The <dfn method for="DeviceOrientationEvent">requestPermission(<var>absolute</va
 <div algorithm>
 To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string), <var>window</var> (a {{Window}}) and <var>absolute</var> (a boolean):
 
-  1. If <var>absolute</var> is false:
-    1. Let <var>orientation</var> be the device's <a>relative orientation</a> in the tridimensional plane.
-    1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
+  1. Let <var>orientation</var> be null.
+  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
+  1. Let <var>virtualSensorType</var> be "<code><a data-lt="relative-orientation virtual sensor type">relative-orientation</a></code>" if <var>absolute</var> is false, and "<code><a data-lt="absolute-orientation virtual sensor type">absolute-orientation</a></code>" otherwise.
+  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> <var>virtualSensorType</var>:
+      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>[<var>virtualSensorType</var>].
+      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true:
+          1. Set <var>orientation</var> to the latest readings provided to <var>virtualSensor</var> with the "<code>alpha</code>", "<code>beta</code>", and "<code>gamma</code>" keys.
   1. Otherwise:
-    1. Let <var>orientation</var> be the device's <a>absolute orientation</a> in the tridimensional plane.
-    1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>", "<a permission>magnetometer</a>" ».
+      1. If <var>absolute</var> is false:
+          1. Set <var>orientation</var> to the device's <a>relative orientation</a> in the tridimensional plane.
+      1. Otherwise:
+          1. Set <var>orientation</var> to the device's <a>absolute orientation</a> in the tridimensional plane.
+  1. Let <var>permissions</var> be null.
+  1. If <var>absolute</var> is false:
+      1. Set <var>permissions</var> to « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
+  1. Otherwise:
+      1. Set <var>permissions</var> to « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>", "<a permission>magnetometer</a>" ».
   1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
   1. Run these steps <a>in parallel</a>:
     1. <a for="list">For each</a> <var>permission name</var> in <var>permissions</var>:
@@ -343,6 +363,8 @@ To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string)
 </div>
 
 A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window"><code>deviceorientation</code></a> or <a event for="Window"><code>deviceorientationabsolute</code></a> event. The process of determining whether a <a>significant change in orientation</a> has occurred is <a>implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
+
+Note: Implementations must take [[#automation]] into account to determine whether a <a>significant change in orientation</a> has occurred, so that a virtual sensor reading update causes it to be assessed.
 
 <div algorithm="deviceorientation firing steps">
 Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
@@ -528,40 +550,59 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
 
   1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
   1. <a for="list">For each</a> <var>policy</var> of « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" »:
-    1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
+      1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
+  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
+  1. Let <var>platformLinearAcceleration</var> be null.
+  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>linear-acceleration</code>":
+      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>linear-acceleration</code>"].
+      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformLinearAcceleration</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. Otherwise, if the implementation is able to provide <a>linear acceleration</a>:
+      1. Set <var>platformLinearAcceleration</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
   1. Let <var>acceleration</var> be null.
+  1. If <var>platformLinearAcceleration</var> is not null:
+      1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the X axis, or null if it cannot be provided.
+      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the Y axis, or null if it cannot be provided.
+      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the Z axis, or null if it cannot be provided.
+      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. Let <var>platformAccelerationIncludingGravity</var> be null.
+  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>accelerometer</code>":
+      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>accelerometer</code>"].
+      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformAccelerationIncludingGravity</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. Otherwise, if the implementation is able to provide <a>acceleration with gravity</a>:
+      1. Set <var>platformAccelerationIncludingGravity</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
   1. Let <var>accelerationIncludingGravity</var> be null.
+  1. If <var>platformAccelerationIncludingGravity</var> is not null:
+      1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
+      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the X axis, or null if it cannot be provided.
+      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the Y axis, or null if it cannot be provided.
+      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the Z axis, or null if it cannot be provided.
+      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. Let <var>platformRotationRate</var> be null.
+  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>gyroscope</code>":
+      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>gyroscope</code>"].
+      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformRotationRate</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. Otherwise, if the implementation is able to provide <a>rotation rate</a>:
+      1. Set <var>platformRotationRate</var> to the device's <a>rotation rate</a> about the X, Y and Z axes.
   1. Let <var>rotationRate</var> be null.
+  1. If <var>platformRotationRate</var> is not null:
+      1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
+      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to <var>platformRotationRate</var>'s value about the X axis, or null if it cannot be provided.
+      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to <var>platformRotationRate</var>'s value about the Y axis, or null if it cannot be provided.
+      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to <var>platformRotationRate</var>'s value about the Z axis, or null if it cannot be provided.
+      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
   1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
   1. Run these steps <a>in parallel</a>:
     1. <a for="list">For each</a> <var>permission name</var> in « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" »:
         1. Let <var>state</var> be the result of <a>getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.
         1. If <var>state</var> is not "<a for="permission">granted</a>", return.
     1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>window</var> to run the following steps:
-        1. If the implementation is able to provide <a>linear acceleration</a>:
-            1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>linear acceleration</a> along the X axis, or null if it cannot be provided.
-            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>linear acceleration</a> along the Y axis, or null if it cannot be provided.
-            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-            1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>linear acceleration</a> along the Z axis, or null if it cannot be provided.
-            1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-        1. If the implementation is able to provide <a>acceleration with gravity</a>:
-            1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to the device's <a>acceleration with gravity</a> along the X axis, or null if it cannot be provided.
-            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Y axis, or null if it cannot be provided.
-            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-            1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to the device's <a>acceleration with gravity</a> along the Z axis, or null if it cannot be provided.
-            1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-        1. If the implementation is able to provide <a>rotation rate</a>:
-            1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
-            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to the device's <a>rotation rate</a> about the X axis, or null if it cannot be provided.
-            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to the device's <a>rotation rate</a> about the Y axis, or null if it cannot be provided.
-            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-            1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to the device's <a>rotation rate</a> about the Z axis, or null if it cannot be provided.
-            1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
         1. <a>Fire an event</a> named <a event for="Window"><code>devicemotion</code></a> at <var>window</var>, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to <var>acceleration</var>, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to <var>accelerationIncludingGravity</var>, the {{DeviceMotionEvent/rotationRate}} attribute initialized to <var>rotationRate</var>, and the {{DeviceMotionEvent/interval}} attribute initialized to <var>interval</var>.
 
 </div>
@@ -621,6 +662,100 @@ A mapping Web application uses the device's orientation to correctly align the m
 * The specification must allow Web applications to register for changes in the device's orientation.
 * The specification must be agnostic to the underlying sources of orientation and motion data.
 * The specification must use the existing DOM event framework.
+
+Automation {#automation}
+==========
+
+This specification can pose a challenge to test authors, as the events defined here depend on the presence of physical hardware whose readings cannot be easily controlled.
+
+To address this challenge, this document builds upon the [[WEBDRIVER2]] <a>extension commands</a> and infrastructure laid out by [[GENERIC-SENSOR#automation]]. This was chosen over the option of developing completely new and independent infrastructure with separate <a>extension commands</a> because there is significant overlap between the two specifications: not only does testing the [[GENERIC-SENSOR]] specification present similar challenges, but many derived APIs (e.g. [[GYROSCOPE]]) obtain and provide similar information.
+
+This specification only requires implementations to support the [[GENERIC-SENSOR#automation]] section of the [[GENERIC-SENSOR]] specification, not its interfaces and events.
+
+Device Orientation Automation {#device-orientation-automation}
+-----------------------------
+
+Automation support for the <a event><code>deviceorientation</code></a> event is built upon virtual sensors that represent accelerometers, gyroscopes and, optionally, magnetometers.
+
+Orientation data retrieved from the platform by the user agent comes from accelerometers, gyroscopes and, optionally, magnetometers. Contrary to motion data, however, these lower-level readings must be transformed into Euler angles in the formation described in [[#device-orientation-model]]. Furthermore, the platform might provide extra APIs to the user agent that already perform some of those conversions from raw acceleration and rotation data.
+
+Therefore, instead of requiring implementations (and automation users) to provide orientation readings via lower-level virtual sensors which use different units of measurement, this specification defines extra <a>virtual sensor types</a> for relative and orientation data in the format used by this specification.
+
+### Parse orientation reading data algorithm ### {#parse-orientation-data-reading-algorithm}
+
+<div algorithm>
+To perform the <dfn export>parse orientation data reading</dfn> algorithm, given a JSON {{Object}} <var>parameters</var>:
+
+    1. Let <var>alpha</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>alpha</code>".
+    1. If <var>alpha</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
+    1. If <var>alpha</var> is not in the range [0, 360), then return <strong>undefined</strong>.
+    1. Let <var>beta</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>beta</code>".
+    1. If <var>beta</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
+    1. If <var>beta</var> is not in the range [-180, 180), then return <strong>undefined</strong>.
+    1. Let <var>gamma</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>gamma</code>".
+    1. If <var>gamma</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
+    1. If <var>gamma</var> is not in the range [-90, 90), then return <strong>undefined</strong>.
+    1. Let <var>reading</var> be a new <a>map</a>.
+    1. <a for=map>Set</a> <var>reading</var>["<code>alpha</code>"] to <var>alpha</var>.
+    1. <a for=map>Set</a> <var>reading</var>["<code>beta</code>"] to <var>beta</var>.
+    1. <a for=map>Set</a> <var>reading</var>["<code>gamma</code>"] to <var>gamma</var>.
+    1. Return <var>reading</var>.
+
+Note: <var>reading</var> is defined as a <a>map</a> in the algorithm above to prevent a dependency on the <a>sensor reading</a> concept from the [[GENERIC-SENSOR]] specification. They should be interchangeable for the purposes of the algorithm above.
+
+</div>
+
+### The "absolute-orientation" virtual sensor type ### {#absolute-orientation-virtual-sensors}
+
+The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+:
+: <a for=map>key</a>
+:: "<code><dfn export data-lt="absolute-orientation virtual sensor type">absolute-orientation</dfn></code>"
+: <a for=map>value</a>
+:: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
+
+### The "relative-orientation" virtual sensor type ### {#relative-orientation-virtual-sensors}
+
+The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+:
+: <a for=map>key</a>
+:: "<code><dfn export data-lt="relative-orientation virtual sensor type">relative-orientation</dfn></code>"
+: <a for=map>value</a>
+:: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
+
+Device Motion Automation {#device-motion-automation}
+------------------------
+
+The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain <a>per-type virtual sensor metadata</a> entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
+
+Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a>rotation rate</a> data to the platform.
+
+### The "accelerometer" virtual sensor type ### {#accelerometer-virtual-sensors}
+
+The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+
+: <a for=map>key</a>
+:: "<code><dfn export data-lt="accelerometer virtual sensor type">accelerometer</dfn></code>"
+: <a for=map>value</a>
+:: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
+
+### The "linear-acceleration" virtual sensor type ### {#linear-acceleration-virtual-sensors}
+
+The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+
+: <a for=map>key</a>
+:: "<code><dfn export data-lt="linear-acceleration virtual sensor type">linear-acceleration</dfn></code>"
+: <a for=map>value</a>
+:: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
+
+### The "gyroscope" virtual sensor type ### {#gyroscope-virtual-sensors}
+
+The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+
+: <a for=map>key</a>
+:: "<code><dfn export data-lt="gyroscope virtual sensor type">gyroscope</dfn></code>"
+: <a for=map>value</a>
+:: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 <h2 class="no-num" id="examples">A Examples</h2>
 <em>This section is non-normative.</em>
