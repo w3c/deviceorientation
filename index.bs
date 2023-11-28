@@ -288,6 +288,9 @@ The <dfn method for="DeviceOrientationEvent">requestPermission(<var>absolute</va
          1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
      1. Let <var>permissionState</var> be "<a for="permission">granted</a>".
      1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
+
+         Note: There is no algorithm for requesting multiple permissions at once. However, user agents are encouraged to bundle concurrent requests for different kinds of media into a single user-facing permission prompt.
+
          1. If the result of <a>requesting permission to use</a> <var>name</var> is "<a for="permission">denied</a>":
              1. Set <var>permissionState</var> to "<a for="permission">denied</a>".
              1. <a>Break</a>
@@ -486,6 +489,9 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
  1. Run these steps <a>in parallel</a>:
      1. Let <var>permissionState</var> be "<a for="permission">granted</a>".
      1. <a for="list">For each</a> <var>name</var> of « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" »:
+
+         Note: There is no algorithm for requesting multiple permissions at once. However, user agents are encouraged to bundle concurrent requests for different kinds of media into a single user-facing permission prompt.
+
          1. If the result of <a>requesting permission to use</a> <var>name</var> is "<a for="permission">denied</a>":
              1. Set <var>permissionState</var> to "<a for="permission">denied</a>".
              1. <a>Break</a>
