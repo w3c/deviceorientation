@@ -218,9 +218,9 @@ Permissions Policy integration {#permissions-policy-integration}
 
 This specification defines the following <a>policy-controlled features</a>:
 
-  - "<code><dfn data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
-  - "<code><dfn data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
-  - "<code><dfn data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
 
 <div class="note">
 <span class="marker">Note:</span> Usage of the <a>policy-controlled features</a> above by this specification is as follows:
