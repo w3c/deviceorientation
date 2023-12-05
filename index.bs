@@ -213,6 +213,24 @@ The <dfn>rotation rate</dfn> measures the rate at which the device rotates about
 
 Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
 
+Permissions Policy integration {#permissions-policy-integration}
+==============================
+
+This specification defines the following <a>policy-controlled features</a>:
+
+  - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+
+<div class="note">
+<span class="marker">Note:</span> Usage of the <a>policy-controlled features</a> above by this specification is as follows:
+
+  - The <a event for="Window"><code>deviceorientation</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" features when providing <a>relative orientation</a> data. For the implementation to fall back to <a>absolute orientation</a> data, the "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" feature is also used.
+  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" and "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" feature.
+  - The <a event for="Window"><code>devicemotion</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>".
+
+</div>
+
 Permissions API integration {#permissions-api-integration}
 ===========================
 
@@ -331,8 +349,13 @@ Whenever a <a>significant change in orientation</a> occurs, the user agent must 
 
   1. If the implementation cannot provide <a>relative orientation</a> or the resulting <a>absolute orientation</a> data is more accurate:
     1. Let <var>absolute</var> be true.
+    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>", "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" ».
   1. Otherwise:
     1. Let <var>absolute</var> be false.
+    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" ».
+  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
+  1. <a for="list">For each</a> <var>policy</var> of <var>policies</var>:
+      1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
   1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientation</code></a>, <var>window</var>, and <var>absolute</var>.
 
 </div>
@@ -503,6 +526,9 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
 <div algorithm="devicemotion firing steps">
 At an <a>implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
 
+  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
+  1. <a for="list">For each</a> <var>policy</var> of « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" »:
+    1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
   1. Let <var>acceleration</var> be null.
   1. Let <var>accelerationIncludingGravity</var> be null.
   1. Let <var>rotationRate</var> be null.
