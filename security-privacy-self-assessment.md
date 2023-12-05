@@ -1,0 +1,84 @@
+# Security and Privacy Self-Review Questionnaire for DeviceOrientation Event
+
+[Self-Review Questionnaire](https://www.w3.org/TR/security-privacy-questionnaire/)
+responses for the [DeviceOrientation Event](https://www.w3.org/TR/orientation-event/) specification.
+
+Related Self-Review Questionnaires:
+- [Generic Sensor API](https://github.com/w3c/sensors/blob/main/security-questionnaire.md)
+- [Orientation Sensor API](https://github.com/w3c/orientation-sensor/blob/main/security-questionnaire.md)
+
+### 2.1 What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?
+
+Information about the physical orientation and movement of the hosting device. See [use cases](https://www.w3.org/TR/orientation-event/#use-cases).
+
+### 2.2 Do features in your specification expose the minimum amount of information necessary to enable their intended uses?
+
+This specification expresses a device’s physical orientation as a series of rotations relative to an implementation-defined reference coordinate frame in order to realize its use cases.
+
+The rate at which this information is delivered via events is implementation-defined.
+
+### 2.3 How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them?
+
+This specification does not deal with PII directly. The specification requires users to give express permission for the user agent to provide device motion and/or orientation data.
+
+### 2.4 How do the features in your specification deal with sensitive information?
+
+See 2.3.
+
+### 2.5 Do the features in your specification introduce new state for an origin that persists across browsing sessions?
+
+No.
+
+### 2.6 Do the features in your specification expose information about the underlying platform to origins?
+
+Minor manufacturing imperfections and differences unique to the underlying platform and the sensor hardware in the hosting device can be detected through readings over time.
+
+The specification mitigates this type of passive fingerprinting by normatively limiting rotation and acceleration precision to at most 0.1 degrees, 0.1 degrees per second, 0.1 meters per second squared. More context is available in a [paper](https://github.com/JensenPaul/sensor-fingerprint-mitigation).
+
+### 2.7 Does this specification allow an origin to send data to the underlying platform?
+
+No.
+
+### 2.8 Do features in this specification enable access to device sensors?
+
+Yes. See 2.1 and 2.2.
+
+### 2.9 Do features in this specification enable new script execution/loading mechanisms?
+
+No.
+
+### 2.10 Do features in this specification allow an origin to access other devices?
+
+No.
+
+### 2.11 Do features in this specification allow an origin some measure of control over a user agent’s native UI?
+
+No.
+
+### 2.12 What temporary identifiers do the features in this specification create or expose to the web?
+
+None.
+
+### 2.13 How does this specification distinguish between behavior in first-party and third-party contexts?
+
+No.
+
+### 2.14 How do the features in this specification work in the context of a browser’s Private Browsing or Incognito mode?
+
+No difference to the browser's 'normal' state.
+
+### 2.15 Does this specification have both "Security Considerations" and "Privacy Considerations" sections?
+
+Combined together.
+
+### 2.16 Do features in your specification enable origins to downgrade default security protections?
+
+No.
+
+### 2.17 How does your feature handle non-"fully active" documents?
+
+Events are fired on active windows only.
+
+### 2.18 What should this questionnaire have asked?
+
+That's all. Thank you for your review.
