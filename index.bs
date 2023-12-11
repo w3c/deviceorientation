@@ -925,7 +925,7 @@ This section summarizes substantial changes and notable editorial improvements t
 - Add Permissions API integration, start requiring requestPermission() usage
 - editorial: Define API section more normatively and with more dfns
 - editorial: Reorder acceleration explanation in Device Motion Model section
-- editorial: Update explanations of the device rotation and motion refences
+- editorial: Update explanations of the device rotation and motion references
 - editorial: Use more precise event handling terms, modernize others
 - editorial: Refer to [[SCREEN-ORIENTATION]] instead of the orientation change event
 - editorial: Reword requirements in "Security and privacy considerations"
