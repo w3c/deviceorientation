@@ -19,7 +19,7 @@ The data precision is normatively limited to resist fingerprinting (see 2.6).
 
 ### 2.3 How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them?
 
-This specification does not deal with PII directly. The specification requires users to give express permission for the user agent to provide device motion and/or orientation data.
+This specification does not deal with PII directly, however identifiable information such as gait can be determined from monitoring sensor readings over time. The specification requires users to give express permission for the user agent to provide device motion and/or orientation data.
 
 ### 2.4 How do the features in your specification deal with sensitive information?
 
