@@ -13,9 +13,9 @@ Information about the physical orientation and movement of the hosting device. S
 
 ### 2.2 Do features in your specification expose the minimum amount of information necessary to enable their intended uses?
 
-This specification expresses a device’s physical orientation as a series of rotations relative to an implementation-defined reference coordinate frame in order to realize its use cases.
+This specification allows developers to request access to only the set of sensor data necessary, either a "device motion" event for motion-controlled applications or a "device orientation" event for orientation control. Since absolute orientation exposes more information, a "relative orientation" option is available if the compass heading is unnecessary.
 
-The rate at which this information is delivered via events is implementation-defined.
+The data precision is normatively limited to resist fingerprinting (see 2.6).
 
 ### 2.3 How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them?
 
