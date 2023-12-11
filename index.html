@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="e81d70fda5c432a0dcfd37e7cbd2cbf7ea5588aa" name="document-revision">
+  <meta content="63c9356a7b5d114ff0c0373b6c28ac063a5a603d" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -889,7 +889,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-05">5 December 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-12-11">11 December 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -988,6 +988,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
       <li><a href="#worked-example-2"><span class="secno"></span> <span class="content">A.2 Alternate device orientation representations</span></a>
      </ol>
     <li><a href="#acknowledgments"><span class="secno"></span> <span class="content">Acknowledgments</span></a>
+    <li><a href="#changes"><span class="secno">11</span> <span class="content">Changes</span></a>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
      <ol class="toc">
@@ -1782,6 +1783,68 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <p>as expected.</p>
    <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
    <p>Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez</p>
+   <h2 class="heading settled" data-level="11" id="changes"><span class="secno">11. </span><span class="content">Changes</span><a class="self-link" href="#changes"></a></h2>
+   <p>This section summarizes substantial changes and notable editorial improvements to guide review. Full details are available from the <a href="https://github.com/w3c/deviceorientation/commits/main">commit log</a>. Changes since the <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation 2016-08-18</a>:</p>
+   <ul>
+    <li data-md>
+     <p>Add Permissions Policy integration</p>
+    <li data-md>
+     <p>Add note to implementers about bundling permission requests</p>
+    <li data-md>
+     <p>Export powerful features Accelerometer, Gyroscope and Magnetometer</p>
+    <li data-md>
+     <p>Add Permissions API integration, start requiring requestPermission() usage</p>
+    <li data-md>
+     <p>editorial: Define API section more normatively and with more dfns</p>
+    <li data-md>
+     <p>editorial: Reorder acceleration explanation in Device Motion Model section</p>
+    <li data-md>
+     <p>editorial: Update explanations of the device rotation and motion references</p>
+    <li data-md>
+     <p>editorial: Use more precise event handling terms, modernize others</p>
+    <li data-md>
+     <p>editorial: Refer to <a data-link-type="biblio" href="#biblio-screen-orientation" title="Screen Orientation">[SCREEN-ORIENTATION]</a> instead of the orientation change event</p>
+    <li data-md>
+     <p>editorial: Reword requirements in "Security and privacy considerations"</p>
+    <li data-md>
+     <p>Mark use cases and requirements and examples sections non-normative</p>
+    <li data-md>
+     <p>Remove the oncompassneedscalibration event</p>
+    <li data-md>
+     <p>Update references to "triggered by user activation", now referred to as "transient activation"</p>
+    <li data-md>
+     <p>Align with DOM phrasing on firing events</p>
+    <li data-md>
+     <p>Add a note about acceleration properties for DeviceMotionEvent</p>
+    <li data-md>
+     <p>Add a note explaining how the coordinate system differs from the CSS coordinate system</p>
+    <li data-md>
+     <p>Require no more precise than 0.1 degrees, 0.1 degrees per second, 0.1 meters per second squared to mitigate a <a href="https://github.com/w3c/deviceorientation/issues/85">passive fingerprinting issue</a></p>
+    <li data-md>
+     <p>Update constructor definition in IDL with the Web IDL</p>
+    <li data-md>
+     <p>Add explicit [Exposed] to interfaces</p>
+    <li data-md>
+     <p>Update IDL dictionaries with new dictionary defaulting setup</p>
+    <li data-md>
+     <p>Note the deviceorientationabsolute event and its ondeviceorientationabsolute event handler IDL attribute have limited implementation experience</p>
+    <li data-md>
+     <p>Add requestPermission() API static operation to both DeviceOrientationEvent and DeviceMotionEvent</p>
+    <li data-md>
+     <p>Add [SecureContext] to event handlers ondeviceorientation, ondevicemotion and ondeviceorientationabsolute</p>
+    <li data-md>
+     <p>Restrict all interfaces to secure contexts</p>
+    <li data-md>
+     <p>Remove [NoInterfaceObject] from DeviceAcceleration and DeviceRotationRate</p>
+    <li data-md>
+     <p>Make security and privacy considerations normative</p>
+    <li data-md>
+     <p>Add the ondeviceorientationabsolute event handler attribute into the IDL block (was only in prose)</p>
+    <li data-md>
+     <p>Remove '?' from dictionary members of DeviceMotionEventInit</p>
+    <li data-md>
+     <p>Use [Exposed=Window] extended attribute</p>
+   </ul>
   </main>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
