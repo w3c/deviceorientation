@@ -69,7 +69,7 @@ No difference to the browser's 'normal' state.
 
 ### 2.15 Does this specification have both "Security Considerations" and "Privacy Considerations" sections?
 
-Combined together.
+Yes, combined together.
 
 ### 2.16 Do features in your specification enable origins to downgrade default security protections?
 
