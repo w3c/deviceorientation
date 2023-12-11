@@ -61,7 +61,7 @@ None.
 
 ### 2.13 How does this specification distinguish between behavior in first-party and third-party contexts?
 
-No.
+It does not.
 
 ### 2.14 How do the features in this specification work in the context of a browser’s Private Browsing or Incognito mode?
 
