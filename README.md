@@ -1,12 +1,11 @@
 # DeviceOrientation Event Specification
 
-This is the repository in which the W3C editor's draft version of the DeviceOrientation Events specification is maintained.
+This is the repository in which the W3C DeviceOrientation Event specification is maintained.
 
-The latest draft of this specification can be found at [https://w3c.github.io/deviceorientation/](https://w3c.github.io/deviceorientation/)
+The latest version of this specification can be found at [https://www.w3.org/TR/orientation-event/](https://www.w3.org/TR/orientation-event/)
 
 ## Useful links
 
-* [Latest's Editor's Draft snapshot specification](https://w3c.github.io/deviceorientation/)
 * [W3C DAS WG home page](https://www.w3.org/das/)
 * [W3C DAS WG mailing list](https://lists.w3.org/Archives/Public/public-device-apis/)
 
