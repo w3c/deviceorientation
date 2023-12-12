@@ -27,7 +27,7 @@ See 2.3.
 
 ### 2.5 Do the features in your specification introduce new state for an origin that persists across browsing sessions?
 
-No.
+This specification defines new [permissions](https://www.w3.org/TR/orientation-event/#permissions-api-integration) for which user agents may persist the user's decision to grant access to a site between browsing sessions. Otherwise, sensors are completely stateless. 
 
 ### 2.6 Do the features in your specification expose information about the underlying platform to origins?
 
