@@ -53,7 +53,7 @@ No.
 
 ### 2.11 Do features in this specification allow an origin some measure of control over a user agent’s native UI?
 
-No.
+The specification includes a method to request the user agent display a permission prompt, the contents of which are implementation-defined.
 
 ### 2.12 What temporary identifiers do the features in this specification create or expose to the web?
 
