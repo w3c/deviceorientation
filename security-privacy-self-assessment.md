@@ -31,7 +31,7 @@ This specification defines new [permissions](https://www.w3.org/TR/orientation-e
 
 ### 2.6 Do the features in your specification expose information about the underlying platform to origins?
 
-Minor manufacturing imperfections and differences unique to the underlying platform and the sensor hardware in the hosting device can be detected through readings over time.
+Minor manufacturing imperfections and differences unique to the underlying platform and the sensor hardware in the hosting device might be detected through readings over time.
 
 The specification mitigates this type of passive fingerprinting by normatively limiting rotation and acceleration precision to at most 0.1 degrees, 0.1 degrees per second or 0.1 meters per second squared as appropriate. More context is available in a [paper](https://github.com/JensenPaul/sensor-fingerprint-mitigation).
 
