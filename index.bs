@@ -235,8 +235,8 @@ This specification defines the following <a>policy-controlled features</a>:
 <span class="marker">Note:</span> Usage of the <a>policy-controlled features</a> above by this specification is as follows:
 
   - The <a event for="Window"><code>deviceorientation</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" features when providing <a>relative orientation</a> data. For the implementation to fall back to <a>absolute orientation</a> data, the "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" feature is also used.
-  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" and "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" feature.
-  - The <a event for="Window"><code>devicemotion</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>".
+  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" and "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" features.
+  - The <a event for="Window"><code>devicemotion</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" features.
 
 </div>
 
