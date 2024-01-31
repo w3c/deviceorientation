@@ -61,7 +61,13 @@ None.
 
 ### 2.13 How does this specification distinguish between behavior in first-party and third-party contexts?
 
-It does not.
+The Permissions Policy integration controls whether third-party contexts are able to receive the events defined by this specification:
+
+- The "deviceorientation" event requires the "accelerometer" and "gyroscope" features when providing relative orientation data. For the implementation to fall back to absolute orientation data, the "magnetometer" feature is also required.
+- The "deviceorientationabsolute" event requires the "accelerometer", "gyroscope" and "magnetometer" features.
+- The "devicemotion" event requires the "accelerometer" and "gyroscope" features.
+
+The default allowlist for all policy-controlled features defined by this specification ("accelerometer", "gyroscope", and "magnetometer") is `"self"`, which does not allow third-party contexts to receive the events above and have access to the corresponding sensor readings.
 
 ### 2.14 How do the features in this specification work in the context of a browser’s Private Browsing or Incognito mode?
 
