@@ -63,7 +63,7 @@ None.
 
 The Permissions Policy integration controls whether third-party contexts are able to receive the events defined by this specification:
 
-- The "deviceorientation" event requires the "accelerometer" and "gyroscope" features when providing relative orientation data. For the implementation to fall back to absolute orientation data, the "magnetometer" feature is also used.
+- The "deviceorientation" event requires the "accelerometer" and "gyroscope" features when providing relative orientation data. For the implementation to fall back to absolute orientation data, the "magnetometer" feature is also required.
 - The "deviceorientationabsolute" event requires the "accelerometer", "gyroscope" and "magnetometer" features.
 - The "devicemotion" event requires the "accelerometer" and "gyroscope" features.
 
