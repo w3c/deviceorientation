@@ -1063,7 +1063,7 @@ Changes {#changes}
 
 This section summarizes substantial changes and notable editorial improvements to guide review. Full details are available from the <a href="https://github.com/w3c/deviceorientation/commits/main">commit log</a>. Changes since the <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation 2016-08-18</a>:
 
-- Add Permissions Policy integration
+- Add Permissions Policy integration, which supersedes the previous requirement of only firing events on iframes that were same-origin with the top-level frame
 - Add note to implementers about bundling permission requests
 - Export powerful features Accelerometer, Gyroscope and Magnetometer
 - Add Permissions API integration, start requiring requestPermission() usage
