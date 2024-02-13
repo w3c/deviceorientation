@@ -373,13 +373,14 @@ Note: Implementations must take [[#automation]] into account to determine whethe
 <div algorithm="deviceorientation firing steps">
 Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
 
+  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
+  1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
   1. If the implementation cannot provide <a>relative orientation</a> or the resulting <a>absolute orientation</a> data is more accurate:
     1. Let <var>absolute</var> be true.
     1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>", "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" ».
   1. Otherwise:
     1. Let <var>absolute</var> be false.
     1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" ».
-  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
   1. <a for="list">For each</a> <var>policy</var> of <var>policies</var>:
       1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
   1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientation</code></a>, <var>window</var>, and <var>absolute</var>.
@@ -558,6 +559,7 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
 At an <a>implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
 
   1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
+  1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
   1. <a for="list">For each</a> <var>policy</var> of « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" »:
       1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
   1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
