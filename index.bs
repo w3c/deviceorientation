@@ -388,10 +388,9 @@ Whenever a <a>significant change in orientation</a> occurs, the user agent must 
 
 <!--
   * https://github.com/w3c/deviceorientation/issues/118: Does this mean a single event should be fired?
-  * https://github.com/w3c/deviceorientation/issues/119: Should absolute's value be set here too?
   * Should this be a proper <dfn> in an algorithm?
 -->
-If an implementation can never provide orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
+If an implementation can never provide orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null, and the {{DeviceOrientationEvent/absoltue}} set to false.
 
 <h3 id="deviceorientationabsolute">deviceorientationabsolute Event</h3>
 
@@ -418,10 +417,9 @@ Whenever a <a>significant change in orientation</a> occurs, the user agent must 
 
 <!--
   * https://github.com/w3c/deviceorientation/issues/118: Does this mean a single event should be fired?
-  * https://github.com/w3c/deviceorientation/issues/119: Should absolute's value be set here too?
   * Should this be a proper <dfn> in an algorithm?
 -->
-If an implementation can never provide absolute orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null.
+If an implementation can never provide absolute orientation information, the event should be fired with the {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} attributes set to null, and the {{DeviceOrientationEvent/absoltue}} set to true.
 
 <h3 id="devicemotion">devicemotion Event</h3>
 
