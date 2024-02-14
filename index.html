@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="36b567ec7e67674c624bf2ddbbb77f737e2bfb3b" name="document-revision">
+  <meta content="39442a24b7fba2669dc37119fc66a46cd430181a" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -889,7 +889,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-02">2 February 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-14">14 February 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1381,6 +1381,10 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
      Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation②">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window">active window</a> <var>window</var>: 
     <ol>
      <li data-md>
+      <p>Let <var>document</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window">associated Document</a>.</p>
+     <li data-md>
+      <p>If <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state">visibility state</a> is not "<code>visible</code>", return.</p>
+     <li data-md>
       <p>If the implementation cannot provide <a data-link-type="dfn" href="#relative-orientation" id="ref-for-relative-orientation④">relative orientation</a> or the resulting <a data-link-type="dfn" href="#absolute-orientation" id="ref-for-absolute-orientation④">absolute orientation</a> data is more accurate:</p>
       <ol>
        <li data-md>
@@ -1396,8 +1400,6 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
        <li data-md>
         <p>Let <var>policies</var> be « "<a data-link-type="dfn" href="#accelerometer-feature" id="ref-for-accelerometer-feature④"><code>accelerometer</code></a>", "<a data-link-type="dfn" href="#gyroscope-feature" id="ref-for-gyroscope-feature④"><code>gyroscope</code></a>" ».</p>
       </ol>
-     <li data-md>
-      <p>Let <var>document</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window">associated Document</a>.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate③">For each</a> <var>policy</var> of <var>policies</var>:</p>
       <ol>
@@ -1567,6 +1569,8 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
      <li data-md>
       <p>Let <var>document</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window①">associated Document</a>.</p>
      <li data-md>
+      <p>If <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state①">visibility state</a> is not "<code>visible</code>", return.</p>
+     <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑥">For each</a> <var>policy</var> of « "<a data-link-type="dfn" href="#accelerometer-feature" id="ref-for-accelerometer-feature⑤"><code>accelerometer</code></a>", "<a data-link-type="dfn" href="#gyroscope-feature" id="ref-for-gyroscope-feature⑤"><code>gyroscope</code></a>" »:</p>
       <ol>
        <li data-md>
@@ -1719,7 +1723,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <p>Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:</p>
    <ul>
     <li data-md>
-     <p>fire events only when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable③">navigable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state">visibility state</a> is "<code>visible</code>",</p>
+     <p>fire events only when a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable③">navigable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state②">visibility state</a> is "<code>visible</code>",</p>
     <li data-md>
      <p>implement <a href="#permissions-policy-integration">§ 5 Permissions Policy integration</a> so that events are fired on <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable" id="ref-for-child-navigable">child navigables</a> (including but not restricted to cross-origin ones) only if allowed by the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable" id="ref-for-top-level-traversable">top-level traversable</a>,</p>
     <li data-md>
@@ -3220,7 +3224,7 @@ window.dfnpanelData['c3b2d08c'] = {"dfnID": "c3b2d08c", "url": "https://html.spe
 window.dfnpanelData['bd736ec6'] = {"dfnID": "bd736ec6", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable", "dfnText": "top-level traversable", "refSections": [{"refs": [{"id": "ref-for-top-level-traversable"}], "title": "9. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['30717154'] = {"dfnID": "30717154", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top", "dfnText": "top-level traversable (for navigable)", "refSections": [{"refs": [{"id": "ref-for-nav-top"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-nav-top\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['47fe679e'] = {"dfnID": "47fe679e", "url": "https://html.spec.whatwg.org/multipage/interaction.html#transient-activation", "dfnText": "transient activation", "refSections": [{"refs": [{"id": "ref-for-transient-activation"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-transient-activation\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
-window.dfnpanelData['b4c365f8'] = {"dfnID": "b4c365f8", "url": "https://html.spec.whatwg.org/multipage/interaction.html#visibility-state", "dfnText": "visibility state", "refSections": [{"refs": [{"id": "ref-for-visibility-state"}], "title": "9. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['b4c365f8'] = {"dfnID": "b4c365f8", "url": "https://html.spec.whatwg.org/multipage/interaction.html#visibility-state", "dfnText": "visibility state", "refSections": [{"refs": [{"id": "ref-for-visibility-state"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-visibility-state\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-visibility-state\u2461"}], "title": "9. Security and privacy considerations"}], "external": true};
 window.dfnpanelData['7b0d918d'] = {"dfnID": "7b0d918d", "url": "https://infra.spec.whatwg.org/#iteration-break", "dfnText": "break", "refSections": [{"refs": [{"id": "ref-for-iteration-break"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-iteration-break\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['a326add7'] = {"dfnID": "a326add7", "url": "https://infra.spec.whatwg.org/#map-exists", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-map-exists"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-map-exists\u2460"}, {"id": "ref-for-map-exists\u2461"}, {"id": "ref-for-map-exists\u2462"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['8958b003'] = {"dfnID": "8958b003", "url": "https://infra.spec.whatwg.org/#map-entry", "dfnText": "entry", "refSections": [{"refs": [{"id": "ref-for-map-entry"}], "title": "11.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2460"}], "title": "11.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2461"}], "title": "11.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2462"}], "title": "11.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2463"}], "title": "11.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
