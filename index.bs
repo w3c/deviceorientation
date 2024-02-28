@@ -507,9 +507,9 @@ dictionary DeviceMotionEventRotationRateInit {
 };
 
 dictionary DeviceMotionEventInit : EventInit {
-    DeviceMotionEventAccelerationInit acceleration;
-    DeviceMotionEventAccelerationInit accelerationIncludingGravity;
-    DeviceMotionEventRotationRateInit rotationRate;
+    DeviceMotionEventAccelerationInit? acceleration = null;
+    DeviceMotionEventAccelerationInit? accelerationIncludingGravity = null;
+    DeviceMotionEventRotationRateInit? rotationRate = null;
     double interval = 0;
 };
 </pre>
