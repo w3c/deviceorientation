@@ -22,7 +22,13 @@ Markup Shorthands: css no
 <pre class="anchors">
 urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
     type: dfn
-        text: can provide readings flag; url: virtual-sensor-can-provide-readings-flag
+        text: can provide readings flag; url: virtual-sensor-can-provide-readings-flag; for: virtual sensor
+        text: connected platform sensors; url: virtual-sensor-can-provide-readings-flag; for: virtual sensor
+        text: latest saved reading; url: virtual-sensor-latest-saved-reading; for: virtual sensor
+        text: maximum sampling frequency; url: virtual-sensor-maximum-sampling-frequency; for: virtual sensor
+        text: minimum sampling frequency; url: virtual-sensor-minimum-sampling-frequency; for: virtual sensor
+        text: platform sensor-like; url: platform-sensor-like
+        text: virtual sensor; url: virtual-sensor
         text: virtual sensor mapping; url: virtual-sensor-mapping
 urlPrefix: https://w3c.github.io/webdriver/; spec: WEBDRIVER2
     type: dfn
@@ -334,12 +340,14 @@ The <dfn method for="DeviceOrientationEvent">requestPermission(<var>absolute</va
 To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string), <var>window</var> (a {{Window}}) and <var>absolute</var> (a boolean):
 
   1. Let <var>orientation</var> be null.
-  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
   1. Let <var>virtualSensorType</var> be "<code><a data-lt="relative-orientation virtual sensor type">relative-orientation</a></code>" if <var>absolute</var> is false, and "<code><a data-lt="absolute-orientation virtual sensor type">absolute-orientation</a></code>" otherwise.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> <var>virtualSensorType</var>:
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>[<var>virtualSensorType</var>].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true:
-          1. Set <var>orientation</var> to the latest readings provided to <var>virtualSensor</var> with the "<code>alpha</code>", "<code>beta</code>", and "<code>gamma</code>" keys.
+  1. Let <var>document</var> be <var>window</var>'s <a>associated document</a>.
+  1. If <var>document</var>'s {{Document/[[virtualSensorMapping]]}} <a for=map>contains</a> <var>virtualSensorType</var>:
+     1. Let <var>virtualSensor</var> be <var>document</var>'s {{Document/[[virtualSensorMapping]]}}[<var>virtualSensorType</var>]'s [=orientation event platform sensor-like/device sensor=].
+     1. If <var>virtualSensor</var> is not null:
+          1. Set <var>orientation</var> to <var>virtualSensor</var>'s <a for="virtual sensor">latest saved reading</a>.
+
+        Note: <var>orientation</var> will remain null otherwise.
   1. Otherwise:
       1. If <var>absolute</var> is false:
           1. Set <var>orientation</var> to the device's <a>relative orientation</a> in the tridimensional plane.
@@ -560,11 +568,11 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
   1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
   1. <a for="list">For each</a> <var>policy</var> of « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" »:
       1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
-  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
+  1. Let <var>virtualSensorMapping</var> be <var>document</var>'s {{Document/[[virtualSensorMapping]]}}.
   1. Let <var>platformLinearAcceleration</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>linear-acceleration</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>linear-acceleration</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformLinearAcceleration</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. If <var>virtualSensorMapping</var> <a for=map>contains</a> "<code>linear-acceleration</code>":
+      1. Let <var>virtualSensor</var> be <var>virtualSensorMapping</var>["<code>linear-acceleration</code>"]'s [=orientation event platform sensor-like/device sensor=].
+      1. If <var>virtualSensor</var> is not null, then set <var>platformLinearAcceleration</var> to <var>virtualSensor</var>'s <a for="virtual sensor">latest saved reading</a>.
   1. Otherwise, if the implementation is able to provide <a>linear acceleration</a>:
       1. Set <var>platformLinearAcceleration</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
   1. Let <var>acceleration</var> be null.
@@ -577,9 +585,9 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
       1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the Z axis, or null if it cannot be provided.
       1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
   1. Let <var>platformAccelerationIncludingGravity</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>accelerometer</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>accelerometer</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformAccelerationIncludingGravity</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. If <var>virtualSensorMapping</var> <a for=map>contains</a> "<code>accelerometer</code>":
+      1. Let <var>virtualSensor</var> be <var>virtualSensorMapping</var>["<code>accelerometer</code>"]'s [=orientation event platform sensor-like/device sensor=].
+      1. If <var>virtualSensor</var> is not null, then set <var>platformAccelerationIncludingGravity</var> to <var>virtualSensor</var>'s <a for="virtual sensor">latest saved reading</a>.
   1. Otherwise, if the implementation is able to provide <a>acceleration with gravity</a>:
       1. Set <var>platformAccelerationIncludingGravity</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
   1. Let <var>accelerationIncludingGravity</var> be null.
@@ -592,9 +600,9 @@ At an <a>implementation-defined</a> interval <var>interval</var>, the user agent
       1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the Z axis, or null if it cannot be provided.
       1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
   1. Let <var>platformRotationRate</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>gyroscope</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>gyroscope</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformRotationRate</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. If <var>virtualSensorMapping</var> <a for=map>contains</a> "<code>gyroscope</code>":
+      1. Let <var>virtualSensor</var> be <var>virtualSensorMapping</var>["<code>gyroscope</code>"]'s [=orientation event platform sensor-like/device sensor=].
+      1. If <var>virtualSensor</var>'s is not null, then set <var>platformRotationRate</var> to <var>virtualSensor</var>'s <a for="virtual sensor">latest saved reading</a>.
   1. Otherwise, if the implementation is able to provide <a>rotation rate</a>:
       1. Set <var>platformRotationRate</var> to the device's <a>rotation rate</a> about the X, Y and Z axes.
   1. Let <var>rotationRate</var> be null.
@@ -681,6 +689,72 @@ To address this challenge, this document builds upon the [[WEBDRIVER2]] <a>exten
 
 This specification only requires implementations to support the [[GENERIC-SENSOR#automation]] section of the [[GENERIC-SENSOR]] specification, not its interfaces and events.
 
+Additional implementation requirements {#automation-additional-implementation-requirements}
+--------------------------------------
+
+Several aspects of the manner in which the user agent interacts with the underlying hardware or operating system are [=implementation-defined=]. For instance, the [[#model]] and [[#api]] sections do not mandate:
+- That readings must be retrieved in a specific way.
+- When or how the user agent connects to one or more providers of readings.
+- Which types or data structures need to be used to store readings.
+- Whether readings obtained from the platform or operating system are shared across [=documents=].
+
+For automation support to work, specifically in the context of integrating with [[GENERIC-SENSOR#automation]], some of this behavior needs to be specified in more detail.
+
+The {{Document}} interface must have a <dfn attribute for="Document">\[[virtualSensorMapping]]</dfn> internal slot, a [=map=] of [=virtual sensor types=] to [=orientation event platform sensor-likes=]. A <dfn>orientation event platform sensor-like</dfn> is a [=platform sensor-like=] [=struct=] with the following items:
+
+- A <dfn for="orientation event platform sensor-like">sampling frequency</dfn> (a number). It represents either the frequency with which the user agent either polls the underlying hardware for readings, or the frequency at which the underlying hardware should notify the user agent of new readings.
+- A <dfn for="orientation event platform sensor-like">device sensor</dfn> (a [=virtual sensor=] or null).
+
+<div algorithm="unloading document cleanup steps">
+This specification defines the following [=unloading document cleanup steps=] given a {{Document}} |document|:
+
+1. [=list/For each=] |platformSensorLike| of |document|.{{Document/[[virtualSensorMapping]]}}'s [=map/values=]:
+   1. [=set/Remove=] |platformSensorLike| from |platformSensorLike|'s [=device sensor=]'s [=virtual sensor/connected platform sensors=].
+
+</div>
+
+<div algorithm>
+To <dfn>connect to a virtual sensor</dfn> given |window| (a {{Window}}), |virtualSensorType| (a string), and |samplingFrequency| (a number) perform the following steps. They return a boolean.
+
+ 1. Let |topLevelTraversable| be |window|'s [=Window/navigable=]'s [=navigable/top-level traversable=].
+ 1. If |topLevelTraversable|'s [=virtual sensor mapping=] does not [=map/contain=] |virtualSensorType|, return false.
+ 1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=][|virtualSensorType|].
+ 1. Let |platformSensorLike| be null.
+ 1. If |window|'s [=associated Document=]'s {{Document/[[virtualSensorMapping]]}} [=map/contains=] |virtualSensorType|:
+     1. Set |platformSensorLike| to |window|'s [=associated Document=]'s {{Document/[[virtualSensorMapping]]}}[|virtualSensorType|].
+ 1. Otherwise:
+     1. Set |platformSensorLike| to a new [=orientation event platform sensor-like=] whose [=orientation event platform sensor-like/device sensor=] is null.
+     1. Set |window|'s [=associated Document=]'s {{Document/[[virtualSensorMapping]]}}[|virtualSensorType|] to |platformSensorLike|.
+     1. If |samplingFrequency| is less than |virtualSensor|'s [=virtual sensor/minimum sampling frequency=] or greater than |virtualSensor|'s
+        [=virtual sensor/maximum sampling frequency=], return true.
+
+        Note: |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=] will remain null.
+
+     1. Set |platformSensorLike|'s [=orientation event platform sensor-like/sampling frequency=] to |samplingFrequency|.
+ 1. If |virtualSensor|'s [=virtual sensor/can provide readings flag=] is false, return true.
+
+    Note: |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=] will remain null.
+ 1. If |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=] is null:
+     1. Set |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=] to |virtualSensor|.
+ 1. [=set/Append=] |platformSensorLike| to |virtualSensor|'s [=virtual sensor/connected platform sensors=].
+ 1. [=In parallel=]:
+     1. If |virtualSensor|'s [=virtual sensor/latest saved readings=] is not null:
+         1. In an [=implementation-defined=] way, make |virtualSensor|'s [=virtual sensor/latest saved readings=] available to |platformSensorLike|.
+ 1. Return true.
+
+</div>
+
+<div algorithm>
+To <dfn>disconnect from a virtual sensor</dfn> given |window| (a {{Window}}) and |virtualSensorType| (a string), perform the following steps. They return a boolean.
+
+ 1. If |window|'s [=associated Document=]'s {{Document/[[virtualSensorMapping]]}} does not [=map/contain=] |virtualSensorType|, return false.
+ 1. Let |platformSensorLike| be |window|'s [=associated Document=]'s {{Document/[[virtualSensorMapping]]}}[|virtualSensorType|].
+ 1. If |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=] is null, return true.
+ 1. [=set/Remove=] |platformSensorLike| from |platformSensorLike|'s [=orientation event platform sensor-like/device sensor=]'s [=virtual sensor/connected platform sensors=].
+ 1. Return true.
+
+</div>
+
 Device Orientation Automation {#device-orientation-automation}
 -----------------------------
 
@@ -689,6 +763,25 @@ Automation support for the <a event><code>deviceorientation</code></a> event is 
 Orientation data retrieved from the platform by the user agent comes from accelerometers, gyroscopes and, optionally, magnetometers. Contrary to motion data, however, these lower-level readings must be transformed into Euler angles in the formation described in [[#device-orientation-model]]. Furthermore, the platform might provide extra APIs to the user agent that already perform some of those conversions from raw acceleration and rotation data.
 
 Therefore, instead of requiring implementations (and automation users) to provide orientation readings via lower-level virtual sensors which use different units of measurement, this specification defines extra <a>virtual sensor types</a> for relative and orientation data in the format used by this specification.
+
+<div algorithm="device orientation virtual sensor connection">
+When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{Window/deviceorientation}} or {{Window/deviceorientationabsolute}} is added to a {{Window}} |window|, the process for attempting to connect to the underlying hardware must be as follows:
+
+ 1. Let |virtualSensorType| be "[=relative-orientation virtual sensor type|relative-orientation=]" if the user agent is attempting to connect to hardware that provides [=relative orientation=] data, and "[=absolute-orientation virtual sensor type|absolute-orientation=]" otherwise.
+ 1. Let |interval| be [=implementation-defined=] interval in seconds at which implementations either poll for new readings or request new readings to be delivered.
+ 1. If [=connect to a virtual sensor=] with |window|, |virtualSensorType|, and (1 / |interval|) returns false, abort these steps and continue with the regular [=implementation-defined=] steps to connect to real hardware.
+ 1. [=In parallel=]:
+     1. In an [=implementation-defined=] way, start the process that the user agent uses to determine whether a [=significant change in orientation=] has occurred.
+
+</div>
+
+<div algorithm="device orientation virtual sensor disconnection">
+When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{Window/deviceorientation}} or {{Window/deviceorientationabsolute}} is removed from a {{Window}} |window| and the user agent determines it should stop retrieving readings from the underlying hardware:
+
+ 1. Let |virtualSensorType| be "[=relative-orientation virtual sensor type|relative-orientation=]" if the user agent is attempting to disconnect from hardware that provides [=relative orientation=] data, and "[=absolute-orientation virtual sensor type|absolute-orientation=]" otherwise.
+ 1. If [=disconnect from a virtual sensor=] with |window| and |virtualSensorType| returns false, abort these steps and continue with the regular [=implementation-defined=] steps to disconnect to real hardware.
+
+</div>
 
 ### Parse orientation reading data algorithm ### {#parse-orientation-data-reading-algorithm}
 
@@ -738,6 +831,29 @@ Device Motion Automation {#device-motion-automation}
 The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain <a>per-type virtual sensor metadata</a> entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
 
 Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a>rotation rate</a> data to the platform.
+
+<div algorithm="device motion virtual sensor connection">
+When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{Window/devicemotion}} is added to a {{Window}} |window|, the process for attempting to connect to the underlying hardware must be as follows:
+
+ 1. Let |virtualSensorType| be null.
+ 1. If the user agent needs to connect to hardware that provides [=acceleration with gravity=] data, set |virtualSensorType| to "[=accelerometer virtual sensor type|accelerometer=]".
+ 1. Otherwise, if the user agent needs to connect to hardware that provides [=linear acceleration=] data, set |virtualSensorType| to "[=linear-acceleration virtual sensor type|linear-acceleration=]".
+ 1. Otherwise, if the user agent needs to connect to hardware that provides [=rotation rate=] data, set |virtualSensorType| to "[=gyroscope virtual sensor type|gyroscope=]".
+ 1. Let |interval| be [=implementation-defined=] interval in seconds at which implementations either poll for new readings or request new readings to be delivered.
+ 1. If [=connect to a virtual sensor=] with |window|, |virtualSensorType|, and (1 / |interval|) returns false, abort these steps and continue with the regular [=implementation-defined=] steps to connect to real hardware.
+
+</div>
+
+<div algorithm="device motion virtual sensor disconnection">
+When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{Window/devicemotion}} is removed from a {{Window}} |window| and the user agent determines it should stop retrieving readings from the underlying hardware:
+
+ 1. Let |virtualSensorType| be null.
+ 1. If the user agent needs to disconnect from hardware that provides [=acceleration with gravity=] data, set |virtualSensorType| to "[=accelerometer virtual sensor type|accelerometer=]".
+ 1. Otherwise, if the user agent needs to disconnect from hardware that provides [=linear acceleration=] data, set |virtualSensorType| to "[=linear-acceleration virtual sensor type|linear-acceleration=]".
+ 1. Otherwise, if the user agent needs to disconnect from hardware that provides [=rotation rate=] data, set |virtualSensorType| to "[=gyroscope virtual sensor type|gyroscope=]".
+ 1. If [=disconnect from a virtual sensor=] with |window| and |virtualSensorType| returns false, abort these steps and continue with the regular [=implementation-defined=] steps to disconnect to real hardware.
+
+</div>
 
 ### The "accelerometer" virtual sensor type ### {#accelerometer-virtual-sensors}
 
