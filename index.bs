@@ -642,6 +642,8 @@ Furthermore, to minimize privacy risks, the chance of fingerprinting and other a
 
 Additionally, implementing these items may also have a beneficial impact on the battery life of mobile devices.
 
+Issue: <a href="https://github.com/w3c/deviceorientation/issues/87">Further implementation experience</a> is being gathered to inform the limit for the maximum sampling frequency cap.
+
 Use-Cases and Requirements {#use-cases-and-requirements}
 ========================================================
 
