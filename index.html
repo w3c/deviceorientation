@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="6e2d033e54d3d8bbe06898ff0e40760821f4db7d" name="document-revision">
+  <meta content="1d42f14a13a21901adc009ddd5a9bc24d2ca1898" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -889,7 +889,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-11">11 March 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-13">13 March 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -901,6 +901,8 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
       <dt>Feedback:
       <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Borientation-event%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[orientation-event] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
       <dd><a href="https://github.com/w3c/deviceorientation/issues">DeviceOrientation Event Specification Issues Repository</a>
+      <dt>Implementation Report:
+      <dd><a href="https://wpt.fyi/results/orientation-event">https://wpt.fyi/results/orientation-event</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard" data-editor-id="83788"><span class="p-name fn">Reilly Grant</span> (<a class="p-org org" href="https://www.google.com">Google LLC</a>)
       <dd class="editor p-author h-card vcard" data-editor-id="95850"><span class="p-name fn">Raphael Kubo da Costa</span> (<a class="p-org org" href="https://intel.com">Intel Corporation</a>)
@@ -933,13 +935,16 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 	“[orientation-event] <em>…summary of comment…</em>”.
 	All comments are welcome. </p>
    <p> This document was produced by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a>. </p>
-   <p> This document was produced by a group operating under
+   <p> This document was produced by groups operating under
 	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
-	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group;
-	that page also includes instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures (Devices and Sensors)</a> and
+	a <a href="https://www.w3.org/groups/wg/webapps/ipr" rel="disclosure">public list of any patent disclosures (Web Applications)</a> made in connection with the deliverables of each group;
+  these pages also include instructions for disclosing a patent.
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
+	with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
    <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
    <p></p>
+   <p>This specification was initially published as a <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation</a> in August 2016 and was <a href="https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/">retired</a> in 2017 due to the Geolocation Working Group closure. In 2019 Devices and Sensors Working Group adopted this specification and during 2019-2024 made substantial interoperability, test automation, privacy and editorial improvements as outlined in the <a href="#changes">Changes</a> section. These changes aligned the specification with widely available implementations. In 2024 this specification became a joint deliverable between the Devices and Sensors Working Group and WebApps Working Group.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
