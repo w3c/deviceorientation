@@ -229,6 +229,10 @@ Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussi
 Permissions Policy integration {#permissions-policy-integration}
 ==============================
 
+<div class="issue">
+This integration is [=at risk=] due to a lack of test coverage in Web Platform Tests.
+</div>
+
 This specification defines the following <a>policy-controlled features</a>:
 
   - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
@@ -246,6 +250,10 @@ This specification defines the following <a>policy-controlled features</a>:
 
 Permissions API integration {#permissions-api-integration}
 ===========================
+
+<div class="issue">
+This integration is [=at risk=] due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests.
+</div>
 
 This specification defines the following <a>default powerful features</a>:
 
@@ -400,7 +408,7 @@ If an implementation can never provide orientation information, the event should
 <h3 id="deviceorientationabsolute">deviceorientationabsolute Event</h3>
 
 <div class="issue">
-The {{deviceorientationabsolute}} event and its {{Window/ondeviceorientationabsolute}} event handler IDL attribute have <a href="https://wpt.fyi/results/orientation-event/ondeviceorientationabsolute.https.html">limited implementation experience</a>.
+The {{deviceorientationabsolute}} event and its {{Window/ondeviceorientationabsolute}} event handler IDL attribute are [=at risk=] due to <a href="https://wpt.fyi/results/orientation-event/idlharness.https.window.html">limited implementation experience</a>.
 </div>
 
 <pre class="idl">
@@ -680,6 +688,10 @@ A mapping Web application uses the device's orientation to correctly align the m
 
 Automation {#automation}
 ==========
+
+<div class="issue">
+This feature is [=at risk=] due to limited implementation experience.
+</div>
 
 This specification can pose a challenge to test authors, as the events defined here depend on the presence of physical hardware whose readings cannot be easily controlled.
 
