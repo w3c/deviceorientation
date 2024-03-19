@@ -651,19 +651,19 @@ Issue: <a href="https://github.com/w3c/deviceorientation/issues/87">Further impl
 Accessibility considerations {#a11y}
 ===========================================================
 
-DeviceOrientation events provide opportunities for novel forms of input, which can open up novel interactions for users. In order to ensure that as many people as possible will be able to interact with the experiences you build, please consider the following.
+DeviceOrientation events provide opportunities for novel forms of input, which can open up novel interactions for users. In order to ensure that as many people as possible will be able to interact with the experiences you build, please consider the following:
 
-* It's important for alternative means of providing input to be available, so that people who can't make the required gestures have another way to interact - examples may include people with dexterity-related disabilities, or people who use eye gaze, or head-tracking input.
-    - For games, consider supporting either game controller, keyboard or mouse input in addition.
+* It is important for alternative means of providing input to be available, so that people who cannot make the required gestures have another way to interact. Examples may include people with dexterity-related disabilities, or people who use eye gaze, or head-tracking input.
+    - For games, consider supporting either game controller, keyboard or mouse input as alternative interaction methods.
     - For web apps, consider providing UI, such as a button, menu command, and/or keyboard shortcut, to perform the function.
 
-* It's essential that users can undo any accidental input - this may be particularly relevant for people with tremors.
+* It is essential that users can undo any accidental input - this may be particularly relevant for people with tremors.
 
-There are two user needs that can arise, which would likely be managed by the UA, or underlying Operating System. However, it can be helpful to bear these considerations in mind, as they represent ways that your content or app may be used.
+There are two user needs that can arise, which would likely be managed by the user agent, or underlying operating system. However, it can be helpful to bear these considerations in mind, as they represent ways that your content or app may be used.
 
-* It's important that the user is able to disable the use of gesture or motion-based input. The web app should provide an appropriate accessible means for the user to supply this input, such as a button.
-    - for example: whilst the shake-to-undo feature can provide a natural and thoughtful interaction for some, for people with tremors, it may present a barrier. This could be managed by declining permission, or more likely by changing a browser or OS setting, coupled with the web app providing alternative input means.
-* It's also important that the device's orientation can be locked - a primary use case being someone who is interacting with a touch device, such as a phone, non-visually. They may have built up 'muscle memory' as to where elements are on the screen in a given orientation, and having the layout shift would break their ability to navigate. Again, this would most likely be done at OS level.
+* It is important that the user is able to disable the use of gesture or motion-based input. The web app should provide an appropriate accessible means for the user to supply this input, such as a button.
+    - For example: whilst the shake-to-undo feature can provide a natural and thoughtful interaction for some, for people with tremors, it may present a barrier. This could be managed by declining permission, or more likely by changing a browser or OS setting, coupled with the web app providing alternative input means.
+* It is also important that the device's orientation can be locked - a primary use case being someone who is interacting with a touch device, such as a phone, non-visually. They may have built up 'muscle memory' as to where elements are on the screen in a given orientation, and having the layout shift would break their ability to navigate. Again, this would most likely be done at the operating system level.
 
 Use-Cases and Requirements {#use-cases-and-requirements}
 ========================================================
