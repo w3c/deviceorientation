@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="af3c8ee16bca4bbc99bea5af484f97d37bcae054" name="document-revision">
+  <meta content="2cdab157d62c71919e2dc6920a217c6c40f706fb" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -889,7 +889,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">DeviceOrientation Event Specification</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-19">19 March 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-03-22">22 March 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -928,13 +928,14 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
 	Don’t cite this document other than as work in progress. </p>
-   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Borientation-event%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
+   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Borientation-event%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) <span> and <a href="mailto:public-webapps@w3.org?Subject=%5Borientation-event%5D%20PUT%20SUBJECT%20HERE">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>) </span> .
 	When sending e-mail,
 	please put the text “orientation-event” in the subject,
 	preferably like this:
 	“[orientation-event] <em>…summary of comment…</em>”.
 	All comments are welcome. </p>
-   <p> This document was produced by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a>. </p>
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a> and
+	the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a>. </p>
    <p> This document was produced by groups operating under
 	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures (Devices and Sensors)</a> and
@@ -1165,6 +1166,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rotation-rate">rotation rate</dfn> measures the rate at which the device rotates about a specified axis in the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer/#device-coordinate-system" id="ref-for-device-coordinate-system②">device coordinate system</a>. As with device orientation, rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis. The <a data-link-type="dfn" href="#rotation-rate" id="ref-for-rotation-rate">rotation rate</a> is measured in degrees per second (deg/s).</p>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="biblio" href="#biblio-motion-sensors" title="Motion Sensors Explainer">[MOTION-SENSORS]</a> and <a data-link-type="biblio" href="#biblio-gyroscope" title="Gyroscope">[GYROSCOPE]</a> both contain a more detailed discussion of gyroscopes, rotation rates and measurements.</p>
    <h2 class="heading settled" data-level="5" id="permissions-policy-integration"><span class="secno">5. </span><span class="content">Permissions Policy integration</span><a class="self-link" href="#permissions-policy-integration"></a></h2>
+   <div class="issue" id="issue-64d98c39"><a class="self-link" href="#issue-64d98c39"></a> This integration is <a data-link-type="dfn" href="https://www.w3.org/Consortium/Process/#at-risk" id="ref-for-at-risk">at risk</a> due to a lack of test coverage in Web Platform Tests. </div>
    <p>This specification defines the following <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled features</a>:</p>
    <ul>
     <li data-md>
@@ -1186,6 +1188,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
     </ul>
    </div>
    <h2 class="heading settled" data-level="6" id="permissions-api-integration"><span class="secno">6. </span><span class="content">Permissions API integration</span><a class="self-link" href="#permissions-api-integration"></a></h2>
+   <div class="issue" id="issue-77fe9a79"><a class="self-link" href="#issue-77fe9a79"></a> This integration is <a data-link-type="dfn" href="https://www.w3.org/Consortium/Process/#at-risk" id="ref-for-at-risk①">at risk</a> due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests. </div>
    <p>This specification defines the following <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-default-powerful-feature" id="ref-for-dfn-default-powerful-feature">default powerful features</a>:</p>
    <ul>
     <li data-md>
@@ -1418,7 +1421,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    </div>
    <p>If an implementation can never provide orientation information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑦">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑥">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑥">gamma</a></code> attributes set to null, and the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute②">absolute</a></code> attribute set to false.</p>
    <h3 class="heading settled" data-level="8.2" id="deviceorientationabsolute"><span class="secno">8.2. </span><span class="content">deviceorientationabsolute Event</span><a class="self-link" href="#deviceorientationabsolute"></a></h3>
-   <div class="issue" id="issue-58b60688"><a class="self-link" href="#issue-58b60688"></a> The <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute③">deviceorientationabsolute</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a></code> event handler IDL attribute have <a href="https://wpt.fyi/results/orientation-event/ondeviceorientationabsolute.https.html">limited implementation experience</a>. </div>
+   <div class="issue" id="issue-4854fc01"><a class="self-link" href="#issue-4854fc01"></a> The <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute③">deviceorientationabsolute</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a></code> event handler IDL attribute are <a data-link-type="dfn" href="https://www.w3.org/Consortium/Process/#at-risk" id="ref-for-at-risk②">at risk</a> due to <a href="https://wpt.fyi/results/orientation-event/idlharness.https.window.html">limited implementation experience</a>. </div>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window②"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute①"><c- g>ondeviceorientationabsolute</c-></a>;
 };
@@ -1791,6 +1794,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
      <p>The specification must use the existing DOM event framework.</p>
    </ul>
    <h2 class="heading settled" data-level="12" id="automation"><span class="secno">12. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
+   <div class="issue" id="issue-4ccb1d30"><a class="self-link" href="#issue-4ccb1d30"></a> This feature is <a data-link-type="dfn" href="https://www.w3.org/Consortium/Process/#at-risk" id="ref-for-at-risk③">at risk</a> due to limited implementation experience. </div>
    <p>This specification can pose a challenge to test authors, as the events defined here depend on the presence of physical hardware whose readings cannot be easily controlled.</p>
    <p>To address this challenge, this document builds upon the <a data-link-type="biblio" href="#biblio-webdriver2" title="WebDriver">[WEBDRIVER2]</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands">extension commands</a> and infrastructure laid out by <a href="https://w3c.github.io/sensors/#automation"><cite>Generic Sensor API</cite> § 9 Automation</a>. This was chosen over the option of developing completely new and independent infrastructure with separate <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands①">extension commands</a> because there is significant overlap between the two specifications: not only does testing the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification present similar challenges, but many derived APIs (e.g. <a data-link-type="biblio" href="#biblio-gyroscope" title="Gyroscope">[GYROSCOPE]</a>) obtain and provide similar information.</p>
    <p>This specification only requires implementations to support the <a href="https://w3c.github.io/sensors/#automation"><cite>Generic Sensor API</cite> § 9 Automation</a> section of the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification, not its interfaces and events.</p>
@@ -2358,6 +2362,11 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
      <li><span class="dfn-paneled" id="cc890cc1">policy-controlled feature</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[W3C-PROCESS]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="dab73cb6">at risk</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[WEBDRIVER2]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="09daa25c">extension commands</span>
@@ -2404,6 +2413,8 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <dd>Ian Clelland. <a href="https://w3c.github.io/webappsec-permissions-policy/"><cite>Permissions Policy</cite></a>. URL: <a href="https://w3c.github.io/webappsec-permissions-policy/">https://w3c.github.io/webappsec-permissions-policy/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dt id="biblio-w3c-process">[W3C-PROCESS]
+   <dd>Elika J. Etemad (fantasai); Florian Rivoal. <a href="https://www.w3.org/Consortium/Process/"><cite>W3C Process Document</cite></a>. 2 November 2021. URL: <a href="https://www.w3.org/Consortium/Process/">https://www.w3.org/Consortium/Process/</a>
    <dt id="biblio-webdriver2">[WEBDRIVER2]
    <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/"><cite>WebDriver</cite></a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
    <dt id="biblio-webidl">[WEBIDL]
@@ -3279,6 +3290,7 @@ window.dfnpanelData['325da0f2'] = {"dfnID": "325da0f2", "url": "https://w3c.gith
 window.dfnpanelData['d357c753'] = {"dfnID": "d357c753", "url": "https://w3c.github.io/permissions/#dfn-request-permission-to-use", "dfnText": "requesting permission to use", "refSections": [{"refs": [{"id": "ref-for-dfn-request-permission-to-use"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dfn-request-permission-to-use\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['1570624a'] = {"dfnID": "1570624a", "url": "https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist", "dfnText": "default allowlist", "refSections": [{"refs": [{"id": "ref-for-policy-controlled-feature-default-allowlist"}, {"id": "ref-for-policy-controlled-feature-default-allowlist\u2460"}, {"id": "ref-for-policy-controlled-feature-default-allowlist\u2461"}], "title": "5. Permissions Policy integration"}], "external": true};
 window.dfnpanelData['cc890cc1'] = {"dfnID": "cc890cc1", "url": "https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature", "dfnText": "policy-controlled feature", "refSections": [{"refs": [{"id": "ref-for-policy-controlled-feature"}, {"id": "ref-for-policy-controlled-feature\u2460"}], "title": "5. Permissions Policy integration"}, {"refs": [{"id": "ref-for-policy-controlled-feature\u2461"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-policy-controlled-feature\u2462"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
+window.dfnpanelData['dab73cb6'] = {"dfnID": "dab73cb6", "url": "https://www.w3.org/Consortium/Process/#at-risk", "dfnText": "at risk", "refSections": [{"refs": [{"id": "ref-for-at-risk"}], "title": "5. Permissions Policy integration"}, {"refs": [{"id": "ref-for-at-risk\u2460"}], "title": "6. Permissions API integration"}, {"refs": [{"id": "ref-for-at-risk\u2461"}], "title": "8.2. deviceorientationabsolute Event"}, {"refs": [{"id": "ref-for-at-risk\u2462"}], "title": "12. Automation"}], "external": true};
 window.dfnpanelData['09daa25c'] = {"dfnID": "09daa25c", "url": "https://w3c.github.io/webdriver/#dfn-extension-commands", "dfnText": "extension commands", "refSections": [{"refs": [{"id": "ref-for-dfn-extension-commands"}, {"id": "ref-for-dfn-extension-commands\u2460"}], "title": "12. Automation"}], "external": true};
 window.dfnpanelData['fa818daf'] = {"dfnID": "fa818daf", "url": "https://w3c.github.io/webdriver/#dfn-getting-properties", "dfnText": "get a property", "refSections": [{"refs": [{"id": "ref-for-dfn-getting-properties"}, {"id": "ref-for-dfn-getting-properties\u2460"}, {"id": "ref-for-dfn-getting-properties\u2461"}], "title": "12.1.1. Parse orientation reading data algorithm"}], "external": true};
 window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.spec.whatwg.org/#idl-DOMException", "dfnText": "DOMException", "refSections": [{"refs": [{"id": "ref-for-idl-DOMException"}], "title": "8.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-idl-DOMException\u2460"}], "title": "8.3.3. The DeviceMotionEvent interface"}], "external": true};
