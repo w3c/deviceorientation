@@ -779,7 +779,7 @@ When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{
 When an [=event listener=] whose <a for="event listener" spec=dom>type</a> is {{Window/deviceorientation}} or {{Window/deviceorientationabsolute}} is removed from a {{Window}} |window| and the user agent determines it should stop retrieving readings from the underlying hardware:
 
  1. Let |virtualSensorType| be "[=relative-orientation virtual sensor type|relative-orientation=]" if the user agent is attempting to disconnect from hardware that provides [=relative orientation=] data, and "[=absolute-orientation virtual sensor type|absolute-orientation=]" otherwise.
- 1. If [=disconnect from a virtual sensor=] with |window| and |virtualSensorType| returns false, abort these steps and continue with the regular [=implementation-defined=] steps to disconnect to real hardware.
+ 1. If [=disconnect from a virtual sensor=] with |window| and |virtualSensorType| returns false, abort these steps and continue with the regular [=implementation-defined=] steps to disconnect from real hardware.
 
 </div>
 
