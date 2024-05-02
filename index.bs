@@ -1094,37 +1094,3 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
 }
 </pre>
 
-Changes {#changes}
-===========
-
-This section summarizes substantial changes and notable editorial improvements to guide review. Full details are available from the <a href="https://github.com/w3c/deviceorientation/commits/main">commit log</a>. Changes since the <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation 2016-08-18</a>:
-
-- Add Permissions Policy integration, which supersedes the previous requirement of only firing events on iframes that were same-origin with the top-level frame
-- Add note to implementers about bundling permission requests
-- Export powerful features Accelerometer, Gyroscope and Magnetometer
-- Add Permissions API integration, start requiring requestPermission() usage
-- editorial: Define API section more normatively and with more dfns
-- editorial: Reorder acceleration explanation in Device Motion Model section
-- editorial: Update explanations of the device rotation and motion references
-- editorial: Use more precise event handling terms, modernize others
-- editorial: Refer to [[SCREEN-ORIENTATION]] instead of the orientation change event
-- editorial: Reword requirements in "Security and privacy considerations"
-- Mark use cases and requirements and examples sections non-normative
-- Remove the oncompassneedscalibration event
-- Update references to "triggered by user activation", now referred to as "transient activation"
-- Align with DOM phrasing on firing events
-- Add a note about acceleration properties for DeviceMotionEvent
-- Add a note explaining how the coordinate system differs from the CSS coordinate system
-- Require no more precise than 0.1 degrees, 0.1 degrees per second, 0.1 meters per second squared to mitigate a <a href="https://github.com/w3c/deviceorientation/issues/85">passive fingerprinting issue</a>
-- Update constructor definition in IDL with the Web IDL
-- Add explicit [Exposed] to interfaces
-- Update IDL dictionaries with new dictionary defaulting setup
-- Note the deviceorientationabsolute event and its ondeviceorientationabsolute event handler IDL attribute have limited implementation experience
-- Add requestPermission() API static operation to both DeviceOrientationEvent and DeviceMotionEvent
-- Add [SecureContext] to event handlers ondeviceorientation, ondevicemotion and ondeviceorientationabsolute
-- Restrict all interfaces to secure contexts
-- Remove [NoInterfaceObject] from DeviceAcceleration and DeviceRotationRate
-- Make security and privacy considerations normative
-- Add the ondeviceorientationabsolute event handler attribute into the IDL block (was only in prose)
-- Remove '?' from dictionary members of DeviceMotionEventInit
-- Use [Exposed=Window] extended attribute
