@@ -18,12 +18,12 @@ Abstract: This specification defines events that represent the physical orientat
 Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
-Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
-Status Text: <p>This specification was initially published as a <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation</a> in August 2016 and was <a href="https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/">retired</a> in 2017 due to the Geolocation Working Group closure. In 2019 Devices and Sensors Working Group adopted this specification and during 2019-2024 made substantial interoperability, test automation, privacy and editorial improvements as outlined in the <a href="#changes">Changes</a> section. These changes aligned the specification with widely available implementations. In 2024 this specification became a joint deliverable between the Devices and Sensors Working Group and WebApps Working Group.</p>
+Issue Tracking: Device Orientation Repository https://github.com/w3c/deviceorientation/issues
 Markup Shorthands: css no
 Markup Shorthands: markdown yes
 text macro: JOINT yes
 text macro: JOINTWEBAPPS yes
+Dark Mode: yes
 </pre>
 <pre class="anchors">
 urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
