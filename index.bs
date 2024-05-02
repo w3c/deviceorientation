@@ -68,16 +68,21 @@ The following code extracts illustrate basic use of the events.
 
 <div class="example">
 Registering to receive {{deviceorientation}} events:
-<pre class="lang-js">
-window.addEventListener("deviceorientation", function(event) {
-    // process event.alpha, event.beta and event.gamma
-}, true);
+<pre class="highlight lang-javascript">
+window.addEventListener("deviceorientation", event => {
+  // process event.alpha, event.beta and event.gamma
+});
+
+// Alternatively...
+window.ondeviceorientation = event => {
+  // process event.alpha, event.beta and event.gamma
+};
 </pre>
 </div>
 
 <div class="example">
 A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation:
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 {
   alpha: 90,
   beta: 0,
@@ -93,7 +98,7 @@ A user is holding the device in their hand, with the screen in a vertical plane 
 
 <div class="example">
 A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is:
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 {
   alpha: 270 - alpha,
   beta: 0,
@@ -104,17 +109,23 @@ A user facing a compass heading of alpha degrees is holding the device in their 
 
 <div class="example">
 Registering to receive {{devicemotion}} events:
-<pre class="lang-js">
-window.addEventListener("devicemotion", function(event) {
-    // Process event.acceleration, event.accelerationIncludingGravity,
-    // event.rotationRate and event.interval
-}, true);
+<pre class="highlight lang-javascript">
+window.addEventListener("devicemotion", (event) => {
+  // Process event.acceleration, event.accelerationIncludingGravity,
+  // event.rotationRate and event.interval
+});
+
+// Alternatively...
+window.ondevicemotion = (event) => {
+  // Process event.acceleration, event.accelerationIncludingGravity,
+  // event.rotationRate and event.interval
+};
 </pre>
 </div>
 
 <div class="example">
 A device lying flat on a horizontal surface with the screen upmost has an {{DeviceMotionEvent/acceleration}} of zero and the following value for {{DeviceMotionEvent/accelerationIncludingGravity}}:
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 {
   x: 0,
   y: 0,
@@ -125,7 +136,7 @@ A device lying flat on a horizontal surface with the screen upmost has an {{Devi
 
 <div class="example">
 A device in free-fall, with the screen horizontal and upmost, has an {{DeviceMotionEvent/accelerationIncludingGravity}} of zero and the following value for acceleration:
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 {
   x: 0,
   y: 0,
@@ -136,7 +147,7 @@ A device in free-fall, with the screen horizontal and upmost, has an {{DeviceMot
 
 <div class="example">
 A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both {{DeviceMotionEvent/acceleration}} and {{DeviceMotionEvent/accelerationIncludingGravity}}. The device also records a negative value for {{DeviceMotionEvent/rotationRate!!attribute}}.{{DeviceMotionEventRotationRate/gamma}}:
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 {
   acceleration: {x: v^2/r, y: 0, z: 0},
   accelerationIncludingGravity: {x: v^2/r, y: 9.8, z: 0},
