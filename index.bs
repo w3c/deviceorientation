@@ -878,7 +878,7 @@ provided that &beta; and &gamma; are not both zero.
 
 The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided parameters are defined, not null and represent {{DeviceOrientationEvent/absolute}} values.
 
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function compassHeading( alpha, beta, gamma ) {
@@ -949,7 +949,7 @@ If R represents the rotation matrix of the device in the earth frame XYZ, then s
 
 <div class="example">
 The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent {{DeviceOrientationEvent/absolute}} values.
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function getRotationMatrix( alpha, beta, gamma ) {
@@ -1001,7 +1001,7 @@ If q represents the unit quaternion of the device in the earth frame XYZ, then s
 
 <div class="example">
 The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are {{DeviceOrientationEvent/absolute}} values and those parameters are not null.
-<pre class="lang-js">
+<pre class="highlight lang-javascript">
 var degtorad = Math.PI / 180; // Degree-to-Radian conversion
 
 function getQuaternion( alpha, beta, gamma ) {
