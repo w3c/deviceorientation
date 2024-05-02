@@ -275,7 +275,7 @@ This specification defines the following <a>default powerful features</a>:
 Task Source {#taks-source}
 ===========
 
-The <a>task source</a> for the <a>tasks</a> mentioned in this specification is the <dfn>device motion and orientation task source</dfn>.
+The [=task source=] for the [=tasks=] mentioned in this specification is the <dfn>device motion and orientation task source</dfn>.
 
 API {#api}
 ==========================
