@@ -150,7 +150,7 @@ Scope {#scope}
 
 <em>This section is non-normative.</em>
 
-This specification is limited to providing DOM events for retrieving information describing the physical orientation and motion of the hosting device. The intended purpose of this API is to enable simple use cases such as those in [[#use-cases|Use-Cases]] section. The scope of this specification does not include providing utilities to manipulate this data, such as transformation libraries. Nor does it include providing access to low sensor data, or direct control of these sensors.
+Within the scope of this specification are events that represent the physical orientation and motion of the hosting device. Out of scope are utilities for manipulating orientation data, such as transformation libraries, and providing access to raw sensor data or methods for directly interfacing with these sensors.
 
 Model {#model}
 =====
