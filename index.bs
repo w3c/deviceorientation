@@ -236,9 +236,9 @@ This integration is [=at risk=] due to a lack of test coverage in Web Platform T
 
 This specification defines the following <a>policy-controlled features</a>:
 
-  - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
-  - "<code><dfn export data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
-  - "<code><dfn export data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is "<code>self</code>".
+  - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
+  - "<code><dfn export data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
+  - "<code><dfn export data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
 
 <div class="note">
 <span class="marker">Note:</span> Usage of the <a>policy-controlled features</a> above by this specification is as follows:
