@@ -162,21 +162,26 @@ This specification expresses a device's physical orientation as a series of rota
 
 The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that are applied on the <a>device coordinate system</a> defined in [[!ACCELEROMETER]] and summarized below:
 
-* x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
-* y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
-* z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.
+* <dfn for="Device Orientation">x</dfn> is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
+* <dfn for="Device Orientation">y</dfn> is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
+* <dfn for="Device Orientation">z</dfn> is perpendicular to the screen or keyboard, positive out of the screen or keyboard.
 
-For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
+For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position.
 
-Note: Users wishing to detect changes in screen orientation should refer to [[SCREEN-ORIENTATION]].
+If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device.
 
-Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.
+For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.
 
-Note: the coordinate system used by this specification differs from [[css-transforms-2#transform-rendering]], where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, {{DOMMatrix/rotateSelf()}} and {{DOMMatrixReadOnly/rotate()}}, specified in [[GEOMETRY-1]], apply rotations in an Z - Y' - X'' order, which differs from the order specified here.
+Note: Developers wanting to detect changes in screen orientation can refer to [[SCREEN-ORIENTATION]].
+
+Rotations use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.
+
+Note: The coordinate system used by this specification differs from [[css-transforms-2#transform-rendering]], where the y axis is positive to the bottom and rotations follow the left-hand convention.
+Additionally, {{DOMMatrix/rotateSelf()}} and {{DOMMatrixReadOnly/rotate()}}, specified in [[GEOMETRY-1]], apply rotations in an Z - Y' - X'' order, which differs from the order specified here.
 
 A rotation represented by {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationEvent/beta}} and {{DeviceOrientationEvent/gamma}} is carried out by the following steps:
 
-1. Rotate the device frame around its z axis by {{DeviceOrientationEvent/alpha}} degrees, with {{DeviceOrientationEvent/alpha}} in [0, 360).
+1. Rotate the device frame around its [=Device Orientation/z=] axis by {{DeviceOrientationEvent/alpha}} degrees, with {{DeviceOrientationEvent/alpha}} in [0, 360).
     <figure>
       <img src="start.png" alt="start orientation">
       <figcaption>Device in the initial position, with the reference (XYZ) and body (xyz) frames aligned.</figcaption>
@@ -185,12 +190,12 @@ A rotation represented by {{DeviceOrientationEvent/alpha}}, {{DeviceOrientationE
       <img src="c-rotation.png" alt="rotation about z axis">
       <figcaption>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</figcaption>
     </figure>
-1. Rotate the device frame around its x axis by {{DeviceOrientationEvent/beta}} degrees, with {{DeviceOrientationEvent/beta}} in [-180, 180).
+1. Rotate the device frame around its [=Device Orientation/x=] axis by {{DeviceOrientationEvent/beta}} degrees, with {{DeviceOrientationEvent/beta}} in [-180, 180).
     <figure>
       <img src="a-rotation.png" alt="rotation about x axis">
       <figcaption>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</figcaption>
     </figure>
-1. Rotate the device frame around its y axis by {{DeviceOrientationEvent/gamma}} degrees, with {{DeviceOrientationEvent/gamma}} in [-90, 90).
+1. Rotate the device frame around its [=Device Orientation/y=] axis by {{DeviceOrientationEvent/gamma}} degrees, with {{DeviceOrientationEvent/gamma}} in [-90, 90).
     <figure>
       <img src="b-rotation.png" alt="rotation about y axis">
       <figcaption>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</figcaption>
