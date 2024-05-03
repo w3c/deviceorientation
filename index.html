@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="56179cbfd429cb68f6f4da6e921fdbe016ab5f9a" name="document-revision">
+  <meta content="4b9bde701ea67b284253bc9fae10a0706a81e41d" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1045,21 +1045,16 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <p>The first DOM event provided by the specification, <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation">deviceorientation</a></code>, supplies the physical orientation of the device, expressed as a series of rotations from a local coordinate frame.</p>
    <p>The second DOM event provided by this specification, <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion">devicemotion</a></code>, supplies the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device’s center of mass.</p>
    <p>The following code extracts illustrate basic use of the events.</p>
-   <div class="example" id="example-742261d9">
-    <a class="self-link" href="#example-742261d9"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation①">deviceorientation</a></code> events: 
-<pre class="highlight lang-javascript">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"deviceorientation"</c-><c- p>,</c-> event <c- p>=></c-> <c- p>{</c->
-  <c- c1>// process event.alpha, event.beta and event.gamma</c->
-<c- p>});</c->
-
-<c- c1>// Alternatively...</c->
-window<c- p>.</c->ondeviceorientation <c- o>=</c-> event <c- p>=></c-> <c- p>{</c->
-  <c- c1>// process event.alpha, event.beta and event.gamma</c->
-<c- p>};</c->
+   <div class="example" id="example-7620a2e2">
+    <a class="self-link" href="#example-7620a2e2"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation①">deviceorientation</a></code> events: 
+<pre class="lang-js highlight">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"deviceorientation"</c-><c- p>,</c-> <c- a>function</c-><c- p>(</c->event<c- p>)</c-> <c- p>{</c->
+    <c- c1>// process event.alpha, event.beta and event.gamma</c->
+<c- p>},</c-> <c- kc>true</c-><c- p>);</c->
 </pre>
    </div>
    <div class="example" id="example-f65d12d9">
     <a class="self-link" href="#example-f65d12d9"></a> A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation: 
-<pre class="highlight lang-javascript"><c- p>{</c->
+<pre class="lang-js highlight"><c- p>{</c->
   alpha<c- o>:</c-> <c- mf>90</c-><c- p>,</c->
   beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   gamma<c- o>:</c-> <c- mf>0</c->
@@ -1070,30 +1065,24 @@ window<c- p>.</c->ondeviceorientation <c- o>=</c-> event <c- p>=></c-> <c- p>{</
    <div class="example" id="example-f560d6db"><a class="self-link" href="#example-f560d6db"></a> A user is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing upwards. The value of <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta">beta</a></code> is 90, irrespective of what <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①">alpha</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma">gamma</a></code> are. </div>
    <div class="example" id="example-69c0a149">
     <a class="self-link" href="#example-69c0a149"></a> A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is: 
-<pre class="highlight lang-javascript"><c- p>{</c->
+<pre class="lang-js highlight"><c- p>{</c->
   alpha<c- o>:</c-> <c- mf>270</c-> <c- o>-</c-> alpha<c- p>,</c->
   beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   gamma<c- o>:</c-> <c- mf>90</c->
 <c- p>};</c->
 </pre>
    </div>
-   <div class="example" id="example-deae0593">
-    <a class="self-link" href="#example-deae0593"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion①">devicemotion</a></code> events: 
-<pre class="highlight lang-javascript">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"devicemotion"</c-><c- p>,</c-> <c- p>(</c->event<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
-  <c- c1>// Process event.acceleration, event.accelerationIncludingGravity,</c->
-  <c- c1>// event.rotationRate and event.interval</c->
-<c- p>});</c->
-
-<c- c1>// Alternatively...</c->
-window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
-  <c- c1>// Process event.acceleration, event.accelerationIncludingGravity,</c->
-  <c- c1>// event.rotationRate and event.interval</c->
-<c- p>};</c->
+   <div class="example" id="example-76fffcaa">
+    <a class="self-link" href="#example-76fffcaa"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion①">devicemotion</a></code> events: 
+<pre class="lang-js highlight">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"devicemotion"</c-><c- p>,</c-> <c- a>function</c-><c- p>(</c->event<c- p>)</c-> <c- p>{</c->
+    <c- c1>// Process event.acceleration, event.accelerationIncludingGravity,</c->
+    <c- c1>// event.rotationRate and event.interval</c->
+<c- p>},</c-> <c- kc>true</c-><c- p>);</c->
 </pre>
    </div>
    <div class="example" id="example-1567e206">
     <a class="self-link" href="#example-1567e206"></a> A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>: 
-<pre class="highlight lang-javascript"><c- p>{</c->
+<pre class="lang-js highlight"><c- p>{</c->
   x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   z<c- o>:</c-> <c- mf>9.8</c->
@@ -1102,7 +1091,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    </div>
    <div class="example" id="example-13939e42">
     <a class="self-link" href="#example-13939e42"></a> A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration: 
-<pre class="highlight lang-javascript"><c- p>{</c->
+<pre class="lang-js highlight"><c- p>{</c->
   x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   z<c- o>:</c-> <c- o>-</c-><c- mf>9.8</c->
@@ -1111,7 +1100,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    </div>
    <div class="example" id="example-7dd1a0c3">
     <a class="self-link" href="#example-7dd1a0c3"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
-<pre class="highlight lang-javascript"><c- p>{</c->
+<pre class="lang-js highlight"><c- p>{</c->
   acceleration<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
   accelerationIncludingGravity<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>9.8</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
   rotationRate<c- o>:</c-> <c- p>{</c->alpha<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> gamma<c- o>:</c-> <c- o>-</c->v<c- o>/</c->r<c- o>*</c-><c- mf>180</c-><c- o>/</c->pi<c- p>}</c->
@@ -1932,7 +1921,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    <div class="example" id="example-cad08fa0">
     <a class="self-link" href="#example-cad08fa0"></a> 
     <p>The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute④">absolute</a></code> values.</p>
-<pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> compassHeading<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
@@ -1981,7 +1970,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
    <div class="example" id="example-76d62ad0">
     <a class="self-link" href="#example-76d62ad0"></a> The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑤">absolute</a></code> values. 
-<pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getRotationMatrix<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
@@ -2026,7 +2015,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" height="192" src="equation14.png" width="534"> </object>
    <div class="example" id="example-8f884833">
     <a class="self-link" href="#example-8f884833"></a> The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑥">absolute</a></code> values and those parameters are not null. 
-<pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
+<pre class="lang-js highlight"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getQuaternion<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
 
