@@ -61,9 +61,9 @@ Introduction {#introduction}
 
 This specification provides two new DOM events for obtaining information about the physical orientation and movement of the hosting device. The information provided by the events is not raw sensor data, but rather high-level data which is agnostic to the underlying source of information. Common sources of information include gyroscopes, compasses and accelerometers.
 
-The first DOM event provided by the specification, {{deviceorientation}}, supplies the physical orientation of the device, expressed as a series of rotations from a local coordinate frame.
+The {{deviceorientation}} event represents the physical orientation of the device, expressed as a series of rotations from a local coordinate frame.
 
-The second DOM event provided by this specification, {{devicemotion}}, supplies the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device's center of mass.
+The {{devicemotion}} event represents the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device's center of mass.
 
 The following code extracts illustrate basic use of the events.
 
