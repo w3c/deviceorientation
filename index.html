@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="64882960dbd701f54a4a4651177536396682b566" name="document-revision">
+  <meta content="876932fa0fcaa5e5359ce4951c02c16c63e3ac31" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1042,8 +1042,8 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
    <h2 class="heading settled" data-level="2" id="introduction"><span class="secno">2. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>This specification provides two new DOM events for obtaining information about the physical orientation and movement of the hosting device. The information provided by the events is not raw sensor data, but rather high-level data which is agnostic to the underlying source of information. Common sources of information include gyroscopes, compasses and accelerometers.</p>
-   <p>The first DOM event provided by the specification, <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation">deviceorientation</a></code>, supplies the physical orientation of the device, expressed as a series of rotations from a local coordinate frame.</p>
-   <p>The second DOM event provided by this specification, <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion">devicemotion</a></code>, supplies the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device’s center of mass.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation">deviceorientation</a></code> event represents the physical orientation of the device, expressed as a series of rotations from a local coordinate frame.</p>
+   <p>The <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion">devicemotion</a></code> event represents the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device’s center of mass.</p>
    <p>The following code extracts illustrate basic use of the events.</p>
    <div class="example" id="example-742261d9">
     <a class="self-link" href="#example-742261d9"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation①">deviceorientation</a></code> events: 
