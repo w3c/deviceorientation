@@ -638,7 +638,7 @@ In light of that, implementations may consider visual indicators to signify the 
 Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:
 
 * fire events only when a [=/navigable=]'s [=navigable/active document=]'s [=visibility state=] is "<code>visible</code>",
-* implement [[#permissions-policy-integration]] so that events are fired on [=child navigables=] (including but not restricted to cross-origin ones) only if allowed by the [=/top-level traversable=],
+* implement [[#permissions-integration]] so that events are fired on [=child navigables=] (including but not restricted to cross-origin ones) only if allowed by the [=/top-level traversable=],
 * fire events on a [=/navigable=]'s [=navigable/active windows=] only when its [=relevant settings object=] is a [=secure context=],
 * limit precision of attribute values as described in the previous sections.
 
