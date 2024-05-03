@@ -15,7 +15,7 @@ Former Editor: Tim Volodine, Google Inc
 Former Editor: Steve Block, Google Inc until July 2012
 Former Editor: Andrei Popescu, Google Inc until July 2012
 Abstract: This specification defines events that represent the physical orientation and motion of a hosting device. These events provide web applications with access to orientation and motion data. The specification is designed to be agnostic to the underlying sources of this data, aiming to achieve interoperability across different environments.
-Boilerplate: omit issues-index, omit conformance, repository-issue-tracking no
+Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
 Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
