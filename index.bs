@@ -337,38 +337,38 @@ The <dfn method for="DeviceOrientationEvent">requestPermission(<var>absolute</va
 </div>
 
 <div algorithm>
-To <dfn>fire an orientation event</dfn> given a <var>event name</var> (a string), <var>window</var> (a {{Window}}) and <var>absolute</var> (a boolean):
+To <dfn>fire an orientation event</dfn> given a {{DOMString}} |event|, {{Window}} |window| and {{boolean}} |absolute|:
 
-  1. Let <var>orientation</var> be null.
-  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
-  1. Let <var>virtualSensorType</var> be "<code><a data-lt="relative-orientation virtual sensor type">relative-orientation</a></code>" if <var>absolute</var> is false, and "<code><a data-lt="absolute-orientation virtual sensor type">absolute-orientation</a></code>" otherwise.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> <var>virtualSensorType</var>:
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>[<var>virtualSensorType</var>].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true:
-          1. Set <var>orientation</var> to the latest readings provided to <var>virtualSensor</var> with the "<code>alpha</code>", "<code>beta</code>", and "<code>gamma</code>" keys.
+  1. Let |orientation| be null.
+  1. Let |topLevelTraversable| be |window|'s [=Window/navigable=]'s [=navigable/top-level traversable=].
+  1. Let |virtualSensorType| be "<code><a data-lt="relative-orientation virtual sensor type">relative-orientation</a></code>" if |absolute| is false, and "<code><a data-lt="absolute-orientation virtual sensor type">absolute-orientation</a></code>" otherwise.
+  1. If |topLevelTraversable|'s <a>virtual sensor mapping</a> <a for=map>contains</a> |virtualSensorType|:
+      1. Let |virtualSensor| be |topLevelTraversable|'s <a>virtual sensor mapping</a>[|virtualSensorType|].
+      1. If |virtualSensor|'s <a>can provide readings flag</a> is true:
+          1. Set |orientation| to the latest readings provided to |virtualSensor| with the "<code>alpha</code>", "<code>beta</code>", and "<code>gamma</code>" keys.
   1. Otherwise:
-      1. If <var>absolute</var> is false:
-          1. Set <var>orientation</var> to the device's <a>relative orientation</a> in the tridimensional plane.
+      1. If |absolute| is false:
+          1. Set |orientation| to the device's [=relative orientation=] in the tridimensional plane.
       1. Otherwise:
-          1. Set <var>orientation</var> to the device's <a>absolute orientation</a> in the tridimensional plane.
-  1. Let <var>permissions</var> be null.
-  1. If <var>absolute</var> is false:
-      1. Set <var>permissions</var> to « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
+          1. Set |orientation| to the device's [=absolute orientation=] in the tridimensional plane.
+  1. Let |permissions| be null.
+  1. If |absolute| is false:
+      1. Set |permissions| to « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
   1. Otherwise:
-      1. Set <var>permissions</var> to « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>", "<a permission>magnetometer</a>" ».
-  1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
+      1. Set |permissions| to « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a>, <a permission>"magnetometer"</a> ».
+  1. Let |environment| be |window|'s <a>relevant settings object</a>.
   1. Run these steps <a>in parallel</a>:
-    1. <a for="list">For each</a> <var>permission name</var> in <var>permissions</var>:
-        1. Let <var>state</var> be the result of <a>getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.
-        1. If <var>state</var> is not "{{PermissionState/granted}}", return.
-    1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>window</var> to run the following steps:
-        1. Let <var>z rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
-        1. If <var>z rotation</var> is not null, limit <var>z rotation</var>'s precision to 0.1 degrees.
-        1. Let <var>x rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
-        1. If <var>x rotation</var> is not null, limit <var>x rotation</var>'s precision to 0.1 degrees.
-        1. Let <var>y rotation</var> be <var>orientation</var>'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Y'' axis, or null if the implementation cannot provide an angle value.
-        1. If <var>y rotation</var> is not null, limit <var>y rotation</var>'s precision to 0.1 degrees.
-        1. <a>Fire an event</a> named <var>event name</var> at <var>window</var>, using {{DeviceOrientationEvent}}, with the {{DeviceOrientationEvent/alpha}} attribute initialized to <var>z rotation</var>, the {{DeviceOrientationEvent/beta}} attribute initialized to <var>x rotation</var>, the {{DeviceOrientationEvent/gamma}} attribute initialized to <var>y rotation</var>, and the {{DeviceOrientationEvent/absolute}} attribute initialized to <var>absolute</var>.
+    1. [=list/For each=] |permission| in |permissions|:
+        1. Let |state| be the result of <a>getting the current permission state</a> with |permission| and |environment|.
+        1. If |state| is not "{{PermissionState/granted}}", return.
+    1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
+        1. Let |z| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
+        1. If |z| is not null, limit |z|'s precision to 0.1 degrees.
+        1. Let |x| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
+        1. If |x| is not null, limit |x|'s precision to 0.1 degrees.
+        1. Let |y| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Y'' axis, or null if the implementation cannot provide an angle value.
+        1. If |y| is not null, limit |y|'s precision to 0.1 degrees.
+        1. [=Fire an event=] named |event| at |window|, using {{DeviceOrientationEvent}}, with the {{DeviceOrientationEvent/alpha}} attribute initialized to |z|, the {{DeviceOrientationEvent/beta}} attribute initialized to |x|, the {{DeviceOrientationEvent/gamma}} attribute initialized to |y|, and the {{DeviceOrientationEvent/absolute}} attribute initialized to |absolute|.
 
 </div>
 
