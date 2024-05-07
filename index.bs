@@ -256,7 +256,7 @@ This specification is a [=powerful feature=] and, as such, it defines the follow
   <span class="marker">Note:</span> Which events get [=dispatched=] depends on which [=permissions=] have been [=permission/granted=]:
 
     - When providing <a>relative orientation</a> data, the <a event for="Window">deviceorientation</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a> and <a permission>"gyroscope"</a> [=permissions=] are [=permission/granted=]. For the implementation to fall back to <a>absolute orientation</a> data, the <a permission>"magnetometer"</a> [=permission=] must also be [=permission/granted=].
-    - The <a event for="Window">deviceorientationabsolute</a> events are only [=dispatch=] if the "<a permission>accelerometer</a>", <a permission>"gyroscope"</a>, and "<a permission>magnetometer</a>" are [=permission/granted=].
+    - The <a event for="Window">deviceorientationabsolute</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a>, and <a permission>"magnetometer"</a> [=permissions=] are [=permission/granted=].
     - The <a event for="Window">devicemotion</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a> and <a permission>"gyroscope"</a> [=permissions=] are [=permission/granted=].
 </div>
 
