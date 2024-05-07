@@ -15,7 +15,7 @@ Former Editor: Tim Volodine, Google Inc
 Former Editor: Steve Block, Google Inc until July 2012
 Former Editor: Andrei Popescu, Google Inc until July 2012
 Abstract: This specification defines events that represent the physical orientation and motion of a hosting device. These events provide web applications with access to orientation and motion data. The specification is designed to be agnostic to the underlying sources of this data, aiming to achieve interoperability across different environments.
-Boilerplate: omit issues-index, omit conformance, repository-issue-tracking no
+Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
 Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
@@ -34,25 +34,6 @@ urlPrefix: https://w3c.github.io/webdriver/; spec: WEBDRIVER2
     type: dfn
         text: get a property; url: dfn-getting-properties
 </pre>
-
-Conformance requirements {#conformance-requirements}
-====================================================
-
-All diagrams, examples, and notes in this specification are non-normative, as are all sections explicitly marked non-normative. Everything else in this specification is normative.
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC2119. For readability, these words do not appear in all uppercase letters in this specification. [[!RFC2119]]
-
-Requirements phrased in the imperative as part of algorithms (such as "strip any leading space characters" or "return false and abort these steps") are to be interpreted with the meaning of the key word ("must", "should", "may", etc) used in introducing the algorithm.
-
-Conformance requirements phrased as algorithms or specific steps may be implemented in any manner, so long as the end result is equivalent. (In particular, the algorithms defined in this specification are intended to be easy to follow, and not intended to be performant.)
-
-User agents may impose implementation-specific limits on otherwise unconstrained inputs, e.g. to prevent denial of service attacks, to guard against running out of memory, or to work around platform-specific limitations.
-
-Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification, as this specification uses that specification's terminology. [[!WEBIDL]]
-
-The events introduced by this specification implement the Event interface defined in the DOM Specification, [[!DOM]]. Implementations must therefore support this specification.
-
-
 
 Introduction {#introduction}
 ============================
