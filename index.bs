@@ -1068,7 +1068,7 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
         "href": "https://en.wikipedia.org/wiki/Gimbal_Lock",
         "title": "Gimbal Lock"
     },
-   "PROPERACCELERATION": {
+    "PROPERACCELERATION": {
         "href": "https://en.wikipedia.org/wiki/Proper_acceleration",
         "title": "Proper acceleration"
     },
