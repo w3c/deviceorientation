@@ -219,7 +219,7 @@ Acceleration is the rate of change of velocity of a device with respect to time.
 
 <dfn local-lt="linear acceleration">Linear device acceleration</dfn> represents the device's acceleration rate without the contribution of the gravity force. When the device is laying flat on a table, its <a>linear acceleration</a> is 0 m/s<sup>2</sup>.
 
-When the acceleration <dfn lt="acceleration with gravity">includes gravity</dfn>, its value includes the effect of gravity and represents <a href="https://en.wikipedia.org/wiki/Proper_acceleration">proper acceleration</a>. When the device is in free-fall, the acceleration is 0 m/s<sup>2</sup>. This is less useful in many applications but is provided as a means of providing best-effort support by implementations that are unable to provide <a>linear acceleration</a> (due, for example, to the lack of a gyroscope).
+When the acceleration <dfn lt="acceleration with gravity">includes gravity</dfn>, its value includes the effect of gravity and represents proper acceleration [[PROPERACCELERATION]]. When the device is in free-fall, the acceleration is 0 m/s<sup>2</sup>. This is less useful in many applications but is provided as a means of providing best-effort support by implementations that are unable to provide <a>linear acceleration</a> (due, for example, to the lack of a gyroscope).
 
 Note: In practice, <a>acceleration with gravity</a> represents the raw readings obtained from an [[MOTION-SENSORS#accelerometer]], or the [[G-FORCE]] whereas <a>linear acceleration</a> provides the readings of a [[MOTION-SENSORS#linear-acceleration-sensor]] and is likely a fusion sensor. [[MOTION-SENSORS]] and [[ACCELEROMETER]] both contain a more detailed discussion about the different types of accelerometers and accelerations that can be measured.
 
@@ -1067,6 +1067,10 @@ urlPrefix: https://html.spec.whatwg.org/multipage/
     "GIMBALLOCK": {
         "href": "https://en.wikipedia.org/wiki/Gimbal_Lock",
         "title": "Gimbal Lock"
+    },
+   "PROPERACCELERATION": {
+        "href": "https://en.wikipedia.org/wiki/Proper_acceleration",
+        "title": "Proper acceleration"
     },
     "QUATERNIONS": {
         "href": "https://en.wikipedia.org/wiki/Quaternion",
