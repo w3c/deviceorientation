@@ -243,7 +243,7 @@ Permissions {#permissions-integration}
 ==============================
 
 <div class="issue">
-This integration is [=at risk=] due to a lack of test coverage in Web Platform Tests.
+This integration is [=at risk=] due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests.
 </div>
 
 This specification is a [=powerful feature=] and, as such, it defines the following [=permissions=] which are [=policy-controlled features=] with the given [=default allowlists=]:
