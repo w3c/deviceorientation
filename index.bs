@@ -686,36 +686,6 @@ There are two user needs that can arise, which would likely be managed by the us
     - For example: whilst the shake-to-undo feature can provide a natural and thoughtful interaction for some, for people with tremors, it may present a barrier. This could be managed by declining permission, or more likely by changing a browser or OS setting, coupled with the web app providing alternative input means.
 * It is also important that the device's orientation can be locked - a primary use case being someone who is interacting with a touch device, such as a phone, non-visually. They may have built up 'muscle memory' as to where elements are on the screen in a given orientation, and having the layout shift would break their ability to navigate. Again, this would most likely be done at the operating system level.
 
-Use-Cases and Requirements {#use-cases-and-requirements}
-========================================================
-
-<h3 id="use-cases">Use-Cases</h3>
-<em>This section is non-normative.</em>
-
-<h4 class="no-toc" id="controlling-a-game">Controlling a game</h4>
-<em>This section is non-normative.</em>
-
-A gaming Web application monitors the device's orientation and interprets tilting in a certain direction as a means to control an on-screen sprite.
-
-<h4 class="no-toc" id="gesture-recognition">Gesture recognition</h4>
-<em>This section is non-normative.</em>
-
-A Web application monitors the device's acceleration and applies signal processing in order to recognize certain specific gestures. For example, using a shaking gesture to clear a web form.
-
-<h4 class="no-toc" id="mapping">Mapping</h4>
-<em>This section is non-normative.</em>
-
-A mapping Web application uses the device's orientation to correctly align the map with reality.
-
-<h3 id="requirements">Requirements</h3>
-<em>This section is non-normative.</em>
-
-* The specification must provide data that describes the physical orientation in space of the device.
-* The specification must provide data that describes the motion in space of the device.
-* The specification must allow Web applications to register for changes in the device's orientation.
-* The specification must be agnostic to the underlying sources of orientation and motion data.
-* The specification must use the existing DOM event framework.
-
 Automation {#automation}
 ==========
 
