@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: DeviceOrientation Event Specification
+Title: Device Orientation and Motion
 Shortname: orientation-event
 Level: none
 Status: ED
