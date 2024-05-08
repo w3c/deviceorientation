@@ -357,19 +357,18 @@ A <dfn>significant change in orientation</dfn> indicates a difference in orienta
 Note: Implementations must take [[#automation]] into account to determine whether a <a>significant change in orientation</a> has occurred, so that a virtual sensor reading update causes it to be assessed.
 
 <div algorithm="deviceorientation firing steps">
-Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+Whenever a [=significant change in orientation=] occurs, the user agent must execute the following steps on a [=/navigable=]'s [=navigable/active window=] |window|:
 
-  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
-  1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
-  1. If the implementation cannot provide <a>relative orientation</a> or the resulting <a>absolute orientation</a> data is more accurate:
-    1. Let <var>absolute</var> be true.
-    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>", "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" ».
-  1. Otherwise:
-    1. Let <var>absolute</var> be false.
-    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" ».
-  1. <a for="list">For each</a> <var>policy</var> of <var>policies</var>:
-      1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
-  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientation</code></a>, <var>window</var>, and <var>absolute</var>.
+  1. Let |document| be |window|'s [=associated Document=].
+  1. If |document|'s [=Document/visibility state=] is not "visible", return.
+  1. Let |absolute| be false.
+  1. Let |features| be « "<a permission>"accelerometer"</a>", <a permission>"gyroscope"</a> ».
+  1. If the implementation cannot provide [=relative orientation=] or the resulting [=absolute orientation=] data is more accurate:
+    1. Set |absolute| to true.
+    1. [=list/Append=] <a permission>"magnetometer"</a> to |features|.
+  1. [=list/For each=] |feature| of |features|:
+      1. If |document| is not [=allowed to use=] |feature|, return.
+  1. [=Fire an orientation event=] with <a event for="Window">deviceorientation</a>, |window|, and |absolute|.
 
 </div>
 
