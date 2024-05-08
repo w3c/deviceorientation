@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="21d1db5c262d365a653ce036ce646c71d3af5634" name="document-revision">
+  <meta content="b30e8cb0020acb15c71450c5588e3902a4d5e661" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -889,7 +889,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Device Orientation and Motion</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-07">7 May 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-08">8 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1118,20 +1118,23 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    <p>The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' (<a data-link-type="biblio" href="#biblio-eulerangles" title="Euler Angles">[EULERANGLES]</a>) that are applied on the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer/#device-coordinate-system" id="ref-for-device-coordinate-system">device coordinate system</a> defined in <a data-link-type="biblio" href="#biblio-accelerometer" title="Accelerometer">[ACCELEROMETER]</a> and summarized below:</p>
    <ul>
     <li data-md>
-     <p>x is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="Device Orientation" data-dfn-type="dfn" data-noexport id="device-orientation-x">x</dfn> is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.</p>
     <li data-md>
-     <p>y is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="Device Orientation" data-dfn-type="dfn" data-noexport id="device-orientation-y">y</dfn> is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.</p>
     <li data-md>
-     <p>z is perpendicular to the screen or keyboard, positive out of the screen or keyboard.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="Device Orientation" data-dfn-type="dfn" data-noexport id="device-orientation-z">z</dfn> is perpendicular to the screen or keyboard, positive out of the screen or keyboard.</p>
    </ul>
-   <p>For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position. If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device. For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> Users wishing to detect changes in screen orientation should refer to <a data-link-type="biblio" href="#biblio-screen-orientation" title="Screen Orientation">[SCREEN-ORIENTATION]</a>.</p>
-   <p>Rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> the coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention. Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
+   <p>For a mobile device such as a phone or tablet, the device coordinate frame is defined relative to the screen in its standard orientation, typically portrait. This means that slide-out elements such as keyboards are not deployed, and swiveling elements such as displays are folded to their default position.</p>
+   <p>If the orientation of the screen changes when the device is rotated or a slide-out keyboard is deployed, this does not affect the orientation of the coordinate frame relative to the device.</p>
+   <p>For a laptop computer, the device coordinate frame is defined relative to the integrated keyboard.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Developers wanting to detect changes in screen orientation can refer to <a data-link-type="biblio" href="#biblio-screen-orientation" title="Screen Orientation">[SCREEN-ORIENTATION]</a>.</p>
+   <p>Rotations use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention.
+Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
    <p>A rotation represented by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha②">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta①">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma①">gamma</a></code> is carried out by the following steps:</p>
    <ol>
     <li data-md>
-     <p>Rotate the device frame around its z axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha④">alpha</a></code> in [0, 360).</p>
+     <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-z" id="ref-for-device-orientation-z">z</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha④">alpha</a></code> in [0, 360).</p>
      <figure>
        <img alt="start orientation" height="450" src="start.png" width="450"> 
       <figcaption>Device in the initial position, with the reference (XYZ) and body (xyz) frames aligned.</figcaption>
@@ -1141,13 +1144,13 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
       <figcaption>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</figcaption>
      </figure>
     <li data-md>
-     <p>Rotate the device frame around its x axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta③">beta</a></code> in [-180, 180).</p>
+     <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-x" id="ref-for-device-orientation-x">x</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta③">beta</a></code> in [-180, 180).</p>
      <figure>
        <img alt="rotation about x axis" height="450" src="a-rotation.png" width="450"> 
       <figcaption>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</figcaption>
      </figure>
     <li data-md>
-     <p>Rotate the device frame around its y axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma③">gamma</a></code> in [-90, 90).</p>
+     <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-y" id="ref-for-device-orientation-y">y</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma③">gamma</a></code> in [-90, 90).</p>
      <figure>
        <img alt="rotation about y axis" height="450" src="b-rotation.png" width="450"> 
       <figcaption>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</figcaption>
@@ -2250,6 +2253,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
     x
     <ul>
      <li><a href="#dom-devicemotioneventacceleration-x">attribute for DeviceMotionEventAcceleration</a><span>, in § 7.3.1</span>
+     <li><a href="#device-orientation-x">dfn for Device Orientation</a><span>, in § 3.1</span>
      <li><a href="#dom-devicemotioneventaccelerationinit-x">dict-member for DeviceMotionEventAccelerationInit</a><span>, in § 7.3.3</span>
     </ul>
    <li><a href="#devicemotioneventacceleration-x-axis-acceleration">x axis acceleration</a><span>, in § 7.3.1</span>
@@ -2258,6 +2262,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
     y
     <ul>
      <li><a href="#dom-devicemotioneventacceleration-y">attribute for DeviceMotionEventAcceleration</a><span>, in § 7.3.1</span>
+     <li><a href="#device-orientation-y">dfn for Device Orientation</a><span>, in § 3.1</span>
      <li><a href="#dom-devicemotioneventaccelerationinit-y">dict-member for DeviceMotionEventAccelerationInit</a><span>, in § 7.3.3</span>
     </ul>
    <li><a href="#devicemotioneventacceleration-y-axis-acceleration">y axis acceleration</a><span>, in § 7.3.1</span>
@@ -2266,6 +2271,7 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
     z
     <ul>
      <li><a href="#dom-devicemotioneventacceleration-z">attribute for DeviceMotionEventAcceleration</a><span>, in § 7.3.1</span>
+     <li><a href="#device-orientation-z">dfn for Device Orientation</a><span>, in § 3.1</span>
      <li><a href="#dom-devicemotioneventaccelerationinit-z">dict-member for DeviceMotionEventAccelerationInit</a><span>, in § 7.3.3</span>
     </ul>
    <li><a href="#devicemotioneventacceleration-z-axis-acceleration">z axis acceleration</a><span>, in § 7.3.1</span>
@@ -3328,6 +3334,9 @@ window.dfnpanelData['56f81a8e'] = {"dfnID": "56f81a8e", "url": "https://webidl.s
 window.dfnpanelData['b262501e'] = {"dfnID": "b262501e", "url": "https://webidl.spec.whatwg.org/#reject", "dfnText": "reject", "refSections": [{"refs": [{"id": "ref-for-reject"}], "title": "7.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-reject\u2460"}], "title": "7.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['3b90bdcd'] = {"dfnID": "3b90bdcd", "url": "https://webidl.spec.whatwg.org/#resolve", "dfnText": "resolve", "refSections": [{"refs": [{"id": "ref-for-resolve"}], "title": "7.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-resolve\u2460"}], "title": "7.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['4013a022'] = {"dfnID": "4013a022", "url": "https://webidl.spec.whatwg.org/#this", "dfnText": "this", "refSections": [{"refs": [{"id": "ref-for-this"}, {"id": "ref-for-this\u2460"}], "title": "7.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-this\u2461"}, {"id": "ref-for-this\u2462"}, {"id": "ref-for-this\u2463"}], "title": "7.3.1. The DeviceMotionEventAcceleration interface"}, {"refs": [{"id": "ref-for-this\u2464"}, {"id": "ref-for-this\u2465"}, {"id": "ref-for-this\u2466"}], "title": "7.3.2. The DeviceMotionEventRotationRate interface"}, {"refs": [{"id": "ref-for-this\u2467"}, {"id": "ref-for-this\u2468"}], "title": "7.3.3. The DeviceMotionEvent interface"}], "external": true};
+window.dfnpanelData['device-orientation-x'] = {"dfnID": "device-orientation-x", "url": "#device-orientation-x", "dfnText": "x", "refSections": [{"refs": [{"id": "ref-for-device-orientation-x"}], "title": "3.1. Device Orientation"}], "external": false};
+window.dfnpanelData['device-orientation-y'] = {"dfnID": "device-orientation-y", "url": "#device-orientation-y", "dfnText": "y", "refSections": [{"refs": [{"id": "ref-for-device-orientation-y"}], "title": "3.1. Device Orientation"}], "external": false};
+window.dfnpanelData['device-orientation-z'] = {"dfnID": "device-orientation-z", "url": "#device-orientation-z", "dfnText": "z", "refSections": [{"refs": [{"id": "ref-for-device-orientation-z"}], "title": "3.1. Device Orientation"}], "external": false};
 window.dfnpanelData['relative-orientation'] = {"dfnID": "relative-orientation", "url": "#relative-orientation", "dfnText": "Relative orientation", "refSections": [{"refs": [{"id": "ref-for-relative-orientation"}], "title": "4. Permissions Policy integration"}, {"refs": [{"id": "ref-for-relative-orientation\u2460"}], "title": "5. Permissions API integration"}, {"refs": [{"id": "ref-for-relative-orientation\u2461"}, {"id": "ref-for-relative-orientation\u2462"}, {"id": "ref-for-relative-orientation\u2463"}], "title": "7.1. deviceorientation Event"}], "external": false};
 window.dfnpanelData['absolute-orientation'] = {"dfnID": "absolute-orientation", "url": "#absolute-orientation", "dfnText": "Absolute orientation", "refSections": [{"refs": [{"id": "ref-for-absolute-orientation"}], "title": "4. Permissions Policy integration"}, {"refs": [{"id": "ref-for-absolute-orientation\u2460"}], "title": "5. Permissions API integration"}, {"refs": [{"id": "ref-for-absolute-orientation\u2461"}, {"id": "ref-for-absolute-orientation\u2462"}, {"id": "ref-for-absolute-orientation\u2463"}], "title": "7.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-absolute-orientation\u2464"}], "title": "7.2. deviceorientationabsolute Event"}], "external": false};
 window.dfnpanelData['linear-acceleration'] = {"dfnID": "linear-acceleration", "url": "#linear-acceleration", "dfnText": "Linear acceleration", "refSections": [{"refs": [{"id": "ref-for-linear-acceleration"}, {"id": "ref-for-linear-acceleration\u2460"}, {"id": "ref-for-linear-acceleration\u2461"}], "title": "3.2. Device Motion"}, {"refs": [{"id": "ref-for-linear-acceleration\u2462"}, {"id": "ref-for-linear-acceleration\u2463"}, {"id": "ref-for-linear-acceleration\u2464"}, {"id": "ref-for-linear-acceleration\u2465"}], "title": "7.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-linear-acceleration\u2466"}], "title": "10.2. Device Motion Automation"}], "external": false};
