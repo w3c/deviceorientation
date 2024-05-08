@@ -200,7 +200,7 @@ Note: This choice of angles follows mathematical convention, but means that alph
 
 A device's orientation is always relative to another coordinate system, whose choice influences the kind of information that the orientation conveys as well as the source of the orientation data.
 
-<dfn>Relative orientation</dfn> is measured with an accelerometer and a gyroscope, and the reference coordinate system is arbitrary. Consequently, the orientation data provides information about changes relative to the initial position of the device.
+<dfn local-lt="relative orientation">Relative device orientation</dfn> is measured with an accelerometer and a gyroscope, and the reference coordinate system is arbitrary. Consequently, the orientation data provides information about changes relative to the initial position of the device.
 
 Note: In native platform terms, this is similar to a relative <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_GAME_ROTATION_VECTOR">game rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1615953-xarbitraryzvertical">xArbitraryZVertical</a> option for Core Motion.
 
@@ -215,7 +215,7 @@ This specification expresses a device's motion in space by measuring its acceler
 
 Acceleration is the rate of change of velocity of a device with respect to time. Is is expressed in meters per second squared (m/s<sup>2</sup>).
 
-<dfn>Linear acceleration</dfn> represents the device's acceleration rate without the contribution of the gravity force. When the device is laying flat on a table, its <a>linear acceleration</a> is 0 m/s<sup>2</sup>.
+<dfn local-lt="linear acceleration">Linear device acceleration</dfn> represents the device's acceleration rate without the contribution of the gravity force. When the device is laying flat on a table, its <a>linear acceleration</a> is 0 m/s<sup>2</sup>.
 
 When the acceleration <dfn lt="acceleration with gravity">includes gravity</dfn>, its value includes the effect of gravity and represents proper acceleration ([[PROPERACCELERATION]]). When the device is in free-fall, the acceleration is 0 m/s<sup>2</sup>. This is less useful in many applications but is provided as a means of providing best-effort support by implementations that are unable to provide <a>linear acceleration</a> (due, for example, to the lack of a gyroscope).
 
