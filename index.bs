@@ -360,7 +360,7 @@ Note: Implementations must take [[#automation]] into account to determine whethe
 Whenever a [=significant change in orientation=] occurs, the user agent must execute the following steps on a [=/navigable=]'s [=navigable/active window=] |window|:
 
   1. Let |document| be |window|'s [=associated Document=].
-  1. If |document|'s [=Document/visibility state=] is not "visible", return.
+  1. If |document|'s [=Document/visibility state=] is not `"visible"`, return.
   1. Let |absolute| be false.
   1. Let |features| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
   1. If the implementation cannot provide [=relative orientation=] or the resulting [=absolute orientation=] data is more accurate:
