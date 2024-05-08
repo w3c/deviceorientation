@@ -19,8 +19,8 @@ Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
 Issue Tracking: Device Orientation and Motion Repository https://github.com/w3c/deviceorientation/issues
-Markup Shorthands: css no
 Status Text: New features since publication as a Candidate Recommendation include integration of Permissions Policy and API, which now requires explicit user permission through {{DeviceOrientationEvent/requestPermission()}} for accessing device orientation data. Updates have been made to the coordinate system explanations and precision requirements to mitigate passive fingerprinting risks. The introduction of the <a event>deviceorientationabsolute</a> event enhances applications requiring absolute orientation data (marked [=at risk=]). Interfaces are now only available in [=secure contexts=], and security and privacy considerations have been made normative. The specification now also provides a means to [[#automation|automate testing]] of this API (marked [=at risk=]).
+Markup Shorthands: css no
 Markup Shorthands: markdown yes
 text macro: JOINT yes
 text macro: JOINTWEBAPPS yes
