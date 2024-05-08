@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="55db7e5228ae5f4aa3782ca36adc81ad21b213ee" name="document-revision">
+  <meta content="abbeb981e8ab066498f36f5526b0f6a6b57f91fd" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1373,7 +1373,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
        <li data-md>
         <p>Let <var>absolute</var> be true.</p>
        <li data-md>
-        <p>Let <var>policies</var> be « "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#accelerometer-feature" id="ref-for-accelerometer-feature"><code>accelerometer</code></a>", "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#gyroscope-feature" id="ref-for-gyroscope-feature"><code>gyroscope</code></a>", "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#magnetometer-feature" id="ref-for-magnetometer-feature"><code>magnetometer</code></a>" ».</p>
+        <p>Let <var>policies</var> be « "<a data-link-type="dfn"><code>accelerometer</code></a>", "<a data-link-type="dfn"><code>gyroscope</code></a>", "<a data-link-type="dfn" href="https://w3c.github.io/magnetometer/#magnetometer-feature" id="ref-for-magnetometer-feature"><code>magnetometer</code></a>" ».</p>
       </ol>
      <li data-md>
       <p>Otherwise:</p>
@@ -1381,7 +1381,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
        <li data-md>
         <p>Let <var>absolute</var> be false.</p>
        <li data-md>
-        <p>Let <var>policies</var> be « "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#accelerometer-feature" id="ref-for-accelerometer-feature①"><code>accelerometer</code></a>", "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#gyroscope-feature" id="ref-for-gyroscope-feature①"><code>gyroscope</code></a>" ».</p>
+        <p>Let <var>policies</var> be « "<a data-link-type="dfn"><code>accelerometer</code></a>", "<a data-link-type="dfn"><code>gyroscope</code></a>" ».</p>
       </ol>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate③">For each</a> <var>policy</var> of <var>policies</var>:</p>
@@ -1406,7 +1406,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation③">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable①">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window①">active window</a> <var>window</var>: 
     <ol>
      <li data-md>
-      <p>Invoke <a data-link-type="dfn" href="#fire-an-orientation-event" id="ref-for-fire-an-orientation-event①">fire an orientation event</a> with <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute④"><code>deviceorientationabsolute</code></a>, <var>window</var>, and true.</p>
+      <p><a data-link-type="dfn" href="#fire-an-orientation-event" id="ref-for-fire-an-orientation-event①">Fire an orientation event</a> with <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute④">deviceorientationabsolute</a>, <var>window</var>, and true.</p>
     </ol>
    </div>
    <p>If an implementation can never provide absolute orientation information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑧">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑦">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑦">gamma</a></code> attributes set to null, and the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute③">absolute</a></code> attribute set to true.</p>
@@ -1554,7 +1554,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <li data-md>
       <p>If <var>document</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#visibility-state" id="ref-for-visibility-state①">visibility state</a> is not "<code>visible</code>", return.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑥">For each</a> <var>policy</var> of « "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#accelerometer-feature" id="ref-for-accelerometer-feature②"><code>accelerometer</code></a>", "<a data-link-type="dfn" href="https://w3c.github.io/deviceorientation/#gyroscope-feature" id="ref-for-gyroscope-feature②"><code>gyroscope</code></a>" »:</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑥">For each</a> <var>policy</var> of « "<a data-link-type="dfn"><code>accelerometer</code></a>", "<a data-link-type="dfn"><code>gyroscope</code></a>" »:</p>
       <ol>
        <li data-md>
         <p>If <var>document</var> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use" id="ref-for-allowed-to-use①">allowed to use</a> the <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature②">policy-controlled feature</a> named <var>policy</var>, return.</p>
@@ -1789,10 +1789,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a>:</p>
    <dl>
     <dt data-md>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">key</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key">Key</a>
     <dd data-md>
      <p>"<code><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="absolute-orientation virtual sensor type" id="absolute-orientation-virtual-sensor-type">absolute-orientation</dfn></code>"</p>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">value</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value">Value</a>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm">reading parsing algorithm</a> is <a data-link-type="dfn" href="#parse-orientation-data-reading" id="ref-for-parse-orientation-data-reading">parse orientation data reading</a>.</p>
    </dl>
@@ -1800,10 +1800,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata①">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map③">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry①">entry</a>:</p>
    <dl>
     <dt data-md>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">key</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key①">Key</a>
     <dd data-md>
      <p>"<code><dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="relative-orientation virtual sensor type" id="relative-orientation-virtual-sensor-type">relative-orientation</dfn></code>"</p>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">value</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value①">Value</a>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata①">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm①">reading parsing algorithm</a> is <a data-link-type="dfn" href="#parse-orientation-data-reading" id="ref-for-parse-orientation-data-reading①">parse orientation data reading</a>.</p>
    </dl>
@@ -1813,30 +1813,30 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <h4 class="heading settled" data-level="9.2.1" id="accelerometer-virtual-sensors"><span class="secno">9.2.1. </span><span class="content">The "accelerometer" virtual sensor type</span><a class="self-link" href="#accelerometer-virtual-sensors"></a></h4>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata③">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entry</a>:</p>
    <dl>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key②">key</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key②">Key</a>
     <dd data-md>
      <p>"<code><dfn data-dfn-type="dfn" data-export data-lt="accelerometer virtual sensor type" id="accelerometer-virtual-sensor-type">accelerometer<a class="self-link" href="#accelerometer-virtual-sensor-type"></a></dfn></code>"</p>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value②">value</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value②">Value</a>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata②">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm②">reading parsing algorithm</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors/#parse-xyz-reading" id="ref-for-parse-xyz-reading">parse xyz reading</a>.</p>
    </dl>
    <h4 class="heading settled" data-level="9.2.2" id="linear-acceleration-virtual-sensors"><span class="secno">9.2.2. </span><span class="content">The "linear-acceleration" virtual sensor type</span><a class="self-link" href="#linear-acceleration-virtual-sensors"></a></h4>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata④">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry③">entry</a>:</p>
    <dl>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key③">key</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key③">Key</a>
     <dd data-md>
      <p>"<code><dfn data-dfn-type="dfn" data-export data-lt="linear-acceleration virtual sensor type" id="linear-acceleration-virtual-sensor-type">linear-acceleration<a class="self-link" href="#linear-acceleration-virtual-sensor-type"></a></dfn></code>"</p>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value③">value</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value③">Value</a>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata③">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm③">reading parsing algorithm</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors/#parse-xyz-reading" id="ref-for-parse-xyz-reading①">parse xyz reading</a>.</p>
    </dl>
    <h4 class="heading settled" data-level="9.2.3" id="gyroscope-virtual-sensors"><span class="secno">9.2.3. </span><span class="content">The "gyroscope" virtual sensor type</span><a class="self-link" href="#gyroscope-virtual-sensors"></a></h4>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata⑤">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑥">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry④">entry</a>:</p>
    <dl>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key④">key</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-key" id="ref-for-map-key④">Key</a>
     <dd data-md>
      <p>"<code><dfn data-dfn-type="dfn" data-export data-lt="gyroscope virtual sensor type" id="gyroscope-virtual-sensor-type">gyroscope<a class="self-link" href="#gyroscope-virtual-sensor-type"></a></dfn></code>"</p>
-    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value④">value</a>
+    <dt data-md><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-value" id="ref-for-map-value④">Value</a>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata④">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm④">reading parsing algorithm</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors/#parse-xyz-reading" id="ref-for-parse-xyz-reading②">parse xyz reading</a>.</p>
    </dl>
@@ -2332,11 +2332,9 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <li><span class="dfn-paneled" id="802b0fdd">value</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[ORIENTATION-EVENT]</a> defines the following terms:
+    <a data-link-type="biblio">[MAGNETOMETER]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="ca25842a">accelerometer-feature</span>
-     <li><span class="dfn-paneled" id="4113b1d4">gyroscope-feature</span>
-     <li><span class="dfn-paneled" id="ca281e41">magnetometer-feature</span>
+     <li><span class="dfn-paneled" id="61c9b068">magnetometer-feature</span>
     </ul>
    <li>
     <a data-link-type="biblio">[ORIENTATION-SENSOR]</a> defines the following terms:
@@ -2410,8 +2408,8 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
-   <dt id="biblio-orientation-event">[ORIENTATION-EVENT]
-   <dd>Reilly Grant; Raphael Kubo da Costa; Marcos Caceres. <a href="https://w3c.github.io/deviceorientation/"><cite>Device Orientation and Motion</cite></a>. URL: <a href="https://w3c.github.io/deviceorientation/">https://w3c.github.io/deviceorientation/</a>
+   <dt id="biblio-magnetometer">[MAGNETOMETER]
+   <dd>Anssi Kostiainen; Rijubrata Bhaumik. <a href="https://w3c.github.io/magnetometer/"><cite>Magnetometer</cite></a>. URL: <a href="https://w3c.github.io/magnetometer/">https://w3c.github.io/magnetometer/</a>
    <dt id="biblio-orientation-sensor">[ORIENTATION-SENSOR]
    <dd>Kenneth Christiansen; Anssi Kostiainen. <a href="https://w3c.github.io/orientation-sensor/"><cite>Orientation Sensor</cite></a>. URL: <a href="https://w3c.github.io/orientation-sensor/">https://w3c.github.io/orientation-sensor/</a>
    <dt id="biblio-permissions">[PERMISSIONS]
@@ -3286,9 +3284,7 @@ window.dfnpanelData['d14a6f26'] = {"dfnID": "d14a6f26", "url": "https://infra.sp
 window.dfnpanelData['3fca5a9e'] = {"dfnID": "3fca5a9e", "url": "https://infra.spec.whatwg.org/#ordered-map", "dfnText": "map", "refSections": [{"refs": [{"id": "ref-for-ordered-map"}, {"id": "ref-for-ordered-map\u2460"}], "title": "9.1.1. Parse orientation reading data algorithm"}, {"refs": [{"id": "ref-for-ordered-map\u2461"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2462"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2463"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2464"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2465"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
 window.dfnpanelData['0e6b2056'] = {"dfnID": "0e6b2056", "url": "https://infra.spec.whatwg.org/#map-set", "dfnText": "set", "refSections": [{"refs": [{"id": "ref-for-map-set"}, {"id": "ref-for-map-set\u2460"}, {"id": "ref-for-map-set\u2461"}], "title": "9.1.1. Parse orientation reading data algorithm"}], "external": true};
 window.dfnpanelData['802b0fdd'] = {"dfnID": "802b0fdd", "url": "https://infra.spec.whatwg.org/#map-value", "dfnText": "value", "refSections": [{"refs": [{"id": "ref-for-map-value"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2460"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2461"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2462"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2463"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
-window.dfnpanelData['ca25842a'] = {"dfnID": "ca25842a", "url": "https://w3c.github.io/deviceorientation/#accelerometer-feature", "dfnText": "accelerometer-feature", "refSections": [{"refs": [{"id": "ref-for-accelerometer-feature"}, {"id": "ref-for-accelerometer-feature\u2460"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-accelerometer-feature\u2461"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
-window.dfnpanelData['4113b1d4'] = {"dfnID": "4113b1d4", "url": "https://w3c.github.io/deviceorientation/#gyroscope-feature", "dfnText": "gyroscope-feature", "refSections": [{"refs": [{"id": "ref-for-gyroscope-feature"}, {"id": "ref-for-gyroscope-feature\u2460"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-gyroscope-feature\u2461"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
-window.dfnpanelData['ca281e41'] = {"dfnID": "ca281e41", "url": "https://w3c.github.io/deviceorientation/#magnetometer-feature", "dfnText": "magnetometer-feature", "refSections": [{"refs": [{"id": "ref-for-magnetometer-feature"}], "title": "6.1. deviceorientation Event"}], "external": true};
+window.dfnpanelData['61c9b068'] = {"dfnID": "61c9b068", "url": "https://w3c.github.io/magnetometer/#magnetometer-feature", "dfnText": "magnetometer-feature", "refSections": [{"refs": [{"id": "ref-for-magnetometer-feature"}], "title": "6.1. deviceorientation Event"}], "external": true};
 window.dfnpanelData['7235f1d9'] = {"dfnID": "7235f1d9", "url": "https://w3c.github.io/orientation-sensor/#earths-reference-coordinate-system", "dfnText": "earth's reference coordinate system", "refSections": [{"refs": [{"id": "ref-for-earths-reference-coordinate-system"}], "title": "3.1.1. Choice of reference coordinate system"}], "external": true};
 window.dfnpanelData['6c3bee60'] = {"dfnID": "6c3bee60", "url": "https://w3c.github.io/permissions/#dom-permissionstate", "dfnText": "PermissionState", "refSections": [{"refs": [{"id": "ref-for-dom-permissionstate"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dom-permissionstate\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['2cb28cb0'] = {"dfnID": "2cb28cb0", "url": "https://w3c.github.io/permissions/#dom-permissionstate-denied", "dfnText": "denied", "refSections": [{"refs": [{"id": "ref-for-dom-permissionstate-denied"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dom-permissionstate-denied\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
