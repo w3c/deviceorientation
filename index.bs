@@ -510,7 +510,7 @@ The <dfn attribute for="DeviceMotionEvent">acceleration</dfn> attribute must ret
 
 The <dfn attribute for="DeviceMotionEvent">accelerationIncludingGravity</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>acceleration with gravity</a>.
 
-The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>rotation rate</a>.
+The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's [=rotation rate=].
 
 The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return the value it was initialized to. It represents the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It is constant to simplify filtering of the data by the Web application.
 
