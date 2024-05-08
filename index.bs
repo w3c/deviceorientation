@@ -225,48 +225,25 @@ The <dfn>rotation rate</dfn> measures the rate at which the device rotates about
 
 Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
 
-Permissions Policy integration {#permissions-policy-integration}
+Permissions {#permissions-integration}
 ==============================
-
-<div class="issue">
-This integration is [=at risk=] due to a lack of test coverage in Web Platform Tests.
-</div>
-
-This specification defines the following <a>policy-controlled features</a>:
-
-  - "<code><dfn export data-lt="accelerometer-feature">accelerometer</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
-  - "<code><dfn export data-lt="gyroscope-feature">gyroscope</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
-  - "<code><dfn export data-lt="magnetometer-feature">magnetometer</dfn></code>", whose <a>default allowlist</a> is [=default allowlist/'self'=].
-
-<div class="note">
-<span class="marker">Note:</span> Usage of the <a>policy-controlled features</a> above by this specification is as follows:
-
-  - The <a event for="Window"><code>deviceorientation</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" features when providing <a>relative orientation</a> data. For the implementation to fall back to <a>absolute orientation</a> data, the "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" feature is also used.
-  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" and "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" features.
-  - The <a event for="Window"><code>devicemotion</code></a> event requires the "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>" and "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" features.
-
-</div>
-
-Permissions API integration {#permissions-api-integration}
-===========================
 
 <div class="issue">
 This integration is [=at risk=] due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests.
 </div>
 
-This specification defines the following <a>default powerful features</a>:
+This specification is a [=powerful feature=] and, as such, it defines the following [=permissions=] which are [=policy-controlled features=] with the given [=default allowlists=]:
 
- * "<dfn permission export><code>accelerometer</code></dfn>"
- * "<dfn permission export><code>gyroscope</code></dfn>"
- * "<dfn permission export><code>magnetometer</code></dfn>"
+  - <dfn permission export>"accelerometer"</dfn>, whose [=default allowlist=] is [=default allowlist/'self'=].
+  - <dfn permission export>"gyroscope"</dfn>, whose [=default allowlist=] is [=default allowlist/'self'=].
+  - <dfn permission export>"magnetometer"</dfn>, whose [=default allowlist=] is [=default allowlist/'self'=].
 
 <div class="note">
-<span class="marker">Note:</span> Usage of the <a>powerful features</a> above by this specification is as follows:
+  <span class="marker">Note:</span> Which events get [=dispatched=] depends on which [=permissions=] have been [=permission/granted=]:
 
-  - The <a event for="Window"><code>deviceorientation</code></a> event requires "<a permission><code>accelerometer</code></a>" and "<a permission><code>gyroscope</code></a>" when providing <a>relative orientation</a> data. For the implementation to fall back to <a>absolute orientation</a> data, "<a permission><code>magnetometer</code></a>" is also required.
-  - The <a event for="Window"><code>deviceorientationabsolute</code></a> event requires "<a permission><code>accelerometer</code></a>", "<a permission><code>gyroscope</code></a>" and "<a permission><code>magnetometer</code></a>".
-  - The <a event for="Window"><code>devicemotion</code></a> event requires "<a permission><code>accelerometer</code></a>" and "<a permission><code>gyroscope</code></a>".
-
+    - When providing <a>relative orientation</a> data, the <a event for="Window">deviceorientation</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a> and <a permission>"gyroscope"</a> [=permissions=] are [=permission/granted=]. For the implementation to fall back to <a>absolute orientation</a> data, the <a permission>"magnetometer"</a> [=permission=] must also be [=permission/granted=].
+    - The <a event for="Window">deviceorientationabsolute</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a>, and <a permission>"magnetometer"</a> [=permissions=] are [=permission/granted=].
+    - The <a event for="Window">devicemotion</a> event is only [=dispatched=] if the <a permission>"accelerometer"</a> and <a permission>"gyroscope"</a> [=permissions=] are [=permission/granted=].
 </div>
 
 Task Source {#taks-source}
@@ -647,7 +624,7 @@ In light of that, implementations may consider visual indicators to signify the 
 Furthermore, to minimize privacy risks, the chance of fingerprinting and other attacks the implementations must:
 
 * fire events only when a [=/navigable=]'s [=navigable/active document=]'s [=visibility state=] is "<code>visible</code>",
-* implement [[#permissions-policy-integration]] so that events are fired on [=child navigables=] (including but not restricted to cross-origin ones) only if allowed by the [=/top-level traversable=],
+* implement [[#permissions-integration]] so that events are fired on [=child navigables=] (including but not restricted to cross-origin ones) only if allowed by the [=/top-level traversable=],
 * fire events on a [=/navigable=]'s [=navigable/active windows=] only when its [=relevant settings object=] is a [=secure context=],
 * limit precision of attribute values as described in the previous sections.
 
