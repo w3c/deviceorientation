@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="07917208ec7be7f651d611dab78ee0669f12e9fd" name="document-revision">
+  <meta content="bde4bc32e4ec22758b35e84f4133ae63c30b6980" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1229,24 +1229,16 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <li data-md>
       <p>Let <var>global</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object">current global object</a>.</p>
      <li data-md>
-      <p>Let <var>hasTransientActivation</var> be true if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>, and false otherwise.</p>
+      <p>Let <var>hasTransientActivation</var> be true if <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">transient activation</a>, and false otherwise.</p>
      <li data-md>
-      <p>Let <var>result</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise">a new promise</a> in <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm">relevant Realm</a>.</p>
+      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise">a new promise</a> in <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm">relevant Realm</a>.</p>
+     <li data-md>
+      <p>Let <var>permissions</var> be « <a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer③">"accelerometer"</a>, <a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope③">"gyroscope"</a> ».</p>
+     <li data-md>
+      <p>If <var>absolute</var> is true, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#set-append" id="ref-for-set-append">append</a> <a class="idl-code" data-link-type="permission" href="#permissiondef-magnetometer" id="ref-for-permissiondef-magnetometer②">"magnetometer"</a> » to <var>permissions</var>.</p>
      <li data-md>
       <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
       <ol>
-       <li data-md>
-        <p>If <var>absolute</var> is true:</p>
-        <ol>
-         <li data-md>
-          <p>Let <var>permissions</var> be « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer③">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope③">gyroscope</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-magnetometer" id="ref-for-permissiondef-magnetometer②">magnetometer</a>" ».</p>
-        </ol>
-       <li data-md>
-        <p>Otherwise:</p>
-        <ol>
-         <li data-md>
-          <p>Let <var>permissions</var> be « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer④">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope④">gyroscope</a>" ».</p>
-        </ol>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>name</var> of <var>permissions</var>:</p>
         <ol>
@@ -1254,7 +1246,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
           <p>If <var>name</var>’s <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission-state" id="ref-for-dfn-permission-state">permission state</a> is "<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-prompt" id="ref-for-dom-permissionstate-prompt">prompt</a></code>" and <var>hasTransientActivation</var> is false:</p>
           <ol>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task">Queue a global task</a> on the <a data-link-type="dfn" href="#device-motion-and-orientation-task-source" id="ref-for-device-motion-and-orientation-task-source">device motion and orientation task source</a> given <var>global</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>result</var> with a "<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+            <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task">Queue a global task</a> on the <a data-link-type="dfn" href="#device-motion-and-orientation-task-source" id="ref-for-device-motion-and-orientation-task-source">device motion and orientation task source</a> given <var>global</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">reject</a> <var>promise</var> with a "<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
            <li data-md>
             <p>Return.</p>
           </ol>
@@ -1271,15 +1263,14 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
            <li data-md>
             <p>Set <var>permissionState</var> to "<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied">denied</a></code>".</p>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break" id="ref-for-iteration-break">Break</a></p>
+            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break" id="ref-for-iteration-break">Break</a>.</p>
           </ol>
         </ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task①">Queue a global task</a> on the <a data-link-type="dfn" href="#device-motion-and-orientation-task-source" id="ref-for-device-motion-and-orientation-task-source①">device motion and orientation task source</a> given <var>global</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve">resolve</a> <var>result</var> with <var>permissionState</var>.</p>
-       <p></p>
+        <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task①">Queue a global task</a> on the <a data-link-type="dfn" href="#device-motion-and-orientation-task-source" id="ref-for-device-motion-and-orientation-task-source①">device motion and orientation task source</a> given <var>global</var> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve">resolve</a> <var>promise</var> with <var>permissionState</var>.</p>
       </ol>
      <li data-md>
-      <p>Return <var>result</var>.</p>
+      <p>Return <var>promise</var>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="fire an orientation event">
@@ -1325,13 +1316,13 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
       <p>If <var>absolute</var> is false:</p>
       <ol>
        <li data-md>
-        <p>Set <var>permissions</var> to « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑤">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑤">gyroscope</a>" ».</p>
+        <p>Set <var>permissions</var> to « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer④">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope④">gyroscope</a>" ».</p>
       </ol>
      <li data-md>
       <p>Otherwise:</p>
       <ol>
        <li data-md>
-        <p>Set <var>permissions</var> to « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑥">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑥">gyroscope</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-magnetometer" id="ref-for-permissiondef-magnetometer③">magnetometer</a>" ».</p>
+        <p>Set <var>permissions</var> to « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑤">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑤">gyroscope</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-magnetometer" id="ref-for-permissiondef-magnetometer③">magnetometer</a>" ».</p>
       </ol>
      <li data-md>
       <p>Let <var>environment</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>.</p>
@@ -1519,7 +1510,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
       <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p>Let <var>permissions</var> be « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑦">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑦">gyroscope</a>" ».</p>
+        <p>Let <var>permissions</var> be « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑥">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑥">gyroscope</a>" ».</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate④">For each</a> <var>name</var> of <var>permissions</var>:</p>
         <ol>
@@ -1684,7 +1675,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
       <p>Run these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a>:</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑦">For each</a> <var>permission name</var> in « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑧">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑧">gyroscope</a>" »:</p>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑦">For each</a> <var>permission name</var> in « "<a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer⑦">accelerometer</a>", "<a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope⑦">gyroscope</a>" »:</p>
         <ol>
          <li data-md>
           <p>Let <var>state</var> be the result of <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-getting-the-current-permission-state" id="ref-for-dfn-getting-the-current-permission-state①">getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.</p>
@@ -2329,6 +2320,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="a3b18719">append</span>
      <li><span class="dfn-paneled" id="7b0d918d">break</span>
      <li><span class="dfn-paneled" id="a326add7">contain</span>
      <li><span class="dfn-paneled" id="8958b003">entry</span>
@@ -3284,6 +3276,7 @@ window.dfnpanelData['bd736ec6'] = {"dfnID": "bd736ec6", "url": "https://html.spe
 window.dfnpanelData['30717154'] = {"dfnID": "30717154", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top", "dfnText": "top-level traversable (for navigable)", "refSections": [{"refs": [{"id": "ref-for-nav-top"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-nav-top\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['47fe679e'] = {"dfnID": "47fe679e", "url": "https://html.spec.whatwg.org/multipage/interaction.html#transient-activation", "dfnText": "transient activation", "refSections": [{"refs": [{"id": "ref-for-transient-activation"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-transient-activation\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['b4c365f8'] = {"dfnID": "b4c365f8", "url": "https://html.spec.whatwg.org/multipage/interaction.html#visibility-state", "dfnText": "visibility state", "refSections": [{"refs": [{"id": "ref-for-visibility-state"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-visibility-state\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-visibility-state\u2461"}], "title": "7. Security and privacy considerations"}], "external": true};
+window.dfnpanelData['a3b18719'] = {"dfnID": "a3b18719", "url": "https://infra.spec.whatwg.org/#set-append", "dfnText": "append", "refSections": [{"refs": [{"id": "ref-for-set-append"}], "title": "6.1. deviceorientation Event"}], "external": true};
 window.dfnpanelData['7b0d918d'] = {"dfnID": "7b0d918d", "url": "https://infra.spec.whatwg.org/#iteration-break", "dfnText": "break", "refSections": [{"refs": [{"id": "ref-for-iteration-break"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-iteration-break\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['a326add7'] = {"dfnID": "a326add7", "url": "https://infra.spec.whatwg.org/#map-exists", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-map-exists"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-map-exists\u2460"}, {"id": "ref-for-map-exists\u2461"}, {"id": "ref-for-map-exists\u2462"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['8958b003'] = {"dfnID": "8958b003", "url": "https://infra.spec.whatwg.org/#map-entry", "dfnText": "entry", "refSections": [{"refs": [{"id": "ref-for-map-entry"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2460"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2461"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2462"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-entry\u2463"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
@@ -3336,8 +3329,8 @@ window.dfnpanelData['absolute-orientation'] = {"dfnID": "absolute-orientation", 
 window.dfnpanelData['linear-device-acceleration'] = {"dfnID": "linear-device-acceleration", "url": "#linear-device-acceleration", "dfnText": "Linear device acceleration", "refSections": [{"refs": [{"id": "ref-for-linear-device-acceleration"}, {"id": "ref-for-linear-device-acceleration\u2460"}, {"id": "ref-for-linear-device-acceleration\u2461"}], "title": "3.2. Device Motion"}, {"refs": [{"id": "ref-for-linear-device-acceleration\u2462"}, {"id": "ref-for-linear-device-acceleration\u2463"}, {"id": "ref-for-linear-device-acceleration\u2464"}, {"id": "ref-for-linear-device-acceleration\u2465"}], "title": "6.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-linear-device-acceleration\u2466"}], "title": "9.2. Device Motion Automation"}], "external": false};
 window.dfnpanelData['acceleration-with-gravity'] = {"dfnID": "acceleration-with-gravity", "url": "#acceleration-with-gravity", "dfnText": "includes gravity", "refSections": [{"refs": [{"id": "ref-for-acceleration-with-gravity"}], "title": "3.2. Device Motion"}, {"refs": [{"id": "ref-for-acceleration-with-gravity\u2460"}, {"id": "ref-for-acceleration-with-gravity\u2461"}], "title": "6.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-acceleration-with-gravity\u2462"}], "title": "9.2. Device Motion Automation"}], "external": false};
 window.dfnpanelData['rotation-rate'] = {"dfnID": "rotation-rate", "url": "#rotation-rate", "dfnText": "rotation rate", "refSections": [{"refs": [{"id": "ref-for-rotation-rate"}], "title": "3.2. Device Motion"}, {"refs": [{"id": "ref-for-rotation-rate\u2460"}], "title": "6.3.2. The DeviceMotionEventRotationRate interface"}, {"refs": [{"id": "ref-for-rotation-rate\u2461"}, {"id": "ref-for-rotation-rate\u2462"}, {"id": "ref-for-rotation-rate\u2463"}], "title": "6.3.3. The DeviceMotionEvent interface"}, {"refs": [{"id": "ref-for-rotation-rate\u2464"}], "title": "9.2. Device Motion Automation"}], "external": false};
-window.dfnpanelData['permissiondef-accelerometer'] = {"dfnID": "permissiondef-accelerometer", "url": "#permissiondef-accelerometer", "dfnText": "\"accelerometer\"", "refSections": [{"refs": [{"id": "ref-for-permissiondef-accelerometer"}, {"id": "ref-for-permissiondef-accelerometer\u2460"}, {"id": "ref-for-permissiondef-accelerometer\u2461"}], "title": "4. Permissions"}, {"refs": [{"id": "ref-for-permissiondef-accelerometer\u2462"}, {"id": "ref-for-permissiondef-accelerometer\u2463"}, {"id": "ref-for-permissiondef-accelerometer\u2464"}, {"id": "ref-for-permissiondef-accelerometer\u2465"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permissiondef-accelerometer\u2466"}, {"id": "ref-for-permissiondef-accelerometer\u2467"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": false};
-window.dfnpanelData['permissiondef-gyroscope'] = {"dfnID": "permissiondef-gyroscope", "url": "#permissiondef-gyroscope", "dfnText": "\"gyroscope\"", "refSections": [{"refs": [{"id": "ref-for-permissiondef-gyroscope"}, {"id": "ref-for-permissiondef-gyroscope\u2460"}, {"id": "ref-for-permissiondef-gyroscope\u2461"}], "title": "4. Permissions"}, {"refs": [{"id": "ref-for-permissiondef-gyroscope\u2462"}, {"id": "ref-for-permissiondef-gyroscope\u2463"}, {"id": "ref-for-permissiondef-gyroscope\u2464"}, {"id": "ref-for-permissiondef-gyroscope\u2465"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permissiondef-gyroscope\u2466"}, {"id": "ref-for-permissiondef-gyroscope\u2467"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": false};
+window.dfnpanelData['permissiondef-accelerometer'] = {"dfnID": "permissiondef-accelerometer", "url": "#permissiondef-accelerometer", "dfnText": "\"accelerometer\"", "refSections": [{"refs": [{"id": "ref-for-permissiondef-accelerometer"}, {"id": "ref-for-permissiondef-accelerometer\u2460"}, {"id": "ref-for-permissiondef-accelerometer\u2461"}], "title": "4. Permissions"}, {"refs": [{"id": "ref-for-permissiondef-accelerometer\u2462"}, {"id": "ref-for-permissiondef-accelerometer\u2463"}, {"id": "ref-for-permissiondef-accelerometer\u2464"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permissiondef-accelerometer\u2465"}, {"id": "ref-for-permissiondef-accelerometer\u2466"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": false};
+window.dfnpanelData['permissiondef-gyroscope'] = {"dfnID": "permissiondef-gyroscope", "url": "#permissiondef-gyroscope", "dfnText": "\"gyroscope\"", "refSections": [{"refs": [{"id": "ref-for-permissiondef-gyroscope"}, {"id": "ref-for-permissiondef-gyroscope\u2460"}, {"id": "ref-for-permissiondef-gyroscope\u2461"}], "title": "4. Permissions"}, {"refs": [{"id": "ref-for-permissiondef-gyroscope\u2462"}, {"id": "ref-for-permissiondef-gyroscope\u2463"}, {"id": "ref-for-permissiondef-gyroscope\u2464"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-permissiondef-gyroscope\u2465"}, {"id": "ref-for-permissiondef-gyroscope\u2466"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": false};
 window.dfnpanelData['permissiondef-magnetometer'] = {"dfnID": "permissiondef-magnetometer", "url": "#permissiondef-magnetometer", "dfnText": "\"magnetometer\"", "refSections": [{"refs": [{"id": "ref-for-permissiondef-magnetometer"}, {"id": "ref-for-permissiondef-magnetometer\u2460"}], "title": "4. Permissions"}, {"refs": [{"id": "ref-for-permissiondef-magnetometer\u2461"}, {"id": "ref-for-permissiondef-magnetometer\u2462"}], "title": "6.1. deviceorientation Event"}], "external": false};
 window.dfnpanelData['device-motion-and-orientation-task-source'] = {"dfnID": "device-motion-and-orientation-task-source", "url": "#device-motion-and-orientation-task-source", "dfnText": "device motion and orientation task source", "refSections": [{"refs": [{"id": "ref-for-device-motion-and-orientation-task-source"}, {"id": "ref-for-device-motion-and-orientation-task-source\u2460"}, {"id": "ref-for-device-motion-and-orientation-task-source\u2461"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-device-motion-and-orientation-task-source\u2462"}, {"id": "ref-for-device-motion-and-orientation-task-source\u2463"}, {"id": "ref-for-device-motion-and-orientation-task-source\u2464"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": false};
 window.dfnpanelData['deviceorientationevent'] = {"dfnID": "deviceorientationevent", "url": "#deviceorientationevent", "dfnText": "DeviceOrientationEvent", "refSections": [{"refs": [{"id": "ref-for-deviceorientationevent"}], "title": "6.1. deviceorientation Event"}], "external": false};
