@@ -151,7 +151,7 @@ Model {#model}
 Device Orientation {#device-orientation-model}
 ------------------
 
-This specification expresses a device's physical orientation as a series of rotations relative to an <a>implementation-defined</a> reference coordinate frame.
+This specification expresses a device's physical orientation as a series of rotations relative to an [=implementation-defined=] reference coordinate frame.
 
 The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that are applied on the <a>device coordinate system</a> defined in [[!ACCELEROMETER]] and summarized below:
 
@@ -352,7 +352,7 @@ To <dfn>fire an orientation event</dfn> given a {{DOMString}} |event|, {{Window}
 
 </div>
 
-A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window"><code>deviceorientation</code></a> or <a event for="Window"><code>deviceorientationabsolute</code></a> event. The process of determining whether a <a>significant change in orientation</a> has occurred is <a>implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
+A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window"><code>deviceorientation</code></a> or <a event for="Window"><code>deviceorientationabsolute</code></a> event. The process of determining whether a <a>significant change in orientation</a> has occurred is [=implementation-defined=], though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
 
 Note: Implementations must take [[#automation]] into account to determine whether a <a>significant change in orientation</a> has occurred, so that a virtual sensor reading update causes it to be assessed.
 
@@ -398,7 +398,7 @@ A <a event for="Window"><code>deviceorientationabsolute</code></a> event is comp
 <div algorithm="deviceorientationabsolute firing steps">
 Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
 
-  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientationabsolute</code></a>, <var>window</var>, and true.
+  1. [=Fire an orientation event=] with <a event for="Window">deviceorientationabsolute</a>, |window|, and true.
 
 </div>
 
@@ -510,7 +510,7 @@ The <dfn attribute for="DeviceMotionEvent">acceleration</dfn> attribute must ret
 
 The <dfn attribute for="DeviceMotionEvent">accelerationIncludingGravity</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>acceleration with gravity</a>.
 
-The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>rotation rate</a>.
+The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's [=rotation rate=].
 
 The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return the value it was initialized to. It represents the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It is constant to simplify filtering of the data by the Web application.
 
@@ -695,54 +695,54 @@ Note: <var>reading</var> is defined as a <a>map</a> in the algorithm above to pr
 
 ### The "absolute-orientation" virtual sensor type ### {#absolute-orientation-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 :
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="absolute-orientation virtual sensor type">absolute-orientation</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
 
 ### The "relative-orientation" virtual sensor type ### {#relative-orientation-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 :
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="relative-orientation virtual sensor type">relative-orientation</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
 
 Device Motion Automation {#device-motion-automation}
 ------------------------
 
-The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain <a>per-type virtual sensor metadata</a> entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
+The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain [=per-type virtual sensor metadata=] entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
 
-Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a>rotation rate</a> data to the platform.
+Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide [=rotation rate=] data to the platform.
 
 ### The "accelerometer" virtual sensor type ### {#accelerometer-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="accelerometer virtual sensor type">accelerometer</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 ### The "linear-acceleration" virtual sensor type ### {#linear-acceleration-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="linear-acceleration virtual sensor type">linear-acceleration</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 ### The "gyroscope" virtual sensor type ### {#gyroscope-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="gyroscope virtual sensor type">gyroscope</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 <h2 class="no-num" id="examples">A Examples</h2>
