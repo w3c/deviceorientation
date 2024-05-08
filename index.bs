@@ -517,25 +517,25 @@ The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return 
 <div algorithm>
 The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps are:
 
- 1. Let <var>global</var> be the <a>current global object</a>.
- 1. Let <var>hasTransientActivation</var> be true if <a>this</a>'s <a>relevant global object</a> has <a>transient activation</a>, and false otherwise.
- 1. Let <var>result</var> be <a>a new promise</a> in <a>this</a>'s <a>relevant Realm</a>.
+ 1. Let |global| be the [=current global object=].
+ 1. Let |hasTransientActivation| be true if [=this=]'s [=relevant global object=] has [=transient activation=], and false otherwise.
+ 1. Let |result| be [=a new promise=] in [=this=]'s [=relevant Realm=].
  1. Run these steps <a>in parallel</a>:
-     1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
-     1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
-         1. If <var>name</var>'s <a>permission state</a> is "{{PermissionState/prompt}}" and <var>hasTransientActivation</var> is false:
-             1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>reject</a> <var>result</var> with a "{{NotAllowedError}}" {{DOMException}}.
+     1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
+     1. [=list/For each=] |name| of |permissions|:
+         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hasTransientActivation| is false:
+             1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=reject=] |result| with a "{{NotAllowedError}}" {{DOMException}}.
              1. Return.
-     1. Let <var>permissionState</var> be "{{PermissionState/granted}}".
-     1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
+     1. Let |permissionState| be "{{PermissionState/granted}}".
+     1. [=list/For each=] |name| of |permissions|:
 
          Note: There is no algorithm for requesting multiple permissions at once. However, user agents are encouraged to bundle concurrent requests for different kinds of media into a single user-facing permission prompt.
 
-         1. If the result of <a>requesting permission to use</a> <var>name</var> is not "{{PermissionState/granted}}":
-             1. Set <var>permissionState</var> to "{{PermissionState/denied}}".
-             1. <a>Break</a>
-     1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>resolve</a> <var>result</var> with <var>permissionState</var>.</li>
- 1. Return <var>result</var>.
+         1. If the result of <a>requesting permission to use</a> |name| is not "{{PermissionState/granted}}":
+             1. Set |permissionState| to "{{PermissionState/denied}}".
+             1. [=Break=].
+     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=resolve=] |result| with |permissionState|.</li>
+ 1. Return |result|.
 
 </div>
 
