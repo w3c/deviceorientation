@@ -540,65 +540,65 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
 </div>
 
 <div algorithm="devicemotion firing steps">
-At an <a>implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+At an [=implementation-defined=] interval |interval|, the user agent must execute the following steps on a [=/navigable=]'s [=navigable/active window=] |window|:
 
-  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
-  1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
-  1. <a for="list">For each</a> <var>policy</var> of « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" »:
-      1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
-  1. Let <var>topLevelTraversable</var> be <var>window</var>'s <a for=Window>navigable</a>'s <a for=navigable>top-level traversable</a>.
-  1. Let <var>platformLinearAcceleration</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>linear-acceleration</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>linear-acceleration</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformLinearAcceleration</var> to the latest readings provided to <var>virtualSensor</var>.
+  1. Let |document| be |window|'s [=associated Document=].
+  1. If |document|'s [=Document/visibility state=] is not "<code>visible</code>", return.
+  1. [=list/For each=] |policy| of « "<a permission>"accelerometer"</a>", <a permission>"gyroscope"</a> »:
+      1. If |document| is not [=allowed to use=] the [=policy-controlled feature=] named |policy|, return.
+  1. Let |topLevelTraversable| be |window|'s [=Window/navigable=]'s [=navigable/top-level traversable=].
+  1. Let |platformLinearAcceleration| be null.
+  1. If |topLevelTraversable|'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>linear-acceleration</code>":
+      1. Let |virtualSensor| be |topLevelTraversable|'s <a>virtual sensor mapping</a>["<code>linear-acceleration</code>"].
+      1. If |virtualSensor|'s <a>can provide readings flag</a> is true, then set |platformLinearAcceleration| to the latest readings provided to |virtualSensor|.
   1. Otherwise, if the implementation is able to provide <a>linear acceleration</a>:
-      1. Set <var>platformLinearAcceleration</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
-  1. Let <var>acceleration</var> be null.
-  1. If <var>platformLinearAcceleration</var> is not null:
-      1. Set <var>acceleration</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the X axis, or null if it cannot be provided.
-      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the Y axis, or null if it cannot be provided.
-      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-      1. Set <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformLinearAcceleration</var>'s value along the Z axis, or null if it cannot be provided.
-      1. If <var>acceleration</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-  1. Let <var>platformAccelerationIncludingGravity</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>accelerometer</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>accelerometer</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformAccelerationIncludingGravity</var> to the latest readings provided to <var>virtualSensor</var>.
+      1. Set |platformLinearAcceleration| to the device's <a>linear acceleration</a> along the X, Y and Z axes.
+  1. Let |acceleration| be null.
+  1. If |platformLinearAcceleration| is not null:
+      1. Set |acceleration| to a <a>new</a> {{DeviceMotionEventAcceleration}} created in |window|'s <a for="global object">realm</a>.
+      1. Set |acceleration|'s [=DeviceMotionEventAcceleration/x axis acceleration=] to |platformLinearAcceleration|'s value along the X axis, or null if it cannot be provided.
+      1. If |acceleration|'s [=DeviceMotionEventAcceleration/x axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set |acceleration|'s [=DeviceMotionEventAcceleration/y axis acceleration=] to |platformLinearAcceleration|'s value along the Y axis, or null if it cannot be provided.
+      1. If |acceleration|'s [=DeviceMotionEventAcceleration/y axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set |acceleration|'s [=DeviceMotionEventAcceleration/z axis acceleration=] to |platformLinearAcceleration|'s value along the Z axis, or null if it cannot be provided.
+      1. If |acceleration|'s [=DeviceMotionEventAcceleration/z axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. Let |platformAccelerationIncludingGravity| be null.
+  1. If |topLevelTraversable|'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>accelerometer</code>":
+      1. Let |virtualSensor| be |topLevelTraversable|'s <a>virtual sensor mapping</a>["<code>accelerometer</code>"].
+      1. If |virtualSensor|'s <a>can provide readings flag</a> is true, then set |platformAccelerationIncludingGravity| to the latest readings provided to |virtualSensor|.
   1. Otherwise, if the implementation is able to provide <a>acceleration with gravity</a>:
-      1. Set <var>platformAccelerationIncludingGravity</var> to the device's <a>linear acceleration</a> along the X, Y and Z axes.
-  1. Let <var>accelerationIncludingGravity</var> be null.
-  1. If <var>platformAccelerationIncludingGravity</var> is not null:
-      1. Set <var>accelerationIncludingGravity</var> to a <a>new</a> {{DeviceMotionEventAcceleration}} created in <var>window</var>'s <a for="global object">realm</a>.
-      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the X axis, or null if it cannot be provided.
-      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the Y axis, or null if it cannot be provided.
-      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-      1. Set <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> to <var>platformAccelerationIncludingGravity</var>'s value along the Z axis, or null if it cannot be provided.
-      1. If <var>accelerationIncludingGravity</var>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a> is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
-  1. Let <var>platformRotationRate</var> be null.
-  1. If <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>gyroscope</code>":
-      1. Let <var>virtualSensor</var> be <var>topLevelTraversable</var>'s <a>virtual sensor mapping</a>["<code>gyroscope</code>"].
-      1. If <var>virtualSensor</var>'s <a>can provide readings flag</a> is true, then set <var>platformRotationRate</var> to the latest readings provided to <var>virtualSensor</var>.
-  1. Otherwise, if the implementation is able to provide <a>rotation rate</a>:
-      1. Set <var>platformRotationRate</var> to the device's <a>rotation rate</a> about the X, Y and Z axes.
-  1. Let <var>rotationRate</var> be null.
-  1. If <var>platformRotationRate</var> is not null:
-      1. Set <var>rotationRate</var> to a <a>new</a> {{DeviceMotionEventRotationRate}} created in <var>window</var>'s <a for="global object">realm</a>.
-      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to <var>platformRotationRate</var>'s value about the X axis, or null if it cannot be provided.
-      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to <var>platformRotationRate</var>'s value about the Y axis, or null if it cannot be provided.
-      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-      1. Set <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to <var>platformRotationRate</var>'s value about the Z axis, or null if it cannot be provided.
-      1. If <var>rotationRate</var>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
-  1. Let <var>environment</var> be <var>window</var>'s <a>relevant settings object</a>.
+      1. Set |platformAccelerationIncludingGravity| to the device's <a>linear acceleration</a> along the X, Y and Z axes.
+  1. Let |accelerationIncludingGravity| be null.
+  1. If |platformAccelerationIncludingGravity| is not null:
+      1. Set |accelerationIncludingGravity| to a <a>new</a> {{DeviceMotionEventAcceleration}} created in |window|'s <a for="global object">realm</a>.
+      1. Set |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/x axis acceleration=] to |platformAccelerationIncludingGravity|'s value along the X axis, or null if it cannot be provided.
+      1. If |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/x axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/y axis acceleration=] to |platformAccelerationIncludingGravity|'s value along the Y axis, or null if it cannot be provided.
+      1. If |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/y axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+      1. Set |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/z axis acceleration=] to |platformAccelerationIncludingGravity|'s value along the Z axis, or null if it cannot be provided.
+      1. If |accelerationIncludingGravity|'s [=DeviceMotionEventAcceleration/z axis acceleration=] is not null, limit its precision to no more than 0.1 m/s<sup>2</sup>.
+  1. Let |platformRotationRate| be null.
+  1. If |topLevelTraversable|'s <a>virtual sensor mapping</a> <a for=map>contains</a> "<code>gyroscope</code>":
+      1. Let |virtualSensor| be |topLevelTraversable|'s <a>virtual sensor mapping</a>["<code>gyroscope</code>"].
+      1. If |virtualSensor|'s <a>can provide readings flag</a> is true, then set |platformRotationRate| to the latest readings provided to |virtualSensor|.
+  1. Otherwise, if the implementation is able to provide [=rotation rate=]:
+      1. Set |platformRotationRate| to the device's [=rotation rate=] about the X, Y and Z axes.
+  1. Let |rotationRate| be null.
+  1. If |platformRotationRate| is not null:
+      1. Set |rotationRate| to a <a>new</a> {{DeviceMotionEventRotationRate}} created in |window|'s <a for="global object">realm</a>.
+      1. Set |rotationRate|'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to |platformRotationRate|'s value about the X axis, or null if it cannot be provided.
+      1. If |rotationRate|'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+      1. Set |rotationRate|'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to |platformRotationRate|'s value about the Y axis, or null if it cannot be provided.
+      1. If |rotationRate|'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+      1. Set |rotationRate|'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> to |platformRotationRate|'s value about the Z axis, or null if it cannot be provided.
+      1. If |rotationRate|'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
+  1. Let |environment| be |window|'s <a>relevant settings object</a>.
   1. Run these steps <a>in parallel</a>:
-    1. <a for="list">For each</a> <var>permission name</var> in « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" »:
-        1. Let <var>state</var> be the result of <a>getting the current permission state</a> with <var>permission name</var> and <var>environment</var>.
-        1. If <var>state</var> is not "{{PermissionState/granted}}", return.
-    1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>window</var> to run the following steps:
-        1. <a>Fire an event</a> named <a event for="Window"><code>devicemotion</code></a> at <var>window</var>, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to <var>acceleration</var>, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to <var>accelerationIncludingGravity</var>, the {{DeviceMotionEvent/rotationRate}} attribute initialized to <var>rotationRate</var>, and the {{DeviceMotionEvent/interval}} attribute initialized to <var>interval</var>.
+    1. [=list/For each=] |permission| in « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> »:
+        1. Let |state| be the result of <a>getting the current permission state</a> with |permission| and |environment|.
+        1. If |state| is not "{{PermissionState/granted}}", return.
+    1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
+        1. [=Fire an event=] named "devicemotion" at |window|, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to |acceleration|, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to |accelerationIncludingGravity|, the {{DeviceMotionEvent/rotationRate}} attribute initialized to |rotationRate|, and the {{DeviceMotionEvent/interval}} attribute initialized to |interval|.
 
 </div>
 
