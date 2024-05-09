@@ -18,8 +18,8 @@ Abstract: This specification defines events that represent the physical orientat
 Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
-Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
-Status Text: <p>This specification was initially published as a <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation</a> in August 2016 and was <a href="https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/">retired</a> in 2017 due to the Geolocation Working Group closure. In 2019 Devices and Sensors Working Group adopted this specification and during 2019-2024 made substantial interoperability, test automation, privacy and editorial improvements as outlined in the <a href="#changes">Changes</a> section. These changes aligned the specification with widely available implementations. In 2024 this specification became a joint deliverable between the Devices and Sensors Working Group and WebApps Working Group.</p>
+Issue Tracking: Device Orientation and Motion Repository https://github.com/w3c/deviceorientation/issues
+Status Text: New features since publication as a [Candidate Recommendation](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) include integration of Permissions Policy and API, which now requires explicit user consent through {{DeviceOrientationEvent/requestPermission()}} for accessing device orientation data. Updates have been made to the coordinate system explanations and precision requirements to mitigate passive fingerprinting risks. The introduction of the <a event>deviceorientationabsolute</a> event enhances applications requiring absolute orientation data (marked [=at risk=]). Interfaces are now only available in [=secure contexts=], and security and privacy considerations have been made normative. The specification now also provides a means to [[#automation|automate testing]] of this API (marked [=at risk=]). See [[#changes]] section for more information.
 Markup Shorthands: css no
 Markup Shorthands: markdown yes
 text macro: JOINT yes
@@ -974,7 +974,11 @@ as expected.
 
 <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
-Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez
+The Device Orientation and Motion specification, originally published as a Candidate Recommendation in August 2016 under the title <cite>DeviceOrientation Event Specification</cite>, was initially developed by the [Geolocation Working Group](https://www.w3.org/2008/geolocation/). After the group was closed in 2017, the specification was temporarily retired. Revitalized in 2019 by the [Devices and Sensors Working Group](https://www.w3.org/groups/wg/das/), this document has undergone significant enhancements including improvements in interoperability, test automation, privacy, and editorial content (see [[#changes]] section).
+
+In 2024, the Devices and Sensors Working Group partnered with the [Web Applications Working Group](https://www.w3.org/groups/wg/webapps/), making this a joint deliverable and continuing the advancement of the specification. The initial design discussions are preserved not in this GitHub repository but can be explored through the [Geolocation Working Group’s mailing list archives](https://lists.w3.org/Archives/Public/public-geolocation/).
+
+The W3C acknowledges Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, and Chris Dumez for their contributions.
 
 <pre class="anchors">
 urlPrefix: https://html.spec.whatwg.org/multipage/
