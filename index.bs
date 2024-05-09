@@ -544,7 +544,7 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
 
   1. Let |document| be |window|'s [=associated Document=].
   1. If |document|'s [=Document/visibility state=] is not "<code>visible</code>", return.
-  1. [=list/For each=] |policy| of « "<a permission>"accelerometer"</a>", <a permission>"gyroscope"</a> »:
+  1. [=list/For each=] |policy| of « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> »:
       1. If |document| is not [=allowed to use=] the [=policy-controlled feature=] named |policy|, return.
   1. Let |topLevelTraversable| be |window|'s [=Window/navigable=]'s [=navigable/top-level traversable=].
   1. Let |platformLinearAcceleration| be null.
