@@ -18,8 +18,8 @@ Abstract: This specification defines events that represent the physical orientat
 Boilerplate: omit issues-index, repository-issue-tracking no
 Include MDN Panels: if possible
 Implementation Report: https://wpt.fyi/results/orientation-event
-Issue Tracking: DeviceOrientation Event Specification Issues Repository https://github.com/w3c/deviceorientation/issues
-Status Text: <p>This specification was initially published as a <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation</a> in August 2016 and was <a href="https://www.w3.org/TR/2017/NOTE-orientation-event-20170530/">retired</a> in 2017 due to the Geolocation Working Group closure. In 2019 Devices and Sensors Working Group adopted this specification and during 2019-2024 made substantial interoperability, test automation, privacy and editorial improvements as outlined in the <a href="#changes">Changes</a> section. These changes aligned the specification with widely available implementations. In 2024 this specification became a joint deliverable between the Devices and Sensors Working Group and WebApps Working Group.</p>
+Issue Tracking: Device Orientation and Motion Repository https://github.com/w3c/deviceorientation/issues
+Status Text: New features since publication as a [Candidate Recommendation](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) include integration of Permissions Policy and API, which now requires explicit user consent through {{DeviceOrientationEvent/requestPermission()}} for accessing device orientation data. Updates have been made to the coordinate system explanations and precision requirements to mitigate passive fingerprinting risks. The introduction of the <a event>deviceorientationabsolute</a> event enhances applications requiring absolute orientation data (marked [=at risk=]). Interfaces are now only available in [=secure contexts=], and security and privacy considerations have been made normative. The specification now also provides a means to [[#automation|automate testing]] of this API (marked [=at risk=]). See [[#changes]] section for more information.
 Markup Shorthands: css no
 Markup Shorthands: markdown yes
 text macro: JOINT yes
@@ -151,9 +151,9 @@ Model {#model}
 Device Orientation {#device-orientation-model}
 ------------------
 
-This specification expresses a device's physical orientation as a series of rotations relative to an <a>implementation-defined</a> reference coordinate frame.
+This specification expresses a device's physical orientation as a series of rotations relative to an [=implementation-defined=] reference coordinate frame.
 
-The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that are applied on the <a>device coordinate system</a> defined in [[!ACCELEROMETER]] and summarized below:
+The sequence of rotation steps is a set of intrinsic Tait-Bryan angles of type Z - X' - Y'' ([[EULERANGLES]]) that are applied on the [=device coordinate system=] defined in [[!ACCELEROMETER]] and summarized below:
 
 * <dfn for="Device Orientation">x</dfn> is in the plane of the screen or keyboard and is positive towards the right hand side of the screen or keyboard.
 * <dfn for="Device Orientation">y</dfn> is in the plane of the screen or keyboard and is positive towards the top of the screen or keyboard.
@@ -211,7 +211,7 @@ Note: In native platform terms, this is similar to an absolute <a href="https://
 Device Motion {#device-motion-model}
 -------------
 
-This specification expresses a device's motion in space by measuring its acceleration and rotation rate, which are obtained from an accelerometer and a gyroscope. The data is provided relative to the <a>device coordinate system</a> summarized in the previous section.
+This specification expresses a device's motion in space by measuring its acceleration and rotation rate, which are obtained from an accelerometer and a gyroscope. The data is provided relative to the [=device coordinate system=] summarized in the previous section.
 
 Acceleration is the rate of change of velocity of a device with respect to time. Is is expressed in meters per second squared (m/s<sup>2</sup>).
 
@@ -221,7 +221,7 @@ When the acceleration <dfn lt="acceleration with gravity">includes gravity</dfn>
 
 Note: In practice, <a>acceleration with gravity</a> represents the raw readings obtained from an [[MOTION-SENSORS#accelerometer]], or the [[G-FORCE]] whereas <a>linear acceleration</a> provides the readings of a [[MOTION-SENSORS#linear-acceleration-sensor]] and is likely a fusion sensor. [[MOTION-SENSORS]] and [[ACCELEROMETER]] both contain a more detailed discussion about the different types of accelerometers and accelerations that can be measured.
 
-The <dfn>rotation rate</dfn> measures the rate at which the device rotates about a specified axis in the <a>device coordinate system</a>. As with device orientation, rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis. The <a>rotation rate</a> is measured in degrees per second (deg/s).
+The <dfn>rotation rate</dfn> measures the rate at which the device rotates about a specified axis in the [=device coordinate system=]. As with device orientation, rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis. The [=rotation rate=] is measured in degrees per second (deg/s).
 
 Note: [[MOTION-SENSORS]] and [[GYROSCOPE]] both contain a more detailed discussion of gyroscopes, rotation rates and measurements.
 
@@ -288,7 +288,7 @@ The <dfn attribute for="DeviceOrientationEvent">beta</dfn> attribute must return
 
 The <dfn attribute for="DeviceOrientationEvent">gamma</dfn> attribute must return the value it was initialized to. It represents the rotation around the Y'' axis (produced after the rotation around the Z and X' axes have been applied in this order) in the Z - X' - Y'' intrinsic Tait-Bryan angles described in [[#device-orientation-model]].
 
-The <dfn attribute for="DeviceOrientationEvent">absolute</dfn> attribute must return the value it was initialized to. It indicates whether <a>relative orientation</a> or <a>absolute orientation</a> data is being provided.
+The <dfn attribute for="DeviceOrientationEvent">absolute</dfn> attribute must return the value it was initialized to. It indicates whether [=relative orientation=] or [=absolute orientation=] data is being provided.
 
 <div algorithm>
 The <dfn method for="DeviceOrientationEvent">requestPermission(|absolute|)</dfn> method steps are:
@@ -352,24 +352,23 @@ To <dfn>fire an orientation event</dfn> given a {{DOMString}} |event|, {{Window}
 
 </div>
 
-A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window"><code>deviceorientation</code></a> or <a event for="Window"><code>deviceorientationabsolute</code></a> event. The process of determining whether a <a>significant change in orientation</a> has occurred is <a>implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
+A <dfn>significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a event for="Window">deviceorientation</a> or <a event for="Window">deviceorientationabsolute</a> event. The process of determining whether a [=significant change in orientation=] has occurred is <a>implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.
 
-Note: Implementations must take [[#automation]] into account to determine whether a <a>significant change in orientation</a> has occurred, so that a virtual sensor reading update causes it to be assessed.
+Note: Implementations must take [[#automation]] into account to determine whether a [=significant change in orientation=] has occurred, so that a virtual sensor reading update causes it to be assessed.
 
 <div algorithm="deviceorientation firing steps">
-Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+Whenever a [=significant change in orientation=] occurs, the user agent must execute the following steps on a [=/navigable=]'s [=navigable/active window=] |window|:
 
-  1. Let <var>document</var> be <var>window</var>'s <a>associated Document</a>.
-  1. If <var>document</var>'s <a>visibility state</a> is not "<code>visible</code>", return.
-  1. If the implementation cannot provide <a>relative orientation</a> or the resulting <a>absolute orientation</a> data is more accurate:
-    1. Let <var>absolute</var> be true.
-    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>", "<a data-lt="magnetometer-feature"><code>magnetometer</code></a>" ».
-  1. Otherwise:
-    1. Let <var>absolute</var> be false.
-    1. Let <var>policies</var> be « "<a data-lt="accelerometer-feature"><code>accelerometer</code></a>", "<a data-lt="gyroscope-feature"><code>gyroscope</code></a>" ».
-  1. <a for="list">For each</a> <var>policy</var> of <var>policies</var>:
-      1. If <var>document</var> is not <a>allowed to use</a> the <a>policy-controlled feature</a> named <var>policy</var>, return.
-  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientation</code></a>, <var>window</var>, and <var>absolute</var>.
+  1. Let |document| be |window|'s [=associated Document=].
+  1. If |document|'s [=Document/visibility state=] is not `"visible"`, return.
+  1. Let |absolute| be false.
+  1. Let |features| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
+  1. If the implementation cannot provide [=relative orientation=] or the resulting [=absolute orientation=] data is more accurate:
+    1. Set |absolute| to true.
+    1. [=list/Append=] <a permission>"magnetometer"</a> to |features|.
+  1. [=list/For each=] |feature| of |features|:
+      1. If |document| is not [=allowed to use=] |feature|, return.
+  1. [=Fire an orientation event=] with <a event for="Window">deviceorientation</a>, |window|, and |absolute|.
 
 </div>
 
@@ -393,12 +392,12 @@ partial interface Window {
 
 The <dfn attribute for="Window">ondeviceorientationabsolute</dfn> attribute is an [=event handler IDL attribute=] for the <code>ondeviceorientationabsolute</code> [=event handler=], whose [=event handler event type=] is <dfn event for="Window" id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn>.
 
-A <a event for="Window"><code>deviceorientationabsolute</code></a> event is completely analogous to the <a event for="Window"><code>deviceorientation</code></a> event, except that it must always provide <a>absolute orientation</a> data.
+A <a event for="Window">deviceorientationabsolute</a> event is completely analogous to the <a event for="Window">deviceorientation</a> event, except that it must always provide [=absolute orientation=] data.
 
 <div algorithm="deviceorientationabsolute firing steps">
-Whenever a <a>significant change in orientation</a> occurs, the user agent must execute the following steps on a <a for="/">navigable</a>'s <a for="navigable">active window</a> <var>window</var>:
+Whenever a [=significant change in orientation=] occurs, the user agent must execute the following steps on a [=/navigable=]'s [=navigable/active window=] |window|:
 
-  1. Invoke <a>fire an orientation event</a> with <a event for="Window"><code>deviceorientationabsolute</code></a>, <var>window</var>, and true.
+  1. [=Fire an orientation event=] with <a event for="Window">deviceorientationabsolute</a>, |window|, and true.
 
 </div>
 
@@ -430,11 +429,11 @@ The {{DeviceMotionEventAcceleration}} interface represents the device's accelera
  : <dfn for="DeviceMotionEventAcceleration">z axis acceleration</dfn>
  :: The device's acceleration rate along the Z axis, or null. It is initially null.
 
-The <dfn attribute for="DeviceMotionEventAcceleration">x</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">x axis acceleration</a>.
+The <dfn attribute for="DeviceMotionEventAcceleration">x</dfn> getter steps are to return the value of [=this=]'s [=DeviceMotionEventAcceleration/x axis acceleration=].
 
-The <dfn attribute for="DeviceMotionEventAcceleration">y</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">y axis acceleration</a>.
+The <dfn attribute for="DeviceMotionEventAcceleration">y</dfn> getter steps are to return the value of [=this=]'s [=DeviceMotionEventAcceleration/y axis acceleration=].
 
-The <dfn attribute for="DeviceMotionEventAcceleration">z</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventAcceleration">z axis acceleration</a>.
+The <dfn attribute for="DeviceMotionEventAcceleration">z</dfn> getter steps are to return the value of [=this=]'s [=DeviceMotionEventAcceleration/z axis acceleration=].
 
 ### The DeviceMotionEventRotationRate interface ### {#device-motion-event-rotation-rate-api}
 
@@ -447,7 +446,7 @@ interface DeviceMotionEventRotationRate {
 };
 </pre>
 
-The {{DeviceMotionEventRotationRate}} interface represents the device's <a>rotation rate</a> as described in [[#device-motion-model]]. It has the following associated data:
+The {{DeviceMotionEventRotationRate}} interface represents the device's [=rotation rate=] as described in [[#device-motion-model]]. It has the following associated data:
 
  : <dfn for="DeviceMotionEventRotationRate">x axis rotation rate</dfn>
  :: The device's rotation rate about the X axis, or null. It is initially null.
@@ -456,11 +455,11 @@ The {{DeviceMotionEventRotationRate}} interface represents the device's <a>rotat
  : <dfn for="DeviceMotionEventRotationRate">z axis rotation rate</dfn>
  :: The device's rotation rate about the Z axis, or null. It is initially null.
 
-The <dfn attribute for="DeviceMotionEventRotationRate">alpha</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a>.
+The <dfn attribute for="DeviceMotionEventRotationRate">alpha</dfn> getter steps are to return the value of [=this=]'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a>.
 
-The <dfn attribute for="DeviceMotionEventRotationRate">beta</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a>.
+The <dfn attribute for="DeviceMotionEventRotationRate">beta</dfn> getter steps are to return the value of [=this=]'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a>.
 
-The <dfn attribute for="DeviceMotionEventRotationRate">gamma</dfn> getter steps are to return the value of <a>this</a>'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a>.
+The <dfn attribute for="DeviceMotionEventRotationRate">gamma</dfn> getter steps are to return the value of [=this=]'s <a for="DeviceMotionEventRotationRate">z axis rotation rate</a>.
 
 ### The DeviceMotionEvent interface ### {#device-motion-event-api}
 
@@ -510,32 +509,32 @@ The <dfn attribute for="DeviceMotionEvent">acceleration</dfn> attribute must ret
 
 The <dfn attribute for="DeviceMotionEvent">accelerationIncludingGravity</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>acceleration with gravity</a>.
 
-The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's <a>rotation rate</a>.
+The <dfn attribute for="DeviceMotionEvent">rotationRate</dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device's [=rotation rate=].
 
 The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return the value it was initialized to. It represents the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It is constant to simplify filtering of the data by the Web application.
 
 <div algorithm>
 The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps are:
 
- 1. Let <var>global</var> be the <a>current global object</a>.
- 1. Let <var>hasTransientActivation</var> be true if <a>this</a>'s <a>relevant global object</a> has <a>transient activation</a>, and false otherwise.
- 1. Let <var>result</var> be <a>a new promise</a> in <a>this</a>'s <a>relevant Realm</a>.
+ 1. Let |global| be the [=current global object=].
+ 1. Let |hasTransientActivation| be true if [=this=]'s [=relevant global object=] has [=transient activation=], and false otherwise.
+ 1. Let |result| be [=a new promise=] in [=this=]'s [=relevant Realm=].
  1. Run these steps <a>in parallel</a>:
-     1. Let <var>permissions</var> be « "<a permission>accelerometer</a>", "<a permission>gyroscope</a>" ».
-     1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
-         1. If <var>name</var>'s <a>permission state</a> is "{{PermissionState/prompt}}" and <var>hasTransientActivation</var> is false:
-             1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>reject</a> <var>result</var> with a "{{NotAllowedError}}" {{DOMException}}.
+     1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
+     1. [=list/For each=] |name| of |permissions|:
+         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hasTransientActivation| is false:
+             1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=reject=] |result| with a "{{NotAllowedError}}" {{DOMException}}.
              1. Return.
-     1. Let <var>permissionState</var> be "{{PermissionState/granted}}".
-     1. <a for="list">For each</a> <var>name</var> of <var>permissions</var>:
+     1. Let |permissionState| be "{{PermissionState/granted}}".
+     1. [=list/For each=] |name| of |permissions|:
 
          Note: There is no algorithm for requesting multiple permissions at once. However, user agents are encouraged to bundle concurrent requests for different kinds of media into a single user-facing permission prompt.
 
-         1. If the result of <a>requesting permission to use</a> <var>name</var> is not "{{PermissionState/granted}}":
-             1. Set <var>permissionState</var> to "{{PermissionState/denied}}".
-             1. <a>Break</a>
-     1. <a>Queue a global task</a> on the <a>device motion and orientation task source</a> given <var>global</var> to <a>resolve</a> <var>result</var> with <var>permissionState</var>.</li>
- 1. Return <var>result</var>.
+         1. If the result of <a>requesting permission to use</a> |name| is not "{{PermissionState/granted}}":
+             1. Set |permissionState| to "{{PermissionState/denied}}".
+             1. [=Break=].
+     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=resolve=] |result| with |permissionState|.</li>
+ 1. Return |result|.
 
 </div>
 
@@ -695,54 +694,54 @@ Note: <var>reading</var> is defined as a <a>map</a> in the algorithm above to pr
 
 ### The "absolute-orientation" virtual sensor type ### {#absolute-orientation-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 :
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="absolute-orientation virtual sensor type">absolute-orientation</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
 
 ### The "relative-orientation" virtual sensor type ### {#relative-orientation-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 :
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="relative-orientation virtual sensor type">relative-orientation</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a>reading parsing algorithm</a> is <a>parse orientation data reading</a>.
 
 Device Motion Automation {#device-motion-automation}
 ------------------------
 
-The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain <a>per-type virtual sensor metadata</a> entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
+The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain [=per-type virtual sensor metadata=] entries that are shared with the [[ACCELEROMETER]] and [[GYROSCOPE]] specifications.
 
-Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a>rotation rate</a> data to the platform.
+Accelerometer virtual sensors are used to provide <a>acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a>linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide [=rotation rate=] data to the platform.
 
 ### The "accelerometer" virtual sensor type ### {#accelerometer-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="accelerometer virtual sensor type">accelerometer</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 ### The "linear-acceleration" virtual sensor type ### {#linear-acceleration-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="linear-acceleration virtual sensor type">linear-acceleration</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 ### The "gyroscope" virtual sensor type ### {#gyroscope-virtual-sensors}
 
-The <a>per-type virtual sensor metadata</a> <a>map</a> must have the following <a for=map>entry</a>:
+The [=per-type virtual sensor metadata=] [=map=] must have the following [=map/entry=]:
 
-: <a for=map>key</a>
+: [=map/Key=]
 :: "<code><dfn export data-lt="gyroscope virtual sensor type">gyroscope</dfn></code>"
-: <a for=map>value</a>
+: [=map/Value=]
 :: A <a>virtual sensor metadata</a> whose <a for="virtual sensor metadata">reading parsing algorithm</a> is <a>parse xyz reading</a>.
 
 <h2 class="no-num" id="examples">A Examples</h2>
@@ -974,7 +973,11 @@ as expected.
 
 <h2 class="no-num" id="acknowledgments">Acknowledgments</h2>
 
-Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, Chris Dumez
+The Device Orientation and Motion specification, originally published as a Candidate Recommendation in August 2016 under the title <cite>DeviceOrientation Event Specification</cite>, was initially developed by the [Geolocation Working Group](https://www.w3.org/2008/geolocation/). After the group was closed in 2017, the specification was temporarily retired. Revitalized in 2019 by the [Devices and Sensors Working Group](https://www.w3.org/groups/wg/das/), this document has undergone significant enhancements including improvements in interoperability, test automation, privacy, and editorial content (see [[#changes]] section).
+
+In 2024, the Devices and Sensors Working Group partnered with the [Web Applications Working Group](https://www.w3.org/groups/wg/webapps/), making this a joint deliverable and continuing the advancement of the specification. The initial design discussions are preserved not in this GitHub repository but can be explored through the [Geolocation Working Group’s mailing list archives](https://lists.w3.org/Archives/Public/public-geolocation/).
+
+The W3C acknowledges Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, and Chris Dumez for their contributions.
 
 <pre class="anchors">
 urlPrefix: https://html.spec.whatwg.org/multipage/
