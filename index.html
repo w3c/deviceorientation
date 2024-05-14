@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="1366d290e26f1ca898423353639c56da61689038" name="document-revision">
+  <meta content="39c015eec889a01f04c42c268f0ef9151806dcb5" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -1751,35 +1751,27 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      To perform the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="parse-orientation-data-reading">parse orientation data reading</dfn> algorithm, given a JSON <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code> <var>parameters</var>: 
     <ol>
      <li data-md>
-      <p>Let <var>alpha</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties">get a property</a> from <var>parameters</var> with "<code>alpha</code>".</p>
+      <p>Let <var>alpha</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties">get a property</a> from <var>parameters</var> with "alpha".</p>
      <li data-md>
-      <p>If <var>alpha</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects">Number</a></code>, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.</p>
+      <p>If <var>alpha</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects">Number</a></code>, or its value is NaN, +∞, or −∞, return <code>undefined</code>.</p>
      <li data-md>
-      <p>If <var>alpha</var> is not in the range [0, 360), then return <strong>undefined</strong>.</p>
+      <p>If <var>alpha</var> is not in the range [0, 360), then return <code>undefined</code>.</p>
      <li data-md>
-      <p>Let <var>beta</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties①">get a property</a> from <var>parameters</var> with "<code>beta</code>".</p>
+      <p>Let <var>beta</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties①">get a property</a> from <var>parameters</var> with "beta".</p>
      <li data-md>
-      <p>If <var>beta</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects①">Number</a></code>, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.</p>
+      <p>If <var>beta</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects①">Number</a></code>, or its value is NaN, +∞, or −∞, return <code>undefined</code>.</p>
      <li data-md>
-      <p>If <var>beta</var> is not in the range [-180, 180), then return <strong>undefined</strong>.</p>
+      <p>If <var>beta</var> is not in the range [-180, 180), then return <code>undefined</code>.</p>
      <li data-md>
-      <p>Let <var>gamma</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties②">get a property</a> from <var>parameters</var> with "<code>gamma</code>".</p>
+      <p>Let <var>gamma</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties②">get a property</a> from <var>parameters</var> with "gamma".</p>
      <li data-md>
-      <p>If <var>gamma</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects②">Number</a></code>, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.</p>
+      <p>If <var>gamma</var> is not a <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number-objects" id="ref-for-sec-number-objects②">Number</a></code>, or its value is NaN, +∞, or −∞, return <code>undefined</code>.</p>
      <li data-md>
-      <p>If <var>gamma</var> is not in the range [-90, 90), then return <strong>undefined</strong>.</p>
+      <p>If <var>gamma</var> is not in the range [-90, 90), then return <code>undefined</code>.</p>
      <li data-md>
-      <p>Let <var>reading</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a>.</p>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set">Set</a> <var>reading</var>["<code>alpha</code>"] to <var>alpha</var>.</p>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">Set</a> <var>reading</var>["<code>beta</code>"] to <var>beta</var>.</p>
-     <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②">Set</a> <var>reading</var>["<code>gamma</code>"] to <var>gamma</var>.</p>
-     <li data-md>
-      <p>Return <var>reading</var>.</p>
+      <p>Return a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">ordered map</a> «[ "alpha" → <var>alpha</var>, "beta" → <var>beta</var>, "gamma" → <var>gamma</var> ]».</p>
     </ol>
-    <p class="note" role="note"><span class="marker">Note:</span> <var>reading</var> is defined as a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> in the algorithm above to prevent a dependency on the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a> concept from the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification. They should be interchangeable for the purposes of the algorithm above.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> The return value is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">ordered map</a> to prevent a dependency on the <a data-link-type="dfn" href="https://w3c.github.io/sensors/#sensor-reading" id="ref-for-sensor-reading">sensor reading</a> concept from the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification. They should be interchangeable for the purposes of the algorithm above.</p>
    </div>
    <h4 class="heading settled" data-level="9.1.2" id="absolute-orientation-virtual-sensors"><span class="secno">9.1.2. </span><span class="content">The "absolute-orientation" virtual sensor type</span><a class="self-link" href="#absolute-orientation-virtual-sensors"></a></h4>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map②">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry">entry</a>:</p>
@@ -2327,7 +2319,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <li><span class="dfn-paneled" id="860300d4">implementation-defined</span>
      <li><span class="dfn-paneled" id="d14a6f26">key</span>
      <li><span class="dfn-paneled" id="3fca5a9e">map</span>
-     <li><span class="dfn-paneled" id="0e6b2056">set</span>
+     <li><span class="dfn-paneled" id="84b454ff">ordered map</span>
      <li><span class="dfn-paneled" id="802b0fdd">value</span>
     </ul>
    <li>
@@ -3275,7 +3267,7 @@ window.dfnpanelData['16d07e10'] = {"dfnID": "16d07e10", "url": "https://infra.sp
 window.dfnpanelData['860300d4'] = {"dfnID": "860300d4", "url": "https://infra.spec.whatwg.org/#implementation-defined", "dfnText": "implementation-defined", "refSections": [{"refs": [{"id": "ref-for-implementation-defined"}], "title": "3.1. Device Orientation"}, {"refs": [{"id": "ref-for-implementation-defined\u2460"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-implementation-defined\u2461"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
 window.dfnpanelData['d14a6f26'] = {"dfnID": "d14a6f26", "url": "https://infra.spec.whatwg.org/#map-key", "dfnText": "key", "refSections": [{"refs": [{"id": "ref-for-map-key"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-key\u2460"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-key\u2461"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-key\u2462"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-key\u2463"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
 window.dfnpanelData['3fca5a9e'] = {"dfnID": "3fca5a9e", "url": "https://infra.spec.whatwg.org/#ordered-map", "dfnText": "map", "refSections": [{"refs": [{"id": "ref-for-ordered-map"}, {"id": "ref-for-ordered-map\u2460"}], "title": "9.1.1. Parse orientation reading data algorithm"}, {"refs": [{"id": "ref-for-ordered-map\u2461"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2462"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2463"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2464"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2465"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
-window.dfnpanelData['0e6b2056'] = {"dfnID": "0e6b2056", "url": "https://infra.spec.whatwg.org/#map-set", "dfnText": "set", "refSections": [{"refs": [{"id": "ref-for-map-set"}, {"id": "ref-for-map-set\u2460"}, {"id": "ref-for-map-set\u2461"}], "title": "9.1.1. Parse orientation reading data algorithm"}], "external": true};
+window.dfnpanelData['84b454ff'] = {"dfnID": "84b454ff", "url": "https://infra.spec.whatwg.org/#ordered-map", "dfnText": "ordered map", "refSections": [{"refs": [{"id": "ref-for-ordered-map"}, {"id": "ref-for-ordered-map\u2460"}], "title": "9.1.1. Parse orientation reading data algorithm"}, {"refs": [{"id": "ref-for-ordered-map\u2461"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2462"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2463"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2464"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-ordered-map\u2465"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
 window.dfnpanelData['802b0fdd'] = {"dfnID": "802b0fdd", "url": "https://infra.spec.whatwg.org/#map-value", "dfnText": "value", "refSections": [{"refs": [{"id": "ref-for-map-value"}], "title": "9.1.2. The \"absolute-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2460"}], "title": "9.1.3. The \"relative-orientation\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2461"}], "title": "9.2.1. The \"accelerometer\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2462"}], "title": "9.2.2. The \"linear-acceleration\" virtual sensor type"}, {"refs": [{"id": "ref-for-map-value\u2463"}], "title": "9.2.3. The \"gyroscope\" virtual sensor type"}], "external": true};
 window.dfnpanelData['7235f1d9'] = {"dfnID": "7235f1d9", "url": "https://w3c.github.io/orientation-sensor/#earths-reference-coordinate-system", "dfnText": "earth's reference coordinate system", "refSections": [{"refs": [{"id": "ref-for-earths-reference-coordinate-system"}], "title": "3.1.1. Choice of reference coordinate system"}], "external": true};
 window.dfnpanelData['6c3bee60'] = {"dfnID": "6c3bee60", "url": "https://w3c.github.io/permissions/#dom-permissionstate", "dfnText": "PermissionState", "refSections": [{"refs": [{"id": "ref-for-dom-permissionstate"}], "title": "6.1. deviceorientation Event"}, {"refs": [{"id": "ref-for-dom-permissionstate\u2460"}], "title": "6.3.3. The DeviceMotionEvent interface"}], "external": true};
