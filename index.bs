@@ -598,7 +598,7 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
         1. Let |state| be the result of [=getting the current permission state=] with |permission| and |environment|.
         1. If |state| is not "{{PermissionState/granted}}", return.
     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
-        1. [=Fire an event=] named "devicemotion" at |window|, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to |acceleration|, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to |accelerationIncludingGravity|, the {{DeviceMotionEvent/rotationRate}} attribute initialized to |rotationRate|, and the {{DeviceMotionEvent/interval}} attribute initialized to |interval|.
+        1. [=Fire an event=] named "<a event for="Window">devicemotion</a>" at |window|, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to |acceleration|, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to |accelerationIncludingGravity|, the {{DeviceMotionEvent/rotationRate}} attribute initialized to |rotationRate|, and the {{DeviceMotionEvent/interval}} attribute initialized to |interval|.
 
 </div>
 
