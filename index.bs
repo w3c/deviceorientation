@@ -586,7 +586,7 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
   1. Let |rotationRate| be null.
   1. If |platformRotationRate| is not null:
       1. Set |rotationRate| to a <a>new</a> {{DeviceMotionEventRotationRate}} created in |window|'s <a for="global object">realm</a>.
-      1. Set |rotationRate|'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> to |platformRotationRate|'s value about the X axis, or null if it cannot be provided.
+      1. Set |rotationRate|'s [=DeviceMotionEventRotationRate/x axis rotation rate=] to |platformRotationRate|'s value about the X axis, or null if it cannot be provided.
       1. If |rotationRate|'s <a for="DeviceMotionEventRotationRate">x axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
       1. Set |rotationRate|'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> to |platformRotationRate|'s value about the Y axis, or null if it cannot be provided.
       1. If |rotationRate|'s <a for="DeviceMotionEventRotationRate">y axis rotation rate</a> is not null, limit its precision to no more than 0.1 deg/s.
