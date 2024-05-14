@@ -671,24 +671,20 @@ Therefore, instead of requiring implementations (and automation users) to provid
 ### Parse orientation reading data algorithm ### {#parse-orientation-data-reading-algorithm}
 
 <div algorithm>
-To perform the <dfn export>parse orientation data reading</dfn> algorithm, given a JSON {{Object}} <var>parameters</var>:
+To perform the <dfn export>parse orientation data reading</dfn> algorithm, given a JSON {{Object}} |parameters|:
 
-    1. Let <var>alpha</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>alpha</code>".
-    1. If <var>alpha</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
-    1. If <var>alpha</var> is not in the range [0, 360), then return <strong>undefined</strong>.
-    1. Let <var>beta</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>beta</code>".
-    1. If <var>beta</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
-    1. If <var>beta</var> is not in the range [-180, 180), then return <strong>undefined</strong>.
-    1. Let <var>gamma</var> be the result of invoking <a>get a property</a> from <var>parameters</var> with "<code>gamma</code>".
-    1. If <var>gamma</var> is not a {{Number}}, or its value is <strong>NaN</strong>, +∞, or −∞, return <strong>undefined</strong>.
-    1. If <var>gamma</var> is not in the range [-90, 90), then return <strong>undefined</strong>.
-    1. Let <var>reading</var> be a new <a>map</a>.
-    1. <a for=map>Set</a> <var>reading</var>["<code>alpha</code>"] to <var>alpha</var>.
-    1. <a for=map>Set</a> <var>reading</var>["<code>beta</code>"] to <var>beta</var>.
-    1. <a for=map>Set</a> <var>reading</var>["<code>gamma</code>"] to <var>gamma</var>.
-    1. Return <var>reading</var>.
+    1. Let |alpha| be the result of invoking [=get a property=] from |parameters| with "alpha".
+    1. If |alpha| is not a {{Number}}, or its value is NaN, +∞, or −∞, return `undefined`.
+    1. If |alpha| is not in the range [0, 360), then return `undefined`.
+    1. Let |beta| be the result of invoking [=get a property=] from |parameters| with "beta".
+    1. If |beta| is not a {{Number}}, or its value is NaN, +∞, or −∞, return `undefined`.
+    1. If |beta| is not in the range [-180, 180), then return `undefined`.
+    1. Let |gamma| be the result of invoking [=get a property=] from |parameters| with "gamma".
+    1. If |gamma| is not a {{Number}}, or its value is NaN, +∞, or −∞, return `undefined`.
+    1. If |gamma| is not in the range [-90, 90), then return `undefined`.
+    1. Return a new [=ordered map=] «[ "alpha" → |alpha|, "beta" → |beta|, "gamma" → |gamma| ]».
 
-Note: <var>reading</var> is defined as a <a>map</a> in the algorithm above to prevent a dependency on the <a>sensor reading</a> concept from the [[GENERIC-SENSOR]] specification. They should be interchangeable for the purposes of the algorithm above.
+Note: The return value is a [=ordered map=] to prevent a dependency on the [=sensor reading=] concept from the [[GENERIC-SENSOR]] specification. They should be interchangeable for the purposes of the algorithm above.
 
 </div>
 
