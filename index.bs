@@ -547,8 +547,8 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
       1. If |document| is not [=allowed to use=] the [=policy-controlled feature=] named |policy|, return.
   1. Let |topLevelTraversable| be |window|'s [=Window/navigable=]'s [=navigable/top-level traversable=].
   1. Let |platformLinearAcceleration| be null.
-  1. If |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] "`linear`e>":
-      1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=]["`linear`e>"].
+  1. If |topLevelTraversable|'s [=virtual sensor mapping=] [=map/contains=] "`linear-acceleration`":
+      1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=]["`linear-acceleration`"].
       1. If |virtualSensor|'s [=can provide readings flag=] is true, then set |platformLinearAcceleration| to the latest readings provided to |virtualSensor|.
   1. Otherwise, if the implementation is able to provide [=linear acceleration=]:
       1. Set |platformLinearAcceleration| to the device's [=linear acceleration=] along the X, Y and Z axes.
