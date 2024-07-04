@@ -528,7 +528,7 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
  1. Run these steps <a>in parallel</a>:
      1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
      1. [=list/For each=] |name| of |permissions|:
-         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hasTransientActivation| is false:
+         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hadTransientActivation| is false:
              1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=reject=] |result| with a "{{NotAllowedError}}" {{DOMException}}.
              1. Return.
      1. Let |permissionState| be "{{PermissionState/granted}}".
