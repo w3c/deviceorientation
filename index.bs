@@ -296,8 +296,8 @@ The <dfn method for="DeviceOrientationEvent">requestPermission(|absolute|)</dfn>
  1. Let |global| be the [=current global object=].
  1. Let |document| be |global|'s [=associated Document=].
  1. If |document| is not [=document/fully active=], return [=a promise rejected with=] "{{InvalidStateError}}" {{DOMException}}.
- 1. Let |hadTransientActivation| be true if |global| has [=transient activation=], and false otherwise.
- 1. Let |promise| be [=a new promise=] in [=this=]'s [=relevant Realm=].
+ 1. Let |hadTransientActivation| be |global| has [=transient activation=], and false otherwise.
+ 1. Let |promise| be [=a new promise=] in |global|'s [=relevant Realm=].
  1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
  1. If |absolute| is true, [=set/append=] <a permission>"magnetometer"</a> » to |permissions|.
  1. Run these steps <a>in parallel</a>:
@@ -523,8 +523,8 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
  1. Let |global| be the [=current global object=].
  1. Let |document| be |global|'s [=associated Document=].
  1. If |document| is not [=document/fully active=], return [=a promise rejected with=] "{{InvalidStateError}}" {{DOMException}}.
- 1. Let |hasTransientActivation| be true if [=this=]'s [=relevant global object=] has [=transient activation=], and false otherwise.
- 1. Let |result| be [=a new promise=] in [=this=]'s [=relevant Realm=].
+ 1. Let |hasTransientActivation| be true if |global| has [=transient activation=], and false otherwise.
+ 1. Let |result| be [=a new promise=] in |global|'s [=relevant Realm=].
  1. Run these steps <a>in parallel</a>:
      1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
      1. [=list/For each=] |name| of |permissions|:
