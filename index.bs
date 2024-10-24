@@ -8,8 +8,8 @@ TR: https://www.w3.org/TR/orientation-event/
 ED: https://w3c.github.io/deviceorientation/
 Repository: w3c/deviceorientation
 Editor: Reilly Grant 83788, Google LLC https://www.google.com
-Editor: Raphael Kubo da Costa 95850, Intel Corporation https://intel.com
 Editor: Marcos Cáceres 39125, Apple Inc. https://www.apple.com
+Former Editor: Raphael Kubo da Costa 95850, Intel Corporation https://intel.com
 Former Editor: Rich Tibbett, Opera Software ASA
 Former Editor: Tim Volodine, Google Inc
 Former Editor: Steve Block, Google Inc until July 2012
