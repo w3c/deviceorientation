@@ -24,6 +24,7 @@ Markup Shorthands: css no
 Markup Shorthands: markdown yes
 text macro: JOINT yes
 text macro: JOINTWEBAPPS yes
+Deadline: 2025-03-15
 </pre>
 <pre class="anchors">
 urlPrefix: https://w3c.github.io/sensors/; spec: GENERIC-SENSOR
