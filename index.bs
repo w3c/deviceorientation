@@ -533,7 +533,7 @@ The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps a
          1. If the result of <a>requesting permission to use</a> |name| is not "{{PermissionState/granted}}":
              1. Set |permissionState| to "{{PermissionState/denied}}".
              1. [=Break=].
-     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=resolve=] |result| with |permissionState|.</li>
+     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=resolve=] |result| with |permissionState|.
  1. Return |result|.
 
 </div>
@@ -756,7 +756,7 @@ More precisely, we wish to determine the compass heading of the horizontal compo
 If v represents this vector in the rotated device body frame xyz, then v is as follows.
 
 <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
-    <p><img src="equation1.png" alt="v = [0; 0; -1]">
+    <img src="equation1.png" alt="v = [0; 0; -1]">
 </object>
 
 The transformation of v due to the rotation about the z axis can be represented by the following rotation matrix.
@@ -788,8 +788,7 @@ If v' represents the vector v in the earth frame XYZ, then since the initial bod
 <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
     <img src="equation5a.png" alt="v' = Rv">
 </object>
-</object>
-    <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
+<object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
     <img src="equation5e.png" alt="v' = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]">
 </object>
 
