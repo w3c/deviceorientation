@@ -294,13 +294,15 @@ The <dfn attribute for="DeviceOrientationEvent">absolute</dfn> attribute must re
 The <dfn method for="DeviceOrientationEvent">requestPermission(|absolute|)</dfn> method steps are:
 
  1. Let |global| be the [=current global object=].
- 1. Let |hasTransientActivation| be true if [=this=]'s [=relevant global object=] has [=transient activation=], and false otherwise.
- 1. Let |promise| be [=a new promise=] in [=this=]'s [=relevant Realm=].
+ 1. Let |document| be |global|'s [=associated Document=].
+ 1. If |document| is not [=document/fully active=], return [=a promise rejected with=] an "{{InvalidStateError}}" {{DOMException}}.
+ 1. Let |hadTransientActivation| be true if |global| has [=transient activation=], or false otherwise.
+ 1. Let |promise| be [=a new promise=] in |global|'s [=relevant realm=].
  1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
  1. If |absolute| is true, [=set/append=] <a permission>"magnetometer"</a> » to |permissions|.
  1. Run these steps <a>in parallel</a>:
      1. [=list/For each=] |name| of |permissions|:
-         1. If |name|'s [=permission state=] is "{{PermissionState/prompt}}" and |hasTransientActivation| is false:
+         1. If |name|'s [=permission state=] is "{{PermissionState/prompt}}" and |hadTransientActivation| is false:
              1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}}.
              1. Return.
      1. Let |permissionState| be "{{PermissionState/granted}}".
@@ -342,6 +344,8 @@ To <dfn>fire an orientation event</dfn> given a {{DOMString}} |event|, {{Window}
         1. Let |state| be the result of <a>getting the current permission state</a> with |permission| and |environment|.
         1. If |state| is not "{{PermissionState/granted}}", return.
     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
+        1. If |document| is not [=document/fully active=], return.
+        1. If |document|'s [=Document/visibility state=] is not "`visible`", return.
         1. Let |z| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
         1. If |z| is not null, limit |z|'s precision to 0.1 degrees.
         1. Let |x| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the X' axis, or null if the implementation cannot provide an angle value.
@@ -517,12 +521,14 @@ The <dfn attribute for="DeviceMotionEvent">interval</dfn> attribute must return 
 The <dfn method for="DeviceMotionEvent">requestPermission()</dfn> method steps are:
 
  1. Let |global| be the [=current global object=].
- 1. Let |hasTransientActivation| be true if [=this=]'s [=relevant global object=] has [=transient activation=], and false otherwise.
- 1. Let |result| be [=a new promise=] in [=this=]'s [=relevant Realm=].
+ 1. Let |document| be |global|'s [=associated Document=].
+ 1. If |document| is not [=document/fully active=], return [=a promise rejected with=] an "{{InvalidStateError}}" {{DOMException}}.
+ 1. Let |hadTransientActivation| be true if |global| has [=transient activation=], or false otherwise.
+ 1. Let |result| be [=a new promise=] in |global|'s [=relevant realm=].
  1. Run these steps <a>in parallel</a>:
      1. Let |permissions| be « <a permission>"accelerometer"</a>, <a permission>"gyroscope"</a> ».
      1. [=list/For each=] |name| of |permissions|:
-         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hasTransientActivation| is false:
+         1. If |name|'s <a>permission state</a> is "{{PermissionState/prompt}}" and |hadTransientActivation| is false:
              1. [=Queue a global task=] on the [=device motion and orientation task source=] given |global| to [=reject=] |result| with a "{{NotAllowedError}}" {{DOMException}}.
              1. Return.
      1. Let |permissionState| be "{{PermissionState/granted}}".
@@ -597,6 +603,8 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
         1. Let |state| be the result of [=getting the current permission state=] with |permission| and |environment|.
         1. If |state| is not "{{PermissionState/granted}}", return.
     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
+        1. If |document| is not [=document/fully active=], return.
+        1. If |document|'s [=Document/visibility state=] is not "`visible`", return.
         1. [=Fire an event=] named "<a event for="Window">devicemotion</a>" at |window|, using {{DeviceMotionEvent}}, with the {{DeviceMotionEvent/acceleration}} attribute initialized to |acceleration|, the {{DeviceMotionEvent/accelerationIncludingGravity}} attribute initialized to |accelerationIncludingGravity|, the {{DeviceMotionEvent/rotationRate}} attribute initialized to |rotationRate|, and the {{DeviceMotionEvent/interval}} attribute initialized to |interval|.
 
 </div>
