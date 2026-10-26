@@ -5,9 +5,9 @@
   <title>Device Orientation and Motion</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 97a1608be, updated Mon Feb 3 16:09:34 2025 -0800" name="generator">
+  <meta content="Bikeshed version 49e9fdd4f, updated Tue Oct 13 14:27:53 2026 -0700" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="70d42d5484db7fd1646e48cc17caa5ff1c9d92cb" name="revision">
+  <meta content="a831f0b15540d7429e1881fcbc0c9f3e8bf45280" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -303,7 +303,7 @@ pre .property::before, pre .property::after {
 </style>
 <style>/* Boilerplate: style-counters */
 body {
-    counter-reset: example figure issue;
+    counter-reset: example figure issue table;
 }
 .issue {
     counter-increment: issue;
@@ -320,7 +320,7 @@ body {
 }
 .invalid.example:not(.no-marker)::before,
 .illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
+    content: "Invalid Example " counter(example);
 }
 
 figcaption {
@@ -328,6 +328,13 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
 }
 </style>
 <style>/* Boilerplate: style-dfn-panel */
@@ -552,11 +559,10 @@ a[href].issue-return {
 	vertical-align: top;
 }
 .mdn-anno > .feature {
-	margin-top: 20px;
+	margin-top: 6px;
 }
 .mdn-anno > .feature:not(:first-of-type) {
 	border-top: 1px solid #999;
-	margin-top: 6px;
 	padding-top: 2px;
 }
 .mdn-anno > .feature > .less-than-two-engines-text {
@@ -914,6 +920,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
 <style>/* Boilerplate: style-var-click-highlighting */
 /*
@@ -960,9 +990,13 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Device Orientation and Motion</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-12">12 February 2025</time></p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
+   <h1 class="no-ref p-name" id="title">Device Orientation and Motion</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
+    <time class="dt-updated" datetime="2026-10-26">26 October 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -977,52 +1011,71 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
       <dt>Implementation Report:
       <dd><a href="https://wpt.fyi/results/orientation-event">https://wpt.fyi/results/orientation-event</a>
       <dt class="editor">Editors:
-      <dd class="editor p-author h-card vcard" data-editor-id="83788"><span class="p-name fn">Reilly Grant</span> (<a class="p-org org" href="https://www.google.com">Google LLC</a>)
-      <dd class="editor p-author h-card vcard" data-editor-id="39125"><span class="p-name fn">Marcos Cáceres</span> (<a class="p-org org" href="https://www.apple.com">Apple Inc.</a>)
+      <dd class="editor h-card p-author vcard" data-editor-id="83788"><span class="fn p-name">Reilly Grant</span> (<a class="org p-org" href="https://www.google.com">Google LLC</a>)
+      <dd class="editor h-card p-author vcard" data-editor-id="39125"><span class="fn p-name">Marcos Cáceres</span> (<a class="org p-org" href="https://www.apple.com">Apple Inc.</a>)
       <dt class="editor">Former Editors:
-      <dd class="editor p-author h-card vcard" data-editor-id="95850"><span class="p-name fn">Raphael Kubo da Costa</span> (<a class="p-org org" href="https://intel.com">Intel Corporation</a>)
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Rich Tibbett</span> (<span class="p-org org">Opera Software ASA</span>)
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Tim Volodine</span> (<span class="p-org org">Google Inc</span>)
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Steve Block</span> (<span class="p-org org">Google Inc until July 2012</span>)
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Andrei Popescu</span> (<span class="p-org org">Google Inc until July 2012</span>)
+      <dd class="editor h-card p-author vcard" data-editor-id="95850"><span class="fn p-name">Raphael Kubo da Costa</span> (<a class="org p-org" href="https://intel.com">Intel Corporation</a>)
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">Rich Tibbett</span> (<span class="org p-org">Opera Software ASA</span>)
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">Tim Volodine</span> (<span class="org p-org">Google Inc</span>)
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">Steve Block</span> (<span class="org p-org">Google Inc until July 2012</span>)
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">Andrei Popescu</span> (<span class="org p-org">Google Inc until July 2012</span>)
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2026 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
-   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>This specification defines events that represent the physical orientation and motion of a hosting device. These events provide web applications with access to orientation and motion data. The specification is designed to be agnostic to the underlying sources of this data, aiming to achieve interoperability across different environments.</p>
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
+  <h2 class="heading no-num no-ref no-toc settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This is a public copy of the editors’ draft.
+   <p>
+	This is a public copy of the editors’ draft.
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
-	Don’t cite this document other than as work in progress. </p>
-   <p> If you wish to make comments regarding this document, please <a href="https://github.com/w3c/deviceorientation/issues/new">file an issue on the specification repository</a>. </p>
-   <p> This document was published by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a> and
-	the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a>. </p>
-   <p> This document was produced by groups operating under
+	Don’t cite this document other than as work in progress.
+</p>
+   <p>
+  If you wish to make comments regarding this document, please <a href="https://github.com/w3c/deviceorientation/issues/new">file an issue on the specification repository</a>.
+</p>
+   <p>
+  This document was published by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a> and
+	the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a>.
+</p>
+   <p>
+  This document was produced by groups operating under
 	the <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures (Devices and Sensors)</a> and
-	a <a href="https://www.w3.org/groups/wg/webapps/ipr" rel="disclosure">public list of any patent disclosures (Web Applications)</a> made in connection with the deliverables of each group;
+	a <a href="https://www.w3.org/groups/wg/webapps/ipr" rel="disclosure">public list of any patent disclosures (Web Applications)</a>
+	made in connection with the deliverables of each group;
   these pages also include instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
-	with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> For general working group announcements, administrivia, and non-technical matters
-  email either <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) 
-  or <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>). </p>
-   <p> This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
+	An individual who has actual knowledge of a patent that the individual believes contains 
+	<a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
+	with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. 
+</p>
+   <p>
+  For general working group announcements, administrivia, and non-technical matters
+  email either <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a>
+	(<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
+	<a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) 
+  or <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a>
+	(<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>,
+	<a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>).
+</p>
+   <p>
+  This document is governed by the <a href="https://www.w3.org/policies/process/20250818/" id="w3c_process_revision">18 August 2025 W3C Process Document</a>.
+</p>
    <p></p>
    <p>New features since publication as a <a href="https://www.w3.org/TR/2016/CR-orientation-event-20160818/">Candidate Recommendation</a> include integration of Permissions Policy and API, which now requires explicit user consent through <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-requestpermission" id="ref-for-dom-deviceorientationevent-requestpermission">requestPermission()</a></code> for accessing device orientation data. Updates have been made to the coordinate system explanations and precision requirements to mitigate passive fingerprinting risks. The introduction of the <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute">deviceorientationabsolute</a> event enhances applications requiring absolute orientation data (marked <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk">at risk</a>). Interfaces are now only available in <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure contexts</a>, and security and privacy considerations have been made normative. The specification now also provides a means to <a href="#automation">automate testing</a> of this API (marked <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk①">at risk</a>). See <a href="#changes">§ 10 Changes</a> section for more information.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
     <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#scope"><span class="secno">2</span> <span class="content">Scope</span></a>
     <li>
@@ -1094,7 +1147,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Non-Normative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -1107,7 +1160,9 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
    <p>The <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion">devicemotion</a></code> event represents the acceleration of the device, expressed in Cartesian coordinates in a coordinate frame defined in the device. It also supplies the rotation rate of the device about a local coordinate frame. Where practically possible, the event should provide the acceleration of the device’s center of mass.</p>
    <p>The following code extracts illustrate basic use of the events.</p>
    <div class="example" id="example-742261d9">
-    <a class="self-link" href="#example-742261d9"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation①">deviceorientation</a></code> events: 
+    <a class="self-link" href="#example-742261d9"></a>
+Registering to receive <code class="idl"><a data-link-type="idl" href="#def-deviceorientation" id="ref-for-def-deviceorientation①">deviceorientation</a></code> events:
+
 <pre class="highlight lang-javascript">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"deviceorientation"</c-><c- p>,</c-> event <c- p>=></c-> <c- p>{</c->
   <c- c1>// process event.alpha, event.beta and event.gamma</c->
 <c- p>});</c->
@@ -1119,18 +1174,26 @@ window<c- p>.</c->ondeviceorientation <c- o>=</c-> event <c- p>=></c-> <c- p>{</
 </pre>
    </div>
    <div class="example" id="example-f65d12d9">
-    <a class="self-link" href="#example-f65d12d9"></a> A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation: 
+    <a class="self-link" href="#example-f65d12d9"></a>
+A device lying flat on a horizontal surface with the top of the screen pointing West has the following orientation:
+
 <pre class="highlight lang-javascript"><c- p>{</c->
   alpha<c- o>:</c-> <c- mf>90</c-><c- p>,</c->
   beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   gamma<c- o>:</c-> <c- mf>0</c->
 <c- p>};</c->
 </pre>
-    <p>To get the compass heading, one would simply subtract <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha">alpha</a></code> from 360 degrees. As the device is turned on the horizontal surface, the compass heading is (360 - alpha).</p>
+    
+To get the compass heading, one would simply subtract <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha">alpha</a></code> from 360 degrees. As the device is turned on the horizontal surface, the compass heading is (360 - alpha).
+
    </div>
-   <div class="example" id="example-f560d6db"><a class="self-link" href="#example-f560d6db"></a> A user is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing upwards. The value of <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta">beta</a></code> is 90, irrespective of what <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①">alpha</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma">gamma</a></code> are. </div>
+   <div class="example" id="example-f560d6db"><a class="self-link" href="#example-f560d6db"></a>
+A user is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing upwards. The value of <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta">beta</a></code> is 90, irrespective of what <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha①">alpha</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma">gamma</a></code> are.
+</div>
    <div class="example" id="example-69c0a149">
-    <a class="self-link" href="#example-69c0a149"></a> A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is: 
+    <a class="self-link" href="#example-69c0a149"></a>
+A user facing a compass heading of alpha degrees is holding the device in their hand, with the screen in a vertical plane and the top of the screen pointing to their right. The orientation of the device is:
+
 <pre class="highlight lang-javascript"><c- p>{</c->
   alpha<c- o>:</c-> <c- mf>270</c-> <c- o>-</c-> alpha<c- p>,</c->
   beta<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
@@ -1139,7 +1202,9 @@ window<c- p>.</c->ondeviceorientation <c- o>=</c-> event <c- p>=></c-> <c- p>{</
 </pre>
    </div>
    <div class="example" id="example-deae0593">
-    <a class="self-link" href="#example-deae0593"></a> Registering to receive <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion①">devicemotion</a></code> events: 
+    <a class="self-link" href="#example-deae0593"></a>
+Registering to receive <code class="idl"><a data-link-type="idl" href="#def-devicemotion" id="ref-for-def-devicemotion①">devicemotion</a></code> events:
+
 <pre class="highlight lang-javascript">window<c- p>.</c->addEventListener<c- p>(</c-><c- u>"devicemotion"</c-><c- p>,</c-> <c- p>(</c->event<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
   <c- c1>// Process event.acceleration, event.accelerationIncludingGravity,</c->
   <c- c1>// event.rotationRate and event.interval</c->
@@ -1153,7 +1218,9 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
 </pre>
    </div>
    <div class="example" id="example-1567e206">
-    <a class="self-link" href="#example-1567e206"></a> A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>: 
+    <a class="self-link" href="#example-1567e206"></a>
+A device lying flat on a horizontal surface with the screen upmost has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration">acceleration</a></code> of zero and the following value for <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity">accelerationIncludingGravity</a></code>:
+
 <pre class="highlight lang-javascript"><c- p>{</c->
   x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
@@ -1162,7 +1229,9 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
 </pre>
    </div>
    <div class="example" id="example-13939e42">
-    <a class="self-link" href="#example-13939e42"></a> A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration: 
+    <a class="self-link" href="#example-13939e42"></a>
+A device in free-fall, with the screen horizontal and upmost, has an <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity①">accelerationIncludingGravity</a></code> of zero and the following value for acceleration:
+
 <pre class="highlight lang-javascript"><c- p>{</c->
   x<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
   y<c- o>:</c-> <c- mf>0</c-><c- p>,</c->
@@ -1171,7 +1240,9 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
 </pre>
    </div>
    <div class="example" id="example-7dd1a0c3">
-    <a class="self-link" href="#example-7dd1a0c3"></a> A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>: 
+    <a class="self-link" href="#example-7dd1a0c3"></a>
+A device is mounted in a vehicle, with the screen in a vertical plane, the top uppermost and facing the rear of the vehicle. The vehicle is travelling at speed v around a right-hand bend of radius r. The device records a positive x component for both <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-acceleration" id="ref-for-dom-devicemotionevent-acceleration①">acceleration</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-devicemotionevent-accelerationincludinggravity" id="ref-for-dom-devicemotionevent-accelerationincludinggravity②">accelerationIncludingGravity</a></code>. The device also records a negative value for <code class="idl"><a class="idl-code" data-link-type="attribute" href="#dom-devicemotionevent-rotationrate" id="ref-for-dom-devicemotionevent-rotationrate">rotationRate</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-devicemotioneventrotationrate-gamma" id="ref-for-dom-devicemotioneventrotationrate-gamma">gamma</a></code>:
+
 <pre class="highlight lang-javascript"><c- p>{</c->
   acceleration<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>0</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
   accelerationIncludingGravity<c- o>:</c-> <c- p>{</c->x<c- o>:</c-> v<c- o>^</c-><c- mf>2</c-><c- o>/</c->r<c- p>,</c-> y<c- o>:</c-> <c- mf>9.8</c-><c- p>,</c-> z<c- o>:</c-> <c- mf>0</c-><c- p>},</c->
@@ -1200,29 +1271,37 @@ window<c- p>.</c->ondevicemotion <c- o>=</c-> <c- p>(</c->event<c- p>)</c-> <c- 
    <p class="note" role="note"><span class="marker">Note:</span> Developers wanting to detect changes in screen orientation can refer to <a data-link-type="biblio" href="#biblio-screen-orientation" title="Screen Orientation">[SCREEN-ORIENTATION]</a>.</p>
    <p>Rotations use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The coordinate system used by this specification differs from <a href="https://drafts.csswg.org/css-transforms-2/#transform-rendering"><cite>CSS Transforms 2</cite> § 4 The Transform Rendering Model</a>, where the y axis is positive to the bottom and rotations follow the left-hand convention.
-Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
+Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/geometry-1/#dom-dommatrix-rotateself" id="ref-for-dom-dommatrix-rotateself">rotateSelf()</a></code> and <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/geometry-1/#dom-dommatrixreadonly-rotate" id="ref-for-dom-dommatrixreadonly-rotate">rotate()</a></code>, specified in <a data-link-type="biblio" href="#biblio-geometry-1" title="Geometry Interfaces Module Level 1">[GEOMETRY-1]</a>, apply rotations in an Z - Y' - X'' order, which differs from the order specified here.</p>
    <p>A rotation represented by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha②">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta①">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma①">gamma</a></code> is carried out by the following steps:</p>
    <ol>
     <li data-md>
      <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-z" id="ref-for-device-orientation-z">z</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha③">alpha</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha④">alpha</a></code> in [0, 360).</p>
      <figure>
-       <img alt="start orientation" height="450" src="start.png" width="450"> 
+      
+  <img alt="start orientation" height="450" src="start.png" width="450">
+  
       <figcaption>Device in the initial position, with the reference (XYZ) and body (xyz) frames aligned.</figcaption>
      </figure>
      <figure>
-       <img alt="rotation about z axis" height="450" src="c-rotation.png" width="450"> 
+      
+  <img alt="rotation about z axis" height="450" src="c-rotation.png" width="450">
+  
       <figcaption>Device rotated through angle alpha about z axis, with previous locations of x and y axes shown as x<sub>0</sub> and y<sub>0</sub>.</figcaption>
      </figure>
     <li data-md>
      <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-x" id="ref-for-device-orientation-x">x</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta②">beta</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta③">beta</a></code> in [-180, 180).</p>
      <figure>
-       <img alt="rotation about x axis" height="450" src="a-rotation.png" width="450"> 
+      
+  <img alt="rotation about x axis" height="450" src="a-rotation.png" width="450">
+  
       <figcaption>Device rotated through angle beta about new x axis, with previous locations of y and z axes shown as y<sub>0</sub> and z<sub>0</sub>.</figcaption>
      </figure>
     <li data-md>
      <p>Rotate the device frame around its <a data-link-type="dfn" href="#device-orientation-y" id="ref-for-device-orientation-y">y</a> axis by <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma②">gamma</a></code> degrees, with <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma③">gamma</a></code> in [-90, 90).</p>
      <figure>
-       <img alt="rotation about y axis" height="450" src="b-rotation.png" width="450"> 
+      
+  <img alt="rotation about y axis" height="450" src="b-rotation.png" width="450">
+  
       <figcaption>Device rotated through angle gamma about new y axis, with previous locations of x and z axes shown as x<sub>0</sub> and z<sub>0</sub>.</figcaption>
      </figure>
    </ol>
@@ -1235,14 +1314,16 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p class="note" role="note"><span class="marker">Note:</span> In native platform terms, this is similar to an absolute <a href="https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.sensorreadingtype#remarks">OrientationSensor</a> on Windows, a <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_ROTATION_VECTOR">rotation vector sensor</a> on Android, or the <a href="https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/1616123-xmagneticnorthzvertical">xMagneticNorthZVertical</a> option for Core Motion.</p>
    <h3 class="heading settled" data-level="3.2" id="device-motion-model"><span class="secno">3.2. </span><span class="content">Device Motion</span><a class="self-link" href="#device-motion-model"></a></h3>
    <p>This specification expresses a device’s motion in space by measuring its acceleration and rotation rate, which are obtained from an accelerometer and a gyroscope. The data is provided relative to the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer/#device-coordinate-system" id="ref-for-device-coordinate-system①">device coordinate system</a> summarized in the previous section.</p>
-   <p>Acceleration is the rate of change of velocity of a device with respect to time. Is is expressed in meters per second squared (m/s<sup>2</sup>).</p>
+   <p>Acceleration is the rate of change of velocity of a device with respect to time. It is expressed in meters per second squared (m/s<sup>2</sup>).</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-local-lt="linear acceleration" data-noexport id="linear-device-acceleration">Linear device acceleration</dfn> represents the device’s acceleration rate without the contribution of the gravity force. When the device is laying flat on a table, its <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration">linear acceleration</a> is 0 m/s<sup>2</sup>.</p>
    <p>When the acceleration <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="acceleration with gravity" data-noexport id="acceleration-with-gravity">includes gravity</dfn>, its value includes the effect of gravity and represents proper acceleration (<a data-link-type="biblio" href="#biblio-properacceleration" title="Proper acceleration">[PROPERACCELERATION]</a>). When the device is in free-fall, the acceleration is 0 m/s<sup>2</sup>. This is less useful in many applications but is provided as a means of providing best-effort support by implementations that are unable to provide <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration①">linear acceleration</a> (due, for example, to the lack of a gyroscope).</p>
    <p class="note" role="note"><span class="marker">Note:</span> In practice, <a data-link-type="dfn" href="#acceleration-with-gravity" id="ref-for-acceleration-with-gravity">acceleration with gravity</a> represents the raw readings obtained from an <a href="https://w3c.github.io/motion-sensors/#accelerometer">Motion Sensors Explainer § accelerometer</a>, or the <a data-link-type="biblio" href="#biblio-g-force" title="G-Force">[G-FORCE]</a> whereas <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration②">linear acceleration</a> provides the readings of a <a href="https://w3c.github.io/motion-sensors/#linear-acceleration-sensor">Motion Sensors Explainer § linear-acceleration-sensor</a> and is likely a fusion sensor. <a data-link-type="biblio" href="#biblio-motion-sensors" title="Motion Sensors Explainer">[MOTION-SENSORS]</a> and <a data-link-type="biblio" href="#biblio-accelerometer" title="Accelerometer">[ACCELEROMETER]</a> both contain a more detailed discussion about the different types of accelerometers and accelerations that can be measured.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rotation-rate">rotation rate</dfn> measures the rate at which the device rotates about a specified axis in the <a data-link-type="dfn" href="https://w3c.github.io/accelerometer/#device-coordinate-system" id="ref-for-device-coordinate-system②">device coordinate system</a>. As with device orientation, rotations must use the right-hand convention, such that positive rotation around an axis is clockwise when viewed along the positive direction of the axis. The <a data-link-type="dfn" href="#rotation-rate" id="ref-for-rotation-rate">rotation rate</a> is measured in degrees per second (deg/s).</p>
    <p class="note" role="note"><span class="marker">Note:</span> <a data-link-type="biblio" href="#biblio-motion-sensors" title="Motion Sensors Explainer">[MOTION-SENSORS]</a> and <a data-link-type="biblio" href="#biblio-gyroscope" title="Gyroscope">[GYROSCOPE]</a> both contain a more detailed discussion of gyroscopes, rotation rates and measurements.</p>
    <h2 class="heading settled" data-level="4" id="permissions-integration"><span class="secno">4. </span><span class="content">Permissions</span><a class="self-link" href="#permissions-integration"></a></h2>
-   <div class="issue" id="issue-77fe9a79"><a class="self-link" href="#issue-77fe9a79"></a> This integration is <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk②">at risk</a> due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests. </div>
+   <div class="issue" id="issue-77fe9a79"><a class="self-link" href="#issue-77fe9a79"></a>
+This integration is <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk②">at risk</a> due to the low pass rate of the <a href="https://wpt.fyi/results/orientation-event/motion/requestPermission.https.window.html"><code>DeviceMotionEvent.requestPermission()</code></a> and <a href="https://wpt.fyi/results/orientation-event/orientation/requestPermission.https.window.html"><code>DeviceOrientationEvent.requestPermission()</code></a> tests.
+</div>
    <p>This specification is a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-powerful-feature" id="ref-for-dfn-powerful-feature">powerful feature</a> and, as such, it defines the following <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission" id="ref-for-dfn-permission">permissions</a> which are <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled features</a> with the given <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist" id="ref-for-policy-controlled-feature-default-allowlist">default allowlists</a>:</p>
    <ul>
     <li data-md>
@@ -1253,7 +1334,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <p><dfn class="dfn-paneled idl-code" data-dfn-type="permission" data-export id="permissiondef-magnetometer"><code>"magnetometer"</code></dfn>, whose <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist" id="ref-for-policy-controlled-feature-default-allowlist③">default allowlist</a> is <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#default-allowlist-self" id="ref-for-default-allowlist-self②">'self'</a>.</p>
    </ul>
    <div class="note" role="note">
-     <span class="marker">Note:</span> Which events get <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-dispatch" id="ref-for-concept-event-dispatch">dispatched</a> depends on which <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission" id="ref-for-dfn-permission①">permissions</a> have been <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-granted" id="ref-for-dfn-granted">granted</a>: 
+    
+  <span class="marker">Note:</span> Which events get <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-dispatch" id="ref-for-concept-event-dispatch">dispatched</a> depends on which <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission" id="ref-for-dfn-permission①">permissions</a> have been <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-granted" id="ref-for-dfn-granted">granted</a>:
+
+
     <ul>
      <li data-md>
       <p>When providing <a data-link-type="dfn" href="#relative-device-orientation" id="ref-for-relative-device-orientation">relative orientation</a> data, the <a class="idl-code" data-link-type="event" href="#def-deviceorientation" id="ref-for-def-deviceorientation②">deviceorientation</a> event is only <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-dispatch" id="ref-for-concept-event-dispatch①">dispatched</a> if the <a class="idl-code" data-link-type="permission" href="#permissiondef-accelerometer" id="ref-for-permissiondef-accelerometer">"accelerometer"</a> and <a class="idl-code" data-link-type="permission" href="#permissiondef-gyroscope" id="ref-for-permissiondef-gyroscope">"gyroscope"</a> <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission" id="ref-for-dfn-permission②">permissions</a> are <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-granted" id="ref-for-dfn-granted①">granted</a>. For the implementation to fall back to <a data-link-type="dfn" href="#absolute-orientation" id="ref-for-absolute-orientation">absolute orientation</a> data, the <a class="idl-code" data-link-type="permission" href="#permissiondef-magnetometer" id="ref-for-permissiondef-magnetometer">"magnetometer"</a> <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-permission" id="ref-for-dfn-permission③">permission</a> must also be <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-granted" id="ref-for-dfn-granted②">granted</a>.</p>
@@ -1267,7 +1351,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task" id="ref-for-concept-task">tasks</a> mentioned in this specification is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="device-motion-and-orientation-task-source">device motion and orientation task source</dfn>.</p>
    <h2 class="heading settled" data-level="6" id="api"><span class="secno">6. </span><span class="content">API</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="deviceorientation"><span class="secno">6.1. </span><span class="content">deviceorientation Event</span><a class="self-link" href="#deviceorientation"></a></h3>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window"><c- g>Window</c-></a> {
+<pre class="def highlight idl"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-window-ondeviceorientation" id="ref-for-dom-window-ondeviceorientation"><c- g>ondeviceorientation</c-></a>;
 };
 
@@ -1295,7 +1379,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export id="dom-deviceorientationevent-gamma"><code>gamma</code></dfn> attribute must return the value it was initialized to. It represents the rotation around the Y'' axis (produced after the rotation around the Z and X' axes have been applied in this order) in the Z - X' - Y'' intrinsic Tait-Bryan angles described in <a href="#device-orientation-model">§ 3.1 Device Orientation</a>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="attribute" data-export id="dom-deviceorientationevent-absolute"><code>absolute</code></dfn> attribute must return the value it was initialized to. It indicates whether <a data-link-type="dfn" href="#relative-device-orientation" id="ref-for-relative-device-orientation①">relative orientation</a> or <a data-link-type="dfn" href="#absolute-orientation" id="ref-for-absolute-orientation①">absolute orientation</a> data is being provided.</p>
    <div class="algorithm" data-algorithm="requestPermission(absolute)" data-algorithm-for="DeviceOrientationEvent">
-     The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="method" data-export data-lt="requestPermission(absolute)|requestPermission()" id="dom-deviceorientationevent-requestpermission"><code>requestPermission(<var>absolute</var>)</code></dfn> method steps are: 
+    
+The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceOrientationEvent" data-dfn-type="method" data-export data-lt="requestPermission(absolute)|requestPermission()" id="dom-deviceorientationevent-requestpermission"><code>requestPermission(<var>absolute</var>)</code></dfn> method steps are:
+
+
     <ol>
      <li data-md>
       <p>Let <var>global</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object">current global object</a>.</p>
@@ -1334,7 +1421,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
            <li data-md>
             <p>Set <var>permissionState</var> to "<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied">denied</a></code>".</p>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break" id="ref-for-iteration-break">Break</a>.</p>
+            <p><a data-link-type="dfn" href="https://drafts.csswg.org/css-break-4/#break" id="ref-for-break">Break</a>.</p>
           </ol>
         </ol>
        <li data-md>
@@ -1345,7 +1432,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     </ol>
    </div>
    <div class="algorithm" data-algorithm="fire an orientation event">
-     To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="fire-an-orientation-event">fire an orientation event</dfn> given a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①">DOMString</a></code> <var>event</var>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window①">Window</a></code> <var>window</var> and <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean③">boolean</a></code> <var>absolute</var>: 
+    
+To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="fire-an-orientation-event">fire an orientation event</dfn> given a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①">DOMString</a></code> <var>event</var>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window①">Window</a></code> <var>window</var> and <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean③">boolean</a></code> <var>absolute</var>:
+
+
     <ol>
      <li data-md>
       <p>Let <var>orientation</var> be null.</p>
@@ -1432,7 +1522,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="significant-change-in-orientation">significant change in orientation</dfn> indicates a difference in orientation values compared to the previous ones that warrants the firing of a <a class="idl-code" data-link-type="event" href="#def-deviceorientation" id="ref-for-def-deviceorientation③">deviceorientation</a> or <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute②">deviceorientationabsolute</a> event. The process of determining whether a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation">significant change in orientation</a> has occurred is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined①">implementation-defined</a>, though a maximum threshold for change of 1 degree is recommended. Implementations may also consider that it has occurred if they have reason to believe that the page does not have sufficiently fresh data.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Implementations must take <a href="#automation">§ 9 Automation</a> into account to determine whether a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation①">significant change in orientation</a> has occurred, so that a virtual sensor reading update causes it to be assessed.</p>
    <div class="algorithm" data-algorithm="deviceorientation firing steps">
-     Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation②">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window">active window</a> <var>window</var>: 
+    
+Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation②">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window">active window</a> <var>window</var>:
+
+
     <ol>
      <li data-md>
       <p>Let <var>document</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window">associated Document</a>.</p>
@@ -1462,15 +1555,20 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    </div>
    <p>If an implementation can never provide orientation information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑦">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑥">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑥">gamma</a></code> attributes set to null, and the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute②">absolute</a></code> attribute set to false.</p>
    <h3 class="heading settled" data-level="6.2" id="deviceorientationabsolute"><span class="secno">6.2. </span><span class="content">deviceorientationabsolute Event</span><a class="self-link" href="#deviceorientationabsolute"></a></h3>
-   <div class="issue" id="issue-4854fc01"><a class="self-link" href="#issue-4854fc01"></a> The <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute③">deviceorientationabsolute</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a></code> event handler IDL attribute are <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk③">at risk</a> due to <a href="https://wpt.fyi/results/orientation-event/idlharness.https.window.html">limited implementation experience</a>. </div>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window②"><c- g>Window</c-></a> {
+   <div class="issue" id="issue-4854fc01"><a class="self-link" href="#issue-4854fc01"></a>
+The <code class="idl"><a data-link-type="idl" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute③">deviceorientationabsolute</a></code> event and its <code class="idl"><a data-link-type="idl" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute">ondeviceorientationabsolute</a></code> event handler IDL attribute are <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk③">at risk</a> due to <a href="https://wpt.fyi/results/orientation-event/idlharness.https.window.html">limited implementation experience</a>.
+</div>
+<pre class="def highlight idl"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window②"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler①"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-window-ondeviceorientationabsolute" id="ref-for-dom-window-ondeviceorientationabsolute①"><c- g>ondeviceorientationabsolute</c-></a>;
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export id="dom-window-ondeviceorientationabsolute"><code>ondeviceorientationabsolute</code></dfn> attribute is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-idl-attributes" id="ref-for-event-handler-idl-attributes①">event handler IDL attribute</a> for the <code>ondeviceorientationabsolute</code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers" id="ref-for-event-handlers①">event handler</a>, whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type" id="ref-for-event-handler-event-type①">event handler event type</a> is <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="event" data-export id="def-deviceorientationabsolute"><code>deviceorientationabsolute</code></dfn>.</p>
    <p>A <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute④">deviceorientationabsolute</a> event is completely analogous to the <a class="idl-code" data-link-type="event" href="#def-deviceorientation" id="ref-for-def-deviceorientation⑤">deviceorientation</a> event, except that it must always provide <a data-link-type="dfn" href="#absolute-orientation" id="ref-for-absolute-orientation④">absolute orientation</a> data.</p>
    <div class="algorithm" data-algorithm="deviceorientationabsolute firing steps">
-     Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation③">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable①">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window①">active window</a> <var>window</var>: 
+    
+Whenever a <a data-link-type="dfn" href="#significant-change-in-orientation" id="ref-for-significant-change-in-orientation③">significant change in orientation</a> occurs, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable①">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window①">active window</a> <var>window</var>:
+
+
     <ol>
      <li data-md>
       <p><a data-link-type="dfn" href="#fire-an-orientation-event" id="ref-for-fire-an-orientation-event①">Fire an orientation event</a> with <a class="idl-code" data-link-type="event" href="#def-deviceorientationabsolute" id="ref-for-def-deviceorientationabsolute⑤">deviceorientationabsolute</a>, <var>window</var>, and true.</p>
@@ -1479,7 +1577,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>If an implementation can never provide absolute orientation information, the event should be fired with the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-alpha" id="ref-for-dom-deviceorientationevent-alpha⑧">alpha</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-beta" id="ref-for-dom-deviceorientationevent-beta⑦">beta</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-gamma" id="ref-for-dom-deviceorientationevent-gamma⑦">gamma</a></code> attributes set to null, and the <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute③">absolute</a></code> attribute set to true.</p>
    <h3 class="heading settled" data-level="6.3" id="devicemotion"><span class="secno">6.3. </span><span class="content">devicemotion Event</span><a class="self-link" href="#devicemotion"></a></h3>
    <h4 class="heading settled" data-level="6.3.1" id="device-motion-event-acceleration-api"><span class="secno">6.3.1. </span><span class="content">The DeviceMotionEventAcceleration interface</span><a class="self-link" href="#device-motion-event-acceleration-api"></a></h4>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext③"><c- g>SecureContext</c-></a>]
+<pre class="def highlight idl">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext③"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicemotioneventacceleration"><code><c- g>DeviceMotionEventAcceleration</c-></code></dfn> {
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-devicemotioneventacceleration-x" id="ref-for-dom-devicemotioneventacceleration-x"><c- g>x</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-devicemotioneventacceleration-y" id="ref-for-dom-devicemotioneventacceleration-y"><c- g>y</c-></a>;
@@ -1502,7 +1600,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEventAcceleration" data-dfn-type="attribute" data-export id="dom-devicemotioneventacceleration-y"><code>y</code></dfn> getter steps are to return the value of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③">this</a>’s <a data-link-type="dfn" href="#devicemotioneventacceleration-y-axis-acceleration" id="ref-for-devicemotioneventacceleration-y-axis-acceleration">y axis acceleration</a>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEventAcceleration" data-dfn-type="attribute" data-export id="dom-devicemotioneventacceleration-z"><code>z</code></dfn> getter steps are to return the value of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④">this</a>’s <a data-link-type="dfn" href="#devicemotioneventacceleration-z-axis-acceleration" id="ref-for-devicemotioneventacceleration-z-axis-acceleration">z axis acceleration</a>.</p>
    <h4 class="heading settled" data-level="6.3.2" id="device-motion-event-rotation-rate-api"><span class="secno">6.3.2. </span><span class="content">The DeviceMotionEventRotationRate interface</span><a class="self-link" href="#device-motion-event-rotation-rate-api"></a></h4>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext④"><c- g>SecureContext</c-></a>]
+<pre class="def highlight idl">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=<c- n>Window</c->, <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext④"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="devicemotioneventrotationrate"><code><c- g>DeviceMotionEventRotationRate</c-></code></dfn> {
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-devicemotioneventrotationrate-alpha" id="ref-for-dom-devicemotioneventrotationrate-alpha"><c- g>alpha</c-></a>;
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="double?" href="#dom-devicemotioneventrotationrate-beta" id="ref-for-dom-devicemotioneventrotationrate-beta"><c- g>beta</c-></a>;
@@ -1525,7 +1623,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEventRotationRate" data-dfn-type="attribute" data-export id="dom-devicemotioneventrotationrate-beta"><code>beta</code></dfn> getter steps are to return the value of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥">this</a>’s <a data-link-type="dfn" href="#devicemotioneventrotationrate-y-axis-rotation-rate" id="ref-for-devicemotioneventrotationrate-y-axis-rotation-rate">y axis rotation rate</a>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEventRotationRate" data-dfn-type="attribute" data-export id="dom-devicemotioneventrotationrate-gamma"><code>gamma</code></dfn> getter steps are to return the value of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a>’s <a data-link-type="dfn" href="#devicemotioneventrotationrate-z-axis-rotation-rate" id="ref-for-devicemotioneventrotationrate-z-axis-rotation-rate">z axis rotation rate</a>.</p>
    <h4 class="heading settled" data-level="6.3.3" id="device-motion-event-api"><span class="secno">6.3.3. </span><span class="content">The DeviceMotionEvent interface</span><a class="self-link" href="#device-motion-event-api"></a></h4>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window③"><c- g>Window</c-></a> {
+<pre class="def highlight idl"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window" id="ref-for-window③"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext⑤"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler②"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-window-ondevicemotion" id="ref-for-dom-window-ondevicemotion"><c- g>ondevicemotion</c-></a>;
 };
 
@@ -1565,7 +1663,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export id="dom-devicemotionevent-rotationrate"><code>rotationRate</code></dfn> attribute must return the value it was initialized to. When the object is created, this attribute must be initialized to null. It represents the device’s <a data-link-type="dfn" href="#rotation-rate" id="ref-for-rotation-rate②">rotation rate</a>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="attribute" data-export id="dom-devicemotionevent-interval"><code>interval</code></dfn> attribute must return the value it was initialized to. It represents the interval at which data is obtained from the underlying hardware and must be expressed in milliseconds (ms). It is constant to simplify filtering of the data by the Web application.</p>
    <div class="algorithm" data-algorithm="requestPermission()" data-algorithm-for="DeviceMotionEvent">
-     The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="method" data-export id="dom-devicemotionevent-requestpermission"><code>requestPermission()</code></dfn> method steps are: 
+    
+The <dfn class="dfn-paneled idl-code" data-dfn-for="DeviceMotionEvent" data-dfn-type="method" data-export id="dom-devicemotionevent-requestpermission"><code>requestPermission()</code></dfn> method steps are:
+
+
     <ol>
      <li data-md>
       <p>Let <var>global</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#current-global-object" id="ref-for-current-global-object①">current global object</a>.</p>
@@ -1602,7 +1703,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
            <li data-md>
             <p>Set <var>permissionState</var> to "<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/permissions/#dom-permissionstate-denied" id="ref-for-dom-permissionstate-denied①">denied</a></code>".</p>
            <li data-md>
-            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-break" id="ref-for-iteration-break①">Break</a>.</p>
+            <p><a data-link-type="dfn" href="https://drafts.csswg.org/css-break-4/#break" id="ref-for-break①">Break</a>.</p>
           </ol>
         </ol>
        <li data-md>
@@ -1613,7 +1714,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     </ol>
    </div>
    <div class="algorithm" data-algorithm="devicemotion firing steps">
-     At an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined②">implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable②">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window②">active window</a> <var>window</var>: 
+    
+At an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined②">implementation-defined</a> interval <var>interval</var>, the user agent must execute the following steps on a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#navigable" id="ref-for-navigable②">navigable</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window" id="ref-for-nav-window②">active window</a> <var>window</var>:
+
+
     <ol>
      <li data-md>
       <p>Let <var>document</var> be <var>window</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window①">associated Document</a>.</p>
@@ -1808,7 +1912,9 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <p>It is also important that the device’s orientation can be locked - a primary use case being someone who is interacting with a touch device, such as a phone, non-visually. They may have built up 'muscle memory' as to where elements are on the screen in a given orientation, and having the layout shift would break their ability to navigate. Again, this would most likely be done at the operating system level.</p>
    </ul>
    <h2 class="heading settled" data-level="9" id="automation"><span class="secno">9. </span><span class="content">Automation</span><a class="self-link" href="#automation"></a></h2>
-   <div class="issue" id="issue-4ccb1d30"><a class="self-link" href="#issue-4ccb1d30"></a> This feature is <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk④">at risk</a> due to limited implementation experience. </div>
+   <div class="issue" id="issue-4ccb1d30"><a class="self-link" href="#issue-4ccb1d30"></a>
+This feature is <a data-link-type="dfn" href="https://www.w3.org/policies/process/#at-risk" id="ref-for-at-risk④">at risk</a> due to limited implementation experience.
+</div>
    <p>This specification can pose a challenge to test authors, as the events defined here depend on the presence of physical hardware whose readings cannot be easily controlled.</p>
    <p>To address this challenge, this document builds upon the <a data-link-type="biblio" href="#biblio-webdriver2" title="WebDriver">[WEBDRIVER2]</a> <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands">extension commands</a> and infrastructure laid out by <a href="https://w3c.github.io/sensors/#automation"><cite>Generic Sensor API</cite> § 9 Automation</a>. This was chosen over the option of developing completely new and independent infrastructure with separate <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-extension-commands" id="ref-for-dfn-extension-commands①">extension commands</a> because there is significant overlap between the two specifications: not only does testing the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification present similar challenges, but many derived APIs (e.g. <a data-link-type="biblio" href="#biblio-gyroscope" title="Gyroscope">[GYROSCOPE]</a>) obtain and provide similar information.</p>
    <p>This specification only requires implementations to support the <a href="https://w3c.github.io/sensors/#automation"><cite>Generic Sensor API</cite> § 9 Automation</a> section of the <a data-link-type="biblio" href="#biblio-generic-sensor" title="Generic Sensor API">[GENERIC-SENSOR]</a> specification, not its interfaces and events.</p>
@@ -1818,7 +1924,10 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <p>Therefore, instead of requiring implementations (and automation users) to provide orientation readings via lower-level virtual sensors which use different units of measurement, this specification defines extra <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-type" id="ref-for-virtual-sensor-type">virtual sensor types</a> for relative and orientation data in the format used by this specification.</p>
    <h4 class="heading settled" data-level="9.1.1" id="parse-orientation-data-reading-algorithm"><span class="secno">9.1.1. </span><span class="content">Parse orientation reading data algorithm</span><a class="self-link" href="#parse-orientation-data-reading-algorithm"></a></h4>
    <div class="algorithm" data-algorithm="parse orientation data reading">
-     To perform the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="parse-orientation-data-reading">parse orientation data reading</dfn> algorithm, given a JSON <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code> <var>parameters</var>: 
+    
+To perform the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="parse-orientation-data-reading">parse orientation data reading</dfn> algorithm, given a JSON <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-objects" id="ref-for-sec-object-objects">Object</a></code> <var>parameters</var>:
+
+
     <ol>
      <li data-md>
       <p>Let <var>alpha</var> be the result of invoking <a data-link-type="dfn" href="https://w3c.github.io/webdriver/#dfn-getting-properties" id="ref-for-dfn-getting-properties">get a property</a> from <var>parameters</var> with "alpha".</p>
@@ -1898,31 +2007,52 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata" id="ref-for-virtual-sensor-metadata④">virtual sensor metadata</a> whose <a data-link-type="dfn" href="https://w3c.github.io/sensors/#virtual-sensor-metadata-reading-parsing-algorithm" id="ref-for-virtual-sensor-metadata-reading-parsing-algorithm④">reading parsing algorithm</a> is <a data-link-type="dfn" href="https://w3c.github.io/sensors/#parse-xyz-reading" id="ref-for-parse-xyz-reading②">parse xyz reading</a>.</p>
    </dl>
-   <h2 class="no-num heading settled" id="examples"><span class="content">A Examples</span><a class="self-link" href="#examples"></a></h2>
-    <em>This section is non-normative.</em> 
+   <h2 class="heading no-num settled" id="examples"><span class="content">A Examples</span><a class="self-link" href="#examples"></a></h2>
+   
+<em>This section is non-normative.</em>
+
+
    <h3 class="heading settled" id="worked-example"><span class="content">A.1 Calculating compass heading</span><a class="self-link" href="#worked-example"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>The following worked example is intended as an aid to users of the DeviceOrientation event.</p>
    <p><a href="#introduction">Introduction</a> section provided an example of using the DeviceOrientation event to obtain a compass heading when the device is held with the screen horizontal. This example shows how to determine the compass heading that the user is facing when holding the device with the screen approximately vertical in front of them. An application of this is an augmented-reality system.</p>
    <p>More precisely, we wish to determine the compass heading of the horizontal component of a vector which is orthogonal to the device’s screen and pointing out of the back of the screen.</p>
    <p>If v represents this vector in the rotated device body frame xyz, then v is as follows.</p>
-   <object class="equation" data="equation1.xhtml" type="application/mathml+xml"> <img alt="v = [0; 0; -1]" height="64" src="equation1.png" width="81"> </object>
+   <object class="equation" data="equation1.xhtml" type="application/mathml+xml">
+    <img alt="v = [0; 0; -1]" height="64" src="equation1.png" width="81">
+</object>
    <p>The transformation of v due to the rotation about the z axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation2.xhtml" type="application/mathml+xml"> <img alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]" height="71" src="equation2.png" width="203"> </object>
+   <object class="equation" data="equation2.xhtml" type="application/mathml+xml">
+    <img alt="Z = [cos(alpha) -sin(alpha) 0; sin(alpha) cos(alpha) 0; 0 0 1]" height="71" src="equation2.png" width="203">
+</object>
    <p>The transformation of v due to the rotation about the x axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation3.xhtml" type="application/mathml+xml"> <img alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]" height="72" src="equation3.png" width="203"> </object>
+   <object class="equation" data="equation3.xhtml" type="application/mathml+xml">
+    <img alt="X = [1 0 0; 0 cos(beta) -sin(beta); 0 sin(beta) cos(beta)]" height="72" src="equation3.png" width="203">
+</object>
    <p>The transformation of v due to the rotation about the y axis can be represented by the following rotation matrix.</p>
-   <object class="equation" data="equation4.xhtml" type="application/mathml+xml"> <img alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]" height="72" src="equation4.png" width="203"> </object>
+   <object class="equation" data="equation4.xhtml" type="application/mathml+xml">
+    <img alt="Y = [cos(gamma) 0 sin(gamma); 0 1 0; -sin(gamma) 0 cos(gamma)]" height="72" src="equation4.png" width="203">
+</object>
    <p>If R represents the full rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.</p>
-   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
+   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
+    <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763">
+</object>
    <p>If v' represents the vector v in the earth frame XYZ, then since the initial body frame is aligned with the earth, v' is as follows.</p>
-   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml"> <img alt="v&apos; = Rv" height="26" src="equation5a.png" width="62"> </object>
-   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml"> <img alt="v&apos; = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]" height="76" src="equation5e.png" width="332"> </object>
+   <object class="equation" data="equation5a.xhtml" type="application/mathml+xml">
+    <img alt="v&apos; = Rv" height="26" src="equation5a.png" width="62">
+</object>
+   <object class="equation" data="equation5e.xhtml" type="application/mathml+xml">
+    <img alt="v&apos; = [-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma); -sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma); -cos(beta)cos(gamma)]" height="76" src="equation5e.png" width="332">
+</object>
    <p>The compass heading θ is given by</p>
-   <object class="equation" data="equation6.xhtml" type="application/mathml+xml"> <img alt="theta = atan((v&apos;_x)/(v&apos;_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))" height="62" src="equation6.png" width="491"> </object>
+   <object class="equation" data="equation6.xhtml" type="application/mathml+xml">
+    <img alt="theta = atan((v&apos;_x)/(v&apos;_y)) = atan((-cos(alpha)sin(gamma)-sin(alpha)sin(beta)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)sin(beta)cos(gamma)))" height="62" src="equation6.png" width="491">
+</object>
    <p>provided that β and γ are not both zero.</p>
    <div class="example" id="example-cad08fa0">
-    <a class="self-link" href="#example-cad08fa0"></a> 
+    <a class="self-link" href="#example-cad08fa0"></a>
+
+
     <p>The compass heading calculation above can be represented in JavaScript as follows to return the correct compass heading when the provided parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute④">absolute</a></code> values.</p>
 <pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
@@ -1959,20 +2089,30 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
 </pre>
    </div>
    <p>As a consistency check, if we set γ = 0, then</p>
-   <object class="equation" data="equation7.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha" height="59" src="equation7.png" width="263"> </object>
+   <object class="equation" data="equation7.xhtml" type="application/mathml+xml">
+    <img alt="theta = atan(-sin(alpha)sin(beta)/cos(alpha)sin(beta)) = -alpha" height="59" src="equation7.png" width="263">
+</object>
    <p>as expected.</p>
    <p>Alternatively, if we set β = 90, then</p>
-   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml"> <img alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))" height="61" src="equation8a.png" width="327"> </object>
-   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml"> <img alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)" height="61" src="equation8b.png" width="288"> </object>
+   <object class="equation" data="equation8a.xhtml" type="application/mathml+xml">
+    <img alt="theta = atan((-cos(alpha)sin(gamma)-sin(alpha)cos(gamma))/(-sin(alpha)sin(gamma)+cos(alpha)cos(gamma)))" height="61" src="equation8a.png" width="327">
+</object>
+   <object class="equation" data="equation8b.xhtml" type="application/mathml+xml">
+    <img alt="theta = atan(-sin(alpha+gamma)/cos(alpha+gamma)) = -(alpha+gamma)" height="61" src="equation8b.png" width="288">
+</object>
    <p>as expected.</p>
    <h3 class="heading settled" id="worked-example-2"><span class="content">A.2 Alternate device orientation representations</span><a class="self-link" href="#worked-example-2"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>Describing orientation using Tait-Bryan angles can have some disadvantages such as introducing gimbal lock <a data-link-type="biblio" href="#biblio-gimballock" title="Gimbal Lock">[GIMBALLOCK]</a>. Depending on the intended application it can be useful to convert the Device Orientation values to other rotation representations.</p>
    <p>The first alternate orientation representation uses rotation matrices. By combining the component rotation matrices provided in the <a href="#worked-example">worked example</a> above we can represent the orientation of the device body frame as a combined rotation matrix.</p>
    <p>If R represents the rotation matrix of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, R is as follows.</p>
-   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml"> <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763"> </object>
+   <object class="equation" data="equation13a.xhtml" type="application/mathml+xml">
+    <img alt="R = ZXY = [[cos(alpha) cos(gamma)-sin(alpha) sin(beta) sin(gamma), -cos(beta) sin(alpha), cos(gamma) sin(alpha) sin(beta)+cos(alpha) sin(gamma)], [cos(gamma) sin(alpha)+cos(alpha) sin(beta) sin(gamma), cos(alpha) cos(beta), sin(alpha) sin(gamma)-cos(alpha) cos(gamma) sin(beta)], [-cos(beta) sin(gamma), sin(beta), cos(beta) cos(gamma)]]" height="76" src="equation13a.png" width="763">
+</object>
    <div class="example" id="example-76d62ad0">
-    <a class="self-link" href="#example-76d62ad0"></a> The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑤">absolute</a></code> values. 
+    <a class="self-link" href="#example-76d62ad0"></a>
+The above combined rotation matrix can be represented in JavaScript as follows provided passed parameters are defined, not null and represent <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑤">absolute</a></code> values.
+
 <pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getRotationMatrix<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
@@ -2015,9 +2155,13 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    </div>
    <p>Another alternate representation of device orientation data is as Quaternions. <a data-link-type="biblio" href="#biblio-quaternions" title="Quaternions">[QUATERNIONS]</a></p>
    <p>If q represents the unit quaternion of the device in the earth frame XYZ, then since the initial body frame is aligned with the earth, q is as follows.</p>
-   <object class="equation" data="equation14.xhtml" type="application/mathml+xml"> <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" height="192" src="equation14.png" width="534"> </object>
+   <object class="equation" data="equation14.xhtml" type="application/mathml+xml">
+    <img alt="q = [[q_w], [q_x], [q_y], [q_z]] = [[cos(beta)cos(gamma)cos(alpha) - sin(beta)sin(gamma)sin(alpha)], [sin(beta)cos(gamma)cos(alpha) - cos(beta)sin(gamma)sin(alpha)], [cos(beta)sin(gamma)cos(alpha) + sin(beta)cos(gamma)sin(alpha)], [cos(beta)cos(gamma)sin(alpha) + sin(beta)sin(gamma)cos(alpha)]]" height="192" src="equation14.png" width="534">
+</object>
    <div class="example" id="example-8f884833">
-    <a class="self-link" href="#example-8f884833"></a> The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑥">absolute</a></code> values and those parameters are not null. 
+    <a class="self-link" href="#example-8f884833"></a>
+The above quaternion can be represented in JavaScript as follows provided the passed parameters are defined, are <code class="idl"><a data-link-type="idl" href="#dom-deviceorientationevent-absolute" id="ref-for-dom-deviceorientationevent-absolute⑥">absolute</a></code> values and those parameters are not null.
+
 <pre class="highlight lang-javascript"><c- a>var</c-> degtorad <c- o>=</c-> Math<c- p>.</c->PI <c- o>/</c-> <c- mf>180</c-><c- p>;</c-> <c- c1>// Degree-to-Radian conversion</c->
 
 <c- a>function</c-> getQuaternion<c- p>(</c-> alpha<c- p>,</c-> beta<c- p>,</c-> gamma <c- p>)</c-> <c- p>{</c->
@@ -2048,9 +2192,11 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
 </pre>
    </div>
    <p>We can check that a Unit Quaternion has been constructed correctly using Lagrange’s four-square theorem</p>
-   <object class="equation" data="equation18.xhtml" type="application/mathml+xml"> <img alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1" height="28" src="equation18.png" width="164"> </object>
+   <object class="equation" data="equation18.xhtml" type="application/mathml+xml">
+    <img alt="q_w^2 * q_x^2 * q_y^2 * q_z^2 = 1" height="28" src="equation18.png" width="164">
+</object>
    <p>as expected.</p>
-   <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
+   <h2 class="heading no-num settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
    <p>The Device Orientation and Motion specification, originally published as a Candidate Recommendation in August 2016 under the title <cite>DeviceOrientation Event Specification</cite>, was initially developed by the <a href="https://www.w3.org/2008/geolocation/">Geolocation Working Group</a>. After the group was closed in 2017, the specification was temporarily retired. Revitalized in 2019 by the <a href="https://www.w3.org/groups/wg/das/">Devices and Sensors Working Group</a>, this document has undergone significant enhancements including improvements in interoperability, test automation, privacy, and editorial content (see <a href="#changes">§ 10 Changes</a> section).</p>
    <p>In 2024, the Devices and Sensors Working Group partnered with the <a href="https://www.w3.org/groups/wg/webapps/">Web Applications Working Group</a>, making this a joint deliverable and continuing the advancement of the specification. The initial design discussions are preserved not in this GitHub repository but can be explored through the <a href="https://lists.w3.org/Archives/Public/public-geolocation/">Geolocation Working Group’s mailing list archives</a>.</p>
    <p>The W3C acknowledges Lars Erik Bolstad, Dean Jackson, Claes Nilsson, George Percivall, Doug Turner, Matt Womer, and Chris Dumez for their contributions.</p>
@@ -2118,8 +2264,8 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    </ul>
   </main>
   <div data-fill-with="conformance">
-   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="heading no-num no-ref settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
    <p>Conformance requirements are expressed
     with a combination of descriptive assertions
     and RFC 2119 terminology.
@@ -2127,42 +2273,55 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
    <section>
-    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <h3 class="heading no-num no-ref settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
     <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
+    used in introducing the algorithm.
+
+    </p>
     <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
+    Implementers are encouraged to optimize.
+</p>
    </section>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
-  <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li>
     absolute
@@ -2302,7 +2461,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <li><a href="#devicemotioneventacceleration-z-axis-acceleration">z axis acceleration</a><span>, in § 6.3.1</span>
    <li><a href="#devicemotioneventrotationrate-z-axis-rotation-rate">z axis rotation rate</a><span>, in § 6.3.2</span>
   </ul>
-  <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[]</a> defines the following terms:
@@ -2313,6 +2472,11 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     <a data-link-type="biblio">[ACCELEROMETER]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="7892f569">device coordinate system</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[CSS-BREAK-4]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="ef21c66f">break</span>
     </ul>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
@@ -2343,8 +2507,8 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <li>
     <a data-link-type="biblio">[GEOMETRY-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="8bdfc206">rotate()</span>
-     <li><span class="dfn-paneled" id="78578e0a">rotateSelf()</span>
+     <li><span class="dfn-paneled" id="6f8b21ad">rotate()</span>
+     <li><span class="dfn-paneled" id="7f44c884">rotateSelf()</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
@@ -2380,7 +2544,6 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
     <ul>
      <li><span class="dfn-paneled" id="53275e46">append <small>(for list)</small></span>
      <li><span class="dfn-paneled" id="a3b18719">append <small>(for set)</small></span>
-     <li><span class="dfn-paneled" id="7b0d918d">break</span>
      <li><span class="dfn-paneled" id="a326add7">contain</span>
      <li><span class="dfn-paneled" id="8958b003">entry</span>
      <li><span class="dfn-paneled" id="16d07e10">for each</span>
@@ -2447,11 +2610,13 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
      <li><span class="dfn-paneled" id="4013a022">this</span>
     </ul>
   </ul>
-  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-accelerometer">[ACCELEROMETER]
    <dd>Anssi Kostiainen. <a href="https://w3c.github.io/accelerometer/"><cite>Accelerometer</cite></a>. URL: <a href="https://w3c.github.io/accelerometer/">https://w3c.github.io/accelerometer/</a>
+   <dt id="biblio-css-break-4">[CSS-BREAK-4]
+   <dd>Rossen Atanassov; Elika Etemad. <a href="https://drafts.csswg.org/css-break-4/"><cite>CSS Fragmentation Module Level 4</cite></a>. URL: <a href="https://drafts.csswg.org/css-break-4/">https://drafts.csswg.org/css-break-4/</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-ecmascript">[ECMASCRIPT]
@@ -2467,17 +2632,17 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <dt id="biblio-permissions">[PERMISSIONS]
    <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
    <dt id="biblio-permissions-policy-1">[PERMISSIONS-POLICY-1]
-   <dd>Ian Clelland. <a href="https://w3c.github.io/webappsec-permissions-policy/"><cite>Permissions Policy</cite></a>. URL: <a href="https://w3c.github.io/webappsec-permissions-policy/">https://w3c.github.io/webappsec-permissions-policy/</a>
+   <dd>Ian Clelland; Ari Chivukula. <a href="https://w3c.github.io/webappsec-permissions-policy/"><cite>Permissions Policy</cite></a>. URL: <a href="https://w3c.github.io/webappsec-permissions-policy/">https://w3c.github.io/webappsec-permissions-policy/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-w3c-process">[W3C-PROCESS]
-   <dd>Elika J. Etemad (fantasai); Florian Rivoal. <a href="https://www.w3.org/policies/process/"><cite>W3C Process Document</cite></a>. 3 November 2023. URL: <a href="https://www.w3.org/policies/process/">https://www.w3.org/policies/process/</a>
+   <dd>Elika J. Etemad (fantasai); Florian Rivoal. <a href="https://www.w3.org/policies/process/"><cite>W3C Process Document</cite></a>. 18 August 2025. URL: <a href="https://www.w3.org/policies/process/">https://www.w3.org/policies/process/</a>
    <dt id="biblio-webdriver2">[WEBDRIVER2]
    <dd>Simon Stewart; David Burns. <a href="https://w3c.github.io/webdriver/"><cite>WebDriver</cite></a>. URL: <a href="https://w3c.github.io/webdriver/">https://w3c.github.io/webdriver/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
-  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Non-Normative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-css-transforms-2">[CSS-TRANSFORMS-2]
    <dd>Tab Atkins Jr.; et al. <a href="https://drafts.csswg.org/css-transforms-2/"><cite>CSS Transforms Module Level 2</cite></a>. URL: <a href="https://drafts.csswg.org/css-transforms-2/">https://drafts.csswg.org/css-transforms-2/</a>
@@ -2488,7 +2653,7 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <dt id="biblio-g-force">[G-FORCE]
    <dd><a href="https://en.wikipedia.org/wiki/G-force"><cite>G-Force</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/G-force">https://en.wikipedia.org/wiki/G-force</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Chris Harrelson. <a href="https://drafts.fxtf.org/geometry/"><cite>Geometry Interfaces Module Level 1</cite></a>. URL: <a href="https://drafts.fxtf.org/geometry/">https://drafts.fxtf.org/geometry/</a>
+   <dd>Sebastian Zartner; Yehonatan Daniv. <a href="https://drafts.csswg.org/geometry/"><cite>Geometry Interfaces Module Level 1</cite></a>. URL: <a href="https://drafts.csswg.org/geometry/">https://drafts.csswg.org/geometry/</a>
    <dt id="biblio-gimballock">[GIMBALLOCK]
    <dd><a href="https://en.wikipedia.org/wiki/Gimbal_Lock"><cite>Gimbal Lock</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Gimbal_Lock">https://en.wikipedia.org/wiki/Gimbal_Lock</a>
    <dt id="biblio-gyroscope">[GYROSCOPE]
@@ -2502,14 +2667,14 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
    <dt id="biblio-quaternions">[QUATERNIONS]
    <dd><a href="https://en.wikipedia.org/wiki/Quaternion"><cite>Quaternions</cite></a>. URL: <a href="https://en.wikipedia.org/wiki/Quaternion">https://en.wikipedia.org/wiki/Quaternion</a>
    <dt id="biblio-screen-orientation">[SCREEN-ORIENTATION]
-   <dd>Marcos Caceres. <a href="https://w3c.github.io/screen-orientation/"><cite>Screen Orientation</cite></a>. URL: <a href="https://w3c.github.io/screen-orientation/">https://w3c.github.io/screen-orientation/</a>
+   <dd>Marcos Caceres; Léonie Watson. <a href="https://w3c.github.io/screen-orientation/"><cite>Screen Orientation</cite></a>. URL: <a href="https://w3c.github.io/screen-orientation/">https://w3c.github.io/screen-orientation/</a>
    <dt id="biblio-sensorid">[SENSORID]
    <dd>Zhang, Jiexin; Beresford, Alastair R.; Sheret, Ian. <a href="https://doi.org/10.1109/SP.2019.00072"><cite>SensorID: Sensor Calibration Fingerprinting for Smartphones</cite></a>. 2019. URL: <a href="https://doi.org/10.1109/SP.2019.00072">https://doi.org/10.1109/SP.2019.00072</a>
    <dt id="biblio-touch">[TOUCH]
    <dd><a href="https://arxiv.org/abs/1602.04115"><cite>TouchSignatures: Identification of User Touch Actions and PINs Based on Mobile Sensor Data via JavaScript</cite></a>. 12 Feb 2016. URL: <a href="https://arxiv.org/abs/1602.04115">https://arxiv.org/abs/1602.04115</a>
   </dl>
-  <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
+  <h2 class="heading no-num no-ref settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
+<pre class="def highlight idl"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window"><c- g>Window</c-></a> {
     [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>] <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-window-ondeviceorientation"><c- g>ondeviceorientation</c-></a>;
 };
 
@@ -2584,396 +2749,74 @@ Additionally, <code class="idl"><a data-link-type="idl" href="https://drafts.fxt
 };
 
 </pre>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotionevent-devicemotionevent">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotionevent-devicemotionevent" data-mdn="v1|API/DeviceMotionEvent/DeviceMotionEvent||29,-,59,@!,79,14,-,@!,@-,@!,@!,@!,@!,">
    <summary><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/DeviceMotionEvent" title="The DeviceMotionEvent() constructor creates a new DeviceMotionEvent object.">DeviceMotionEvent/DeviceMotionEvent</a></p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>29+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-acceleration③">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-acceleration③" data-mdn="v1|API/DeviceMotionEvent/acceleration|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/acceleration" title="The acceleration property returns the amount of acceleration recorded by the device, in meters per second squared (m/s²). The acceleration value does not include the effect of the gravity force, in contrast to DeviceMotionEvent.accelerationIncludingGravity.">DeviceMotionEvent/acceleration</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-accelerationincludinggravity④">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-accelerationincludinggravity④" data-mdn="v1|API/DeviceMotionEvent/accelerationIncludingGravity|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/accelerationIncludingGravity" title="The accelerationIncludingGravity property returns the amount of acceleration recorded by the device, in meters per second squared (m/s²). Unlike DeviceMotionEvent.acceleration which compensates for the influence of gravity, its value is the sum of the acceleration of the device as induced by the user and an acceleration equal and opposite to that caused by gravity. In other words, it measures the g-force. In practice, this value represents the raw data measured by an accelerometer.">DeviceMotionEvent/accelerationIncludingGravity</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-interval①">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-interval①" data-mdn="v1|API/DeviceMotionEvent/interval|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/interval" title="The DeviceMotionEvent.interval property returns the interval, in milliseconds, at which data is obtained from the underlying hardware. You can use this to determine the granularity of motion events.">DeviceMotionEvent/interval</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-rotationrate②">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-devicemotionevent-rotationrate②" data-mdn="v1|API/DeviceMotionEvent/rotationRate|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent/rotationRate" title="The DeviceMotionEvent.rotationRate read-only property returns the rate at which the device is rotating around each of its axes in degrees per second.">DeviceMotionEvent/rotationRate</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="devicemotion">
+  <details class="mdn-anno unpositioned" data-anno-for="devicemotion" data-mdn="v1|API/DeviceMotionEvent|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,~API/Window/devicemotion_event|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent" title="The DeviceMotionEvent interface provides web developers with information about the speed of changes for the device&apos;s position and orientation.">DeviceMotionEvent</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event" title="The devicemotion event is fired at a regular interval and indicates the amount of physical force of acceleration the device is receiving at that time. It also provides information about the rate of rotation, if available.">Window/devicemotion_event</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-x">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-x" data-mdn="v1|API/DeviceMotionEventAcceleration/x|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/x" title="The DeviceMotionEventAcceleration.x read-only property indicates the amount of acceleration that occurred along the X axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/x</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-y">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-y" data-mdn="v1|API/DeviceMotionEventAcceleration/y|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/y" title="The DeviceMotionEventAcceleration.x read-only property indicates the amount of acceleration that occurred along the Y axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/y</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-z">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventacceleration-z" data-mdn="v1|API/DeviceMotionEventAcceleration/z|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration/z" title="The DeviceMotionEventAcceleration.x read-only property indicates the amount of acceleration that occurred along the Z axis in a DeviceMotionEventAcceleration object.">DeviceMotionEventAcceleration/z</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="devicemotioneventacceleration">
+  <details class="mdn-anno unpositioned" data-anno-for="devicemotioneventacceleration" data-mdn="v1|API/DeviceMotionEventAcceleration|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventAcceleration" title="The DeviceMotionEventAcceleration object provides information about the amount of acceleration the device is experiencing along all three axes.">DeviceMotionEventAcceleration</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-alpha">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-alpha" data-mdn="v1|API/DeviceMotionEventRotationRate/alpha|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/alpha" title="The DeviceMotionEventRotationRate.alpha read-only property indicates the rate of rotation around the Z axis, in degrees per second.">DeviceMotionEventRotationRate/alpha</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-beta">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-beta" data-mdn="v1|API/DeviceMotionEventRotationRate/beta|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/beta" title="The DeviceMotionEventRotationRate.alpha read-only property indicates the rate of rotation around the X axis, in degrees per second.">DeviceMotionEventRotationRate/beta</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-gamma">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-devicemotioneventrotationrate-gamma" data-mdn="v1|API/DeviceMotionEventRotationRate/gamma|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate/gamma" title="This property indicates the rate of rotation around the Y axis, in degrees per second.">DeviceMotionEventRotationRate/gamma</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="devicemotioneventrotationrate">
+  <details class="mdn-anno unpositioned" data-anno-for="devicemotioneventrotationrate" data-mdn="v1|API/DeviceMotionEventRotationRate|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEventRotationRate" title="A DeviceMotionEventRotationRate object provides information about the rate at which the device is rotating around all three axes.">DeviceMotionEventRotationRate</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-deviceorientationevent-deviceorientationevent">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-deviceorientationevent-deviceorientationevent" data-mdn="v1|API/DeviceOrientationEvent/DeviceOrientationEvent||17,-,59,@!,79,14,-,@!,@-,@!,@!,@!,@!,">
    <summary><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/DeviceOrientationEvent" title="The DeviceOrientationEvent() constructor creates a new DeviceOrientationEvent object.">DeviceOrientationEvent/DeviceOrientationEvent</a></p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>17+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>59+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>14+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-absolute">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-absolute" data-mdn="v1|API/DeviceOrientationEvent/absolute||6,-,7,@!,79,12,=11,@!,@-,@!,@!,@!,@!,">
    <summary><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/absolute" title="Indicates whether or not the device is providing orientation data absolutely (that is, in reference to the Earth&apos;s coordinate frame) or using some arbitrary frame determined by the device. See Orientation and motion data explained for details.">DeviceOrientationEvent/absolute</a></p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-alpha③">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-alpha③" data-mdn="v1|API/DeviceOrientationEvent/alpha|9|6,-,7,@!,79,12,=11,@!,4.2,@!,3,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/alpha" title="Returns the rotation of the device around the Z axis; that is, the number of degrees by which the device is being twisted around the center of the screen. See Orientation and motion data explained for details.">DeviceOrientationEvent/alpha</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-beta②">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-beta②" data-mdn="v1|API/DeviceOrientationEvent/beta|9|6,-,7,@!,79,12,=11,@!,4.2,@!,3,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/beta" title="Returns the rotation of the device around the X axis; that is, the number of degrees, ranged between -180 and 180, by which the device is tipped forward or backward. See Orientation and motion data explained for details.">DeviceOrientationEvent/beta</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-gamma②">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-deviceorientationevent-gamma②" data-mdn="v1|API/DeviceOrientationEvent/gamma|9|6,-,7,@!,79,12,=11,@!,4.2,@!,3,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/gamma" title="Returns the rotation of the device around the Y axis; that is, the number of degrees, ranged between -90 and 90, by which the device is tilted left or right. See Orientation and motion data explained for details.">DeviceOrientationEvent/gamma</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="deviceorientation">
+  <details class="mdn-anno unpositioned" data-anno-for="deviceorientation" data-mdn="v1|API/DeviceOrientationEvent|9|6,-,7,15,79,12,=11,@!,4.2,@!,3,1.0,14,~API/Window/deviceorientation_event|9|6,-,7,12,79,12,=11,@!,4.2,@!,3,@!,12,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent" title="The DeviceOrientationEvent object provides web developers with information from the physical orientation of the device running the web page.">DeviceOrientationEvent</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>15+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>1.0+</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>14+</span></span>
-    </div>
-   </div>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientation_event" title="The deviceorientation event is fired when fresh data is available from an orientation sensor about the current orientation of the device as compared to the Earth coordinate frame. This data is gathered from a magnetometer inside the device.">Window/deviceorientation_event</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>12+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-window-ondevicemotion">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-window-ondevicemotion" data-mdn="v1|API/Window/devicemotion_event|9|6,-,31,@!,79,12,=11,@!,4.2,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event" title="The devicemotion event is fired at a regular interval and indicates the amount of physical force of acceleration the device is receiving at that time. It also provides information about the rate of rotation, if available.">Window/devicemotion_event</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>31+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-window-ondeviceorientation">
+  <details class="mdn-anno unpositioned" data-anno-for="ref-for-dom-window-ondeviceorientation" data-mdn="v1|API/Window/deviceorientation_event|9|6,-,7,12,79,12,=11,@!,4.2,@!,3,@!,12,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientation_event" title="The deviceorientation event is fired when fresh data is available from an orientation sensor about the current orientation of the device as compared to the Earth coordinate frame. This data is gathered from a magnetometer inside the device.">Window/deviceorientation_event</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>6+</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>7+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>12+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>11</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>4.2+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>3+</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>12+</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-window-ondeviceorientationabsolute">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-window-ondeviceorientationabsolute" data-mdn="v1|API/Window/deviceorientationabsolute_event|1|-,-,50,@!,79,@?,-,@-,@-,@!,@!,@!,@!,">
    <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientationabsolute_event" title="The deviceorientationabsolute event is sent to the ondeviceorientationabsolute event handler on a Window event when absolute device orientation changes.">Window/deviceorientationabsolute_event</a></p>
-    <p class="less-than-two-engines-text">In only one current engine.</p>
-    <div class="support">
-     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>50+</span></span>
-     <hr>
-     <span class="opera no"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
 <script>/* Boilerplate: script-dom-helper */
 "use strict";
@@ -3216,17 +3059,16 @@ let dfnPanelData = {
 "6a5a59a0": {"dfnID":"6a5a59a0","dfnText":"event handler","external":true,"refSections":[{"refs":[{"id":"ref-for-event-handlers"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-event-handlers\u2460"}],"title":"6.2. deviceorientationabsolute Event"},{"refs":[{"id":"ref-for-event-handlers\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers"},
 "6c2d7879": {"dfnID":"6c2d7879","dfnText":"powerful feature","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-powerful-feature"}],"title":"4. Permissions"}],"url":"https://w3c.github.io/permissions/#dfn-powerful-feature"},
 "6c3bee60": {"dfnID":"6c3bee60","dfnText":"PermissionState","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-permissionstate"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-dom-permissionstate\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://w3c.github.io/permissions/#dom-permissionstate"},
+"6f8b21ad": {"dfnID":"6f8b21ad","dfnText":"rotate()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-dommatrixreadonly-rotate"}],"title":"3.1. Device Orientation"}],"url":"https://drafts.csswg.org/geometry-1/#dom-dommatrixreadonly-rotate"},
 "7235f1d9": {"dfnID":"7235f1d9","dfnText":"Earth's reference coordinate system","external":true,"refSections":[{"refs":[{"id":"ref-for-earths-reference-coordinate-system"}],"title":"3.1.1. Choice of reference coordinate system"}],"url":"https://w3c.github.io/orientation-sensor/#earths-reference-coordinate-system"},
-"78578e0a": {"dfnID":"78578e0a","dfnText":"rotateSelf()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-dommatrix-rotateself"}],"title":"3.1. Device Orientation"}],"url":"https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself"},
 "7892f569": {"dfnID":"7892f569","dfnText":"device coordinate system","external":true,"refSections":[{"refs":[{"id":"ref-for-device-coordinate-system"}],"title":"3.1. Device Orientation"},{"refs":[{"id":"ref-for-device-coordinate-system\u2460"},{"id":"ref-for-device-coordinate-system\u2461"}],"title":"3.2. Device Motion"}],"url":"https://w3c.github.io/accelerometer/#device-coordinate-system"},
-"7b0d918d": {"dfnID":"7b0d918d","dfnText":"break","external":true,"refSections":[{"refs":[{"id":"ref-for-iteration-break"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-iteration-break\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://infra.spec.whatwg.org/#iteration-break"},
+"7f44c884": {"dfnID":"7f44c884","dfnText":"rotateSelf()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-dommatrix-rotateself"}],"title":"3.1. Device Orientation"}],"url":"https://drafts.csswg.org/geometry-1/#dom-dommatrix-rotateself"},
 "802b0fdd": {"dfnID":"802b0fdd","dfnText":"value","external":true,"refSections":[{"refs":[{"id":"ref-for-map-value"}],"title":"9.1.2. The \"absolute-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-map-value\u2460"}],"title":"9.1.3. The \"relative-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-map-value\u2461"}],"title":"9.2.1. The \"accelerometer\" virtual sensor type"},{"refs":[{"id":"ref-for-map-value\u2462"}],"title":"9.2.2. The \"linear-acceleration\" virtual sensor type"},{"refs":[{"id":"ref-for-map-value\u2463"}],"title":"9.2.3. The \"gyroscope\" virtual sensor type"}],"url":"https://infra.spec.whatwg.org/#map-value"},
 "84b454ff": {"dfnID":"84b454ff","dfnText":"ordered map","external":true,"refSections":[{"refs":[{"id":"ref-for-ordered-map"},{"id":"ref-for-ordered-map\u2460"}],"title":"9.1.1. Parse orientation reading data algorithm"},{"refs":[{"id":"ref-for-ordered-map\u2461"}],"title":"9.1.2. The \"absolute-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-ordered-map\u2462"}],"title":"9.1.3. The \"relative-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-ordered-map\u2463"}],"title":"9.2.1. The \"accelerometer\" virtual sensor type"},{"refs":[{"id":"ref-for-ordered-map\u2464"}],"title":"9.2.2. The \"linear-acceleration\" virtual sensor type"},{"refs":[{"id":"ref-for-ordered-map\u2465"}],"title":"9.2.3. The \"gyroscope\" virtual sensor type"}],"url":"https://infra.spec.whatwg.org/#ordered-map"},
 "860300d4": {"dfnID":"860300d4","dfnText":"implementation-defined","external":true,"refSections":[{"refs":[{"id":"ref-for-implementation-defined"}],"title":"3.1. Device Orientation"},{"refs":[{"id":"ref-for-implementation-defined\u2460"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-implementation-defined\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://infra.spec.whatwg.org/#implementation-defined"},
 "8855a9aa": {"dfnID":"8855a9aa","dfnText":"DOMString","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMString"},{"id":"ref-for-idl-DOMString\u2460"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-idl-DOMString\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMString"},
 "889e932f": {"dfnID":"889e932f","dfnText":"Exposed","external":true,"refSections":[{"refs":[{"id":"ref-for-Exposed"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-Exposed\u2460"}],"title":"6.3.1. The DeviceMotionEventAcceleration interface"},{"refs":[{"id":"ref-for-Exposed\u2461"}],"title":"6.3.2. The DeviceMotionEventRotationRate interface"},{"refs":[{"id":"ref-for-Exposed\u2462"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://webidl.spec.whatwg.org/#Exposed"},
 "8958b003": {"dfnID":"8958b003","dfnText":"entry","external":true,"refSections":[{"refs":[{"id":"ref-for-map-entry"}],"title":"9.1.2. The \"absolute-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-map-entry\u2460"}],"title":"9.1.3. The \"relative-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-map-entry\u2461"}],"title":"9.2.1. The \"accelerometer\" virtual sensor type"},{"refs":[{"id":"ref-for-map-entry\u2462"}],"title":"9.2.2. The \"linear-acceleration\" virtual sensor type"},{"refs":[{"id":"ref-for-map-entry\u2463"}],"title":"9.2.3. The \"gyroscope\" virtual sensor type"}],"url":"https://infra.spec.whatwg.org/#map-entry"},
-"8bdfc206": {"dfnID":"8bdfc206","dfnText":"rotate()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-dommatrixreadonly-rotate"}],"title":"3.1. Device Orientation"}],"url":"https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate"},
 "8c800cdf": {"dfnID":"8c800cdf","dfnText":"double","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-double"},{"id":"ref-for-idl-double\u2460"},{"id":"ref-for-idl-double\u2461"},{"id":"ref-for-idl-double\u2462"},{"id":"ref-for-idl-double\u2463"},{"id":"ref-for-idl-double\u2464"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-idl-double\u2465"},{"id":"ref-for-idl-double\u2466"},{"id":"ref-for-idl-double\u2467"}],"title":"6.3.1. The DeviceMotionEventAcceleration interface"},{"refs":[{"id":"ref-for-idl-double\u2468"},{"id":"ref-for-idl-double\u2460\u24ea"},{"id":"ref-for-idl-double\u2460\u2460"}],"title":"6.3.2. The DeviceMotionEventRotationRate interface"},{"refs":[{"id":"ref-for-idl-double\u2460\u2461"},{"id":"ref-for-idl-double\u2460\u2462"},{"id":"ref-for-idl-double\u2460\u2463"},{"id":"ref-for-idl-double\u2460\u2464"},{"id":"ref-for-idl-double\u2460\u2465"},{"id":"ref-for-idl-double\u2460\u2466"},{"id":"ref-for-idl-double\u2460\u2467"},{"id":"ref-for-idl-double\u2460\u2468"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://webidl.spec.whatwg.org/#idl-double"},
 "91748ad6": {"dfnID":"91748ad6","dfnText":"default allowlists","external":true,"refSections":[{"refs":[{"id":"ref-for-policy-controlled-feature-default-allowlist"},{"id":"ref-for-policy-controlled-feature-default-allowlist\u2460"},{"id":"ref-for-policy-controlled-feature-default-allowlist\u2461"},{"id":"ref-for-policy-controlled-feature-default-allowlist\u2462"}],"title":"4. Permissions"}],"url":"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist"},
 "9c19b7fc": {"dfnID":"9c19b7fc","dfnText":"navigable","external":true,"refSections":[{"refs":[{"id":"ref-for-navigable"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-navigable\u2460"}],"title":"6.2. deviceorientationabsolute Event"},{"refs":[{"id":"ref-for-navigable\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-navigable\u2462"},{"id":"ref-for-navigable\u2463"}],"title":"7. Security and privacy considerations"}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#navigable"},
@@ -3322,6 +3164,7 @@ let dfnPanelData = {
 "dom-window-ondeviceorientationabsolute": {"dfnID":"dom-window-ondeviceorientationabsolute","dfnText":"ondeviceorientationabsolute","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-window-ondeviceorientationabsolute"},{"id":"ref-for-dom-window-ondeviceorientationabsolute\u2460"}],"title":"6.2. deviceorientationabsolute Event"}],"url":"#dom-window-ondeviceorientationabsolute"},
 "e270bd2a": {"dfnID":"e270bd2a","dfnText":"task","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-task"}],"title":"5. Task Source"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-task"},
 "e99bd18e": {"dfnID":"e99bd18e","dfnText":"relevant global object","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-relevant-global"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-concept-relevant-global\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global"},
+"ef21c66f": {"dfnID":"ef21c66f","dfnText":"break","external":true,"refSections":[{"refs":[{"id":"ref-for-break"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-break\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://drafts.csswg.org/css-break-4/#break"},
 "f0951476": {"dfnID":"f0951476","dfnText":"EventHandler","external":true,"refSections":[{"refs":[{"id":"ref-for-eventhandler"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-eventhandler\u2460"}],"title":"6.2. deviceorientationabsolute Event"},{"refs":[{"id":"ref-for-eventhandler\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"},
 "f0a32052": {"dfnID":"f0a32052","dfnText":"can provide readings flag","external":true,"refSections":[{"refs":[{"id":"ref-for-virtual-sensor-can-provide-readings-flag"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-virtual-sensor-can-provide-readings-flag\u2460"},{"id":"ref-for-virtual-sensor-can-provide-readings-flag\u2461"},{"id":"ref-for-virtual-sensor-can-provide-readings-flag\u2462"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://w3c.github.io/sensors/#virtual-sensor-can-provide-readings-flag"},
 "f23dc013": {"dfnID":"f23dc013","dfnText":"child navigable","external":true,"refSections":[{"refs":[{"id":"ref-for-child-navigable"}],"title":"7. Security and privacy considerations"}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable"},
@@ -3722,6 +3565,213 @@ function genLinkingSyntaxes(dfn) {
 }
 }
 </script>
+<script>/* Boilerplate: script-mdn-anno */
+"use strict";
+{
+'use strict';
+// File copied from https://github.com/whatwg/whatwg.org/blob/main/resources.whatwg.org/standard-mdn-annos.js
+
+// Builds MDN annotation panels on demand from the compact `data-mdn` attribute written by
+// the spec generator (wattsi's EncodeMDNAnnotations; Bikeshed's mdnspeclinks.py builds its
+// panels eagerly for now). Only the wire format is shared: the browser labels, the
+// engine-support strings and the render grouping all live here.
+//
+// Archived commit snapshots load this file forever, so every format version this script
+// has ever understood has to keep working. Evolve the format by adding a branch in
+// `hydrate`, never by redefining a version that has already shipped.
+
+const MDN_URL = 'https://developer.mozilla.org/en-US/docs/Web/';
+const CANIUSE_URL = 'https://caniuse.com/#feat=';
+
+// Render groups, in the order they appear in a panel, separated by <hr>.
+const CURRENT_ENGINES = 0;
+const BORROWED_ENGINES = 1;
+const RETIRED_ENGINES = 2;
+const MOBILE = 3;
+const NON_BROWSER = 4;
+const GROUP_COUNT = 5;
+
+// Cell slots, in the order they appear in `data-mdn`. APPEND-ONLY: a new browser goes at
+// the end and is never inserted, so that old data still lines up and old copies of this
+// script can keep ignoring the cells they don't know about. `group` is what decides where
+// a row is rendered, so appending to this list doesn't constrain where the row shows up.
+const SLOTS = [
+  { id: 'firefox', label: 'Firefox', group: CURRENT_ENGINES },
+  { id: 'safari', label: 'Safari', group: CURRENT_ENGINES },
+  { id: 'chrome', label: 'Chrome', group: CURRENT_ENGINES },
+  { id: 'opera', label: 'Opera', group: BORROWED_ENGINES, mirrors: 'Chrome' },
+  { id: 'edge_blink', label: 'Edge', group: BORROWED_ENGINES },
+  { id: 'edge', label: 'Edge (Legacy)', group: RETIRED_ENGINES },
+  { id: 'ie', label: 'IE', group: RETIRED_ENGINES },
+  { id: 'firefox_android', label: 'Firefox for Android', group: MOBILE, mirrors: 'Firefox' },
+  { id: 'safari_ios', label: 'iOS Safari', group: MOBILE, mirrors: 'Safari' },
+  { id: 'chrome_android', label: 'Chrome for Android', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'webview_android', label: 'Android WebView', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'samsunginternet_android', label: 'Samsung Internet', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'opera_android', label: 'Opera Mobile', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'nodejs', label: 'Node.js', group: NON_BROWSER },
+];
+
+// One mnemonic character per engine-support note.
+const LEVELS = {
+  '0': { class: 'less-than-two-engines-text', text: 'In no current engines.' },
+  '1': { class: 'less-than-two-engines-text', text: 'In only one current engine.' },
+  '9': { class: 'all-engines-text', text: 'In all current engines.' },
+  's': { class: 'less-than-two-engines-text', text: 'Support in one engine under other name.' },
+  'S': { class: 'less-than-two-engines-text', text: 'Support in some engines under other name.' },
+  'v': { class: 'less-than-two-engines-text', text: 'Prefixed support in one engine.' },
+  'V': { class: 'less-than-two-engines-text', text: 'Prefixed support in some engines.' },
+  'p': { class: 'less-than-two-engines-text', text: 'Partial support in one engine.' },
+  'P': { class: 'less-than-two-engines-text', text: 'Partial support in some engines.' },
+};
+
+// Leading character of a cell, qualifying how the version after it should be read. `flag`
+// is whether to mark the version with 🔰 as well as explaining it in a tooltip.
+const CAVEATS = {
+  '*': { flag: true, title: () => 'Partial implementation.' },
+  '^': { flag: true, title: () => 'Requires setting a user preference or runtime flag.' },
+  '$': { flag: true, title: () => 'Requires a prefix or alternative name.' },
+  // Mirrored support is far too common to flag every occurrence; the tooltip is enough.
+  '@': { flag: false, title: (slot) => `Support is mirrored from ${slot.mirrors ?? 'the upstream browser'}.` },
+};
+
+const FLAG = '\u{1F530}'; // 🔰, marks a version that comes with a caveat
+const EN_DASH = '–';
+
+function element(name, attributes, ...children) {
+  const node = document.createElement(name);
+  for (const [attribute, value] of Object.entries(attributes)) {
+    if (value !== undefined) {
+      node.setAttribute(attribute, value);
+    }
+  }
+  node.append(...children);
+  return node;
+}
+
+function splitOnce(string, separator) {
+  const at = string.indexOf(separator);
+  return at === -1 ? [string, undefined] : [string.slice(0, at), string.slice(at + 1)];
+}
+
+// A version body says both whether the browser supports the feature and since when.
+function readVersion(body) {
+  if (body === '?') {
+    return { state: 'unknown', version: '?' };
+  }
+  if (body === '-') {
+    return { state: 'no', version: 'None' };
+  }
+  if (body === '!') {
+    return { state: 'yes', version: 'Yes' };
+  }
+  if (body.startsWith('=')) {
+    // A version that will never be superseded, so no trailing "+".
+    return { state: 'yes', version: body.slice(1) };
+  }
+  const [added, removed] = body.split('-');
+  if (removed !== undefined) {
+    return { state: 'no', version: added + EN_DASH + removed };
+  }
+  return { state: 'yes', version: added + '+' };
+}
+
+function readCell(cell, slot) {
+  const caveat = CAVEATS[cell[0]];
+  const { state, version } = readVersion(caveat ? cell.slice(1) : cell);
+  return {
+    state,
+    version: caveat?.flag ? `${FLAG} ${version}` : version,
+    title: caveat?.title(slot),
+  };
+}
+
+// A browser row is the browser's name in one cell and its version in the next. The logo
+// comes from CSS, keyed off the browser id in the row's class.
+function browserRow(slot, cell) {
+  const { state, version, title } = readCell(cell, slot);
+  return element('span', { class: `${slot.id} ${state}` },
+    element('span', {}, slot.label),
+    element('span', { title }, version));
+}
+
+// The caniuse row has a single cell instead, since its logo needs no label beside it.
+function caniuseRow(field) {
+  const [feature, title] = splitOnce(field, ',');
+  const link = element('a', { href: CANIUSE_URL + feature, title }, 'caniuse.com table');
+  return element('span', { class: 'caniuse' }, element('span', {}, link));
+}
+
+function supportTable(cells, caniuse) {
+  const groups = Array.from({ length: GROUP_COUNT }, () => []);
+  SLOTS.forEach((slot, slotIndex) => {
+    // An empty cell means this browser gets no row at all. Cells beyond SLOTS are
+    // browsers added after this copy of the script was written; ignore them.
+    if (cells[slotIndex]) {
+      groups[slot.group].push(browserRow(slot, cells[slotIndex]));
+    }
+  });
+  if (caniuse !== undefined) {
+    groups.push([caniuseRow(caniuse)]);
+  }
+
+  const table = element('div', { class: 'support' });
+  for (const rows of groups.filter((rows) => rows.length > 0)) {
+    if (table.hasChildNodes()) {
+      table.append(element('hr', {}));
+    }
+    table.append(...rows);
+  }
+  return table;
+}
+
+function featurePanel(record) {
+  const [slug, level, cells, caniuse] = record.split('|');
+
+  const article = element('a', { href: MDN_URL + slug }, slug.slice(slug.indexOf('/') + 1));
+  const panel = element('div', { class: 'feature' }, element('p', {}, article));
+
+  if (level in LEVELS) {
+    panel.append(element('p', { class: LEVELS[level].class }, LEVELS[level].text));
+  }
+  if (cells) {
+    panel.append(supportTable(cells.split(','), caniuse));
+  }
+  return panel;
+}
+
+function hydrate(anno) {
+  const [version, features] = splitOnce(anno.dataset.mdn, '|');
+  delete anno.dataset.mdn; // Only ever hydrate a panel once.
+
+  if (version !== 'v1') {
+    console.warn(`Unsupported MDN annotation data version "${version}".`, anno);
+    return;
+  }
+  anno.append(...features.split('~').map(featurePanel));
+}
+
+function hydrateIfNeeded(node) {
+  if (node instanceof Element && node.matches('.mdn-anno[data-mdn]')) {
+    hydrate(node);
+  }
+}
+
+// A click on the summary arrives before the browser opens the <details>, so hydrating
+// from it means the panel never flashes empty. That covers pointers and the keyboard,
+// since activating a summary dispatches a click either way.
+document.addEventListener('click', (event) => {
+  if (event.target instanceof Element) {
+    hydrateIfNeeded(event.target.closest('summary')?.parentElement);
+  }
+}, true);
+
+// And `toggle` is the catch-all for a panel opened some other way, such as find-in-page
+// or a fragment navigation into it. It fires a task after the state has already changed,
+// and it doesn't bubble, so it has to be a capture listener.
+document.addEventListener('toggle', (event) => hydrateIfNeeded(event.target), true);
+}
+</script>
 <script>/* Boilerplate: script-position-annos */
 "use strict";
 {
@@ -3840,8 +3890,9 @@ let refsData = {
 "https://dom.spec.whatwg.org/#concept-event-fire": {"displayText":"fire an event","export":true,"for_":[],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"fire an event","type":"dfn","url":"https://dom.spec.whatwg.org/#concept-event-fire"},
 "https://dom.spec.whatwg.org/#dictdef-eventinit": {"displayText":"EventInit","export":true,"for_":[],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"EventInit","type":"dictionary","url":"https://dom.spec.whatwg.org/#dictdef-eventinit"},
 "https://dom.spec.whatwg.org/#event": {"displayText":"Event","export":true,"for_":[],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"Event","type":"interface","url":"https://dom.spec.whatwg.org/#event"},
-"https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself": {"displayText":"rotateSelf()","export":true,"for_":["DOMMatrix"],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"rotateSelf()","type":"method","url":"https://drafts.fxtf.org/geometry-1/#dom-dommatrix-rotateself"},
-"https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate": {"displayText":"rotate()","export":true,"for_":["DOMMatrixReadOnly"],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"rotate()","type":"method","url":"https://drafts.fxtf.org/geometry-1/#dom-dommatrixreadonly-rotate"},
+"https://drafts.csswg.org/css-break-4/#break": {"displayText":"break","export":true,"for_":[],"level":"4","normative":true,"shortname":"css-break","spec":"css-break-4","status":"current","text":"break","type":"dfn","url":"https://drafts.csswg.org/css-break-4/#break"},
+"https://drafts.csswg.org/geometry-1/#dom-dommatrix-rotateself": {"displayText":"rotateSelf()","export":true,"for_":["DOMMatrix"],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"rotateSelf()","type":"method","url":"https://drafts.csswg.org/geometry-1/#dom-dommatrix-rotateself"},
+"https://drafts.csswg.org/geometry-1/#dom-dommatrixreadonly-rotate": {"displayText":"rotate()","export":true,"for_":["DOMMatrixReadOnly"],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"rotate()","type":"method","url":"https://drafts.csswg.org/geometry-1/#dom-dommatrixreadonly-rotate"},
 "https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable": {"displayText":"child navigable","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"child navigable","type":"dfn","url":"https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable"},
 "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document": {"displayText":"active document","export":true,"for_":["navigable"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"active document","type":"dfn","url":"https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document"},
 "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top": {"displayText":"top-level traversable","export":true,"for_":["navigable"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"top-level traversable","type":"dfn","url":"https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top"},
@@ -3869,7 +3920,6 @@ let refsData = {
 "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context": {"displayText":"secure context","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"secure context","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#secure-context"},
 "https://html.spec.whatwg.org/multipage/webappapis.html#task-source": {"displayText":"task source","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"task source","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#task-source"},
 "https://infra.spec.whatwg.org/#implementation-defined": {"displayText":"implementation-defined","export":true,"for_":[],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"implementation-defined","type":"dfn","url":"https://infra.spec.whatwg.org/#implementation-defined"},
-"https://infra.spec.whatwg.org/#iteration-break": {"displayText":"break","export":true,"for_":["iteration"],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"break","type":"dfn","url":"https://infra.spec.whatwg.org/#iteration-break"},
 "https://infra.spec.whatwg.org/#list-append": {"displayText":"append","export":true,"for_":["list"],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"append","type":"dfn","url":"https://infra.spec.whatwg.org/#list-append"},
 "https://infra.spec.whatwg.org/#list-iterate": {"displayText":"for each","export":true,"for_":["list","set"],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"for each","type":"dfn","url":"https://infra.spec.whatwg.org/#list-iterate"},
 "https://infra.spec.whatwg.org/#map-entry": {"displayText":"entry","export":true,"for_":["map"],"level":"1","normative":true,"shortname":"infra","spec":"infra","status":"current","text":"entry","type":"dfn","url":"https://infra.spec.whatwg.org/#map-entry"},
@@ -4001,7 +4051,12 @@ function hideRefHint(refHint) {
 function showRefHint(link) {
     if(link.classList.contains("dfn-link")) return;
     const url = link.getAttribute("href");
-    const ref = refsData[url];
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
     if(!ref) return;
 
     hideAllRefHints(); // Only display one at this time.
