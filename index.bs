@@ -344,6 +344,7 @@ To <dfn>fire an orientation event</dfn> given a {{DOMString}} |event|, {{Window}
         1. Let |state| be the result of <a>getting the current permission state</a> with |permission| and |environment|.
         1. If |state| is not "{{PermissionState/granted}}", return.
     1. [=Queue a global task=] on the [=device motion and orientation task source=] given |window| to run the following steps:
+        1. Let |document| be |window|'s [=associated Document=].
         1. If |document| is not [=document/fully active=], return.
         1. If |document|'s [=Document/visibility state=] is not "`visible`", return.
         1. Let |z| be |orientation|'s representation as intrinsic Tait-Bryan angles Z - X' - Y'' along the Z axis, or null if the implementation cannot provide an angle value.
