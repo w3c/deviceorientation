@@ -5,9 +5,9 @@
   <title>Device Orientation and Motion</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 49e9fdd4f, updated Tue Oct 13 14:27:53 2026 -0700" name="generator">
+  <meta content="Bikeshed version e0b165ae4, updated Mon Nov 2 15:16:49 2026 -0800" name="generator">
   <link href="https://www.w3.org/TR/orientation-event/" rel="canonical">
-  <meta content="a831f0b15540d7429e1881fcbc0c9f3e8bf45280" name="revision">
+  <meta content="37f7d50330e813e890fbc72ee6042b9319081413" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -360,14 +360,17 @@ figure.table figcaption:not(.no-marker)::before {
     height: auto;
     max-height: 500px;
     overflow: auto;
+    margin: 0;
     padding: 0.5em 0.75em;
     font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
     white-space: normal; /* in case it's moved into a pre */
+    inset: auto;
+    position-area: bottom span-right;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
 }
-.dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
 .dfn-panel > b { display: block; }
 .dfn-panel a { color: var(--dfnpanel-text); }
@@ -387,6 +390,9 @@ figure.table figcaption:not(.no-marker)::before {
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
+    position-area: none;
+    top: auto;
+    right: auto;
     left: 8px;
     bottom: 2em;
     margin: 0 auto;
@@ -443,7 +449,8 @@ figure.table figcaption:not(.no-marker)::before {
     opacity: 1;
 }
 
-.dfn-paneled[role="button"] { cursor: help; }
+.dfn-paneled { cursor: help; }
+.dfn-paneled > .dfn-panelbutton { all: unset; }
 
 .highlighted {
     animation: target-fade 3s;
@@ -996,7 +1003,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Device Orientation and Motion</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-10-26">26 October 2026</time></p>
+    <time class="dt-updated" datetime="2026-11-16">16 November 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1781,7 +1788,7 @@ At an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementatio
       <p>Otherwise, if the implementation is able to provide <a data-link-type="dfn" href="#acceleration-with-gravity" id="ref-for-acceleration-with-gravity②">acceleration with gravity</a>:</p>
       <ol>
        <li data-md>
-        <p>Set <var>platformAccelerationIncludingGravity</var> to the device’s <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration⑥">linear acceleration</a> along the X, Y and Z axes.</p>
+        <p>Set <var>platformAccelerationIncludingGravity</var> to the device’s <a data-link-type="dfn" href="#acceleration-with-gravity" id="ref-for-acceleration-with-gravity③">acceleration with gravity</a> along the X, Y and Z axes.</p>
       </ol>
      <li data-md>
       <p>Let <var>accelerationIncludingGravity</var> be null.</p>
@@ -1976,7 +1983,7 @@ To perform the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="pars
    </dl>
    <h3 class="heading settled" data-level="9.2" id="device-motion-automation"><span class="secno">9.2. </span><span class="content">Device Motion Automation</span><a class="self-link" href="#device-motion-automation"></a></h3>
    <p>The motion data retrieved from the platform by the user agent comes from accelerometers and gyroscopes. This specification defines certain <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata②">per-type virtual sensor metadata</a> entries that are shared with the <a data-link-type="biblio" href="#biblio-accelerometer" title="Accelerometer">[ACCELEROMETER]</a> and <a data-link-type="biblio" href="#biblio-gyroscope" title="Gyroscope">[GYROSCOPE]</a> specifications.</p>
-   <p>Accelerometer virtual sensors are used to provide <a data-link-type="dfn" href="#acceleration-with-gravity" id="ref-for-acceleration-with-gravity③">acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration⑦">linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a data-link-type="dfn" href="#rotation-rate" id="ref-for-rotation-rate⑤">rotation rate</a> data to the platform.</p>
+   <p>Accelerometer virtual sensors are used to provide <a data-link-type="dfn" href="#acceleration-with-gravity" id="ref-for-acceleration-with-gravity④">acceleration with gravity</a> data to the platform. Linear Acceleration virtual sensors are used to provide <a data-link-type="dfn" href="#linear-device-acceleration" id="ref-for-linear-device-acceleration⑥">linear acceleration</a> data to the platform. Gyroscope virtual sensors are used to provide <a data-link-type="dfn" href="#rotation-rate" id="ref-for-rotation-rate⑤">rotation rate</a> data to the platform.</p>
    <h4 class="heading settled" data-level="9.2.1" id="accelerometer-virtual-sensors"><span class="secno">9.2.1. </span><span class="content">The "accelerometer" virtual sensor type</span><a class="self-link" href="#accelerometer-virtual-sensors"></a></h4>
    <p>The <a data-link-type="dfn" href="https://w3c.github.io/sensors/#per-type-virtual-sensor-metadata" id="ref-for-per-type-virtual-sensor-metadata③">per-type virtual sensor metadata</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">map</a> must have the following <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry" id="ref-for-map-entry②">entry</a>:</p>
    <dl>
@@ -3082,7 +3089,7 @@ let dfnPanelData = {
 "a72449dd": {"dfnID":"a72449dd","dfnText":"in parallel","external":true,"refSections":[{"refs":[{"id":"ref-for-in-parallel"},{"id":"ref-for-in-parallel\u2460"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-in-parallel\u2461"},{"id":"ref-for-in-parallel\u2462"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel"},
 "absolute-orientation": {"dfnID":"absolute-orientation","dfnText":"Absolute orientation","external":false,"refSections":[{"refs":[{"id":"ref-for-absolute-orientation"}],"title":"4. Permissions"},{"refs":[{"id":"ref-for-absolute-orientation\u2460"},{"id":"ref-for-absolute-orientation\u2461"},{"id":"ref-for-absolute-orientation\u2462"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-absolute-orientation\u2463"}],"title":"6.2. deviceorientationabsolute Event"}],"url":"#absolute-orientation"},
 "absolute-orientation-virtual-sensor-type": {"dfnID":"absolute-orientation-virtual-sensor-type","dfnText":"absolute-orientation","external":false,"refSections":[{"refs":[{"id":"ref-for-absolute-orientation-virtual-sensor-type"}],"title":"6.1. deviceorientation Event"}],"url":"#absolute-orientation-virtual-sensor-type"},
-"acceleration-with-gravity": {"dfnID":"acceleration-with-gravity","dfnText":"includes gravity","external":false,"refSections":[{"refs":[{"id":"ref-for-acceleration-with-gravity"}],"title":"3.2. Device Motion"},{"refs":[{"id":"ref-for-acceleration-with-gravity\u2460"},{"id":"ref-for-acceleration-with-gravity\u2461"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-acceleration-with-gravity\u2462"}],"title":"9.2. Device Motion Automation"}],"url":"#acceleration-with-gravity"},
+"acceleration-with-gravity": {"dfnID":"acceleration-with-gravity","dfnText":"includes gravity","external":false,"refSections":[{"refs":[{"id":"ref-for-acceleration-with-gravity"}],"title":"3.2. Device Motion"},{"refs":[{"id":"ref-for-acceleration-with-gravity\u2460"},{"id":"ref-for-acceleration-with-gravity\u2461"},{"id":"ref-for-acceleration-with-gravity\u2462"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-acceleration-with-gravity\u2463"}],"title":"9.2. Device Motion Automation"}],"url":"#acceleration-with-gravity"},
 "accelerometer-virtual-sensor-type": {"dfnID":"accelerometer-virtual-sensor-type","dfnText":"accelerometer","external":false,"refSections":[],"url":"#accelerometer-virtual-sensor-type"},
 "b262501e": {"dfnID":"b262501e","dfnText":"reject","external":true,"refSections":[{"refs":[{"id":"ref-for-reject"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-reject\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"https://webidl.spec.whatwg.org/#reject"},
 "b4c365f8": {"dfnID":"b4c365f8","dfnText":"visibility state","external":true,"refSections":[{"refs":[{"id":"ref-for-visibility-state"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-visibility-state\u2460"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-visibility-state\u2461"}],"title":"7. Security and privacy considerations"}],"url":"https://html.spec.whatwg.org/multipage/interaction.html#visibility-state"},
@@ -3172,7 +3179,7 @@ let dfnPanelData = {
 "fire-an-orientation-event": {"dfnID":"fire-an-orientation-event","dfnText":"fire an orientation event","external":false,"refSections":[{"refs":[{"id":"ref-for-fire-an-orientation-event"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-fire-an-orientation-event\u2460"}],"title":"6.2. deviceorientationabsolute Event"}],"url":"#fire-an-orientation-event"},
 "gyroscope-virtual-sensor-type": {"dfnID":"gyroscope-virtual-sensor-type","dfnText":"gyroscope","external":false,"refSections":[],"url":"#gyroscope-virtual-sensor-type"},
 "linear-acceleration-virtual-sensor-type": {"dfnID":"linear-acceleration-virtual-sensor-type","dfnText":"linear-acceleration","external":false,"refSections":[],"url":"#linear-acceleration-virtual-sensor-type"},
-"linear-device-acceleration": {"dfnID":"linear-device-acceleration","dfnText":"Linear device acceleration","external":false,"refSections":[{"refs":[{"id":"ref-for-linear-device-acceleration"},{"id":"ref-for-linear-device-acceleration\u2460"},{"id":"ref-for-linear-device-acceleration\u2461"}],"title":"3.2. Device Motion"},{"refs":[{"id":"ref-for-linear-device-acceleration\u2462"},{"id":"ref-for-linear-device-acceleration\u2463"},{"id":"ref-for-linear-device-acceleration\u2464"},{"id":"ref-for-linear-device-acceleration\u2465"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-linear-device-acceleration\u2466"}],"title":"9.2. Device Motion Automation"}],"url":"#linear-device-acceleration"},
+"linear-device-acceleration": {"dfnID":"linear-device-acceleration","dfnText":"Linear device acceleration","external":false,"refSections":[{"refs":[{"id":"ref-for-linear-device-acceleration"},{"id":"ref-for-linear-device-acceleration\u2460"},{"id":"ref-for-linear-device-acceleration\u2461"}],"title":"3.2. Device Motion"},{"refs":[{"id":"ref-for-linear-device-acceleration\u2462"},{"id":"ref-for-linear-device-acceleration\u2463"},{"id":"ref-for-linear-device-acceleration\u2464"}],"title":"6.3.3. The DeviceMotionEvent interface"},{"refs":[{"id":"ref-for-linear-device-acceleration\u2465"}],"title":"9.2. Device Motion Automation"}],"url":"#linear-device-acceleration"},
 "parse-orientation-data-reading": {"dfnID":"parse-orientation-data-reading","dfnText":"parse orientation data reading","external":false,"refSections":[{"refs":[{"id":"ref-for-parse-orientation-data-reading"}],"title":"9.1.2. The \"absolute-orientation\" virtual sensor type"},{"refs":[{"id":"ref-for-parse-orientation-data-reading\u2460"}],"title":"9.1.3. The \"relative-orientation\" virtual sensor type"}],"url":"#parse-orientation-data-reading"},
 "permissiondef-accelerometer": {"dfnID":"permissiondef-accelerometer","dfnText":"\"accelerometer\"","external":false,"refSections":[{"refs":[{"id":"ref-for-permissiondef-accelerometer"},{"id":"ref-for-permissiondef-accelerometer\u2460"},{"id":"ref-for-permissiondef-accelerometer\u2461"}],"title":"4. Permissions"},{"refs":[{"id":"ref-for-permissiondef-accelerometer\u2462"},{"id":"ref-for-permissiondef-accelerometer\u2463"},{"id":"ref-for-permissiondef-accelerometer\u2464"},{"id":"ref-for-permissiondef-accelerometer\u2465"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-permissiondef-accelerometer\u2466"},{"id":"ref-for-permissiondef-accelerometer\u2467"},{"id":"ref-for-permissiondef-accelerometer\u2468"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"#permissiondef-accelerometer"},
 "permissiondef-gyroscope": {"dfnID":"permissiondef-gyroscope","dfnText":"\"gyroscope\"","external":false,"refSections":[{"refs":[{"id":"ref-for-permissiondef-gyroscope"},{"id":"ref-for-permissiondef-gyroscope\u2460"},{"id":"ref-for-permissiondef-gyroscope\u2461"}],"title":"4. Permissions"},{"refs":[{"id":"ref-for-permissiondef-gyroscope\u2462"},{"id":"ref-for-permissiondef-gyroscope\u2463"},{"id":"ref-for-permissiondef-gyroscope\u2464"},{"id":"ref-for-permissiondef-gyroscope\u2465"}],"title":"6.1. deviceorientation Event"},{"refs":[{"id":"ref-for-permissiondef-gyroscope\u2466"},{"id":"ref-for-permissiondef-gyroscope\u2467"},{"id":"ref-for-permissiondef-gyroscope\u2468"}],"title":"6.3.3. The DeviceMotionEvent interface"}],"url":"#permissiondef-gyroscope"},
@@ -3185,16 +3192,6 @@ let dfnPanelData = {
 
 document.addEventListener("DOMContentLoaded", ()=>{
     genAllDfnPanels();
-
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all dfn panels.
-        hideAllDfnPanels();
-    });
-});
-
-window.addEventListener("resize", () => {
-    // Pin any visible dfn panel
-    queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>positionDfnPanel(el));
 });
 
 function genAllDfnPanels() {
@@ -3206,16 +3203,17 @@ function genAllDfnPanels() {
             continue;
         }
         dfn.panelData = panelData;
-        insertDfnPopupAction(dfn);
+        genDfnPanel(dfn, panelData);
     }
 }
 
 function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
-    const dfnPanel = mk.aside({
-        class: "dfn-panel on",
+    const dfnPanel = mk.dialog({
+        class: "dfn-panel",
         id: `infopanel-for-${dfnID}`,
+        popover: "hint",
         "data-for": dfnID,
-        "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+        "aria-labelledby": `infopaneltitle-for-${dfnID}`,
         },
         mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
             `Info about the '${dfnText}' ${external?"external":""} reference.`),
@@ -3247,106 +3245,34 @@ function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
         event.stopPropagation();
         refocusOnTarget(event);
     });
-    dfnPanel.addEventListener('keydown', (event) => {
-        if(event.keyCode == 27) { // Escape key
-            hideDfnPanel({dfnPanel});
-            event.stopPropagation();
-            event.preventDefault();
+
+    dfnPanel.addEventListener('toggle', event=>{
+        if(event.newState == "closed") {
+            unpinDfnPanel(dfnPanel);
         }
     });
 
     dfnPanel.dfn = dfn;
     dfn.dfnPanel = dfnPanel;
+    dfn.after(dfnPanel);
+    const button = mk.button(
+        {
+            class:"dfn-panelbutton",
+            "popovertarget":dfnPanel.id
+        },
+        ...dfn.childNodes
+    );
+    dfn.append(button);
     return dfnPanel;
-}
-
-
-
-function hideAllDfnPanels() {
-    // Delete the currently-active dfn panel.
-    queryAll(".dfn-panel").forEach(dfnPanel=>hideDfnPanel({dfnPanel}));
-}
-
-function showDfnPanel(dfn) {
-    hideAllDfnPanels(); // Only display one at a time.
-
-    dfn.setAttribute("aria-expanded", "true");
-
-    const dfnPanel = genDfnPanel(dfn, dfn.panelData);
-
-    // Give the dfn a unique tabindex, and then
-    // give all the tabbable panel bits successive indexes.
-    let tabIndex = 100;
-    dfn.tabIndex = tabIndex++;
-    const tabbable = dfnPanel.querySelectorAll(":is(a, button)");
-    for (const el of tabbable) {
-        el.tabIndex = tabIndex++;
-    }
-
-    append(document.body, dfnPanel);
-    positionDfnPanel(dfnPanel);
-}
-
-function positionDfnPanel(dfnPanel) {
-    const dfn = dfnPanel.dfn;
-    const dfnPos = getBounds(dfn);
-    dfnPanel.style.top = dfnPos.bottom + "px";
-    dfnPanel.style.left = dfnPos.left + "px";
-
-    const panelPos = dfnPanel.getBoundingClientRect();
-    const panelMargin = 8;
-    const maxRight = document.body.parentNode.clientWidth - panelMargin;
-    if (panelPos.right > maxRight) {
-        const overflowAmount = panelPos.right - maxRight;
-        const newLeft = Math.max(panelMargin, dfnPos.left - overflowAmount);
-        dfnPanel.style.left = newLeft + "px";
-    }
 }
 
 function pinDfnPanel(dfnPanel) {
     // Switch it to "activated" state, which pins it.
     dfnPanel.classList.add("activated");
-    dfnPanel.style.position = "fixed";
-    dfnPanel.style.left = null;
-    dfnPanel.style.top = null;
 }
 
-function hideDfnPanel({dfn, dfnPanel}) {
-    if(!dfnPanel) dfnPanel = dfn.dfnPanel;
-    if(!dfn) dfn = dfnPanel.dfn;
-    dfn.dfnPanel = undefined;
-    dfnPanel.dfn = undefined;
-    dfn.setAttribute("aria-expanded", "false");
-    dfn.tabIndex = undefined;
-    dfnPanel.remove()
-}
-
-function toggleDfnPanel(dfn) {
-    if(dfn.dfnPanel) {
-        hideDfnPanel(dfn);
-    } else {
-        showDfnPanel(dfn);
-    }
-}
-
-function insertDfnPopupAction(dfn) {
-    dfn.setAttribute('role', 'button');
-    dfn.setAttribute('aria-expanded', 'false')
-    dfn.tabIndex = 0;
-    dfn.classList.add('has-dfn-panel');
-    dfn.addEventListener('click', (event) => {
-        toggleDfnPanel(dfn);
-        event.stopPropagation();
-    });
-    dfn.addEventListener('keypress', (event) => {
-        const kc = event.keyCode;
-        // 32->Space, 13->Enter
-        if(kc == 32 || kc == 13) {
-            toggleDfnPanel(dfn);
-            event.stopPropagation();
-            event.preventDefault();
-        }
-    });
+function unpinDfnPanel(dfnPanel) {
+    dfnPanel.classList.remove("activated");
 }
 
 function refocusOnTarget(event) {
@@ -3356,21 +3282,6 @@ function refocusOnTarget(event) {
         // This is needed after browser scrolls to the destination.
         target.focus();
     });
-}
-
-// TODO: shared util
-// Returns the root-level absolute position {left and top} of element.
-function getBounds(el, relativeTo=document.body) {
-    const relativeRect = relativeTo.getBoundingClientRect();
-    const elRect = el.getBoundingClientRect();
-    const top = elRect.top - relativeRect.top;
-    const left = elRect.left - relativeRect.left;
-    return {
-        top,
-        left,
-        bottom: top + elRect.height,
-        right: left + elRect.width,
-    }
 }
 
 function scrollToTargetAndHighlight(event) {
