@@ -566,7 +566,7 @@ At an [=implementation-defined=] interval |interval|, the user agent must execut
       1. Let |virtualSensor| be |topLevelTraversable|'s [=virtual sensor mapping=]["`accelerometer`"].
       1. If |virtualSensor|'s [=can provide readings flag=] is true, then set |platformAccelerationIncludingGravity| to the latest readings provided to |virtualSensor|.
   1. Otherwise, if the implementation is able to provide [=acceleration with gravity=]:
-      1. Set |platformAccelerationIncludingGravity| to the device's [=linear acceleration=] along the X, Y and Z axes.
+      1. Set |platformAccelerationIncludingGravity| to the device's [=acceleration with gravity=] along the X, Y and Z axes.
   1. Let |accelerationIncludingGravity| be null.
   1. If |platformAccelerationIncludingGravity| is not null:
       1. Set |accelerationIncludingGravity| to a [=new=] {{DeviceMotionEventAcceleration}} created in |window|'s [=global object/realm=].
